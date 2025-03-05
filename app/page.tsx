@@ -8,7 +8,7 @@ export default function Home() {
         {/* ZENTRIERTES & GRÖSSERES BILD */}
         <Image
           className="mx-auto rounded-lg"
-          src="/screenshot.jpg"
+          src="/Screenshot.jpg"
           alt="Next.js logo"
           width={400} 
           height={400} 
