@@ -6,7 +6,7 @@ export default function Home() {
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
-          src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.boote-magazin.de%2Fboote%2Fsuperyachten%2Fgo-77-meter-langer-blickfaenger-mit-extravaganter-rumpffarbe%2F&psig=AOvVaw24k1H_xbwrxh7zvQ9kjLzY&ust=1741272456996000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNjYwMOX84sDFQAAAAAdAAAAABAE"
+          src="/workspaces/aquavinci/public/screenshot.jpg"
           alt="Next.js logo"
           width={180}
           height={38}
