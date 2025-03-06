@@ -9,11 +9,17 @@ export default function Home() {
       <nav className="relative w-full h-12 bg-[#242424] flex items-center px-4 z-10">
         {/* Clickable Logo (Sticks out of the navbar) */}
         <Link href="/" className="absolute left-4 -top-2">
-          <Image src="/logoname.png" alt="Logo" width={160} height={60} className="h-16 w-auto cursor-pointer" />
+          <Image 
+            src="/logoname.png" 
+            alt="Logo" 
+            width={140} // Restored to original size
+            height={50} // Matches navbar height
+            className="h-12 w-auto cursor-pointer" 
+          />
         </Link>
 
-        {/* Navigation Links (Start after the logo) */}
-        <div className="ml-[180px] flex h-full">
+        {/* Navigation Links (Moved Right to Prevent Overlap) */}
+        <div className="ml-[160px] flex h-full"> {/* Adjusted margin to push buttons right */}
           <Link
             href="/"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1000 hover:bg-gray-400 hover:text-black h-full"
