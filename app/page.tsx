@@ -19,7 +19,7 @@ export default function Home() {
         </Link>
 
         {/* Navigation Links (Start after the logo, properly spaced) */}
-        <div className="ml-6 flex h-full">
+        <div className="flex h-full ml-4">
           <Link
             href="/"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1000 hover:bg-gray-400 hover:text-black h-full"
