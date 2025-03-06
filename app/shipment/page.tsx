@@ -16,13 +16,13 @@ export default function ShipmentPage() {
         <div className="flex h-full ml-4">
           <Link
             href="/"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-400 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
           >
             Homepage
           </Link>
           <Link
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-400 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
           </Link>
