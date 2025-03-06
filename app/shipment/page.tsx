@@ -9,7 +9,7 @@ export default function ShipmentPage() {
       <nav className="w-full h-12 bg-[#242424] flex items-center px-4">
         {/* Clickable Logo for Homepage */}
         <Link href="/">
-          <Image src="/logoname.png" alt="Logo" width={150} height={80} className="h-12 w-auto cursor-pointer" />
+          <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-12 w-auto cursor-pointer" />
         </Link>
 
         {/* Navigation Links (Buttons start right after logo) */}
