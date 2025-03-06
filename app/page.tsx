@@ -16,11 +16,11 @@ export default function Home() {
         />
         
         {/* Slogan */}
-        <p className="text-center font-bold text-xl sm:text-2xl w-full">VOM WASSER ÜBERWUNDEN</p>
+        <p className="text-center font-bold text-xl sm:text-2xl w-full">OVERCOME BY WATER</p>
         
         {/* Fließtext */}
         <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px]">
-          Der Transport von Waren über See mit Containerschiffen ist eine kosteneffiziente und zuverlässige Lösung. Mit <strong>LCL</strong> teilen Sie sich den Platz und zahlen nur, was Sie nutzen. Für größere Sendungen gibt es <strong>FCL</strong>, bei dem Ihre Ware exklusiv in einem Container transportiert wird. Unsere globalen Verbindungen garantieren die schnellste Route und eine reibungslose Abwicklung. Sicherheit und Kundenzufriedenheit stehen an erster Stelle. Profitieren Sie von einem günstigen, sicheren und schnellen Seetransport – starten Sie noch heute!
+        The transportation of goods by sea using container ships is a cost-effective and reliable solution. With <strong>LCL</strong> (Less Container Load), you share space and only pay for what you use. For larger shipments, <strong>FCL</strong> (Full Container Load) ensures your goods are transported exclusively in a dedicated container. Our global network guarantees the fastest route and a smooth process. Security and customer satisfaction are our top priorities. Benefit from affordable, secure, and fast sea transport – start today!
         </p>
 
         {/* Buttons */}
