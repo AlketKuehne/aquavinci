@@ -3,10 +3,36 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[10px_1fr_20px] items-start justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-4 row-start-2 items-center sm:items-center w-full">
+    <div className="flex flex-col min-h-screen">
+      
+      {/* Navigation Bar */}
+      <nav className="w-full h-12 bg-[#242424] flex items-center px-4">
+        {/* Clickable Logo for Homepage */}
+        <Link href="/">
+          <Image src="/logoname.png" alt="Logo" width={150} height={80} className="h-12 w-auto cursor-pointer" />
+        </Link>
+
+        {/* Navigation Links (Buttons start right after logo) */}
+        <div className="flex h-full ml-4">
+          <Link
+            href="/"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1000 hover:bg-gray-400 hover:text-black h-full"
+          >
+            Homepage
+          </Link>
+          <Link
+            href="/shipment"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1000 hover:bg-gray-400 hover:text-black h-full"
+          >
+            Create Shipment
+          </Link>
+        </div>
+      </nav>
+
+      {/* Main Content */}
+      <main className="grid grid-rows-[10px_1fr_20px] items-start justify-items-center flex-grow p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         
-        {/* ZENTRIERTES & WEIT NACH OBEN VERSCHOBENES BILD */}
+        {/* Centered Image */}
         <Image
           className="mx-auto mt-[-100px] rounded-lg"
           src="/Screenshot.jpg"
@@ -19,7 +45,7 @@ export default function Home() {
         {/* Slogan */}
         <p className="text-center font-bold text-xl sm:text-2xl w-full">OVERCOME BY WATER</p>
         
-        {/* Fließtext */}
+        {/* Description */}
         <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px]">
           The transportation of goods by sea using container ships is a cost-effective and reliable solution. With <strong>LCL</strong> (Less Container Load), you share space and only pay for what you use. For larger shipments, <strong>FCL</strong> (Full Container Load) ensures your goods are transported exclusively in a dedicated container. Our global network guarantees the fastest route and a smooth process. Security and customer satisfaction are our top priorities. Benefit from affordable, secure, and fast sea transport – start today!
         </p>
@@ -45,6 +71,7 @@ export default function Home() {
         </div>
       </main>
 
+      {/* Footer */}
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
@@ -92,6 +119,7 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
+
     </div>
   );
 }
