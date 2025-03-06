@@ -7,7 +7,7 @@ export default function Home() {
         
         {/* ZENTRIERTES & GRÖSSERES BILD */}
         <Image
-          className="mx-auto rounded-lg"
+          className="mx-auto rounded-lg mt-[-40px]"
           src="/Screenshot.jpg"
           alt="Next.js logo"
           width={400} 
@@ -15,16 +15,10 @@ export default function Home() {
           priority
         />
 
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+        {/* Fließtext */}
+        <p className="text-sm text-left sm:text-base font-[family-name:var(--font-geist-mono)]">
+          Der Transport von Waren über See mit Containerschiffen ist eine kosteneffiziente und zuverlässige Möglichkeit, große Mengen sicher ans Ziel zu bringen. Doch nicht jeder benötigt einen ganzen Container – deshalb bieten wir flexible Lösungen für Ihre Fracht. Mit <strong>LCL ("Less Container Load")</strong> können Sie sich den Container mit anderen Kunden teilen und zahlen nur für den tatsächlich genutzten Platz. Falls Sie eine größere Sendung haben, steht Ihnen unser <strong>FCL ("Full Container Load")</strong> zur Verfügung, bei dem Ihre Ware exklusiv in einem eigenen Container transportiert wird. So haben Sie volle Kontrolle über Ihre Fracht und profitieren von einem schnellen Versand. Unsere weltweiten Verbindungen ermöglichen es uns, die effizienteste Route für Ihre Sendung zu wählen, damit Ihre Ware so schnell wie möglich ihr Ziel erreicht. Ihre Sicherheit und Zufriedenheit sind dabei unsere höchste Priorität. Wir arbeiten mit den wichtigsten Häfen weltweit zusammen und garantieren Ihnen eine reibungslose Abwicklung. Egal, ob kleine oder große Mengen – mit unseren Lösungen finden wir den passenden Transport für Sie. Nutzen Sie unsere Erfahrung und profitieren Sie von einem günstigen, sicheren und schnellen Seeweg für Ihre Fracht. Lassen Sie sich beraten und starten Sie noch heute mit uns Ihren Seetransport!
+        </p>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
