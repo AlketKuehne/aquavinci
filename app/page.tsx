@@ -7,7 +7,7 @@ export default function Home() {
         
         {/* ZENTRIERTES & WEIT NACH OBEN VERSCHOBENES BILD */}
         <Image
-          className="mx-auto mt-[-200px] rounded-lg"
+          className="mx-auto mt-[-100px] rounded-lg"
           src="/Screenshot.jpg"
           alt="Next.js logo"
           width={400} 
