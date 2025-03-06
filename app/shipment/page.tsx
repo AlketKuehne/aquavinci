@@ -12,8 +12,8 @@ export default function ShipmentPage() {
           <Image src="/logoname.png" alt="Logo" width={150} height={80} className="h-12 w-auto cursor-pointer" />
         </Link>
 
-        {/* Navigation Links */}
-        <div className="flex ml-8 h-full">
+        {/* Navigation Links (direkt nach dem Logo) */}
+        <div className="flex h-full ml-4"> {/* Hier wurde `ml-4` hinzugefügt */}
           <Link href="/" className="flex items-center justify-center px-6 text-lg text-white hover:bg-gray-600 h-full">
             Homepage
           </Link>
