@@ -3,11 +3,11 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="grid grid-rows-[10px_1fr_20px] items-start justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-4 row-start-2 items-center sm:items-start w-full">
+      <main className="flex flex-col gap-4 row-start-2 items-center sm:items-center w-full">
         
         {/* ZENTRIERTES & WEIT NACH OBEN VERSCHOBENES BILD */}
         <Image
-          className="mx-auto mt-[-150px] rounded-lg"
+          className="mx-auto mt-[-200px] rounded-lg"
           src="/Screenshot.jpg"
           alt="Next.js logo"
           width={400} 
@@ -16,13 +16,11 @@ export default function Home() {
         />
         
         {/* Slogan */}
-        <p className="text-center font-bold text-lg sm:text-xl w-[400px]">VOM WASSER ÜBERWUNDEN</p>
+        <p className="text-center font-bold text-xl sm:text-2xl w-full">VOM WASSER ÜBERWUNDEN</p>
         
         {/* Fließtext */}
-        <p className="text-sm text-left sm:text-base font-[family-name:var(--font-geist-mono)] w-[400px]">
-          Der Transport von Waren über See mit Containerschiffen ist eine kosteneffiziente und zuverlässige Möglichkeit, große Mengen sicher ans Ziel zu bringen. Doch nicht jeder benötigt einen ganzen Container – deshalb bieten wir flexible Lösungen für Ihre Fracht. Mit <strong>LCL ("Less Container Load")</strong> können Sie sich den Container mit anderen Kunden teilen und zahlen nur für den tatsächlich genutzten Platz. Falls Sie eine größere Sendung haben, steht Ihnen unser <strong>FCL ("Full Container Load")</strong> zur Verfügung, bei dem Ihre Ware exklusiv in einem eigenen Container transportiert wird. So haben Sie volle Kontrolle über Ihre Fracht und profitieren von einem schnellen Versand. 
-          <br/><br/>Unsere weltweiten Verbindungen ermöglichen es uns, die effizienteste Route für Ihre Sendung zu wählen, damit Ihre Ware so schnell wie möglich ihr Ziel erreicht. Ihre Sicherheit und Zufriedenheit sind dabei unsere höchste Priorität. Wir arbeiten mit den wichtigsten Häfen weltweit zusammen und garantieren Ihnen eine reibungslose Abwicklung. Egal, ob kleine oder große Mengen – mit unseren Lösungen finden wir den passenden Transport für Sie. Nutzen Sie unsere Erfahrung und profitieren Sie von einem günstigen, sicheren und schnellen Seeweg für Ihre Fracht. 
-          <br/><br/>Wir verstehen, dass Zeit und Kosten entscheidende Faktoren sind. Daher optimieren wir unsere Versandrouten kontinuierlich, um Ihnen den bestmöglichen Service zu bieten. Unsere Experten stehen Ihnen jederzeit beratend zur Seite, um die passende Lösung für Ihre individuellen Bedürfnisse zu finden. Lassen Sie sich beraten und starten Sie noch heute mit uns Ihren Seetransport!
+        <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px]">
+          Der Transport von Waren über See mit Containerschiffen ist eine kosteneffiziente und zuverlässige Lösung. Mit <strong>LCL</strong> teilen Sie sich den Platz und zahlen nur, was Sie nutzen. Für größere Sendungen gibt es <strong>FCL</strong>, bei dem Ihre Ware exklusiv in einem Container transportiert wird. Unsere globalen Verbindungen garantieren die schnellste Route und eine reibungslose Abwicklung. Sicherheit und Kundenzufriedenheit stehen an erster Stelle. Profitieren Sie von einem günstigen, sicheren und schnellen Seetransport – starten Sie noch heute!
         </p>
 
         {/* Buttons */}
