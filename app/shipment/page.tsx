@@ -5,11 +5,11 @@ export default function ShipmentPage() {
     <div className="flex flex-col items-center min-h-screen">
       
       {/* Dünne, durchgehende Navigationsleiste */}
-      <nav className="w-full h-8 bg-gray-300 flex">
-        <Link href="/" className="flex items-center px-4 text-sm text-black hover:bg-gray-400 w-40">
+      <nav className="w-full h-6 bg-[#242424] flex">
+        <Link href="/" className="flex items-center px-4 text-sm text-white hover:bg-gray-600 w-40">
           Homepage
         </Link>
-        <Link href="/shipment" className="flex items-center px-4 text-sm text-black hover:bg-gray-400 w-40">
+        <Link href="/shipment" className="flex items-center px-4 text-sm text-white hover:bg-gray-600 w-40">
           Create Shipment
         </Link>
       </nav>
