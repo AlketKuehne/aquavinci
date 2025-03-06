@@ -6,14 +6,14 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       
       {/* Navigation Bar */}
-      <nav className="w-full h-12 bg-[#242424] flex items-center px-4">
-        {/* Clickable Logo for Homepage */}
-        <Link href="/">
-          <Image src="/logoname.png" alt="Logo" width={150} height={80} className="h-12 w-auto cursor-pointer" />
+      <nav className="relative w-full h-12 bg-[#242424] flex items-center px-4 z-10">
+        {/* Clickable Logo (Sticks out of the navbar) */}
+        <Link href="/" className="absolute left-4 -top-2">
+          <Image src="/logoname.png" alt="Logo" width={160} height={60} className="h-16 w-auto cursor-pointer" />
         </Link>
 
-        {/* Navigation Links (Buttons start right after logo) */}
-        <div className="flex h-full ml-4">
+        {/* Navigation Links (Start after the logo) */}
+        <div className="ml-[180px] flex h-full">
           <Link
             href="/"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1000 hover:bg-gray-400 hover:text-black h-full"
@@ -30,11 +30,11 @@ export default function Home() {
       </nav>
 
       {/* Main Content */}
-      <main className="grid grid-rows-[10px_1fr_20px] items-start justify-items-center flex-grow p-8 pb-20 gap-8 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="grid items-center justify-items-center flex-grow p-8 pb-20 gap-6 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         
-        {/* Centered Image */}
+        {/* Centered Image (Moves Up for Better Spacing) */}
         <Image
-          className="mx-auto mt-[-100px] rounded-lg"
+          className="mx-auto mt-[-80px] rounded-lg"
           src="/Screenshot.jpg"
           alt="Next.js logo"
           width={400} 
@@ -42,11 +42,13 @@ export default function Home() {
           priority
         />
         
-        {/* Slogan */}
-        <p className="text-center font-bold text-xl sm:text-2xl w-full">OVERCOME BY WATER</p>
+        {/* Slogan (Right Under the Logo) */}
+        <p className="text-center font-bold text-2xl sm:text-3xl w-full mt-2">
+          OVERCOME BY WATER
+        </p>
         
-        {/* Description */}
-        <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px]">
+        {/* Description (Moved Up, Doesn't Touch Buttons) */}
+        <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px] mt-2 mb-6">
           The transportation of goods by sea using container ships is a cost-effective and reliable solution. With <strong>LCL</strong> (Less Container Load), you share space and only pay for what you use. For larger shipments, <strong>FCL</strong> (Full Container Load) ensures your goods are transported exclusively in a dedicated container. Our global network guarantees the fastest route and a smooth process. Security and customer satisfaction are our top priorities. Benefit from affordable, secure, and fast sea transport – start today!
         </p>
 
