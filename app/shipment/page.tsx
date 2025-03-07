@@ -110,7 +110,7 @@ export default function ShipmentPage() {
             </div>
 
             {/* Dropdowns für FCL und LCL mit großem Abstand */}
-            <div className="flex justify-between w-full mt-6 px-12 gap-x-96">
+            <div className="flex justify-between w-full mt-6 gap-x-20">
               {/* FCL Container Type */}
               <select
                 disabled={shipmentType !== "FCL"}
