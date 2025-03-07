@@ -12,7 +12,7 @@ export default function ShipmentPage() {
           <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto cursor-pointer" />
         </Link>
 
-        {/* Navigation Links (Buttons start right after logo) */}
+        {/* Navigation Links */}
         <div className="flex h-full ml-4">
           <Link
             href="/"
@@ -29,9 +29,13 @@ export default function ShipmentPage() {
         </div>
       </nav>
 
+      {/* "Create Shipment" Überschrift */}
+      <h1 className="text-2xl font-bold mt-5 ml-6 self-start">
+        Create Shipment
+      </h1>
+
       {/* Page Content */}
       <div className="flex flex-col items-center justify-center flex-grow p-8">
-        <h1 className="text-3xl font-bold">Shipment Page</h1>
         <p className="mt-4 text-lg">Welcome to the shipment page!</p>
       </div>
     </div>
