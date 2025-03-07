@@ -14,13 +14,13 @@ export default function ShipmentPage() {
         <div className="flex h-full ml-4">
           <Link
             href="/"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-150 hover:bg-gray-200 hover:text-black h-full"
           >
             Homepage
           </Link>
           <Link
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-150 hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
           </Link>
@@ -73,26 +73,26 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        {/* New Large Box in the Middle */}
-        <div className="bg-white p-6 shadow-lg rounded-lg w-full mt-8 flex flex-col items-center">
-          <h2 className="text-lg font-bold mb-4">Select Shipment Type</h2>
-          <div className="flex justify-around w-full max-w-2xl">
-            {/* FCL Option */}
-            <label className="flex items-center space-x-2">
-              <input type="radio" name="shipmentType" value="FCL" className="w-5 h-5" />
-              <span className="text-lg font-medium">FCL (Full Container Load)</span>
-            </label>
+        {/* Middle Box (Standalone) */}
+        <div className="flex justify-center w-full mt-8">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%] mb-12">
+            <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
+            <div className="flex justify-around w-full">
+              {/* FCL Option */}
+              <label className="flex items-center space-x-2">
+                <input type="radio" name="shipmentType" value="FCL" className="w-5 h-5" />
+                <span className="text-lg font-medium">FCL (Full Container Load)</span>
+              </label>
 
-            {/* LCL Option */}
-            <label className="flex items-center space-x-2">
-              <input type="radio" name="shipmentType" value="LCL" className="w-5 h-5" />
-              <span className="text-lg font-medium">LCL (Less Container Load)</span>
-            </label>
+              {/* LCL Option */}
+              <label className="flex items-center space-x-2">
+                <input type="radio" name="shipmentType" value="LCL" className="w-5 h-5" />
+                <span className="text-lg font-medium">LCL (Less Container Load)</span>
+              </label>
+            </div>
           </div>
-
-          {/* Placeholder Space for Future Content */}
-          <div className="mt-12"></div>
         </div>
+
       </div>
     </div>
   );
