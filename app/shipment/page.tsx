@@ -14,13 +14,13 @@ export default function ShipmentPage() {
         <div className="flex h-full ml-4">
           <Link
             href="/"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-150 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
           >
             Homepage
           </Link>
           <Link
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-150 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
           </Link>
@@ -32,9 +32,9 @@ export default function ShipmentPage() {
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
         {/* First Form Section */}
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full gap-x-4">
           {/* Sender Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
             <input type="text" placeholder="Full Name" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
@@ -44,7 +44,7 @@ export default function ShipmentPage() {
           </div>
 
           {/* Recipient Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input type="text" placeholder="Full Name" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
@@ -55,9 +55,9 @@ export default function ShipmentPage() {
         </div>
 
         {/* Second Form Section (From - To) */}
-        <div className="flex justify-between w-full mt-8">
+        <div className="flex justify-between w-full mt-8 gap-x-4">
           {/* From Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
@@ -65,7 +65,7 @@ export default function ShipmentPage() {
           </div>
 
           {/* To Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
@@ -73,9 +73,9 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        {/* Middle Box (Standalone) */}
-        <div className="flex justify-center w-full mt-8">
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%] mb-12">
+        {/* Shipment Type Box (Breite angepasst) */}
+        <div className="w-full max-w-5xl px-8 mt-8">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
             <div className="flex justify-around w-full">
               {/* FCL Option */}
