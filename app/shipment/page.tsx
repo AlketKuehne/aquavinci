@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Wichtig für useState
 
 import Link from "next/link";
 import Image from "next/image";
@@ -19,13 +19,13 @@ export default function ShipmentPage() {
         <div className="flex h-full ml-4">
           <Link
             href="/"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-150 hover:bg-gray-200 hover:text-black h-full"
           >
             Homepage
           </Link>
           <Link
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-150 hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
           </Link>
@@ -78,20 +78,20 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        {/* Shipment Type Box */}
-        <div className="w-full mt-8">
+        {/* Shipment Type Section */}
+        <div className="w-full max-w-9xl px-8 mt-8">
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
-            
-            <div className="flex justify-between w-full px-8">
+
+            <div className="flex justify-around w-full">
               {/* FCL Option */}
               <label className="flex items-center space-x-2">
                 <input
                   type="radio"
                   name="shipmentType"
                   value="FCL"
-                  className="w-5 h-5"
                   onChange={() => setShipmentType("FCL")}
+                  className="w-5 h-5"
                 />
                 <span className="text-lg font-medium">FCL (Full Container Load)</span>
               </label>
@@ -102,15 +102,15 @@ export default function ShipmentPage() {
                   type="radio"
                   name="shipmentType"
                   value="LCL"
-                  className="w-5 h-5"
                   onChange={() => setShipmentType("LCL")}
+                  className="w-5 h-5"
                 />
                 <span className="text-lg font-medium">LCL (Less Container Load)</span>
               </label>
             </div>
 
-            {/* Dropdowns */}
-            <div className="flex justify-between w-full mt-4 px-8">
+            {/* Dropdowns für FCL und LCL mit großem Abstand */}
+            <div className="flex justify-between w-full mt-4 px-8 gap-x-40">
               {/* FCL Container Type */}
               <select
                 disabled={shipmentType !== "FCL"}
@@ -131,7 +131,6 @@ export default function ShipmentPage() {
                 <option>Barrel</option>
               </select>
             </div>
-
           </div>
         </div>
 
