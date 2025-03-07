@@ -72,6 +72,27 @@ export default function ShipmentPage() {
             <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
           </div>
         </div>
+
+        {/* New Large Box in the Middle */}
+        <div className="bg-white p-6 shadow-lg rounded-lg w-full mt-8 flex flex-col items-center">
+          <h2 className="text-lg font-bold mb-4">Select Shipment Type</h2>
+          <div className="flex justify-around w-full max-w-2xl">
+            {/* FCL Option */}
+            <label className="flex items-center space-x-2">
+              <input type="radio" name="shipmentType" value="FCL" className="w-5 h-5" />
+              <span className="text-lg font-medium">FCL (Full Container Load)</span>
+            </label>
+
+            {/* LCL Option */}
+            <label className="flex items-center space-x-2">
+              <input type="radio" name="shipmentType" value="LCL" className="w-5 h-5" />
+              <span className="text-lg font-medium">LCL (Less Container Load)</span>
+            </label>
+          </div>
+
+          {/* Placeholder Space for Future Content */}
+          <div className="mt-12"></div>
+        </div>
       </div>
     </div>
   );
