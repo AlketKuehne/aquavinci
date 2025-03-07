@@ -28,11 +28,11 @@ export default function ShipmentPage() {
         </div>
       </nav>
 
-      {/* Title */}
-      <h1 className="text-5xl font-extrabold mt-20 mb-10 ml-16">Create Shipment</h1>
+      {/* Title (leicht nach oben) */}
+      <h1 className="text-5xl font-extrabold mt-12 mb-8 ml-16">Create Shipment</h1>
 
-      {/* Form Section */}
-      <div className="flex gap-10">
+      {/* Form Section (leicht nach oben) */}
+      <div className="flex gap-10 mt-2">
         {/* Sender Box */}
         <div className="bg-white shadow-lg p-6 rounded-lg w-96">
           <h2 className="text-xl font-bold mb-4">Consignor (Sender)</h2>
