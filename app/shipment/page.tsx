@@ -30,48 +30,6 @@ export default function ShipmentPage() {
       <div className="flex flex-col items-start w-full max-w-5xl mt-12 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
-        {/* First Form Section */}
-        <div className="flex justify-between w-full gap-x-4">
-          {/* Sender Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
-            <input type="text" placeholder="Full Name" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Full Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded bg-gray-100" />
-          </div>
-
-          {/* Recipient Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
-            <input type="text" placeholder="Full Name" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Full Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded bg-gray-100" />
-          </div>
-        </div>
-
-        {/* Second Form Section (From - To) */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
-          {/* From Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
-            <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
-          </div>
-
-          {/* To Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
-            <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
-          </div>
-        </div>
-
         {/* Shipment Type Section */}
         <div className="w-full bg-white p-6 shadow-lg rounded-lg mt-8">
           <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
@@ -95,18 +53,21 @@ export default function ShipmentPage() {
 
               {/* FCL Dropdown */}
               <select
-                className={`w-full p-2 border rounded mt-2 ${
-                  shipmentType === "LCL" ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-gray-100"
+                className={`w-full p-2 border rounded mt-4 ${
+                  shipmentType === "LCL" || shipmentType === "" ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-gray-100"
                 }`}
                 value={containerType}
                 onChange={(e) => setContainerType(e.target.value)}
-                disabled={shipmentType === "LCL"}
+                disabled={shipmentType !== "FCL"}
               >
                 <option value="">Select Container Type</option>
                 <option value="20ft">20ft Container</option>
                 <option value="40ft">40ft Container</option>
               </select>
             </div>
+
+            {/* Abstand zwischen den beiden Dropdowns */}
+            <div className="w-4"></div>
 
             {/* LCL Option */}
             <div className="w-1/2">
@@ -126,12 +87,12 @@ export default function ShipmentPage() {
 
               {/* LCL Dropdown */}
               <select
-                className={`w-full p-2 border rounded mt-2 ${
-                  shipmentType === "FCL" ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-gray-100"
+                className={`w-full p-2 border rounded mt-4 ${
+                  shipmentType === "FCL" || shipmentType === "" ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "bg-gray-100"
                 }`}
                 value={packageType}
                 onChange={(e) => setPackageType(e.target.value)}
-                disabled={shipmentType === "FCL"}
+                disabled={shipmentType !== "LCL"}
               >
                 <option value="">Select Package Type</option>
                 <option value="Pallet">Pallet</option>
