@@ -40,6 +40,7 @@ export default function ShipmentPage() {
           <input type="email" placeholder="Email Address" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
           <input type="tel" placeholder="Phone Number" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
           <input type="text" placeholder="Full Address" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
+          <input type="text" placeholder="City" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
         </div>
 
         {/* Recipient Box */}
@@ -49,6 +50,7 @@ export default function ShipmentPage() {
           <input type="email" placeholder="Email Address" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
           <input type="tel" placeholder="Phone Number" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
           <input type="text" placeholder="Full Address" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
+          <input type="text" placeholder="City" className="w-full p-2 mb-3 border rounded-md bg-gray-100" />
         </div>
       </div>
     </div>
