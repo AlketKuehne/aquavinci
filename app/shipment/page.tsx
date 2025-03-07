@@ -74,8 +74,8 @@ export default function ShipmentPage() {
         </div>
 
         {/* Shipment Type Box (Breite angepasst) */}
-        <div className="w-full max-w-7xl px-8 mt-8">
-          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+        <div className="flex justify-center w-full mt-8">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[calc(100%+1rem)] max-w-[calc(50%*2+1rem)]">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
             <div className="flex justify-around w-full">
               {/* FCL Option */}
