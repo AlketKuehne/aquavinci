@@ -33,7 +33,7 @@ export default function ShipmentPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-5xl mt-12 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
         {/* First Form Section */}
@@ -79,8 +79,8 @@ export default function ShipmentPage() {
         </div>
 
         {/* Shipment Type Section */}
-        <div className="w-full max-w-5xl px-8 mt-16">
-          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+        <div className="w-full flex justify-center mt-16">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[90%] max-w-[1100px]">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
 
             <div className="flex justify-around w-full">
