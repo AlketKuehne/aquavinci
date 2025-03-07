@@ -31,7 +31,7 @@ export default function ShipmentPage() {
       <div className="flex flex-col items-start w-full max-w-5xl mt-12 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
-        {/* Form Container */}
+        {/* First Form Section */}
         <div className="flex justify-between w-full">
           {/* Sender Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
@@ -51,6 +51,25 @@ export default function ShipmentPage() {
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="text" placeholder="Full Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="text" placeholder="City" className="w-full p-2 border rounded bg-gray-100" />
+          </div>
+        </div>
+
+        {/* Second Form Section (From - To) */}
+        <div className="flex justify-between w-full mt-8">
+          {/* From Box */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+            <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
+            <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
+          </div>
+
+          {/* To Box */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+            <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
+            <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
           </div>
         </div>
       </div>
