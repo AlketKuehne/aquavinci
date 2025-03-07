@@ -79,7 +79,7 @@ export default function ShipmentPage() {
         </div>
 
         {/* Shipment Type Section */}
-        <div className="w-full max-w-9xl px-8 mt-8">
+        <div className="w-full max-w-5xl px-8 mt-16">
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
 
@@ -110,11 +110,11 @@ export default function ShipmentPage() {
             </div>
 
             {/* Dropdowns für FCL und LCL mit großem Abstand */}
-            <div className="flex justify-between w-full mt-4 px-8 gap-x-40">
+            <div className="flex justify-between w-full mt-6 px-12 gap-x-96">
               {/* FCL Container Type */}
               <select
                 disabled={shipmentType !== "FCL"}
-                className="w-1/2 p-2 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="w-1/2 p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
                 <option>Select Container Type</option>
                 <option>20ft Container</option>
@@ -124,7 +124,7 @@ export default function ShipmentPage() {
               {/* LCL Package Type */}
               <select
                 disabled={shipmentType !== "LCL"}
-                className="w-1/2 p-2 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="w-1/2 p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
                 <option>Select Package Type</option>
                 <option>Palette</option>
