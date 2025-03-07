@@ -29,8 +29,8 @@ export default function ShipmentPage() {
         </div>
       </nav>
 
-      {/* "Create Shipment" Überschrift (weiter nach rechts & weiter nach unten) */}
-      <h1 className="text-4xl font-bold mt-12 ml-[250px] self-start">
+      {/* "Create Shipment" Überschrift (noch weiter nach links verschoben) */}
+      <h1 className="text-4xl font-bold mt-12 ml-[180px] self-start">
         Create Shipment
       </h1>
 
