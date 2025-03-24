@@ -62,7 +62,7 @@ export default function Home() {
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Link 
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
           >
             <Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />
             Create Shipment
