@@ -28,7 +28,7 @@ export default function Home() {
           </Link>
           <Link
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 transition-all duration-[1250ms] hover:bg-gray-200 dark:hover:bg-[#1a1a1a] hover:text-black"
           >
             Create Shipment
           </Link>
