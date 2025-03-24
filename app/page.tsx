@@ -64,7 +64,7 @@ export default function Home() {
             href="/shipment"
             className="rounded-full border border-transparent flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 bg-[#242424] text-white transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black focus:outline-none"
           >
-            <Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />
+            <Image src="/vercel.ico" alt="Vercel logomark" width={20} height={20} />
             Create Shipment
           </Link>
 
