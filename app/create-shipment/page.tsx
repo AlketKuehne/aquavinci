@@ -54,6 +54,9 @@ export default function ShipmentPage() {
       consigneeCity
     );
     setIsButtonEnabled(isFormValid);
+    if (isFormValid) {
+      setShowWarning(false);
+    }
   }, [
     consignorFullName,
     consignorFullAddress,
