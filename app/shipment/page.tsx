@@ -117,6 +117,7 @@ export default function ShipmentPage() {
               rows={2}
               placeholder="Enter description of goods"
               className="w-full p-3 border rounded bg-gray-100"
+              disabled={shipmentType !== "FCL"}
             ></textarea>
           </div>
 
@@ -148,6 +149,7 @@ export default function ShipmentPage() {
               rows={2}
               placeholder="Enter description of goods"
               className="w-full p-3 border rounded bg-gray-100"
+              disabled={shipmentType !== "LCL"}
             ></textarea>
           </div>
         </div>
