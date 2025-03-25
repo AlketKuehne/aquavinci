@@ -69,7 +69,7 @@ export default function Home() {
               alt="Vercel logomark" 
               width={20} 
               height={20} 
-              className="mr-[8px]" /* Verschiebt das Icon um 2px nach links */
+              className="mr-[8px]" 
             />
             Create Shipment
           </Link>
