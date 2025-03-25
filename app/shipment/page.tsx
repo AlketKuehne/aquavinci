@@ -6,6 +6,15 @@ import { useState } from "react";
 
 export default function ShipmentPage() {
   const [shipmentType, setShipmentType] = useState("");
+  const [fclSelection, setFclSelection] = useState(""); // Speichert die FCL-Auswahl
+  const [lclSelection, setLclSelection] = useState(""); // Speichert die LCL-Auswahl
+
+  // Handler zum Ändern des Versandtyps (setzt die Dropdowns zurück)
+  const handleShipmentChange = (type) => {
+    setShipmentType(type);
+    setFclSelection("");
+    setLclSelection("");
+  };
 
   return (
     <div className="flex flex-col items-center min-h-screen">
@@ -80,7 +89,7 @@ export default function ShipmentPage() {
 
         {/* Shipment Type Section */}
         <div className="w-full flex justify-center mt-16">
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[90%] max-w-[1100px]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%] max-w-[1200px]">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
 
             <div className="flex justify-around w-full">
@@ -90,7 +99,7 @@ export default function ShipmentPage() {
                   type="radio"
                   name="shipmentType"
                   value="FCL"
-                  onChange={() => setShipmentType("FCL")}
+                  onChange={() => handleShipmentChange("FCL")}
                   className="w-5 h-5"
                 />
                 <span className="text-lg font-medium">FCL (Full Container Load)</span>
@@ -102,7 +111,7 @@ export default function ShipmentPage() {
                   type="radio"
                   name="shipmentType"
                   value="LCL"
-                  onChange={() => setShipmentType("LCL")}
+                  onChange={() => handleShipmentChange("LCL")}
                   className="w-5 h-5"
                 />
                 <span className="text-lg font-medium">LCL (Less Container Load)</span>
@@ -114,26 +123,29 @@ export default function ShipmentPage() {
               {/* FCL Container Type */}
               <select
                 disabled={shipmentType !== "FCL"}
+                value={fclSelection}
+                onChange={(e) => setFclSelection(e.target.value)}
                 className="w-1/2 p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
-                <option>Select Container Type</option>
-                <option>20ft Container</option>
-                <option>40ft Container</option>
+                <option value="">Select Container Type</option>
+                <option value="20ft">20ft Container</option>
+                <option value="40ft">40ft Container</option>
               </select>
 
               {/* LCL Package Type */}
               <select
                 disabled={shipmentType !== "LCL"}
+                value={lclSelection}
+                onChange={(e) => setLclSelection(e.target.value)}
                 className="w-1/2 p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
-                <option>Select Package Type</option>
-                <option>Palette</option>
-                <option>Barrel</option>
+                <option value="">Select Package Type</option>
+                <option value="palette">Palette</option>
+                <option value="barrel">Barrel</option>
               </select>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
