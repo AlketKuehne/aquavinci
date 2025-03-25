@@ -29,6 +29,10 @@ export default function ShipmentPage() {
   const [consigneeFullAddress, setConsigneeFullAddress] = useState("");
   const [consignorCity, setConsignorCity] = useState("");
   const [consigneeCity, setConsigneeCity] = useState("");
+  const [consignorEmail, setConsignorEmail] = useState("");
+  const [consigneeEmail, setConsigneeEmail] = useState("");
+  const [consignorPhone, setConsignorPhone] = useState("");
+  const [consigneePhone, setConsigneePhone] = useState("");
 
   useEffect(() => {
     const isFormValid = Boolean(
@@ -96,6 +100,10 @@ export default function ShipmentPage() {
     setFullName("");
     setFullAddress("");
     setCity("");
+    setConsignorEmail("");
+    setConsigneeEmail("");
+    setConsignorPhone("");
+    setConsigneePhone("");
     document.querySelectorAll('input[name="shipmentType"]').forEach((input) => {
       (input as HTMLInputElement).checked = false;
     });
@@ -148,8 +156,20 @@ export default function ShipmentPage() {
               value={consignorFullName}
               onChange={(e) => setConsignorFullName(e.target.value)}
             />
-            <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={consignorEmail}
+              onChange={(e) => setConsignorEmail(e.target.value)}
+            />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={consignorPhone}
+              onChange={(e) => setConsignorPhone(e.target.value)}
+            />
             <input
               type="text"
               placeholder={`Full Address${showError && !consignorFullAddress ? '*' : ''}`}
@@ -176,8 +196,20 @@ export default function ShipmentPage() {
               value={consigneeFullName}
               onChange={(e) => setConsigneeFullName(e.target.value)}
             />
-            <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input
+              type="email"
+              placeholder="Email Address"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={consigneeEmail}
+              onChange={(e) => setConsigneeEmail(e.target.value)}
+            />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={consigneePhone}
+              onChange={(e) => setConsigneePhone(e.target.value)}
+            />
             <input
               type="text"
               placeholder={`Full Address${showError && !consigneeFullAddress ? '*' : ''}`}
