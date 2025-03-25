@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from 'next/router';
 // Entfernen Sie den Import des Icons
 // import { FaArrowRight } from "react-icons/fa";
 
 export default function ShipmentPage() {
+  const router = useRouter();
   const [shipmentType, setShipmentType] = useState("");
   const [fclSelection, setFclSelection] = useState(""); // Speichert die FCL-Auswahl
   const [lclSelection, setLclSelection] = useState(""); // Speichert die LCL-Auswahl
@@ -119,6 +121,7 @@ export default function ShipmentPage() {
       setShowWarning(true);
     } else {
       setShowWarning(false);
+      router.push('/create-shipment/nextPage');
     }
   };
 
