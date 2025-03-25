@@ -309,7 +309,7 @@ export default function ShipmentPage() {
                 onChange={() => handleShipmentChange("FCL")}
                 className="w-5 h-5"
               />
-              <span className="text-lg font-medium">FCL (Full Container Load)</span>
+              <span className="text-lg font-medium">FCL (Full Container Load){shipmentType === "FCL" && '*'}</span>
             </label>
             <select
               disabled={shipmentType !== "FCL"}
@@ -317,11 +317,11 @@ export default function ShipmentPage() {
               onChange={(e) => setFclSelection(e.target.value)}
               className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
             >
-              <option value="">Select Container Type</option>
+              <option value="">Select Container Type{shipmentType === "FCL" && '*'}</option>
               <option value="20ft">20ft Container</option>
               <option value="40ft">40ft Container</option>
             </select>
-            <label className="block text-lg font-medium mb-2">Description of Goods</label>
+            <label className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
             <textarea
               rows={2}
               placeholder="Enter description of goods"
