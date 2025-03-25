@@ -55,7 +55,7 @@ export default function Home() {
         
         {/* Description */}
         <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px] mt-2 mb-6">
-          The transportation of goods by sea using container ships is a cost-effective and reliable solution. With <strong>LCL</strong> (Less Container Load), you share space and only pay for what you use. For larger shipments, <strong>FCL</strong> (Full Container Load) ensures your goods are transported exclusively in a dedicated container. Our global network guarantees the fastest route and a smooth process. Security and customer satisfaction are our top priorities. Benefit from affordable, secure, and fast sea transport – start today!
+        Wir sind Ihr zuverlässiger Partner für Seefracht. Ob LCL oder FCL – wir transportieren Ihre Waren sicher, effizient und kostengünstig. Vertrauen Sie auf unseren schnellen und professionellen Service!
         </p>
 
         {/* Buttons */}
