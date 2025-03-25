@@ -87,44 +87,21 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        {/* Shipment Type Section */}
-        <div className="w-full flex justify-center mt-16">
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%] max-w-[1200px]">
-            <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
-
-            <div className="flex justify-around w-full">
-              {/* FCL Option */}
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="shipmentType"
-                  value="FCL"
-                  onChange={() => handleShipmentChange("FCL")}
-                  className="w-5 h-5"
-                />
-                <span className="text-lg font-medium">FCL (Full Container Load)</span>
-              </label>
-
-              {/* LCL Option */}
-              <label className="flex items-center space-x-2">
-                <input
-                  type="radio"
-                  name="shipmentType"
-                  value="LCL"
-                  onChange={() => handleShipmentChange("LCL")}
-                  className="w-5 h-5"
-                />
-                <span className="text-lg font-medium">LCL (Less Container Load)</span>
-              </label>
-            </div>
-          </div>
-        </div>
-
         {/* FCL und LCL Boxen */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-16 gap-x-4">
           {/* FCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">FCL (Full Container Load)</h2>
+            <label className="flex items-center space-x-2 mb-4">
+              <input
+                type="radio"
+                name="shipmentType"
+                value="FCL"
+                onChange={() => handleShipmentChange("FCL")}
+                className="w-5 h-5"
+              />
+              <span className="text-lg font-medium">FCL (Full Container Load)</span>
+            </label>
             <select
               disabled={shipmentType !== "FCL"}
               value={fclSelection}
@@ -146,6 +123,16 @@ export default function ShipmentPage() {
           {/* LCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">LCL (Less Container Load)</h2>
+            <label className="flex items-center space-x-2 mb-4">
+              <input
+                type="radio"
+                name="shipmentType"
+                value="LCL"
+                onChange={() => handleShipmentChange("LCL")}
+                className="w-5 h-5"
+              />
+              <span className="text-lg font-medium">LCL (Less Container Load)</span>
+            </label>
             <select
               disabled={shipmentType !== "LCL"}
               value={lclSelection}
