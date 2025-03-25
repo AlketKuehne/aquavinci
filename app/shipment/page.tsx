@@ -10,7 +10,7 @@ export default function ShipmentPage() {
   const [lclSelection, setLclSelection] = useState(""); // Speichert die LCL-Auswahl
 
   // Handler zum Ändern des Versandtyps (setzt die Dropdowns zurück)
-  const handleShipmentChange = (type) => {
+  const handleShipmentChange = (type: string) => {
     setShipmentType(type);
     setFclSelection("");
     setLclSelection("");
