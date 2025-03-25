@@ -117,43 +117,51 @@ export default function ShipmentPage() {
                 <span className="text-lg font-medium">LCL (Less Container Load)</span>
               </label>
             </div>
+          </div>
+        </div>
 
-            {/* Dropdowns für FCL und LCL mit großem Abstand */}
-            <div className="flex justify-between w-full mt-6 gap-x-20">
-              {/* FCL Container Type */}
-              <select
-                disabled={shipmentType !== "FCL"}
-                value={fclSelection}
-                onChange={(e) => setFclSelection(e.target.value)}
-                className="w-1/2 p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                <option value="">Select Container Type</option>
-                <option value="20ft">20ft Container</option>
-                <option value="40ft">40ft Container</option>
-              </select>
+        {/* FCL und LCL Boxen */}
+        <div className="flex justify-between w-full mt-8 gap-x-4">
+          {/* FCL Box */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">FCL (Full Container Load)</h2>
+            <select
+              disabled={shipmentType !== "FCL"}
+              value={fclSelection}
+              onChange={(e) => setFclSelection(e.target.value)}
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
+            >
+              <option value="">Select Container Type</option>
+              <option value="20ft">20ft Container</option>
+              <option value="40ft">40ft Container</option>
+            </select>
+            <label className="block text-lg font-medium mb-2">Description of Goods</label>
+            <textarea
+              rows={2}
+              placeholder="Enter description of goods"
+              className="w-full p-3 border rounded bg-gray-100"
+            ></textarea>
+          </div>
 
-              {/* LCL Package Type */}
-              <select
-                disabled={shipmentType !== "LCL"}
-                value={lclSelection}
-                onChange={(e) => setLclSelection(e.target.value)}
-                className="w-1/2 p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                <option value="">Select Package Type</option>
-                <option value="palette">Palette</option>
-                <option value="barrel">Barrel</option>
-              </select>
-            </div>
-
-            {/* Beschreibung der Waren */}
-            <div className="mt-6">
-              <label className="block text-lg font-medium mb-2">Description of Goods</label>
-              <textarea
-                rows={2}
-                placeholder="Enter description of goods"
-                className="w-full p-3 border rounded bg-gray-100"
-              ></textarea>
-            </div>
+          {/* LCL Box */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">LCL (Less Container Load)</h2>
+            <select
+              disabled={shipmentType !== "LCL"}
+              value={lclSelection}
+              onChange={(e) => setLclSelection(e.target.value)}
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
+            >
+              <option value="">Select Package Type</option>
+              <option value="palette">Palette</option>
+              <option value="barrel">Barrel</option>
+            </select>
+            <label className="block text-lg font-medium mb-2">Description of Goods</label>
+            <textarea
+              rows={2}
+              placeholder="Enter description of goods"
+              className="w-full p-3 border rounded bg-gray-100"
+            ></textarea>
           </div>
         </div>
       </div>
