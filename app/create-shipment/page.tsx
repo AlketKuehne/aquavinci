@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 // Entfernen Sie den Import des Icons
 // import { FaArrowRight } from "react-icons/fa";
 
