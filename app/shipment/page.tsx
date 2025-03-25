@@ -90,7 +90,7 @@ export default function ShipmentPage() {
         </div>
 
         {/* FCL und LCL Boxen */}
-        <div className="flex justify-between w-full mt-16 gap-x-4">
+        <div className="flex justify-between w-full mt-8 gap-x-4">
           {/* FCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
