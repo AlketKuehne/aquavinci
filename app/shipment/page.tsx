@@ -162,8 +162,8 @@ export default function ShipmentPage() {
         </div>
 
         {/* Continue Button */}
-        <div className="flex justify-end w-full mt-8">
-          <button className="flex items-center px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full hover:bg-blue-600 transition-all duration-300">
+        <div className="flex justify-end w-full mt-16 mb-16">
+          <button className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all duration-300">
             Continue
           </button>
         </div>
