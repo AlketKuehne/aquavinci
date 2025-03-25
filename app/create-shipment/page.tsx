@@ -22,6 +22,7 @@ export default function ShipmentPage() {
   const [destinationStreet, setDestinationStreet] = useState("");
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showWarning, setShowWarning] = useState(false);
 
   const [consignorFullName, setConsignorFullName] = useState("");
   const [consigneeFullName, setConsigneeFullName] = useState("");
@@ -112,6 +113,9 @@ export default function ShipmentPage() {
   const handleContinueClick = () => {
     if (!isButtonEnabled) {
       setShowError(true);
+      setShowWarning(true);
+    } else {
+      setShowWarning(false);
     }
   };
 
@@ -355,15 +359,18 @@ export default function ShipmentPage() {
 
         {/* Continue Button */}
         <div className="flex justify-end w-full mt-16 mb-16">
-          <Link href="/shipment/nextPage">
-            <button
-              className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black"
-              onClick={handleContinueClick}
-            >
-              Continue
-            </button>
-          </Link>
+          <button
+            className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black"
+            onClick={handleContinueClick}
+          >
+            Continue
+          </button>
         </div>
+        {showWarning && (
+          <div className="text-red-500 text-lg font-bold mt-4">
+            !!WARNING!! YOU CAN'T CONTINUE WITHOUT FILLING THE MANDATORY FIELDS (*)
+          </div>
+        )}
       </div>
     </div>
   );
