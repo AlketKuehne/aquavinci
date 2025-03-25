@@ -89,7 +89,7 @@ export default function ShipmentPage() {
 
         {/* Shipment Type Section */}
         <div className="w-full flex justify-center mt-16">
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%] max-w-[1300px]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%] max-w-[1200px]">
             <h2 className="text-lg font-bold mb-4 text-center">Select Shipment Type</h2>
 
             <div className="flex justify-around w-full">
