@@ -22,13 +22,13 @@ export default function Home() {
         <div className="flex h-full ml-4">
           <Link
             href="/"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
           >
             Homepage
           </Link>
           <Link
             href="/shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
           </Link>
@@ -64,7 +64,13 @@ export default function Home() {
             href="/shipment"
             className="rounded-full border border-transparent flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 bg-[#242424] text-white transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black focus:outline-none"
           >
-            <Image src="/vercel.ico" alt="Vercel logomark" width={20} height={20} />
+            <Image 
+              src="/vercel.ico" 
+              alt="Vercel logomark" 
+              width={20} 
+              height={20} 
+              className="mr-[2px]" /* Verschiebt das Icon um 2px nach links */
+            />
             Create Shipment
           </Link>
 
@@ -127,7 +133,6 @@ export default function Home() {
           Go to nextjs.org →
         </a>
       </footer>
-
     </div>
   );
 }
