@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { FaArrowRight } from "react-icons/fa"; // Importieren Sie das Icon
 
 export default function ShipmentPage() {
   const [shipmentType, setShipmentType] = useState("");
@@ -20,7 +21,6 @@ export default function ShipmentPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen">
-      
       {/* Navigation Bar */}
       <nav className="w-full h-12 bg-[#242424] flex items-center px-4">
         <Link href="/">
@@ -158,6 +158,14 @@ export default function ShipmentPage() {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
+        </div>
+
+        {/* Continue Button */}
+        <div className="flex justify-end w-full mt-8">
+          <button className="flex items-center px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full hover:bg-blue-600 transition-all duration-300">
+            Continue
+            <FaArrowRight className="ml-2" />
+          </button>
         </div>
       </div>
     </div>
