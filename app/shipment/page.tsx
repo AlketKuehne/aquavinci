@@ -144,6 +144,16 @@ export default function ShipmentPage() {
                 <option value="barrel">Barrel</option>
               </select>
             </div>
+
+            {/* Beschreibung der Waren */}
+            <div className="mt-6">
+              <label className="block text-lg font-medium mb-2">Description of Goods</label>
+              <textarea
+                rows={2}
+                placeholder="Enter description of goods"
+                className="w-full p-3 border rounded bg-gray-100"
+              ></textarea>
+            </div>
           </div>
         </div>
       </div>
