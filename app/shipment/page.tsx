@@ -93,7 +93,7 @@ export default function ShipmentPage() {
         <div className="flex justify-between w-full mt-16 gap-x-4">
           {/* FCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">FCL</h2>
+            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
             <label className="flex items-center space-x-2 mb-4">
               <input
                 type="radio"
@@ -127,7 +127,7 @@ export default function ShipmentPage() {
 
           {/* LCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">LCL</h2>
+            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
             <label className="flex items-center space-x-2 mb-4">
               <input
                 type="radio"
