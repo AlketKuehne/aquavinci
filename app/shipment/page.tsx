@@ -36,7 +36,7 @@ export default function ShipmentPage() {
             Homepage
           </Link>
           <Link
-            href="/shipment"
+            href="/create-shipment"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
