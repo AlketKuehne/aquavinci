@@ -8,12 +8,14 @@ export default function ShipmentPage() {
   const [shipmentType, setShipmentType] = useState("");
   const [fclSelection, setFclSelection] = useState(""); // Speichert die FCL-Auswahl
   const [lclSelection, setLclSelection] = useState(""); // Speichert die LCL-Auswahl
+  const [description, setDescription] = useState(""); // Speichert die Beschreibung der Waren
 
-  // Handler zum Ändern des Versandtyps (setzt die Dropdowns zurück)
+  // Handler zum Ändern des Versandtyps (setzt die Dropdowns und die Beschreibung zurück)
   const handleShipmentChange = (type: string) => {
     setShipmentType(type);
     setFclSelection("");
     setLclSelection("");
+    setDescription("");
   };
 
   return (
@@ -118,6 +120,8 @@ export default function ShipmentPage() {
               placeholder="Enter description of goods"
               className="w-full p-3 border rounded bg-gray-100"
               disabled={shipmentType !== "FCL"}
+              value={shipmentType === "FCL" ? description : ""}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
 
@@ -150,6 +154,8 @@ export default function ShipmentPage() {
               placeholder="Enter description of goods"
               className="w-full p-3 border rounded bg-gray-100"
               disabled={shipmentType !== "LCL"}
+              value={shipmentType === "LCL" ? description : ""}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
         </div>
