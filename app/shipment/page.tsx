@@ -118,7 +118,7 @@ export default function ShipmentPage() {
             <textarea
               rows={2}
               placeholder="Enter description of goods"
-              className="w-full p-3 border rounded bg-gray-100"
+              className={`w-full p-3 border rounded ${shipmentType !== "FCL" ? "bg-[#D1D5DC] cursor-not-allowed" : "bg-gray-100"}`}
               disabled={shipmentType !== "FCL"}
               value={shipmentType === "FCL" ? description : ""}
               onChange={(e) => setDescription(e.target.value)}
@@ -152,7 +152,7 @@ export default function ShipmentPage() {
             <textarea
               rows={2}
               placeholder="Enter description of goods"
-              className="w-full p-3 border rounded bg-gray-100"
+              className={`w-full p-3 border rounded ${shipmentType !== "LCL" ? "bg-[#D1D5DC] cursor-not-allowed" : "bg-gray-100"}`}
               disabled={shipmentType !== "LCL"}
               value={shipmentType === "LCL" ? description : ""}
               onChange={(e) => setDescription(e.target.value)}
