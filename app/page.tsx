@@ -69,7 +69,7 @@ export default function Home() {
               alt="Vercel logomark" 
               width={20} 
               height={20} 
-              className="mr-[8px]" 
+              className="mr-[8px] invert transition-all duration-[1250ms] hover:invert-0" 
             />
             Create Shipment
           </Link>
