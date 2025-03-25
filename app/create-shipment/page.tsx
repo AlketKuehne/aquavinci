@@ -26,12 +26,14 @@ export default function ShipmentPage() {
   const [consigneeFullName, setConsigneeFullName] = useState("");
   const [consignorFullAddress, setConsignorFullAddress] = useState("");
   const [consigneeFullAddress, setConsigneeFullAddress] = useState("");
+  const [consignorCity, setConsignorCity] = useState("");
+  const [consigneeCity, setConsigneeCity] = useState("");
 
   useEffect(() => {
     const isFormValid = Boolean(
       consignorFullName &&
       consignorFullAddress &&
-      city &&
+      consignorCity &&
       country &&
       originCity &&
       street &&
@@ -42,13 +44,14 @@ export default function ShipmentPage() {
       description &&
       ((shipmentType === "FCL" && fclSelection) || (shipmentType === "LCL" && lclSelection)) &&
       consigneeFullName &&
-      consigneeFullAddress
+      consigneeFullAddress &&
+      consigneeCity
     );
     setIsButtonEnabled(isFormValid);
   }, [
     consignorFullName,
     consignorFullAddress,
-    city,
+    consignorCity,
     country,
     originCity,
     street,
@@ -61,6 +64,7 @@ export default function ShipmentPage() {
     lclSelection,
     consigneeFullName,
     consigneeFullAddress,
+    consigneeCity,
   ]);
 
   // Handler zum Ändern des Versandtyps (setzt die Dropdowns und die Beschreibung zurück)
@@ -124,8 +128,8 @@ export default function ShipmentPage() {
               type="text"
               placeholder="City"
               className="w-full p-2 border rounded bg-gray-100"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={consignorCity}
+              onChange={(e) => setConsignorCity(e.target.value)}
             />
           </div>
 
@@ -152,8 +156,8 @@ export default function ShipmentPage() {
               type="text"
               placeholder="City"
               className="w-full p-2 border rounded bg-gray-100"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={consigneeCity}
+              onChange={(e) => setConsigneeCity(e.target.value)}
             />
           </div>
         </div>
