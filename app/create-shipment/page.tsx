@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Entfernen Sie den Import des Icons
 // import { FaArrowRight } from "react-icons/fa";
 
@@ -11,6 +11,48 @@ export default function ShipmentPage() {
   const [fclSelection, setFclSelection] = useState(""); // Speichert die FCL-Auswahl
   const [lclSelection, setLclSelection] = useState(""); // Speichert die LCL-Auswahl
   const [description, setDescription] = useState(""); // Speichert die Beschreibung der Waren
+  const [fullName, setFullName] = useState("");
+  const [fullAddress, setFullAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [originCity, setOriginCity] = useState("");
+  const [street, setStreet] = useState("");
+  const [destinationCountry, setDestinationCountry] = useState("");
+  const [destinationCity, setDestinationCity] = useState("");
+  const [destinationStreet, setDestinationStreet] = useState("");
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+
+  useEffect(() => {
+    const isFormValid = Boolean(
+      fullName &&
+      fullAddress &&
+      city &&
+      country &&
+      originCity &&
+      street &&
+      destinationCountry &&
+      destinationCity &&
+      destinationStreet &&
+      shipmentType &&
+      description &&
+      ((shipmentType === "FCL" && fclSelection) || (shipmentType === "LCL" && lclSelection))
+    );
+    setIsButtonEnabled(isFormValid);
+  }, [
+    fullName,
+    fullAddress,
+    city,
+    country,
+    originCity,
+    street,
+    destinationCountry,
+    destinationCity,
+    destinationStreet,
+    shipmentType,
+    description,
+    fclSelection,
+    lclSelection,
+  ]);
 
   // Handler zum Ändern des Versandtyps (setzt die Dropdowns und die Beschreibung zurück)
   const handleShipmentChange = (type: string) => {
@@ -53,21 +95,57 @@ export default function ShipmentPage() {
           {/* Sender Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
-            <input type="text" placeholder="Full Name" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
             <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Full Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded bg-gray-100" />
+            <input
+              type="text"
+              placeholder="Full Address"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={fullAddress}
+              onChange={(e) => setFullAddress(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="City"
+              className="w-full p-2 border rounded bg-gray-100"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
           </div>
 
           {/* Recipient Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
-            <input type="text" placeholder="Full Name" className="w-full p-2 border rounded mb-3 bg-gray-100" />
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
             <input type="email" placeholder="Email Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Full Address" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded bg-gray-100" />
+            <input
+              type="text"
+              placeholder="Full Address"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={fullAddress}
+              onChange={(e) => setFullAddress(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="City"
+              className="w-full p-2 border rounded bg-gray-100"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
           </div>
         </div>
 
@@ -76,17 +154,53 @@ export default function ShipmentPage() {
           {/* From Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
-            <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
+            <input
+              type="text"
+              placeholder="Country"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="City"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={originCity}
+              onChange={(e) => setOriginCity(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Street & House Number"
+              className="w-full p-2 border rounded bg-gray-100"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+            />
           </div>
 
           {/* To Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
-            <input type="text" placeholder="Country" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="City" className="w-full p-2 border rounded mb-3 bg-gray-100" />
-            <input type="text" placeholder="Street & House Number" className="w-full p-2 border rounded bg-gray-100" />
+            <input
+              type="text"
+              placeholder="Country"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={destinationCountry}
+              onChange={(e) => setDestinationCountry(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="City"
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              value={destinationCity}
+              onChange={(e) => setDestinationCity(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Street & House Number"
+              className="w-full p-2 border rounded bg-gray-100"
+              value={destinationStreet}
+              onChange={(e) => setDestinationStreet(e.target.value)}
+            />
           </div>
         </div>
 
@@ -163,11 +277,22 @@ export default function ShipmentPage() {
 
         {/* Continue Button */}
         <div className="flex justify-end w-full mt-16 mb-16">
-          <Link href="/create-shipment/nextPage">
-            <button className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black">
+          {isButtonEnabled ? (
+            <Link href="/shipment/nextPage">
+              <button
+                className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black"
+              >
+                Continue
+              </button>
+            </Link>
+          ) : (
+            <button
+              className="flex items-center px-6 py-3 bg-gray-300 text-gray-500 text-lg font-medium rounded-full cursor-not-allowed"
+              disabled
+            >
               Continue
             </button>
-          </Link>
+          )}
         </div>
       </div>
     </div>
