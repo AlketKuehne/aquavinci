@@ -27,7 +27,7 @@ export default function Home() {
             Homepage
           </Link>
           <Link
-            href="/shipment"
+            href="/create-shipment"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
           >
             Create Shipment
@@ -61,7 +61,7 @@ export default function Home() {
         {/* Buttons */}
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <Link 
-            href="/shipment"
+            href="/create-shipment"
             className="group rounded-full border border-transparent flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 bg-[#242424] text-white transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black focus:outline-none"
           >
             <Image 
