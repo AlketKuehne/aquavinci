@@ -133,7 +133,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
             <input
               type="text"
-              placeholder="Full Name"
+              placeholder="Full Name*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consignorFullName}
               onChange={(e) => setConsignorFullName(e.target.value)}
@@ -142,14 +142,14 @@ export default function ShipmentPage() {
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input
               type="text"
-              placeholder="Full Address"
+              placeholder="Full Address*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consignorFullAddress}
               onChange={(e) => setConsignorFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City*"
               className="w-full p-2 border rounded bg-gray-100"
               value={consignorCity}
               onChange={(e) => setConsignorCity(e.target.value)}
@@ -161,7 +161,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
               type="text"
-              placeholder="Full Name"
+              placeholder="Full Name*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consigneeFullName}
               onChange={(e) => setConsigneeFullName(e.target.value)}
@@ -170,14 +170,14 @@ export default function ShipmentPage() {
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input
               type="text"
-              placeholder="Full Address"
+              placeholder="Full Address*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consigneeFullAddress}
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City*"
               className="w-full p-2 border rounded bg-gray-100"
               value={consigneeCity}
               onChange={(e) => setConsigneeCity(e.target.value)}
@@ -192,21 +192,21 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             <input
               type="text"
-              placeholder="Country"
+              placeholder="Country*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Street & House Number"
+              placeholder="Street & House Number*"
               className="w-full p-2 border rounded bg-gray-100"
               value={street}
               onChange={(e) => setStreet(e.target.value)}
@@ -218,21 +218,21 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             <input
               type="text"
-              placeholder="Country"
+              placeholder="Country*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City*"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={destinationCity}
               onChange={(e) => setDestinationCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Street & House Number"
+              placeholder="Street & House Number*"
               className="w-full p-2 border rounded bg-gray-100"
               value={destinationStreet}
               onChange={(e) => setDestinationStreet(e.target.value)}
