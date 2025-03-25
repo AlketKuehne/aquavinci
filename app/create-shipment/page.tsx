@@ -75,6 +75,25 @@ export default function ShipmentPage() {
     setDescription("");
   };
 
+  const resetForm = () => {
+    setShipmentType("");
+    setFclSelection("");
+    setLclSelection("");
+    setDescription("");
+    setConsignorFullName("");
+    setConsigneeFullName("");
+    setConsignorFullAddress("");
+    setConsigneeFullAddress("");
+    setConsignorCity("");
+    setConsigneeCity("");
+    setCountry("");
+    setOriginCity("");
+    setStreet("");
+    setDestinationCountry("");
+    setDestinationCity("");
+    setDestinationStreet("");
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
@@ -93,6 +112,7 @@ export default function ShipmentPage() {
           <Link
             href="/create-shipment"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+            onClick={resetForm}
           >
             Create Shipment
           </Link>
