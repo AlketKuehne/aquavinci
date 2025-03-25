@@ -92,6 +92,9 @@ export default function ShipmentPage() {
     setDestinationCountry("");
     setDestinationCity("");
     setDestinationStreet("");
+    setFullName("");
+    setFullAddress("");
+    setCity("");
     document.querySelectorAll('input[name="shipmentType"]').forEach((input) => {
       (input as HTMLInputElement).checked = false;
     });
