@@ -3,7 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { FaArrowRight } from "react-icons/fa"; // Importieren Sie das Icon
+// Entfernen Sie den Import des Icons
+// import { FaArrowRight } from "react-icons/fa";
 
 export default function ShipmentPage() {
   const [shipmentType, setShipmentType] = useState("");
@@ -164,7 +165,6 @@ export default function ShipmentPage() {
         <div className="flex justify-end w-full mt-8">
           <button className="flex items-center px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full hover:bg-blue-600 transition-all duration-300">
             Continue
-            <FaArrowRight className="ml-2" />
           </button>
         </div>
       </div>
