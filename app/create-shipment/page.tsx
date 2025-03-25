@@ -21,6 +21,7 @@ export default function ShipmentPage() {
   const [destinationCity, setDestinationCity] = useState("");
   const [destinationStreet, setDestinationStreet] = useState("");
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const [consignorFullName, setConsignorFullName] = useState("");
   const [consigneeFullName, setConsigneeFullName] = useState("");
@@ -100,6 +101,12 @@ export default function ShipmentPage() {
     });
   };
 
+  const handleContinueClick = () => {
+    if (!isButtonEnabled) {
+      setShowError(true);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
@@ -136,8 +143,8 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
             <input
               type="text"
-              placeholder="Full Name*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`Full Name${showError && !consignorFullName ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullName}
               onChange={(e) => setConsignorFullName(e.target.value)}
             />
@@ -145,15 +152,15 @@ export default function ShipmentPage() {
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input
               type="text"
-              placeholder="Full Address*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`Full Address${showError && !consignorFullAddress ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullAddress}
               onChange={(e) => setConsignorFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City*"
-              className="w-full p-2 border rounded bg-gray-100"
+              placeholder={`City${showError && !consignorCity ? '*' : ''}`}
+              className={`w-full p-2 border rounded ${showError && !consignorCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorCity}
               onChange={(e) => setConsignorCity(e.target.value)}
             />
@@ -164,8 +171,8 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
               type="text"
-              placeholder="Full Name*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`Full Name${showError && !consigneeFullName ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullName}
               onChange={(e) => setConsigneeFullName(e.target.value)}
             />
@@ -173,15 +180,15 @@ export default function ShipmentPage() {
             <input type="tel" placeholder="Phone Number" className="w-full p-2 border rounded mb-3 bg-gray-100" />
             <input
               type="text"
-              placeholder="Full Address*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`Full Address${showError && !consigneeFullAddress ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullAddress}
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City*"
-              className="w-full p-2 border rounded bg-gray-100"
+              placeholder={`City${showError && !consigneeCity ? '*' : ''}`}
+              className={`w-full p-2 border rounded ${showError && !consigneeCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeCity}
               onChange={(e) => setConsigneeCity(e.target.value)}
             />
@@ -195,22 +202,22 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             <input
               type="text"
-              placeholder="Country*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`Country${showError && !country ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`City${showError && !originCity ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Street & House Number*"
-              className="w-full p-2 border rounded bg-gray-100"
+              placeholder={`Street & House Number${showError && !street ? '*' : ''}`}
+              className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
               value={street}
               onChange={(e) => setStreet(e.target.value)}
             />
@@ -221,22 +228,22 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             <input
               type="text"
-              placeholder="Country*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`Country${showError && !destinationCountry ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City*"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              placeholder={`City${showError && !destinationCity ? '*' : ''}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCity}
               onChange={(e) => setDestinationCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Street & House Number*"
-              className="w-full p-2 border rounded bg-gray-100"
+              placeholder={`Street & House Number${showError && !destinationStreet ? '*' : ''}`}
+              className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationStreet}
               onChange={(e) => setDestinationStreet(e.target.value)}
             />
@@ -316,22 +323,14 @@ export default function ShipmentPage() {
 
         {/* Continue Button */}
         <div className="flex justify-end w-full mt-16 mb-16">
-          {isButtonEnabled ? (
-            <Link href="/shipment/nextPage">
-              <button
-                className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black"
-              >
-                Continue
-              </button>
-            </Link>
-          ) : (
+          <Link href="/shipment/nextPage">
             <button
-              className="flex items-center px-6 py-3 bg-gray-300 text-gray-500 text-lg font-medium rounded-full cursor-not-allowed"
-              disabled
+              className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black"
+              onClick={handleContinueClick}
             >
               Continue
             </button>
-          )}
+          </Link>
         </div>
       </div>
     </div>
