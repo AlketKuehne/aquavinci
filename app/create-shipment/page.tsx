@@ -385,30 +385,28 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        <div className="mt-4">
-          <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
-          <input
-            type="text"
-            value={numberOfPieces}
-            onChange={handleNumberOfPiecesChange}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+        {/* Box für Anzahl der Stücke und Dangerous Goods */}
+        <div className="bg-white p-6 shadow-lg rounded-lg w-full mt-8">
+          <h2 className="text-lg font-bold mb-4">Additional Information</h2>
+          <div className="mt-4">
+            <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
+            <input
+              type="text"
+              value={numberOfPieces}
+              onChange={handleNumberOfPiecesChange}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          <div className="mt-4 flex items-center">
+            <input
+              type="checkbox"
+              checked={isDangerousGoods}
+              onChange={handleDangerousGoodsChange}
+              className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+            />
+            <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
+          </div>
         </div>
-        <div className="mt-4 flex items-center">
-          <input
-            type="checkbox"
-            checked={isDangerousGoods}
-            onChange={handleDangerousGoodsChange}
-            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-          />
-          <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
-        </div>
-        <button
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-full cursor-pointer transition-all duration-[1250ms] hover:bg-blue-700"
-          onClick={handleContinue}
-        >
-          Continue
-        </button>
 
         {/* Continue Button */}
         <div className="flex justify-end w-full mt-16 mb-16">
