@@ -150,17 +150,17 @@ export default function ShipmentPage() {
   const handleContinueClick = () => {
     if (!isButtonEnabled) {
       setShowError(true);
-      if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
-        setDateWarning(true);
-        setShowWarning(false);
+      if (!consignorFullName || !consignorFullAddress || !consignorCity || !country || !originCity || !street || !destinationCountry || !destinationCity || !destinationStreet || !shipmentType || !description || (shipmentType === "FCL" && !fclSelection) || (shipmentType === "LCL" && !lclSelection) || !consigneeFullName || !consigneeFullAddress || !consigneeCity || !sendDate || !arrivalDate) {
+        setShowWarning(true);
         setInvalidDateWarning(false);
+        setDateWarning(false);
       } else if (isNaN(new Date(sendDate).getTime()) || isNaN(new Date(arrivalDate).getTime())) {
         setInvalidDateWarning(true);
-        setDateWarning(false);
         setShowWarning(false);
-      } else {
-        setShowWarning(true);
         setDateWarning(false);
+      } else if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
+        setDateWarning(true);
+        setShowWarning(false);
         setInvalidDateWarning(false);
       }
     } else {
