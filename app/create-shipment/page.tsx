@@ -74,6 +74,13 @@ export default function ShipmentPage() {
     }
   };
 
+  const handlePhoneNumberChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setter(value);
+    }
+  };
+
   useEffect(() => {
     const isFormValid = Boolean(
       consignorFullName &&
@@ -235,7 +242,7 @@ export default function ShipmentPage() {
               placeholder="Phone Number"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consignorPhone}
-              onChange={(e) => setConsignorPhone(e.target.value)}
+              onChange={handlePhoneNumberChange(setConsignorPhone)}
             />
             <input
               type="text"
@@ -275,7 +282,7 @@ export default function ShipmentPage() {
               placeholder="Phone Number"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consigneePhone}
-              onChange={(e) => setConsigneePhone(e.target.value)}
+              onChange={handlePhoneNumberChange(setConsigneePhone)}
             />
             <input
               type="text"
