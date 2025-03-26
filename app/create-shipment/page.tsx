@@ -213,7 +213,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
             <input
               type="text"
-              placeholder={`Full Name*${showError && !consignorFullName ? '*' : ''}`}
+              placeholder={`Full Name${showError && !consignorFullName ? '*' : ''}`}
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullName}
               onChange={(e) => setConsignorFullName(e.target.value)}
@@ -253,7 +253,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
               type="text"
-              placeholder={`Full Name*${showError && !consigneeFullName ? '*' : ''}`}
+              placeholder={`Full Name${showError && !consigneeFullName ? '*' : ''}`}
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullName}
               onChange={(e) => setConsigneeFullName(e.target.value)}
