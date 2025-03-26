@@ -211,7 +211,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
             <input
               type="text"
-              placeholder="Full Name"
+              placeholder="Full Name *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullName}
               onChange={(e) => setConsignorFullName(e.target.value)}
@@ -232,14 +232,14 @@ export default function ShipmentPage() {
             />
             <input
               type="text"
-              placeholder="Full Address"
+              placeholder="Full Address *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullAddress}
               onChange={(e) => setConsignorFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City *"
               className={`w-full p-2 border rounded ${showError && !consignorCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorCity}
               onChange={(e) => setConsignorCity(e.target.value)}
@@ -251,7 +251,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
               type="text"
-              placeholder="Full Name"
+              placeholder="Full Name *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullName}
               onChange={(e) => setConsigneeFullName(e.target.value)}
@@ -272,14 +272,14 @@ export default function ShipmentPage() {
             />
             <input
               type="text"
-              placeholder="Full Address"
+              placeholder="Full Address *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullAddress}
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City *"
               className={`w-full p-2 border rounded ${showError && !consigneeCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeCity}
               onChange={(e) => setConsigneeCity(e.target.value)}
@@ -294,21 +294,21 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             <input
               type="text"
-              placeholder="Country"
+              placeholder="Country *"
               className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City *"
               className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Street & House Number"
+              placeholder="Street & House Number *"
               className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
               value={street}
               onChange={(e) => setStreet(e.target.value)}
@@ -320,21 +320,21 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             <input
               type="text"
-              placeholder="Country"
+              placeholder="Country *"
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder="City"
+              placeholder="City *"
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCity}
               onChange={(e) => setDestinationCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder="Street & House Number"
+              placeholder="Street & House Number *"
               className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationStreet}
               onChange={(e) => setDestinationStreet(e.target.value)}
@@ -363,14 +363,14 @@ export default function ShipmentPage() {
               onChange={(e) => setFclSelection(e.target.value)}
               className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "FCL" && !fclSelection ? 'bg-red-100' : ''}`}
             >
-              <option value="">Select Container Type</option>
+              <option value="">Select Container Type *</option>
               <option value="20ft">20ft Container</option>
               <option value="40ft">40ft Container</option>
             </select>
             <label className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
             <textarea
               rows={2}
-              placeholder="Enter description of goods"
+              placeholder="Enter description of goods *"
               className={`w-full p-3 border rounded ${shipmentType !== "FCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "FCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
               disabled={shipmentType !== "FCL"}
               value={shipmentType === "FCL" ? description : ""}
@@ -397,14 +397,14 @@ export default function ShipmentPage() {
               onChange={(e) => setLclSelection(e.target.value)}
               className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "LCL" && !lclSelection ? 'bg-red-100' : ''}`}
             >
-              <option value="">Select Package Type</option>
+              <option value="">Select Package Type *</option>
               <option value="palette">Palette</option>
               <option value="barrel">Barrel</option>
             </select>
             <label className="block text-lg font-medium mb-2">Description of Goods</label>
             <textarea
               rows={2}
-              placeholder="Enter description of goods"
+              placeholder="Enter description of goods *"
               className={`w-full p-3 border rounded ${shipmentType !== "LCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "LCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
               disabled={shipmentType !== "LCL"}
               value={shipmentType === "LCL" ? description : ""}
