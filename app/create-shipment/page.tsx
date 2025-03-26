@@ -477,7 +477,7 @@ export default function ShipmentPage() {
             <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
-                onClick={closeWarning}
+                onClick={() => setDateWarning(false)}
               >
                 &times;
               </button>
@@ -495,7 +495,7 @@ export default function ShipmentPage() {
             <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
-                onClick={closeWarning}
+                onClick={() => setShowWarning(false)}
               >
                 &times;
               </button>
