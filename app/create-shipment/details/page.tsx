@@ -101,7 +101,7 @@ export default function DetailsPage() {
               </div>
               <div className="flex justify-around">
                 <button
-                  className="px-4 py-2 bg-gray-300 text-black rounded-full cursor-pointer"
+                  className="px-4 py-2 bg-gray-300 text-black rounded-full cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
                   onClick={handleCancel}
                 >
                   Yes
