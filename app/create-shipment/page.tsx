@@ -143,8 +143,8 @@ export default function ShipmentPage() {
     Yemen: ["Aden"]
   };
 
-  const getCitiesByCountry = (country) => {
-    return citiesWithPorts[country] || [];
+  const getCitiesByCountry = (country: string): string[] => {
+    return citiesWithPorts[country as keyof typeof citiesWithPorts] || [];
   };
 
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -426,7 +426,7 @@ export default function ShipmentPage() {
               }}
             >
               <option value="">Select Country *</option>
-              {countriesWithPorts.map((country) => (
+              {countriesWithPorts.map((country: string) => (
                 <option key={country} value={country}>{country}</option>
               ))}
             </select>
@@ -436,7 +436,7 @@ export default function ShipmentPage() {
               onChange={(e) => setOriginCity(e.target.value)}
             >
               <option value="">Select City *</option>
-              {getCitiesByCountry(country).map((city) => (
+              {getCitiesByCountry(country).map((city: string) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>
@@ -461,7 +461,7 @@ export default function ShipmentPage() {
               }}
             >
               <option value="">Select Country *</option>
-              {countriesWithPorts.map((country) => (
+              {countriesWithPorts.map((country: string) => (
                 <option key={country} value={country}>{country}</option>
               ))}
             </select>
@@ -471,7 +471,7 @@ export default function ShipmentPage() {
               onChange={(e) => setDestinationCity(e.target.value)}
             >
               <option value="">Select City *</option>
-              {getCitiesByCountry(destinationCountry).map((city) => (
+              {getCitiesByCountry(destinationCountry).map((city: string) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>
