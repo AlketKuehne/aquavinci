@@ -121,7 +121,7 @@ export default function ShipmentPage() {
       setShowWarning(true);
     } else {
       setShowWarning(false);
-      router.push('/create-shipment/nextPage');
+      router.push('/create-shipment/details');
     }
   };
 
