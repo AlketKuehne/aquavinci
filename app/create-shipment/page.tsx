@@ -67,6 +67,13 @@ export default function ShipmentPage() {
     console.log('Continue clicked');
   };
 
+  const handleFullNameChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setter(value);
+    }
+  };
+
   useEffect(() => {
     const isFormValid = Boolean(
       consignorFullName &&
@@ -214,7 +221,7 @@ export default function ShipmentPage() {
               placeholder="Full Name *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullName}
-              onChange={(e) => setConsignorFullName(e.target.value)}
+              onChange={handleFullNameChange(setConsignorFullName)}
             />
             <input
               type="email"
@@ -254,7 +261,7 @@ export default function ShipmentPage() {
               placeholder="Full Name *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullName}
-              onChange={(e) => setConsigneeFullName(e.target.value)}
+              onChange={handleFullNameChange(setConsigneeFullName)}
             />
             <input
               type="email"
