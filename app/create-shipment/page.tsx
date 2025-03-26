@@ -161,8 +161,10 @@ export default function ShipmentPage() {
       setShowError(true);
       if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
         setDateWarning(true);
+        setShowWarning(false);
       } else {
         setShowWarning(true);
+        setDateWarning(false);
       }
     } else {
       setShowWarning(false);
