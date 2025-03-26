@@ -107,7 +107,7 @@ export default function DetailsPage() {
                   Yes
                 </button>
                 <button
-                  className="px-4 py-2 bg-[#0E3386] text-white rounded-full cursor-pointer"
+                  className="px-4 py-2 bg-black text-white rounded-full cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
                   onClick={handleStay}
                 >
                   No
