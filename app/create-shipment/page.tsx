@@ -48,7 +48,7 @@ export default function ShipmentPage() {
   ];
 
   const citiesWithPorts = {
-    Albania: ["Durrës"],
+    Albania: ["Durrës", "Vlorë", "Shëngjin", "Sarandë"],
     Algeria: ["Algiers", "Oran", "Annaba", "Skikda"],
     Angola: ["Luanda", "Lobito", "Namibe"],
     Argentina: ["Buenos Aires", "Rosario", "Bahía Blanca", "Mar del Plata"],
