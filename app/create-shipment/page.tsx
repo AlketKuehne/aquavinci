@@ -38,6 +38,8 @@ export default function ShipmentPage() {
   const [consigneePhone, setConsigneePhone] = useState("");
   const [numberOfPieces, setNumberOfPieces] = useState('');
   const [isDangerousGoods, setIsDangerousGoods] = useState(false);
+  const [sendDate, setSendDate] = useState('');
+  const [arrivalDate, setArrivalDate] = useState('');
 
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -48,6 +50,14 @@ export default function ShipmentPage() {
 
   const handleDangerousGoodsChange = () => {
     setIsDangerousGoods(!isDangerousGoods);
+  };
+
+  const handleSendDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSendDate(e.target.value);
+  };
+
+  const handleArrivalDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setArrivalDate(e.target.value);
   };
 
   const handleContinue = () => {
@@ -71,7 +81,10 @@ export default function ShipmentPage() {
       ((shipmentType === "FCL" && fclSelection) || (shipmentType === "LCL" && lclSelection)) &&
       consigneeFullName &&
       consigneeFullAddress &&
-      consigneeCity
+      consigneeCity &&
+      sendDate &&
+      arrivalDate &&
+      new Date(sendDate) < new Date(arrivalDate)
     );
     setIsButtonEnabled(isFormValid);
     if (isFormValid) {
@@ -94,6 +107,8 @@ export default function ShipmentPage() {
     consigneeFullName,
     consigneeFullAddress,
     consigneeCity,
+    sendDate,
+    arrivalDate,
   ]);
 
   // Handler zum Ändern des Versandtyps (setzt die Dropdowns und die Beschreibung zurück)
@@ -385,26 +400,51 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        {/* Box für Anzahl der Stücke und Dangerous Goods */}
-        <div className="bg-white p-6 shadow-lg rounded-lg w-full mt-8">
-          <h2 className="text-lg font-bold mb-4">Additional Information</h2>
-          <div className="mt-4">
-            <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
-            <input
-              type="text"
-              value={numberOfPieces}
-              onChange={handleNumberOfPiecesChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+        <div className="flex justify-between w-full mt-8 gap-x-4">
+          {/* Box für Anzahl der Stücke und Dangerous Goods */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Additional Information</h2>
+            <div className="mt-4">
+              <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
+              <input
+                type="text"
+                value={numberOfPieces}
+                onChange={handleNumberOfPiecesChange}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div className="mt-4 flex items-center">
+              <input
+                type="checkbox"
+                checked={isDangerousGoods}
+                onChange={handleDangerousGoodsChange}
+                className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+              />
+              <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
+            </div>
           </div>
-          <div className="mt-4 flex items-center">
-            <input
-              type="checkbox"
-              checked={isDangerousGoods}
-              onChange={handleDangerousGoodsChange}
-              className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-            />
-            <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
+
+          {/* Box für Datum */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Date Information</h2>
+            <div className="mt-4">
+              <label className="block text-lg font-medium text-gray-700">Send Date</label>
+              <input
+                type="date"
+                value={sendDate}
+                onChange={handleSendDateChange}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-lg font-medium text-gray-700">Arrival Date</label>
+              <input
+                type="date"
+                value={arrivalDate}
+                onChange={handleArrivalDateChange}
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
           </div>
         </div>
 
