@@ -45,7 +45,7 @@ export default function ShipmentPage() {
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
-      setNumberOfPieces(value);
+      setNumberOfPieces(value || '1');
     }
   };
 
