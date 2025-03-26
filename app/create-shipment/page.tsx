@@ -54,7 +54,7 @@ export default function ShipmentPage() {
     Argentina: ["Buenos Aires", "Rosario"],
     Australia: ["Sydney", "Melbourne"],
     Bangladesh: ["Chittagong"],
-    Belgium: ["Antwerp", "Bruges"],
+    Belgium: ["Antwerp", "Bruges", "Ghent", "Brussels"],
     Brazil: ["Santos", "Rio de Janeiro"],
     Bulgaria: ["Varna", "Burgas"],
     Cambodia: ["Sihanoukville"],
@@ -72,8 +72,8 @@ export default function ShipmentPage() {
     Egypt: ["Alexandria", "Port Said"],
     Estonia: ["Tallinn"],
     Finland: ["Helsinki"],
-    France: ["Marseille", "Le Havre"],
-    Germany: ["Hamburg", "Bremen", "Bremerhaven"],
+    France: ["Marseille", "Le Havre", "Bordeaux", "Nantes"],
+    Germany: ["Hamburg", "Bremen", "Bremerhaven", "Lübeck", "Kiel", "Rostock"],
     Ghana: ["Tema", "Takoradi"],
     Greece: ["Piraeus", "Thessaloniki"],
     Guatemala: ["Puerto Quetzal"],
@@ -104,7 +104,7 @@ export default function ShipmentPage() {
     Mozambique: ["Maputo"],
     Myanmar: ["Yangon"],
     Namibia: ["Walvis Bay"],
-    Netherlands: ["Rotterdam", "Amsterdam"],
+    Netherlands: ["Rotterdam", "Amsterdam", "The Hague", "Utrecht"],
     NewZealand: ["Auckland", "Wellington"],
     Nigeria: ["Lagos", "Port Harcourt"],
     Norway: ["Oslo"],
@@ -124,7 +124,7 @@ export default function ShipmentPage() {
     Slovenia: ["Koper"],
     SouthAfrica: ["Durban", "Cape Town"],
     SouthKorea: ["Busan", "Incheon"],
-    Spain: ["Barcelona", "Valencia"],
+    Spain: ["Barcelona", "Valencia", "Bilbao", "Malaga"],
     SriLanka: ["Colombo"],
     Sweden: ["Gothenburg"],
     Taiwan: ["Kaohsiung"],
@@ -434,6 +434,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
+              disabled={!country}
             >
               <option value="">Select City *</option>
               {getCitiesByCountry(country).map((city: string) => (
@@ -469,6 +470,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCity}
               onChange={(e) => setDestinationCity(e.target.value)}
+              disabled={!destinationCountry}
             >
               <option value="">Select City *</option>
               {getCitiesByCountry(destinationCountry).map((city: string) => (
