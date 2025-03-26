@@ -43,6 +43,10 @@ export default function ShipmentPage() {
   const [sendDate, setSendDate] = useState('');
   const [arrivalDate, setArrivalDate] = useState('');
 
+  const countriesWithPorts = [
+    "Germany", "Netherlands", "China", "United States", "Japan", "South Korea", "Singapore", "United Kingdom", "France", "Italy"
+  ];
+
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
@@ -313,13 +317,16 @@ export default function ShipmentPage() {
           {/* From Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
-            <input
-              type="text"
-              placeholder="Country *"
+            <select
               className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
               value={country}
               onChange={(e) => setCountry(e.target.value)}
-            />
+            >
+              <option value="">Select Country *</option>
+              {countriesWithPorts.map((country) => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="City *"
@@ -339,13 +346,16 @@ export default function ShipmentPage() {
           {/* To Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
-            <input
-              type="text"
-              placeholder="Country *"
+            <select
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
-            />
+            >
+              <option value="">Select Country *</option>
+              {countriesWithPorts.map((country) => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="City *"
