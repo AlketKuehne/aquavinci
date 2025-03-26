@@ -81,6 +81,13 @@ export default function ShipmentPage() {
     }
   };
 
+  const handleCityChange = (setter: React.Dispatch<React.SetStateAction<string>>) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^[a-zA-Z\s]*$/.test(value)) {
+      setter(value);
+    }
+  };
+
   useEffect(() => {
     const isFormValid = Boolean(
       consignorFullName &&
@@ -256,7 +263,7 @@ export default function ShipmentPage() {
               placeholder="City *"
               className={`w-full p-2 border rounded ${showError && !consignorCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorCity}
-              onChange={(e) => setConsignorCity(e.target.value)}
+              onChange={handleCityChange(setConsignorCity)}
             />
           </div>
 
@@ -296,7 +303,7 @@ export default function ShipmentPage() {
               placeholder="City *"
               className={`w-full p-2 border rounded ${showError && !consigneeCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeCity}
-              onChange={(e) => setConsigneeCity(e.target.value)}
+              onChange={handleCityChange(setConsigneeCity)}
             />
           </div>
         </div>
@@ -318,7 +325,7 @@ export default function ShipmentPage() {
               placeholder="City *"
               className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={originCity}
-              onChange={(e) => setOriginCity(e.target.value)}
+              onChange={handleCityChange(setOriginCity)}
             />
             <input
               type="text"
@@ -344,7 +351,7 @@ export default function ShipmentPage() {
               placeholder="City *"
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCity}
-              onChange={(e) => setDestinationCity(e.target.value)}
+              onChange={handleCityChange(setDestinationCity)}
             />
             <input
               type="text"
