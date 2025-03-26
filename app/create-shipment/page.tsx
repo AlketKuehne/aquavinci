@@ -88,16 +88,6 @@ export default function ShipmentPage() {
       new Date(sendDate) < new Date(arrivalDate)
     );
     setIsButtonEnabled(isFormValid);
-    if (isFormValid) {
-      setShowWarning(false);
-      setDateWarning(false);
-    } else if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
-      setDateWarning(true);
-      setShowWarning(false);
-    } else {
-      setShowWarning(true);
-      setDateWarning(false);
-    }
   }, [
     consignorFullName,
     consignorFullAddress,
