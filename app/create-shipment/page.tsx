@@ -213,7 +213,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
             <input
               type="text"
-              placeholder={`Full Name${showError && !consignorFullName ? '*' : ''}`}
+              placeholder={`Full Name${showError && !consignorFullName ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullName}
               onChange={(e) => setConsignorFullName(e.target.value)}
@@ -234,14 +234,14 @@ export default function ShipmentPage() {
             />
             <input
               type="text"
-              placeholder={`Full Address${showError && !consignorFullAddress ? '*' : ''}`}
+              placeholder={`Full Address${showError && !consignorFullAddress ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullAddress}
               onChange={(e) => setConsignorFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder={`City${showError && !consignorCity ? '*' : ''}`}
+              placeholder={`City${showError && !consignorCity ? '*' : ''}*`}
               className={`w-full p-2 border rounded ${showError && !consignorCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorCity}
               onChange={(e) => setConsignorCity(e.target.value)}
@@ -253,7 +253,7 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
               type="text"
-              placeholder={`Full Name${showError && !consigneeFullName ? '*' : ''}`}
+              placeholder={`Full Name${showError && !consigneeFullName ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullName}
               onChange={(e) => setConsigneeFullName(e.target.value)}
@@ -274,14 +274,14 @@ export default function ShipmentPage() {
             />
             <input
               type="text"
-              placeholder={`Full Address${showError && !consigneeFullAddress ? '*' : ''}`}
+              placeholder={`Full Address${showError && !consigneeFullAddress ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullAddress}
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder={`City${showError && !consigneeCity ? '*' : ''}`}
+              placeholder={`City${showError && !consigneeCity ? '*' : ''}*`}
               className={`w-full p-2 border rounded ${showError && !consigneeCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeCity}
               onChange={(e) => setConsigneeCity(e.target.value)}
@@ -296,21 +296,21 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             <input
               type="text"
-              placeholder={`Country${showError && !country ? '*' : ''}`}
+              placeholder={`Country${showError && !country ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
               value={country}
               onChange={(e) => setCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder={`City${showError && !originCity ? '*' : ''}`}
+              placeholder={`City${showError && !originCity ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder={`Street & House Number${showError && !street ? '*' : ''}`}
+              placeholder={`Street & House Number${showError && !street ? '*' : ''}*`}
               className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
               value={street}
               onChange={(e) => setStreet(e.target.value)}
@@ -322,21 +322,21 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             <input
               type="text"
-              placeholder={`Country${showError && !destinationCountry ? '*' : ''}`}
+              placeholder={`Country${showError && !destinationCountry ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCountry}
               onChange={(e) => setDestinationCountry(e.target.value)}
             />
             <input
               type="text"
-              placeholder={`City${showError && !destinationCity ? '*' : ''}`}
+              placeholder={`City${showError && !destinationCity ? '*' : ''}*`}
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCity}
               onChange={(e) => setDestinationCity(e.target.value)}
             />
             <input
               type="text"
-              placeholder={`Street & House Number${showError && !destinationStreet ? '*' : ''}`}
+              placeholder={`Street & House Number${showError && !destinationStreet ? '*' : ''}*`}
               className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationStreet}
               onChange={(e) => setDestinationStreet(e.target.value)}
@@ -399,7 +399,7 @@ export default function ShipmentPage() {
               onChange={(e) => setLclSelection(e.target.value)}
               className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
             >
-              <option value="">Select Package Type</option>
+              <option value="">Select Package Type{shipmentType === "LCL" && '*'}</option>
               <option value="palette">Palette</option>
               <option value="barrel">Barrel</option>
             </select>
