@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function NextPage() {
+export default function Details() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
