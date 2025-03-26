@@ -385,11 +385,11 @@ export default function ShipmentPage() {
               >
                 &times;
               </button>
-              <div className="text-red-500 text-lg font-bold mb-4">
+              <div className="text-red-500 text-lg font-bold mb-4 text-center">
                 !!WARNING!!
               </div>
               <div className="text-black text-lg">
-                YOU CAN'T CONTINUE WITHOUT FILLING THE MANDATORY FIELDS (*)
+                You cant't contiune without filling the mandatory fields (*)
               </div>
             </div>
           </div>
