@@ -36,6 +36,24 @@ export default function ShipmentPage() {
   const [consigneeEmail, setConsigneeEmail] = useState("");
   const [consignorPhone, setConsignorPhone] = useState("");
   const [consigneePhone, setConsigneePhone] = useState("");
+  const [numberOfPieces, setNumberOfPieces] = useState('');
+  const [isDangerousGoods, setIsDangerousGoods] = useState(false);
+
+  const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (/^\d*$/.test(value)) {
+      setNumberOfPieces(value);
+    }
+  };
+
+  const handleDangerousGoodsChange = () => {
+    setIsDangerousGoods(!isDangerousGoods);
+  };
+
+  const handleContinue = () => {
+    // Handle continue action
+    console.log('Continue clicked');
+  };
 
   useEffect(() => {
     const isFormValid = Boolean(
@@ -367,6 +385,31 @@ export default function ShipmentPage() {
           </div>
         </div>
 
+        <div className="mt-4">
+          <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
+          <input
+            type="text"
+            value={numberOfPieces}
+            onChange={handleNumberOfPiecesChange}
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+        <div className="mt-4 flex items-center">
+          <input
+            type="checkbox"
+            checked={isDangerousGoods}
+            onChange={handleDangerousGoodsChange}
+            className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          />
+          <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
+        </div>
+        <button
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-full cursor-pointer transition-all duration-[1250ms] hover:bg-blue-700"
+          onClick={handleContinue}
+        >
+          Continue
+        </button>
+
         {/* Continue Button */}
         <div className="flex justify-end w-full mt-16 mb-16">
           <button
@@ -389,7 +432,7 @@ export default function ShipmentPage() {
                 !!WARNING!!
               </div>
               <div className="text-black text-lg">
-                You cant't contiune without filling the mandatory fields (*)
+                You can't continue without filling the mandatory fields (*)
               </div>
             </div>
           </div>
