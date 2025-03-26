@@ -25,6 +25,7 @@ export default function ShipmentPage() {
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   const [showError, setShowError] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
+  const [dateWarning, setDateWarning] = useState(false);
 
   const [consignorFullName, setConsignorFullName] = useState("");
   const [consigneeFullName, setConsigneeFullName] = useState("");
@@ -89,6 +90,13 @@ export default function ShipmentPage() {
     setIsButtonEnabled(isFormValid);
     if (isFormValid) {
       setShowWarning(false);
+      setDateWarning(false);
+    } else if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
+      setDateWarning(true);
+      setShowWarning(false);
+    } else {
+      setShowWarning(true);
+      setDateWarning(false);
     }
   }, [
     consignorFullName,
@@ -151,9 +159,14 @@ export default function ShipmentPage() {
   const handleContinueClick = () => {
     if (!isButtonEnabled) {
       setShowError(true);
-      setShowWarning(true);
+      if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
+        setDateWarning(true);
+      } else {
+        setShowWarning(true);
+      }
     } else {
       setShowWarning(false);
+      setDateWarning(false);
       router.push('/create-shipment/details');
     }
   };
@@ -457,6 +470,24 @@ export default function ShipmentPage() {
             Continue
           </button>
         </div>
+        {dateWarning && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+            <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
+              <button
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
+                onClick={closeWarning}
+              >
+                &times;
+              </button>
+              <div className="text-red-500 text-lg font-bold mb-4 text-center">
+                !!WARNING!!
+              </div>
+              <div className="text-black text-lg">
+                The send date must be before the arrival date.
+              </div>
+            </div>
+          </div>
+        )}
         {showWarning && (
           <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
             <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
