@@ -26,6 +26,7 @@ export default function ShipmentPage() {
   const [showError, setShowError] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
   const [dateWarning, setDateWarning] = useState(false);
+  const [invalidDateWarning, setInvalidDateWarning] = useState(false);
 
   const [consignorFullName, setConsignorFullName] = useState("");
   const [consigneeFullName, setConsigneeFullName] = useState("");
@@ -152,13 +153,20 @@ export default function ShipmentPage() {
       if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
         setDateWarning(true);
         setShowWarning(false);
+        setInvalidDateWarning(false);
+      } else if (isNaN(new Date(sendDate).getTime()) || isNaN(new Date(arrivalDate).getTime())) {
+        setInvalidDateWarning(true);
+        setDateWarning(false);
+        setShowWarning(false);
       } else {
         setShowWarning(true);
         setDateWarning(false);
+        setInvalidDateWarning(false);
       }
     } else {
       setShowWarning(false);
       setDateWarning(false);
+      setInvalidDateWarning(false);
       router.push('/create-shipment/details');
     }
   };
@@ -413,6 +421,7 @@ export default function ShipmentPage() {
               <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
               <input
                 type="text"
+                placeholder="Number of Pieces (default: 1)"
                 value={numberOfPieces}
                 onChange={handleNumberOfPiecesChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -476,6 +485,24 @@ export default function ShipmentPage() {
               </div>
               <div className="text-black text-lg">
                 The send date must be before the arrival date.
+              </div>
+            </div>
+          </div>
+        )}
+        {invalidDateWarning && (
+          <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+            <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
+              <button
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
+                onClick={() => setInvalidDateWarning(false)}
+              >
+                &times;
+              </button>
+              <div className="text-red-500 text-lg font-bold mb-4 text-center">
+                !!WARNING!!
+              </div>
+              <div className="text-black text-lg">
+                Invalid date input. Please enter a valid date.
               </div>
             </div>
           </div>
