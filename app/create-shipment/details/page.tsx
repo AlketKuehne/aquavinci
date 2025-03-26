@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 export default function DetailsPage() {
   const router = useRouter();
   const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -23,6 +24,11 @@ export default function DetailsPage() {
     };
   }, []);
 
+  const handleNavigation = (url: string) => {
+    setPendingNavigation(url);
+    setShowCancelPopup(true);
+  };
+
   const handleCancel = () => {
     setShowCancelPopup(false);
     router.push('/');
@@ -30,14 +36,27 @@ export default function DetailsPage() {
 
   const handleStay = () => {
     setShowCancelPopup(false);
+    setPendingNavigation(null);
   };
+
+  const handleConfirmNavigation = () => {
+    if (pendingNavigation) {
+      router.push(pendingNavigation);
+    }
+  };
+
+  useEffect(() => {
+    if (!showCancelPopup && pendingNavigation) {
+      handleConfirmNavigation();
+    }
+  }, [showCancelPopup, pendingNavigation]);
 
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
       <nav className="relative w-full h-12 bg-[#242424] flex items-center px-4 z-10">
         {/* Clickable Logo (Fixed Size, No Overlap) */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center" onClick={(e) => { e.preventDefault(); handleNavigation('/'); }}>
           <Image 
             src="/logoname.png" 
             alt="Logo" 
@@ -52,12 +71,14 @@ export default function DetailsPage() {
           <Link
             href="/"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
+            onClick={(e) => { e.preventDefault(); handleNavigation('/'); }}
           >
             Homepage
           </Link>
           <Link
             href="/create-shipment"
             className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
+            onClick={(e) => { e.preventDefault(); handleNavigation('/create-shipment'); }}
           >
             Create Shipment
           </Link>
