@@ -44,7 +44,7 @@ export default function ShipmentPage() {
   const [arrivalDate, setArrivalDate] = useState('');
 
   const countriesWithPorts = [
-    "Germany", "Netherlands", "China", "United States", "Japan", "South Korea", "Singapore", "United Kingdom", "France", "Italy"
+    "Argentina", "Australia", "Belgium", "Brazil", "Canada", "Chile", "China", "Colombia", "Denmark", "Egypt", "Finland", "France", "Germany", "Greece", "India", "Indonesia", "Ireland", "Israel", "Italy", "Japan", "Malaysia", "Mexico", "Netherlands", "New Zealand", "Nigeria", "Norway", "Pakistan", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Russia", "Saudi Arabia", "Singapore", "South Africa", "South Korea", "Spain", "Sri Lanka", "Sweden", "Taiwan", "Thailand", "Turkey", "United Arab Emirates", "United Kingdom", "United States", "Vietnam"
   ];
 
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
