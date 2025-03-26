@@ -47,6 +47,24 @@ export default function ShipmentPage() {
     "Albania", "Algeria", "Angola", "Argentina", "Australia", "Bangladesh", "Belgium", "Brazil", "Bulgaria", "Cambodia", "Cameroon", "Canada", "Chile", "China", "Colombia", "Croatia", "Cyprus", "Denmark", "Djibouti", "Dominican Republic", "Ecuador", "Egypt", "Estonia", "Finland", "France", "Germany", "Ghana", "Greece", "Guatemala", "Honduras", "Hong Kong", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kenya", "Kuwait", "Latvia", "Lebanon", "Lithuania", "Malaysia", "Malta", "Mauritius", "Mexico", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Netherlands", "New Zealand", "Nigeria", "Norway", "Oman", "Pakistan", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Saudi Arabia", "Senegal", "Singapore", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "Sweden", "Taiwan", "Tanzania", "Thailand", "Trinidad and Tobago", "Tunisia", "Turkey", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Venezuela", "Vietnam", "Yemen"
   ];
 
+  const citiesWithPorts = {
+    Germany: ["Hamburg", "Bremen", "Bremerhaven"],
+    Netherlands: ["Rotterdam", "Amsterdam"],
+    China: ["Shanghai", "Shenzhen", "Guangzhou"],
+    UnitedStates: ["Los Angeles", "New York", "Houston"],
+    Japan: ["Tokyo", "Yokohama"],
+    SouthKorea: ["Busan", "Incheon"],
+    Singapore: ["Singapore"],
+    UnitedKingdom: ["London", "Liverpool"],
+    France: ["Marseille", "Le Havre"],
+    Italy: ["Genoa", "Naples"],
+    // ... add more countries and their port cities
+  };
+
+  const getCitiesByCountry = (country) => {
+    return citiesWithPorts[country] || [];
+  };
+
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
@@ -320,20 +338,26 @@ export default function ShipmentPage() {
             <select
               className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
               value={country}
-              onChange={(e) => setCountry(e.target.value)}
+              onChange={(e) => {
+                setCountry(e.target.value);
+                setOriginCity("");
+              }}
             >
               <option value="">Select Country *</option>
               {countriesWithPorts.map((country) => (
                 <option key={country} value={country}>{country}</option>
               ))}
             </select>
-            <input
-              type="text"
-              placeholder="City *"
+            <select
               className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={originCity}
-              onChange={handleCityChange(setOriginCity)}
-            />
+              onChange={(e) => setOriginCity(e.target.value)}
+            >
+              <option value="">Select City *</option>
+              {getCitiesByCountry(country).map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="Street & House Number *"
@@ -349,20 +373,26 @@ export default function ShipmentPage() {
             <select
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCountry}
-              onChange={(e) => setDestinationCountry(e.target.value)}
+              onChange={(e) => {
+                setDestinationCountry(e.target.value);
+                setDestinationCity("");
+              }}
             >
               <option value="">Select Country *</option>
               {countriesWithPorts.map((country) => (
                 <option key={country} value={country}>{country}</option>
               ))}
             </select>
-            <input
-              type="text"
-              placeholder="City *"
+            <select
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCity}
-              onChange={handleCityChange(setDestinationCity)}
-            />
+              onChange={(e) => setDestinationCity(e.target.value)}
+            >
+              <option value="">Select City *</option>
+              {getCitiesByCountry(destinationCountry).map((city) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="Street & House Number *"
