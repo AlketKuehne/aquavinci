@@ -42,6 +42,8 @@ export default function ShipmentPage() {
   const [isDangerousGoods, setIsDangerousGoods] = useState(false);
   const [shippingDate, setShippingDate] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
+  const [consignorCountry, setConsignorCountry] = useState("");
+  const [consigneeCountry, setConsigneeCountry] = useState("");
 
   const countriesWithPorts = [
     "Albania", "Algeria", "Angola", "Argentina", "Australia", "Bangladesh", "Belgium", "Brazil", "Bulgaria", "Cambodia", "Cameroon", "Canada", "Chile", "China", "Colombia", "Croatia", "Cyprus", "Denmark", "Djibouti", "Dominican Republic", "Ecuador", "Egypt", "Estonia", "Finland", "France", "Germany", "Ghana", "Greece", "Guatemala", "Honduras", "Hong Kong", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kenya", "Kuwait", "Latvia", "Lebanon", "Lithuania", "Malaysia", "Malta", "Mauritius", "Mexico", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Netherlands", "New Zealand", "Nigeria", "Norway", "Oman", "Pakistan", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Saudi Arabia", "Senegal", "Singapore", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "Sweden", "Taiwan", "Tanzania", "Thailand", "Trinidad and Tobago", "Tunisia", "Turkey", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Venezuela", "Vietnam", "Yemen"
@@ -334,6 +336,30 @@ export default function ShipmentPage() {
           {/* Shippers Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
+            <select
+              className={`w-full p-2 border rounded mb-3 ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
+              value={consignorCountry}
+              onChange={(e) => {
+                setConsignorCountry(e.target.value);
+                setConsignorCity("");
+              }}
+            >
+              <option value="">Select Country *</option>
+              {countriesWithPorts.map((country: string) => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
+            <select
+              className={`w-full p-2 border rounded mb-3 ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consignorCity ? 'bg-red-100' : ''}`}
+              value={consignorCity}
+              onChange={(e) => setConsignorCity(e.target.value)}
+              disabled={!consignorCountry}
+            >
+              <option value="">Select City *</option>
+              {getCitiesByCountry(consignorCountry).map((city: string) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="Full Name *"
@@ -374,6 +400,30 @@ export default function ShipmentPage() {
           {/* Recipient Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
+            <select
+              className={`w-full p-2 border rounded mb-3 ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
+              value={consigneeCountry}
+              onChange={(e) => {
+                setConsigneeCountry(e.target.value);
+                setConsigneeCity("");
+              }}
+            >
+              <option value="">Select Country *</option>
+              {countriesWithPorts.map((country: string) => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
+            <select
+              className={`w-full p-2 border rounded mb-3 ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consigneeCity ? 'bg-red-100' : ''}`}
+              value={consigneeCity}
+              onChange={(e) => setConsigneeCity(e.target.value)}
+              disabled={!consigneeCountry}
+            >
+              <option value="">Select City *</option>
+              {getCitiesByCountry(consigneeCountry).map((city: string) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="Full Name *"
