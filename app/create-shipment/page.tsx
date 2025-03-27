@@ -186,10 +186,28 @@ export default function ShipmentPage() {
     return date.toISOString().split("T")[0];
   };
 
+  const getShippingDateConstraints = (): { min: string; max: string } => {
+    const today = new Date();
+    return { min: getFormattedDate(today), max: "" }; // Minimum date is today
+  };
+
+  const getDeliveryDateConstraints = (): { min: string; max: string } => {
+    if (!shippingDate || !country || !destinationCountry) {
+      return { min: "", max: "" }; // No constraints
+    }
+
+    const shippingDateObj = new Date(shippingDate);
+    const minDays = getMinimumDeliveryDays(country, destinationCountry);
+    const earliestDeliveryDate = new Date(shippingDateObj);
+    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
+
+    return { min: getFormattedDate(earliestDeliveryDate), max: "" }; // No maximum date
+  };
+
   const handleShippingDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = new Date(e.target.value);
     const today = new Date();
-    today.setDate(today.getDate() + 1); // Tomorrow
+    today.setHours(0, 0, 0, 0); // Reset time to midnight for comparison
 
     if (selectedDate < today) {
       setShowError(true);
@@ -197,7 +215,7 @@ export default function ShipmentPage() {
       setDeliveryDate(""); // Reset delivery date
     } else {
       setShowError(false);
-      setShippingDate(e.target.value);
+      setShippingDate(getFormattedDate(selectedDate));
       setDeliveryDate(""); // Reset delivery date
     }
   };
@@ -216,27 +234,9 @@ export default function ShipmentPage() {
         setDeliveryDate(""); // Reset invalid date
       } else {
         setShowError(false);
-        setDeliveryDate(e.target.value);
+        setDeliveryDate(getFormattedDate(selectedDate));
       }
     }
-  };
-
-  const getShippingDateConstraints = (): { min: string; max: string } => {
-    const today = new Date();
-    return { min: getFormattedDate(today), max: "" }; // Minimum date is today
-  };
-
-  const getDeliveryDateConstraints = (): { min: string; max: string } => {
-    if (!shippingDate || !country || !destinationCountry) {
-      return { min: "", max: "" }; // No constraints
-    }
-
-    const shippingDateObj = new Date(shippingDate);
-    const minDays = getMinimumDeliveryDays(country, destinationCountry);
-    const earliestDeliveryDate = new Date(shippingDateObj);
-    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
-
-    return { min: getFormattedDate(earliestDeliveryDate), max: "" }; // No maximum date
   };
 
   // Ensure delivery date is not clickable if invalid
