@@ -171,6 +171,10 @@ export default function ShipmentPage() {
     return countryDistances[origin]?.[destination] || 7; // Standardwert: 7 Tage
   };
 
+  const getFormattedDate = (date: Date): string => {
+    return date.toISOString().split("T")[0];
+  };
+
   const handleShippingDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = new Date(e.target.value);
     const today = new Date();
@@ -202,6 +206,25 @@ export default function ShipmentPage() {
         setDeliveryDate(e.target.value);
       }
     }
+  };
+
+  const getShippingDateConstraints = (): { min: string; max: string } => {
+    const today = new Date();
+    today.setDate(today.getDate() + 1); // Morgen
+    return { min: getFormattedDate(today), max: "" }; // Kein Maximaldatum
+  };
+
+  const getDeliveryDateConstraints = (): { min: string; max: string } => {
+    if (!shippingDate || !originCity || !destinationCity) {
+      return { min: "", max: "" }; // Keine Einschränkungen
+    }
+
+    const shippingDateObj = new Date(shippingDate);
+    const minDays = getMinimumDeliveryDays(country, destinationCountry);
+    const earliestDeliveryDate = new Date(shippingDateObj);
+    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
+
+    return { min: getFormattedDate(earliestDeliveryDate), max: "" }; // Kein Maximaldatum
   };
 
   const handleContinue = () => {
@@ -664,6 +687,8 @@ export default function ShipmentPage() {
                 type="date"
                 value={shippingDate}
                 onChange={handleShippingDateChange}
+                min={getShippingDateConstraints().min}
+                max={getShippingDateConstraints().max}
                 className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !shippingDate ? 'bg-red-100' : ''}`}
               />
             </div>
@@ -673,6 +698,8 @@ export default function ShipmentPage() {
                 type="date"
                 value={deliveryDate}
                 onChange={handleDeliveryDateChange}
+                min={getDeliveryDateConstraints().min}
+                max={getDeliveryDateConstraints().max}
                 className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
               />
             </div>
