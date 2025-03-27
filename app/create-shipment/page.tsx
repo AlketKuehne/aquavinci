@@ -365,7 +365,7 @@ export default function ShipmentPage() {
               onChange={(e) => setConsignorFullAddress(e.target.value)}
             />
             <select
-              className={`w-full p-2 border rounded mb-3 ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !consignorCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorCountry}
               onChange={(e) => {
                 setConsignorCountry(e.target.value);
@@ -422,7 +422,7 @@ export default function ShipmentPage() {
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
             />
             <select
-              className={`w-full p-2 border rounded mb-3 ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
+              className={`w-full p-2 border rounded mb-3 ${showError && !consigneeCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeCountry}
               onChange={(e) => {
                 setConsigneeCountry(e.target.value);
