@@ -336,30 +336,6 @@ export default function ShipmentPage() {
           {/* Shippers Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
-            <select
-              className={`w-full p-2 border rounded mb-3 ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
-              value={consignorCountry}
-              onChange={(e) => {
-                setConsignorCountry(e.target.value);
-                setConsignorCity("");
-              }}
-            >
-              <option value="">Select Country *</option>
-              {countriesWithPorts.map((country: string) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-            <select
-              className={`w-full p-2 border rounded mb-3 ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consignorCity ? 'bg-red-100' : ''}`}
-              value={consignorCity}
-              onChange={(e) => setConsignorCity(e.target.value)}
-              disabled={!consignorCountry}
-            >
-              <option value="">Select City *</option>
-              {getCitiesByCountry(consignorCountry).map((city: string) => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
             <input
               type="text"
               placeholder="Full Name *"
@@ -388,24 +364,12 @@ export default function ShipmentPage() {
               value={consignorFullAddress}
               onChange={(e) => setConsignorFullAddress(e.target.value)}
             />
-            <input
-              type="text"
-              placeholder="City *"
-              className={`w-full p-2 border rounded ${showError && !consignorCity ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consignorCity}
-              onChange={handleCityChange(setConsignorCity)}
-            />
-          </div>
-
-          {/* Recipient Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <select
-              className={`w-full p-2 border rounded mb-3 ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
-              value={consigneeCountry}
+              className={`w-full p-2 border rounded mb-3 ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
+              value={consignorCountry}
               onChange={(e) => {
-                setConsigneeCountry(e.target.value);
-                setConsigneeCity("");
+                setConsignorCountry(e.target.value);
+                setConsignorCity("");
               }}
             >
               <option value="">Select Country *</option>
@@ -414,16 +378,21 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
-              className={`w-full p-2 border rounded mb-3 ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consigneeCity ? 'bg-red-100' : ''}`}
-              value={consigneeCity}
-              onChange={(e) => setConsigneeCity(e.target.value)}
-              disabled={!consigneeCountry}
+              className={`w-full p-2 border rounded ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consignorCity ? 'bg-red-100' : ''}`}
+              value={consignorCity}
+              onChange={(e) => setConsignorCity(e.target.value)}
+              disabled={!consignorCountry}
             >
               <option value="">Select City *</option>
-              {getCitiesByCountry(consigneeCountry).map((city: string) => (
+              {getCitiesByCountry(consignorCountry).map((city: string) => (
                 <option key={city} value={city}>{city}</option>
               ))}
             </select>
+          </div>
+
+          {/* Recipient Box */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
               type="text"
               placeholder="Full Name *"
@@ -452,13 +421,30 @@ export default function ShipmentPage() {
               value={consigneeFullAddress}
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
             />
-            <input
-              type="text"
-              placeholder="City *"
-              className={`w-full p-2 border rounded ${showError && !consigneeCity ? 'bg-red-100' : 'bg-gray-100'}`}
+            <select
+              className={`w-full p-2 border rounded mb-3 ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'}`}
+              value={consigneeCountry}
+              onChange={(e) => {
+                setConsigneeCountry(e.target.value);
+                setConsigneeCity("");
+              }}
+            >
+              <option value="">Select Country *</option>
+              {countriesWithPorts.map((country: string) => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
+            <select
+              className={`w-full p-2 border rounded ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consigneeCity ? 'bg-red-100' : ''}`}
               value={consigneeCity}
-              onChange={handleCityChange(setConsigneeCity)}
-            />
+              onChange={(e) => setConsigneeCity(e.target.value)}
+              disabled={!consigneeCountry}
+            >
+              <option value="">Select City *</option>
+              {getCitiesByCountry(consigneeCountry).map((city: string) => (
+                <option key={city} value={city}>{city}</option>
+              ))}
+            </select>
           </div>
         </div>
 
