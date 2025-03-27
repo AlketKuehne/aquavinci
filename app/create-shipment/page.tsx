@@ -178,7 +178,8 @@ export default function ShipmentPage() {
   });
 
   const getMinimumDeliveryDays = (origin: string, destination: string): number => {
-    return countryDistances[origin]?.[destination] || 7; // Default to 7 days if no distance is defined
+    if (!origin || !destination) return 0;
+    return countryDistances[origin]?.[destination] || 0; // Default to 0 days if no distance is defined
   };
 
   const getFormattedDate = (date: Date): string => {
