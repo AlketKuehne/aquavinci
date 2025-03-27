@@ -137,7 +137,7 @@ export default function ShipmentPage() {
     Turkey: ["Istanbul", "Izmir", "Mersin"],
     Ukraine: ["Odessa", "Mariupol"],
     UnitedArabEmirates: ["Dubai", "Abu Dhabi", "Sharjah"],
-    UnitedKingdom: ["London", "Liverpool", "Southampton"],
+    UnitedKingdom: ["London", "Liverpool", "Southampton"], // Städte hinzugefügt
     UnitedStates: ["Los Angeles", "New York", "Houston", "Miami", "San Francisco"], // Städte hinzugefügt
     Uruguay: ["Montevideo", "Nueva Palmira"],
     Venezuela: ["Puerto Cabello", "La Guaira"],
