@@ -160,12 +160,48 @@ export default function ShipmentPage() {
     setIsDangerousGoods(!isDangerousGoods);
   };
 
+  const countryDistances: Record<string, Record<string, number>> = {
+    Albania: { Greece: 4, Italy: 6, Germany: 10 },
+    Greece: { Albania: 4, Turkey: 5, Germany: 12 },
+    Germany: { Albania: 10, Greece: 12, France: 3 },
+    // Füge weitere Länder und Distanzen hinzu
+  };
+
+  const getMinimumDeliveryDays = (origin: string, destination: string): number => {
+    return countryDistances[origin]?.[destination] || 7; // Standardwert: 7 Tage
+  };
+
   const handleShippingDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setShippingDate(e.target.value);
+    const selectedDate = new Date(e.target.value);
+    const today = new Date();
+    today.setDate(today.getDate() + 1); // Morgen
+
+    if (selectedDate < today) {
+      setShowError(true);
+      setShippingDate(""); // Ungültiges Datum zurücksetzen
+    } else {
+      setShowError(false);
+      setShippingDate(e.target.value);
+    }
   };
 
   const handleDeliveryDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDeliveryDate(e.target.value);
+    const selectedDate = new Date(e.target.value);
+    const shippingDateObj = new Date(shippingDate);
+
+    if (originCity && destinationCity) {
+      const minDays = getMinimumDeliveryDays(country, destinationCountry);
+      const earliestDeliveryDate = new Date(shippingDateObj);
+      earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
+
+      if (selectedDate < earliestDeliveryDate) {
+        setShowError(true);
+        setDeliveryDate(""); // Ungültiges Datum zurücksetzen
+      } else {
+        setShowError(false);
+        setDeliveryDate(e.target.value);
+      }
+    }
   };
 
   const handleContinue = () => {
