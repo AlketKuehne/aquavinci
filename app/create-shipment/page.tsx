@@ -223,8 +223,7 @@ export default function ShipmentPage() {
 
   const getShippingDateConstraints = (): { min: string; max: string } => {
     const today = new Date();
-    today.setDate(today.getDate() + 1); // Tomorrow
-    return { min: getFormattedDate(today), max: "" }; // No maximum date
+    return { min: getFormattedDate(today), max: "" }; // Minimum date is today
   };
 
   const getDeliveryDateConstraints = (): { min: string; max: string } => {
@@ -728,10 +727,9 @@ export default function ShipmentPage() {
                 type="date"
                 value={shippingDate}
                 onChange={handleShippingDateChange}
-                min={isShippingDateEnabled ? getShippingDateConstraints().min : ""}
-                max={isShippingDateEnabled ? getShippingDateConstraints().max : ""}
-                disabled={!isShippingDateEnabled}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${!isShippingDateEnabled ? 'bg-gray-300 cursor-not-allowed' : ''} ${showError && !shippingDate ? 'bg-red-100' : ''}`}
+                min={getShippingDateConstraints().min}
+                max={getShippingDateConstraints().max}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !shippingDate ? 'bg-red-100' : ''}`}
               />
             </div>
             <div className="mt-4">
@@ -747,10 +745,9 @@ export default function ShipmentPage() {
                     setDeliveryDate(""); // Reset invalid date
                   }
                 }}
-                min={isDeliveryDateEnabled ? getDeliveryDateConstraints().min : ""}
-                max={isDeliveryDateEnabled ? getDeliveryDateConstraints().max : ""}
-                disabled={!isDeliveryDateEnabled}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${!isDeliveryDateEnabled ? 'bg-gray-300 cursor-not-allowed' : ''} ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
+                min={getDeliveryDateConstraints().min}
+                max={getDeliveryDateConstraints().max}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
               />
             </div>
           </div>
