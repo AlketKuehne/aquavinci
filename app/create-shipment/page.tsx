@@ -240,6 +240,19 @@ export default function ShipmentPage() {
     return { min: getFormattedDate(earliestDeliveryDate), max: "" }; // No maximum date
   };
 
+  // Ensure delivery date is not clickable if invalid
+  const isDeliveryDateValid = (date: string): boolean => {
+    if (!shippingDate || !country || !destinationCountry) return false;
+
+    const selectedDate = new Date(date);
+    const shippingDateObj = new Date(shippingDate);
+    const minDays = getMinimumDeliveryDays(country, destinationCountry);
+    const earliestDeliveryDate = new Date(shippingDateObj);
+    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
+
+    return selectedDate >= earliestDeliveryDate;
+  };
+
   const handleContinue = () => {
     // Handle continue action
     console.log('Continue clicked');
@@ -726,7 +739,14 @@ export default function ShipmentPage() {
               <input
                 type="date"
                 value={deliveryDate}
-                onChange={handleDeliveryDateChange}
+                onChange={(e) => {
+                  if (isDeliveryDateValid(e.target.value)) {
+                    handleDeliveryDateChange(e);
+                  } else {
+                    setShowError(true);
+                    setDeliveryDate(""); // Reset invalid date
+                  }
+                }}
                 min={isDeliveryDateEnabled ? getDeliveryDateConstraints().min : ""}
                 max={isDeliveryDateEnabled ? getDeliveryDateConstraints().max : ""}
                 disabled={!isDeliveryDateEnabled}
