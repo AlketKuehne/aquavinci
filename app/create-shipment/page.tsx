@@ -138,8 +138,8 @@ export default function ShipmentPage() {
     Ukraine: ["Odessa", "Mariupol"],
     UnitedArabEmirates: ["Dubai", "Abu Dhabi", "Sharjah"],
     UnitedKingdom: ["London", "Liverpool", "Southampton"],
-    UnitedStates: ["Los Angeles", "New York", "Houston", "Miami", "San Francisco"],
-    Uruguay: ["Montevideo"],
+    UnitedStates: ["Los Angeles", "New York", "Houston", "Miami", "San Francisco"], // Städte hinzugefügt
+    Uruguay: ["Montevideo", "Nueva Palmira"],
     Venezuela: ["Puerto Cabello", "La Guaira"],
     Vietnam: ["Ho Chi Minh City", "Hai Phong", "Da Nang"],
     Yemen: ["Aden", "Al Hudaydah", "Mukalla"]
