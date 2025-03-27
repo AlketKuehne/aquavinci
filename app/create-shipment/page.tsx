@@ -183,9 +183,11 @@ export default function ShipmentPage() {
     if (selectedDate < today) {
       setShowError(true);
       setShippingDate(""); // Ungültiges Datum zurücksetzen
+      setDeliveryDate(""); // Delivery Date zurücksetzen
     } else {
       setShowError(false);
       setShippingDate(e.target.value);
+      setDeliveryDate(""); // Delivery Date zurücksetzen
     }
   };
 
@@ -361,6 +363,9 @@ export default function ShipmentPage() {
     setShowWarning(false);
   };
 
+  const isShippingDateEnabled = Boolean(country && originCity && destinationCountry && destinationCity);
+  const isDeliveryDateEnabled = Boolean(shippingDate);
+
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
@@ -518,6 +523,8 @@ export default function ShipmentPage() {
               onChange={(e) => {
                 setCountry(e.target.value);
                 setOriginCity("");
+                setShippingDate(""); // Reset Shipping Date
+                setDeliveryDate(""); // Reset Delivery Date
               }}
             >
               <option value="">Select Country *</option>
@@ -528,7 +535,11 @@ export default function ShipmentPage() {
             <select
               className={`w-full p-2 border rounded mb-3 ${!country ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !originCity ? 'bg-red-100' : ''}`}
               value={originCity}
-              onChange={(e) => setOriginCity(e.target.value)}
+              onChange={(e) => {
+                setOriginCity(e.target.value);
+                setShippingDate(""); // Reset Shipping Date
+                setDeliveryDate(""); // Reset Delivery Date
+              }}
               disabled={!country}
             >
               <option value="">Select City *</option>
@@ -554,6 +565,8 @@ export default function ShipmentPage() {
               onChange={(e) => {
                 setDestinationCountry(e.target.value);
                 setDestinationCity("");
+                setShippingDate(""); // Reset Shipping Date
+                setDeliveryDate(""); // Reset Delivery Date
               }}
             >
               <option value="">Select Country *</option>
@@ -564,7 +577,11 @@ export default function ShipmentPage() {
             <select
               className={`w-full p-2 border rounded mb-3 ${!destinationCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !destinationCity ? 'bg-red-100' : ''}`}
               value={destinationCity}
-              onChange={(e) => setDestinationCity(e.target.value)}
+              onChange={(e) => {
+                setDestinationCity(e.target.value);
+                setShippingDate(""); // Reset Shipping Date
+                setDeliveryDate(""); // Reset Delivery Date
+              }}
               disabled={!destinationCountry}
             >
               <option value="">Select City *</option>
@@ -687,9 +704,10 @@ export default function ShipmentPage() {
                 type="date"
                 value={shippingDate}
                 onChange={handleShippingDateChange}
-                min={getShippingDateConstraints().min}
-                max={getShippingDateConstraints().max}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !shippingDate ? 'bg-red-100' : ''}`}
+                min={isShippingDateEnabled ? getShippingDateConstraints().min : ""}
+                max={isShippingDateEnabled ? getShippingDateConstraints().max : ""}
+                disabled={!isShippingDateEnabled}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${!isShippingDateEnabled ? 'bg-gray-300 cursor-not-allowed' : ''} ${showError && !shippingDate ? 'bg-red-100' : ''}`}
               />
             </div>
             <div className="mt-4">
@@ -698,9 +716,10 @@ export default function ShipmentPage() {
                 type="date"
                 value={deliveryDate}
                 onChange={handleDeliveryDateChange}
-                min={getDeliveryDateConstraints().min}
-                max={getDeliveryDateConstraints().max}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
+                min={isDeliveryDateEnabled ? getDeliveryDateConstraints().min : ""}
+                max={isDeliveryDateEnabled ? getDeliveryDateConstraints().max : ""}
+                disabled={!isDeliveryDateEnabled}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${!isDeliveryDateEnabled ? 'bg-gray-300 cursor-not-allowed' : ''} ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
               />
             </div>
           </div>
