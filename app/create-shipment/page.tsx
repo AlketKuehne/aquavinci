@@ -431,7 +431,7 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
-              className={`w-full p-2 border rounded mb-3 ${showError && !originCity ? 'bg-red-100' : 'bg-gray-100'}`}
+              className={`w-full p-2 border rounded mb-3 ${!country ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !originCity ? 'bg-red-100' : ''}`}
               value={originCity}
               onChange={(e) => setOriginCity(e.target.value)}
               disabled={!country}
@@ -467,7 +467,7 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
-              className={`w-full p-2 border rounded mb-3 ${showError && !destinationCity ? 'bg-red-100' : 'bg-gray-100'}`}
+              className={`w-full p-2 border rounded mb-3 ${!destinationCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !destinationCity ? 'bg-red-100' : ''}`}
               value={destinationCity}
               onChange={(e) => setDestinationCity(e.target.value)}
               disabled={!destinationCountry}
