@@ -587,7 +587,7 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Date Information</h2>
             <div className="mt-4">
-              <label className="block text-lg font-medium text-gray-700">Send Date</label>
+              <label className="block text-lg font-medium text-gray-700">Shipping Date</label>
               <input
                 type="date"
                 value={sendDate}
@@ -596,7 +596,7 @@ export default function ShipmentPage() {
               />
             </div>
             <div className="mt-4">
-              <label className="block text-lg font-medium text-gray-700">Arrival Date</label>
+              <label className="block text-lg font-medium text-gray-700">Delivery Date</label>
               <input
                 type="date"
                 value={arrivalDate}
@@ -629,7 +629,7 @@ export default function ShipmentPage() {
                 !!WARNING!!
               </div>
               <div className="text-black text-lg">
-                The send date must be before the arrival date.
+                The shipping date must be before the delivery date.
               </div>
             </div>
           </div>
