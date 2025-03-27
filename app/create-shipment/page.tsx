@@ -40,8 +40,8 @@ export default function ShipmentPage() {
   const [consigneePhone, setConsigneePhone] = useState("");
   const [numberOfPieces, setNumberOfPieces] = useState('');
   const [isDangerousGoods, setIsDangerousGoods] = useState(false);
-  const [sendDate, setSendDate] = useState('');
-  const [arrivalDate, setArrivalDate] = useState('');
+  const [shippingDate, setShippingDate] = useState('');
+  const [deliveryDate, setDeliveryDate] = useState('');
 
   const countriesWithPorts = [
     "Albania", "Algeria", "Angola", "Argentina", "Australia", "Bangladesh", "Belgium", "Brazil", "Bulgaria", "Cambodia", "Cameroon", "Canada", "Chile", "China", "Colombia", "Croatia", "Cyprus", "Denmark", "Djibouti", "Dominican Republic", "Ecuador", "Egypt", "Estonia", "Finland", "France", "Germany", "Ghana", "Greece", "Guatemala", "Honduras", "Hong Kong", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kenya", "Kuwait", "Latvia", "Lebanon", "Lithuania", "Malaysia", "Malta", "Mauritius", "Mexico", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Netherlands", "New Zealand", "Nigeria", "Norway", "Oman", "Pakistan", "Panama", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Saudi Arabia", "Senegal", "Singapore", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "Sweden", "Taiwan", "Tanzania", "Thailand", "Trinidad and Tobago", "Tunisia", "Turkey", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Venezuela", "Vietnam", "Yemen"
@@ -158,12 +158,12 @@ export default function ShipmentPage() {
     setIsDangerousGoods(!isDangerousGoods);
   };
 
-  const handleSendDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSendDate(e.target.value);
+  const handleShippingDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setShippingDate(e.target.value);
   };
 
-  const handleArrivalDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setArrivalDate(e.target.value);
+  const handleDeliveryDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDeliveryDate(e.target.value);
   };
 
   const handleContinue = () => {
@@ -209,9 +209,9 @@ export default function ShipmentPage() {
       consigneeFullName &&
       consigneeFullAddress &&
       consigneeCity &&
-      sendDate &&
-      arrivalDate &&
-      new Date(sendDate) < new Date(arrivalDate)
+      shippingDate &&
+      deliveryDate &&
+      new Date(shippingDate) < new Date(deliveryDate)
     );
     setIsButtonEnabled(isFormValid);
   }, [
@@ -231,8 +231,8 @@ export default function ShipmentPage() {
     consigneeFullName,
     consigneeFullAddress,
     consigneeCity,
-    sendDate,
-    arrivalDate,
+    shippingDate,
+    deliveryDate,
   ]);
 
   // Handler zum Ändern des Versandtyps (setzt die Dropdowns und die Beschreibung zurück)
@@ -275,15 +275,15 @@ export default function ShipmentPage() {
   const handleContinueClick = () => {
     if (!isButtonEnabled) {
       setShowError(true);
-      if (!consignorFullName || !consignorFullAddress || !consignorCity || !country || !originCity || !street || !destinationCountry || !destinationCity || !destinationStreet || !shipmentType || !description || (shipmentType === "FCL" && !fclSelection) || (shipmentType === "LCL" && !lclSelection) || !consigneeFullName || !consigneeFullAddress || !consigneeCity || !sendDate || !arrivalDate) {
+      if (!consignorFullName || !consignorFullAddress || !consignorCity || !country || !originCity || !street || !destinationCountry || !destinationCity || !destinationStreet || !shipmentType || !description || (shipmentType === "FCL" && !fclSelection) || (shipmentType === "LCL" && !lclSelection) || !consigneeFullName || !consigneeFullAddress || !consigneeCity || !shippingDate || !deliveryDate) {
         setShowWarning(true);
         setInvalidDateWarning(false);
         setDateWarning(false);
-      } else if (isNaN(new Date(sendDate).getTime()) || isNaN(new Date(arrivalDate).getTime())) {
+      } else if (isNaN(new Date(shippingDate).getTime()) || isNaN(new Date(deliveryDate).getTime())) {
         setInvalidDateWarning(true);
         setShowWarning(false);
         setDateWarning(false);
-      } else if (sendDate && arrivalDate && new Date(sendDate) >= new Date(arrivalDate)) {
+      } else if (shippingDate && deliveryDate && new Date(shippingDate) >= new Date(deliveryDate)) {
         setDateWarning(true);
         setShowWarning(false);
         setInvalidDateWarning(false);
@@ -331,9 +331,9 @@ export default function ShipmentPage() {
 
         {/* First Form Section */}
         <div className="flex justify-between w-full gap-x-4">
-          {/* Sender Box */}
+          {/* Shippers Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Consignor (Sender)</h2>
+            <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
             <input
               type="text"
               placeholder="Full Name *"
@@ -590,18 +590,18 @@ export default function ShipmentPage() {
               <label className="block text-lg font-medium text-gray-700">Shipping Date</label>
               <input
                 type="date"
-                value={sendDate}
-                onChange={handleSendDateChange}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !sendDate ? 'bg-red-100' : ''}`}
+                value={shippingDate}
+                onChange={handleShippingDateChange}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !shippingDate ? 'bg-red-100' : ''}`}
               />
             </div>
             <div className="mt-4">
               <label className="block text-lg font-medium text-gray-700">Delivery Date</label>
               <input
                 type="date"
-                value={arrivalDate}
-                onChange={handleArrivalDateChange}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !arrivalDate ? 'bg-red-100' : ''}`}
+                value={deliveryDate}
+                onChange={handleDeliveryDateChange}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
               />
             </div>
           </div>
