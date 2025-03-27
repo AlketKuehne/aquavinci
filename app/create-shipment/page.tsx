@@ -161,10 +161,26 @@ export default function ShipmentPage() {
   };
 
   const countryDistances: Record<string, Record<string, number>> = {
-    Albania: { Greece: 4, Italy: 6, Germany: 10 },
-    Greece: { Albania: 4, Turkey: 5, Germany: 12 },
-    Germany: { Albania: 10, Greece: 12, France: 3 },
-    // Füge weitere Länder und Distanzen hinzu
+    Albania: { Algeria: 5, Angola: 15, Argentina: 20, Australia: 25, Bangladesh: 18, Belgium: 7, Brazil: 20, Bulgaria: 3, Cambodia: 22, Cameroon: 15, Canada: 20, Chile: 25, China: 18, Colombia: 22, Croatia: 2, Cyprus: 6, Denmark: 8, Djibouti: 12, DominicanRepublic: 22 },
+    Algeria: { Albania: 5, Angola: 12, Argentina: 18, Australia: 25, Bangladesh: 20, Belgium: 6, Brazil: 18, Bulgaria: 7, Cambodia: 22, Cameroon: 10, Canada: 18, Chile: 22, China: 20, Colombia: 20, Croatia: 6, Cyprus: 8, Denmark: 9, Djibouti: 14, DominicanRepublic: 20 },
+    Angola: { Albania: 15, Algeria: 12, Argentina: 15, Australia: 20, Bangladesh: 18, Belgium: 18, Brazil: 12, Bulgaria: 17, Cambodia: 25, Cameroon: 8, Canada: 22, Chile: 18, China: 20, Colombia: 18, Croatia: 15, Cyprus: 20, Denmark: 20, Djibouti: 15, DominicanRepublic: 22 },
+    Argentina: { Albania: 20, Algeria: 18, Angola: 15, Australia: 25, Bangladesh: 22, Belgium: 20, Brazil: 5, Bulgaria: 22, Cambodia: 30, Cameroon: 20, Canada: 15, Chile: 5, China: 25, Colombia: 10, Croatia: 22, Cyprus: 25, Denmark: 22, Djibouti: 25, DominicanRepublic: 12 },
+    Australia: { Albania: 25, Algeria: 25, Angola: 20, Argentina: 25, Bangladesh: 10, Belgium: 25, Brazil: 25, Bulgaria: 25, Cambodia: 8, Cameroon: 22, Canada: 20, Chile: 22, China: 5, Colombia: 25, Croatia: 25, Cyprus: 20, Denmark: 25, Djibouti: 15, DominicanRepublic: 25 },
+    Bangladesh: { Albania: 18, Algeria: 20, Angola: 18, Argentina: 22, Australia: 10, Belgium: 20, Brazil: 22, Bulgaria: 20, Cambodia: 5, Cameroon: 20, Canada: 22, Chile: 25, China: 8, Colombia: 25, Croatia: 20, Cyprus: 15, Denmark: 22, Djibouti: 12, DominicanRepublic: 25 },
+    Belgium: { Albania: 7, Algeria: 6, Angola: 18, Argentina: 20, Australia: 25, Bangladesh: 20, Brazil: 20, Bulgaria: 8, Cambodia: 25, Cameroon: 15, Canada: 10, Chile: 22, China: 20, Colombia: 20, Croatia: 8, Cyprus: 10, Denmark: 2, Djibouti: 18, DominicanRepublic: 20 },
+    Brazil: { Albania: 20, Algeria: 18, Angola: 12, Argentina: 5, Australia: 25, Bangladesh: 22, Belgium: 20, Bulgaria: 22, Cambodia: 30, Cameroon: 15, Canada: 15, Chile: 8, China: 25, Colombia: 10, Croatia: 22, Cyprus: 25, Denmark: 22, Djibouti: 25, DominicanRepublic: 12 },
+    Bulgaria: { Albania: 3, Algeria: 7, Angola: 17, Argentina: 22, Australia: 25, Bangladesh: 20, Belgium: 8, Brazil: 22, Cambodia: 25, Cameroon: 15, Canada: 20, Chile: 25, China: 20, Colombia: 22, Croatia: 2, Cyprus: 8, Denmark: 10, Djibouti: 15, DominicanRepublic: 22 },
+    Cambodia: { Albania: 22, Algeria: 22, Angola: 25, Argentina: 30, Australia: 8, Bangladesh: 5, Belgium: 25, Brazil: 30, Bulgaria: 25, Cameroon: 25, Canada: 25, Chile: 30, China: 5, Colombia: 30, Croatia: 25, Cyprus: 20, Denmark: 25, Djibouti: 15, DominicanRepublic: 30 },
+    Cameroon: { Albania: 15, Algeria: 10, Angola: 8, Argentina: 20, Australia: 22, Bangladesh: 20, Belgium: 15, Brazil: 15, Bulgaria: 15, Cambodia: 25, Canada: 20, Chile: 22, China: 20, Colombia: 22, Croatia: 15, Cyprus: 18, Denmark: 18, Djibouti: 10, DominicanRepublic: 22 },
+    Canada: { Albania: 20, Algeria: 18, Angola: 22, Argentina: 15, Australia: 20, Bangladesh: 22, Belgium: 10, Brazil: 15, Bulgaria: 20, Cambodia: 25, Cameroon: 20, Chile: 18, China: 20, Colombia: 15, Croatia: 20, Cyprus: 22, Denmark: 12, Djibouti: 25, DominicanRepublic: 10 },
+    Chile: { Albania: 25, Algeria: 22, Angola: 18, Argentina: 5, Australia: 22, Bangladesh: 25, Belgium: 22, Brazil: 8, Bulgaria: 25, Cambodia: 30, Cameroon: 22, Canada: 18, China: 25, Colombia: 12, Croatia: 25, Cyprus: 28, Denmark: 25, Djibouti: 28, DominicanRepublic: 15 },
+    China: { Albania: 18, Algeria: 20, Angola: 20, Argentina: 25, Australia: 5, Bangladesh: 8, Belgium: 20, Brazil: 25, Bulgaria: 20, Cambodia: 5, Cameroon: 20, Canada: 20, Chile: 25, Colombia: 25, Croatia: 20, Cyprus: 15, Denmark: 22, Djibouti: 12, DominicanRepublic: 25 },
+    Colombia: { Albania: 22, Algeria: 20, Angola: 18, Argentina: 10, Australia: 25, Bangladesh: 25, Belgium: 20, Brazil: 10, Bulgaria: 22, Cambodia: 30, Cameroon: 22, Canada: 15, Chile: 12, China: 25, Croatia: 22, Cyprus: 25, Denmark: 22, Djibouti: 25, DominicanRepublic: 5 },
+    Croatia: { Albania: 2, Algeria: 6, Angola: 15, Argentina: 22, Australia: 25, Bangladesh: 20, Belgium: 8, Brazil: 22, Bulgaria: 2, Cambodia: 25, Cameroon: 15, Canada: 20, Chile: 25, China: 20, Colombia: 22, Cyprus: 8, Denmark: 10, Djibouti: 15, DominicanRepublic: 22 },
+    Cyprus: { Albania: 6, Algeria: 8, Angola: 20, Argentina: 25, Australia: 20, Bangladesh: 15, Belgium: 10, Brazil: 25, Bulgaria: 8, Cambodia: 20, Cameroon: 18, Canada: 22, Chile: 28, China: 15, Colombia: 25, Croatia: 8, Denmark: 12, Djibouti: 10, DominicanRepublic: 25 },
+    Denmark: { Albania: 8, Algeria: 9, Angola: 20, Argentina: 22, Australia: 25, Bangladesh: 22, Belgium: 2, Brazil: 22, Bulgaria: 10, Cambodia: 25, Cameroon: 18, Canada: 12, Chile: 25, China: 22, Colombia: 22, Croatia: 10, Cyprus: 12, Djibouti: 18, DominicanRepublic: 22 },
+    Djibouti: { Albania: 12, Algeria: 14, Angola: 15, Argentina: 25, Australia: 15, Bangladesh: 12, Belgium: 18, Brazil: 25, Bulgaria: 15, Cambodia: 15, Cameroon: 10, Canada: 25, Chile: 28, China: 12, Colombia: 25, Croatia: 15, Cyprus: 10, Denmark: 18, DominicanRepublic: 25 },
+    DominicanRepublic: { Albania: 22, Algeria: 20, Angola: 22, Argentina: 12, Australia: 25, Bangladesh: 25, Belgium: 20, Brazil: 12, Bulgaria: 22, Cambodia: 30, Cameroon: 22, Canada: 10, Chile: 15, China: 25, Colombia: 5, Croatia: 22, Cyprus: 25, Denmark: 22, Djibouti: 25 }
   };
 
   const getMinimumDeliveryDays = (origin: string, destination: string): number => {
