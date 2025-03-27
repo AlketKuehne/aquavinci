@@ -252,18 +252,6 @@ export default function ShipmentPage() {
     return selectedDate >= earliestDeliveryDate;
   };
 
-  const isDeliveryDateDisabled = (date: string): boolean => {
-    if (!shippingDate || !country || !destinationCountry) return true;
-
-    const selectedDate = new Date(date);
-    const shippingDateObj = new Date(shippingDate);
-    const minDays = getMinimumDeliveryDays(country, destinationCountry);
-    const earliestDeliveryDate = new Date(shippingDateObj);
-    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
-
-    return selectedDate < earliestDeliveryDate; // Disable dates before the earliest valid delivery date
-  };
-
   const handleContinue = () => {
     // Handle continue action
     console.log('Continue clicked');
@@ -759,9 +747,7 @@ export default function ShipmentPage() {
                 }}
                 min={getDeliveryDateConstraints().min}
                 max={getDeliveryDateConstraints().max}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                  isDeliveryDateDisabled(deliveryDate) ? "bg-gray-300 cursor-not-allowed" : ""
-                } ${showError && !deliveryDate ? "bg-red-100" : ""}`}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !deliveryDate ? 'bg-red-100' : ''}`}
               />
             </div>
           </div>
