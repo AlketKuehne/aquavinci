@@ -5,8 +5,6 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from 'next/navigation';
 import { countryDistances } from './country-distances';
-// Entfernen Sie den Import des Icons
-// import { FaArrowRight } from "react-icons/fa";
 
 export default function ShipmentPage() {
   const router = useRouter();
@@ -424,6 +422,8 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
             <input
+              id="consignorFullName"
+              name="consignorFullName"
               type="text"
               placeholder="Full Name *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -432,6 +432,8 @@ export default function ShipmentPage() {
               aria-label="Consignor Full Name"
             />
             <input
+              id="consignorEmail"
+              name="consignorEmail"
               type="email"
               placeholder="Email Address"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
@@ -440,6 +442,8 @@ export default function ShipmentPage() {
               aria-label="Consignor Email Address"
             />
             <input
+              id="consignorPhone"
+              name="consignorPhone"
               type="tel"
               placeholder="Phone Number"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
@@ -448,6 +452,8 @@ export default function ShipmentPage() {
               aria-label="Consignor Phone Number"
             />
             <input
+              id="consignorFullAddress"
+              name="consignorFullAddress"
               type="text"
               placeholder="Full Address *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -456,6 +462,8 @@ export default function ShipmentPage() {
               aria-label="Consignor Full Address"
             />
             <select
+              id="consignorCountry"
+              name="consignorCountry"
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorCountry}
               onChange={(e) => {
@@ -470,6 +478,8 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
+              id="consignorCity"
+              name="consignorCity"
               className={`w-full p-2 border rounded ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consignorCity ? 'bg-red-100' : ''}`}
               value={consignorCity}
               onChange={(e) => setConsignorCity(e.target.value)}
@@ -487,6 +497,8 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             <input
+              id="consigneeFullName"
+              name="consigneeFullName"
               type="text"
               placeholder="Full Name *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -495,6 +507,8 @@ export default function ShipmentPage() {
               aria-label="Consignee Full Name"
             />
             <input
+              id="consigneeEmail"
+              name="consigneeEmail"
               type="email"
               placeholder="Email Address"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
@@ -503,6 +517,8 @@ export default function ShipmentPage() {
               aria-label="Consignee Email Address"
             />
             <input
+              id="consigneePhone"
+              name="consigneePhone"
               type="tel"
               placeholder="Phone Number"
               className="w-full p-2 border rounded mb-3 bg-gray-100"
@@ -511,6 +527,8 @@ export default function ShipmentPage() {
               aria-label="Consignee Phone Number"
             />
             <input
+              id="consigneeFullAddress"
+              name="consigneeFullAddress"
               type="text"
               placeholder="Full Address *"
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -519,6 +537,8 @@ export default function ShipmentPage() {
               aria-label="Consignee Full Address"
             />
             <select
+              id="consigneeCountry"
+              name="consigneeCountry"
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeCountry}
               onChange={(e) => {
@@ -533,6 +553,8 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
+              id="consigneeCity"
+              name="consigneeCity"
               className={`w-full p-2 border rounded ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consigneeCity ? 'bg-red-100' : ''}`}
               value={consigneeCity}
               onChange={(e) => setConsigneeCity(e.target.value)}
@@ -553,6 +575,8 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             <select
+              id="originCountry"
+              name="originCountry"
               className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
               value={country}
               onChange={(e) => {
@@ -569,6 +593,8 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
+              id="originCity"
+              name="originCity"
               className={`w-full p-2 border rounded mb-3 ${!country ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !originCity ? 'bg-red-100' : ''}`}
               value={originCity}
               onChange={(e) => {
@@ -585,6 +611,8 @@ export default function ShipmentPage() {
               ))}
             </select>
             <input
+              id="originStreet"
+              name="originStreet"
               type="text"
               placeholder="Street & House Number *"
               className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -598,6 +626,8 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             <select
+              id="destinationCountry"
+              name="destinationCountry"
               className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationCountry}
               onChange={(e) => {
@@ -614,6 +644,8 @@ export default function ShipmentPage() {
               ))}
             </select>
             <select
+              id="destinationCity"
+              name="destinationCity"
               className={`w-full p-2 border rounded mb-3 ${!destinationCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !destinationCity ? 'bg-red-100' : ''}`}
               value={destinationCity}
               onChange={(e) => {
@@ -630,6 +662,8 @@ export default function ShipmentPage() {
               ))}
             </select>
             <input
+              id="destinationStreet"
+              name="destinationStreet"
               type="text"
               placeholder="Street & House Number *"
               className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -647,8 +681,9 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
             <label className="flex items-center space-x-2 mb-4">
               <input
-                type="radio"
+                id="shipmentTypeFCL"
                 name="shipmentType"
+                type="radio"
                 value="FCL"
                 onChange={() => handleShipmentChange("FCL")}
                 className="w-5 h-5"
@@ -657,6 +692,8 @@ export default function ShipmentPage() {
               <span className="text-lg font-medium">FCL (Full Container Load){shipmentType === "FCL" && '*'}</span>
             </label>
             <select
+              id="fclSelection"
+              name="fclSelection"
               disabled={shipmentType !== "FCL"}
               value={fclSelection}
               onChange={(e) => setFclSelection(e.target.value)}
@@ -667,8 +704,10 @@ export default function ShipmentPage() {
               <option value="20ft">20ft Container</option>
               <option value="40ft">40ft Container</option>
             </select>
-            <label className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
+            <label htmlFor="fclDescription" className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
             <textarea
+              id="fclDescription"
+              name="fclDescription"
               rows={2}
               placeholder="Enter description of goods *"
               className={`w-full p-3 border rounded ${shipmentType !== "FCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "FCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
@@ -684,8 +723,9 @@ export default function ShipmentPage() {
             <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
             <label className="flex items-center space-x-2 mb-4">
               <input
-                type="radio"
+                id="shipmentTypeLCL"
                 name="shipmentType"
+                type="radio"
                 value="LCL"
                 onChange={() => handleShipmentChange("LCL")}
                 className="w-5 h-5"
@@ -694,6 +734,8 @@ export default function ShipmentPage() {
               <span className="text-lg font-medium">LCL (Less Container Load)</span>
             </label>
             <select
+              id="lclSelection"
+              name="lclSelection"
               disabled={shipmentType !== "LCL"}
               value={lclSelection}
               onChange={(e) => setLclSelection(e.target.value)}
@@ -704,8 +746,10 @@ export default function ShipmentPage() {
               <option value="palette">Palette</option>
               <option value="barrel">Barrel</option>
             </select>
-            <label className="block text-lg font-medium mb-2">Description of Goods</label>
+            <label htmlFor="lclDescription" className="block text-lg font-medium mb-2">Description of Goods</label>
             <textarea
+              id="lclDescription"
+              name="lclDescription"
               rows={2}
               placeholder="Enter description of goods *"
               className={`w-full p-3 border rounded ${shipmentType !== "LCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "LCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
@@ -722,8 +766,10 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
             <div className="mt-4">
-              <label className="block text-lg font-medium text-gray-700">Number of Pieces</label>
+              <label htmlFor="numberOfPieces" className="block text-lg font-medium text-gray-700">Number of Pieces</label>
               <input
+                id="numberOfPieces"
+                name="numberOfPieces"
                 type="text"
                 placeholder="Number of Pieces (default: 1)"
                 value={numberOfPieces}
@@ -734,13 +780,15 @@ export default function ShipmentPage() {
             </div>
             <div className="mt-4 flex items-center">
               <input
+                id="dangerousGoods"
+                name="dangerousGoods"
                 type="checkbox"
                 checked={isDangerousGoods}
                 onChange={handleDangerousGoodsChange}
                 className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                 aria-label="Dangerous Goods"
               />
-              <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
+              <label htmlFor="dangerousGoods" className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
             </div>
           </div>
 
@@ -748,8 +796,10 @@ export default function ShipmentPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Date Information</h2>
             <div className="mt-4">
-              <label className="block text-lg font-medium text-gray-700">Shipping Date</label>
+              <label htmlFor="shippingDate" className="block text-lg font-medium text-gray-700">Shipping Date</label>
               <input
+                id="shippingDate"
+                name="shippingDate"
                 type="date"
                 value={shippingDate}
                 onChange={handleShippingDateChange}
@@ -762,8 +812,10 @@ export default function ShipmentPage() {
               />
             </div>
             <div className="mt-4">
-              <label className="block text-lg font-medium text-gray-700">Delivery Date</label>
+              <label htmlFor="deliveryDate" className="block text-lg font-medium text-gray-700">Delivery Date</label>
               <input
+                id="deliveryDate"
+                name="deliveryDate"
                 type="date"
                 value={deliveryDate}
                 onChange={(e) => {
