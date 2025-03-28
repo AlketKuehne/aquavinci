@@ -429,6 +429,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullName}
               onChange={handleFullNameChange(setConsignorFullName)}
+              aria-label="Consignor Full Name"
             />
             <input
               type="email"
@@ -436,6 +437,7 @@ export default function ShipmentPage() {
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consignorEmail}
               onChange={(e) => setConsignorEmail(e.target.value)}
+              aria-label="Consignor Email Address"
             />
             <input
               type="tel"
@@ -443,6 +445,7 @@ export default function ShipmentPage() {
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consignorPhone}
               onChange={handlePhoneNumberChange(setConsignorPhone)}
+              aria-label="Consignor Phone Number"
             />
             <input
               type="text"
@@ -450,6 +453,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consignorFullAddress}
               onChange={(e) => setConsignorFullAddress(e.target.value)}
+              aria-label="Consignor Full Address"
             />
             <select
               className={`w-full p-2 border rounded mb-3 ${showError && !consignorCountry ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -458,6 +462,7 @@ export default function ShipmentPage() {
                 setConsignorCountry(e.target.value);
                 setConsignorCity("");
               }}
+              aria-label="Consignor Country"
             >
               <option value="">Select Country *</option>
               {countriesWithPorts.map((country: string) => (
@@ -469,6 +474,7 @@ export default function ShipmentPage() {
               value={consignorCity}
               onChange={(e) => setConsignorCity(e.target.value)}
               disabled={!consignorCountry}
+              aria-label="Consignor City"
             >
               <option value="">Select City *</option>
               {getCitiesByCountry(consignorCountry).map((city: string) => (
@@ -486,6 +492,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullName}
               onChange={handleFullNameChange(setConsigneeFullName)}
+              aria-label="Consignee Full Name"
             />
             <input
               type="email"
@@ -493,6 +500,7 @@ export default function ShipmentPage() {
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consigneeEmail}
               onChange={(e) => setConsigneeEmail(e.target.value)}
+              aria-label="Consignee Email Address"
             />
             <input
               type="tel"
@@ -500,6 +508,7 @@ export default function ShipmentPage() {
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               value={consigneePhone}
               onChange={handlePhoneNumberChange(setConsigneePhone)}
+              aria-label="Consignee Phone Number"
             />
             <input
               type="text"
@@ -507,6 +516,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
               value={consigneeFullAddress}
               onChange={(e) => setConsigneeFullAddress(e.target.value)}
+              aria-label="Consignee Full Address"
             />
             <select
               className={`w-full p-2 border rounded mb-3 ${showError && !consigneeCountry ? 'bg-red-100' : 'bg-gray-100'}`}
@@ -515,6 +525,7 @@ export default function ShipmentPage() {
                 setConsigneeCountry(e.target.value);
                 setConsigneeCity("");
               }}
+              aria-label="Consignee Country"
             >
               <option value="">Select Country *</option>
               {countriesWithPorts.map((country: string) => (
@@ -526,6 +537,7 @@ export default function ShipmentPage() {
               value={consigneeCity}
               onChange={(e) => setConsigneeCity(e.target.value)}
               disabled={!consigneeCountry}
+              aria-label="Consignee City"
             >
               <option value="">Select City *</option>
               {getCitiesByCountry(consigneeCountry).map((city: string) => (
@@ -549,6 +561,7 @@ export default function ShipmentPage() {
                 setShippingDate(""); // Reset Shipping Date
                 setDeliveryDate(""); // Reset Delivery Date
               }}
+              aria-label="Origin Country"
             >
               <option value="">Select Country *</option>
               {countriesWithPorts.map((country: string) => (
@@ -564,6 +577,7 @@ export default function ShipmentPage() {
                 setDeliveryDate(""); // Reset Delivery Date
               }}
               disabled={!country}
+              aria-label="Origin City"
             >
               <option value="">Select City *</option>
               {getCitiesByCountry(country).map((city: string) => (
@@ -576,6 +590,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
               value={street}
               onChange={(e) => setStreet(e.target.value)}
+              aria-label="Origin Street & House Number"
             />
           </div>
 
@@ -591,6 +606,7 @@ export default function ShipmentPage() {
                 setShippingDate(""); // Reset Shipping Date
                 setDeliveryDate(""); // Reset Delivery Date
               }}
+              aria-label="Destination Country"
             >
               <option value="">Select Country *</option>
               {countriesWithPorts.map((country: string) => (
@@ -606,6 +622,7 @@ export default function ShipmentPage() {
                 setDeliveryDate(""); // Reset Delivery Date
               }}
               disabled={!destinationCountry}
+              aria-label="Destination City"
             >
               <option value="">Select City *</option>
               {getCitiesByCountry(destinationCountry).map((city: string) => (
@@ -618,6 +635,7 @@ export default function ShipmentPage() {
               className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
               value={destinationStreet}
               onChange={(e) => setDestinationStreet(e.target.value)}
+              aria-label="Destination Street & House Number"
             />
           </div>
         </div>
@@ -634,6 +652,7 @@ export default function ShipmentPage() {
                 value="FCL"
                 onChange={() => handleShipmentChange("FCL")}
                 className="w-5 h-5"
+                aria-label="Full Container Load"
               />
               <span className="text-lg font-medium">FCL (Full Container Load){shipmentType === "FCL" && '*'}</span>
             </label>
@@ -642,6 +661,7 @@ export default function ShipmentPage() {
               value={fclSelection}
               onChange={(e) => setFclSelection(e.target.value)}
               className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "FCL" && !fclSelection ? 'bg-red-100' : ''}`}
+              aria-label="FCL Container Type"
             >
               <option value="">Select Container Type *</option>
               <option value="20ft">20ft Container</option>
@@ -655,6 +675,7 @@ export default function ShipmentPage() {
               disabled={shipmentType !== "FCL"}
               value={shipmentType === "FCL" ? description : ""}
               onChange={(e) => setDescription(e.target.value)}
+              aria-label="FCL Description of Goods"
             ></textarea>
           </div>
 
@@ -668,6 +689,7 @@ export default function ShipmentPage() {
                 value="LCL"
                 onChange={() => handleShipmentChange("LCL")}
                 className="w-5 h-5"
+                aria-label="Less Container Load"
               />
               <span className="text-lg font-medium">LCL (Less Container Load)</span>
             </label>
@@ -676,6 +698,7 @@ export default function ShipmentPage() {
               value={lclSelection}
               onChange={(e) => setLclSelection(e.target.value)}
               className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "LCL" && !lclSelection ? 'bg-red-100' : ''}`}
+              aria-label="LCL Package Type"
             >
               <option value="">Select Package Type *</option>
               <option value="palette">Palette</option>
@@ -689,6 +712,7 @@ export default function ShipmentPage() {
               disabled={shipmentType !== "LCL"}
               value={shipmentType === "LCL" ? description : ""}
               onChange={(e) => setDescription(e.target.value)}
+              aria-label="LCL Description of Goods"
             ></textarea>
           </div>
         </div>
@@ -705,6 +729,7 @@ export default function ShipmentPage() {
                 value={numberOfPieces}
                 onChange={handleNumberOfPiecesChange}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                aria-label="Number of Pieces"
               />
             </div>
             <div className="mt-4 flex items-center">
@@ -713,6 +738,7 @@ export default function ShipmentPage() {
                 checked={isDangerousGoods}
                 onChange={handleDangerousGoodsChange}
                 className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                aria-label="Dangerous Goods"
               />
               <label className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
             </div>
@@ -729,7 +755,10 @@ export default function ShipmentPage() {
                 onChange={handleShippingDateChange}
                 min={getShippingDateConstraints().min}
                 max={getShippingDateConstraints().max}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${showError && !shippingDate ? 'bg-red-100' : ''}`}
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                  showError && !shippingDate ? 'bg-red-100' : ''
+                }`}
+                aria-label="Shipping Date"
               />
             </div>
             <div className="mt-4">
@@ -751,6 +780,7 @@ export default function ShipmentPage() {
                 className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
                   showError && !deliveryDate ? 'bg-red-100' : ''
                 } ${!isDeliveryDateEnabled || !getDeliveryDateConstraints().min ? 'bg-gray-300 cursor-not-allowed' : ''}`}
+                aria-label="Delivery Date"
               />
             </div>
           </div>
