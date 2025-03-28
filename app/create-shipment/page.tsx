@@ -819,7 +819,8 @@ export default function ShipmentPage() {
                 type="date"
                 value={arrivalDate}
                 onChange={(e) => {
-                  if (isArrivalDateValid(e.target.value)) {
+                  const isValid = isArrivalDateValid(e.target.value);
+                  if (isValid) {
                     handleArrivalDateChange(e);
                   } else {
                     setShowError(true);
