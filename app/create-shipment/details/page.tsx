@@ -94,8 +94,8 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
-        <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
+      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8">
+        <h1 className="text-4xl font-extrabold mb-6 self-start">Details</h1>
 
         {/* FCL and LCL Boxes */}
         <div className="flex justify-between w-full gap-x-4">
@@ -133,7 +133,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Weight and Dimensions, Fragile Item Boxes */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* Box for Weight and Dimensions */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Weight</h2>
