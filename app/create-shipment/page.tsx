@@ -390,7 +390,7 @@ export default function ShipmentPage() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
-      <nav className="w-full h-12 bg-[#242424] flex items-center px-4">
+      <nav className="w-full h-12 bg-[#242424] flex items-center px-4 fixed top-0 left-0 z-50">
         <Link href="/">
           <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto cursor-pointer" />
         </Link>
@@ -413,7 +413,7 @@ export default function ShipmentPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
         {/* First Form Section */}
