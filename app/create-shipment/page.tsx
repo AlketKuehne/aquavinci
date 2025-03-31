@@ -730,6 +730,11 @@ export default function ShipmentPage() {
               <option value="">Select Container Type *</option>
               <option value="20ft">20ft Container</option>
               <option value="40ft">40ft Container</option>
+              <option value="45ft">45ft High Cube Container</option>
+              <option value="reefer">Reefer Container</option>
+              <option value="openTop">Open Top Container</option>
+              <option value="flatRack">Flat Rack Container</option>
+              <option value="tank">Tank Container</option>
             </select>
             <label htmlFor="fclDescription" className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
             <textarea
@@ -772,6 +777,11 @@ export default function ShipmentPage() {
               <option value="">Select Package Type *</option>
               <option value="palette">Palette</option>
               <option value="barrel">Barrel</option>
+              <option value="crate">Crate</option>
+              <option value="box">Box</option>
+              <option value="bag">Bag</option>
+              <option value="bundle">Bundle</option>
+              <option value="carton">Carton</option>
             </select>
             <label htmlFor="lclDescription" className="block text-lg font-medium mb-2">Description of Goods</label>
             <textarea
