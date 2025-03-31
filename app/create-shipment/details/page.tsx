@@ -92,13 +92,13 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-6">
         <h1 className="text-4xl font-extrabold mb-4 self-start">Details</h1>
 
         {/* Two Boxes */}
-        <div className="flex justify-between w-full mt-4 gap-x-4">
+        <div className="flex justify-between w-full mt-4 gap-x-6">
           {/* Box for Dimensions */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[52%]">
             <h2 className="text-lg font-bold mb-4">Dimensions & Weight</h2>
             <input
               type="text"
@@ -135,7 +135,7 @@ export default function DetailsPage() {
           </div>
 
           {/* Box for Fragile Items */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[52%]">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
             <div className="flex items-center mb-4">
               <input
