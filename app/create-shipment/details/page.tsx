@@ -92,11 +92,11 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
-        <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
+      <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
+        <h1 className="text-4xl font-extrabold mb-4 self-start">Details</h1>
 
         {/* Two Boxes */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-4 gap-x-4">
           {/* Box for Dimensions */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Dimensions & Weight</h2>
