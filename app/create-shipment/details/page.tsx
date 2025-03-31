@@ -92,7 +92,7 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className={`flex flex-col items-start w-full max-w-6xl mt-16 px-8 ${showCancelPopup ? 'pointer-events-none' : ''}`}>
+      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
 
         {/* Two Boxes */}
