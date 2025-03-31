@@ -94,7 +94,6 @@ export default function DetailsPage() {
       {/* Page Content */}
       <div className={`flex flex-col items-start w-full max-w-6xl mt-12 px-8 ${showCancelPopup ? 'pointer-events-none' : ''}`}>
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details Page</h1>
-        <p>Welcome to the details page of the shipment creation process.</p>
 
         {/* Two Boxes */}
         <div className="flex justify-between w-full mt-8 gap-x-4">
