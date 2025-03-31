@@ -9,6 +9,12 @@ export default function DetailsPage() {
   const router = useRouter();
   const [showCancelPopup, setShowCancelPopup] = useState(false);
   const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
+  const [weight, setWeight] = useState("");
+  const [height, setHeight] = useState("");
+  const [length, setLength] = useState("");
+  const [width, setWidth] = useState("");
+  const [isFragile, setIsFragile] = useState(false);
+  const [fragileMaterial, setFragileMaterial] = useState("");
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -89,6 +95,79 @@ export default function DetailsPage() {
       <div className={`flex flex-col items-start w-full max-w-6xl mt-12 px-8 ${showCancelPopup ? 'pointer-events-none' : ''}`}>
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details Page</h1>
         <p>Welcome to the details page of the shipment creation process.</p>
+
+        {/* Two Boxes */}
+        <div className="flex justify-between w-full mt-8 gap-x-4">
+          {/* Box for Dimensions */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Dimensions & Weight</h2>
+            <input
+              type="text"
+              placeholder="Weight (kg)"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              aria-label="Weight"
+            />
+            <input
+              type="text"
+              placeholder="Height (m)"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              aria-label="Height"
+            />
+            <input
+              type="text"
+              placeholder="Length (m)"
+              value={length}
+              onChange={(e) => setLength(e.target.value)}
+              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              aria-label="Length"
+            />
+            <input
+              type="text"
+              placeholder="Width (m)"
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
+              className="w-full p-2 border rounded bg-gray-100"
+              aria-label="Width"
+            />
+          </div>
+
+          {/* Box for Fragile Items */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
+            <div className="flex items-center mb-4">
+              <input
+                type="checkbox"
+                id="fragileItem"
+                checked={isFragile}
+                onChange={() => {
+                  setIsFragile(!isFragile);
+                  if (!isFragile) setFragileMaterial(""); // Reset dropdown if unchecked
+                }}
+                className="w-5 h-5"
+                aria-label="Fragile Item"
+              />
+              <label htmlFor="fragileItem" className="ml-2 text-lg font-medium">Is this a fragile item?</label>
+            </div>
+            <select
+              id="fragileMaterial"
+              value={fragileMaterial}
+              onChange={(e) => setFragileMaterial(e.target.value)}
+              disabled={!isFragile}
+              className={`w-full p-2 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed`}
+              aria-label="Fragile Material"
+            >
+              <option value="">Select Fragile Material</option>
+              <option value="glass">Glass</option>
+              <option value="porcelain">Porcelain</option>
+              <option value="ceramic">Ceramic</option>
+              <option value="crystal">Crystal</option>
+            </select>
+          </div>
+        </div>
       </div>
 
       {showCancelPopup && (
