@@ -97,17 +97,18 @@ export default function DetailsPage() {
 
         {/* Two Boxes */}
         <div className="flex justify-between w-full mt-4 gap-x-4">
-          {/* Box for Dimensions */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
-            <h2 className="text-lg font-bold mb-4">Dimensions & Weight</h2>
+          {/* Box for Weight and Dimensions */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Weight</h2>
             <input
               type="number"
               placeholder="Weight (in kg)"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              className="w-full p-2 border rounded mb-4 bg-gray-100"
               aria-label="Weight"
             />
+            <h2 className="text-lg font-bold mb-4">Dimensions</h2>
             <input
               type="number"
               placeholder="Height (in m)"
@@ -135,7 +136,7 @@ export default function DetailsPage() {
           </div>
 
           {/* Box for Fragile Items */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
             <div className="flex items-center mb-4">
               <input
