@@ -96,7 +96,7 @@ export default function DetailsPage() {
         <h1 className="text-4xl font-extrabold mb-4 self-start">Details</h1>
 
         {/* Two Boxes */}
-        <div className="flex justify-between w-full mt-4 gap-x-6">
+        <div className="flex justify-between w-full mt-4 gap-x-4">
           {/* Box for Dimensions */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-[52%]">
             <h2 className="text-lg font-bold mb-4">Dimensions & Weight</h2>
