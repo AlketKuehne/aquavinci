@@ -733,8 +733,6 @@ export default function ShipmentPage() {
               <option value="45ft">45ft High Cube Container</option>
               <option value="reefer">Reefer Container</option>
               <option value="openTop">Open Top Container</option>
-              <option value="flatRack">Flat Rack Container</option>
-              <option value="tank">Tank Container</option>
             </select>
             <label htmlFor="fclDescription" className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
             <textarea
