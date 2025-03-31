@@ -2,12 +2,36 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import { countryDistances } from './country-distances';
 
 export default function ShipmentPage() {
   const router = useRouter();
+  const navRef = useRef<HTMLDivElement>(null);
+  let lastScrollY = 0;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (navRef.current) {
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          navRef.current.style.transform = "translateY(-100%)";
+        } else {
+          // Scrolling up
+          navRef.current.style.transform = "translateY(0)";
+        }
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const [shipmentType, setShipmentType] = useState("");
   const [fclSelection, setFclSelection] = useState(""); // Speichert die FCL-Auswahl
   const [lclSelection, setLclSelection] = useState(""); // Speichert die LCL-Auswahl
@@ -390,7 +414,10 @@ export default function ShipmentPage() {
   return (
     <div className="flex flex-col items-center min-h-screen">
       {/* Navigation Bar */}
-      <nav className="w-full h-12 bg-[#242424] flex items-center px-4 fixed top-0 left-0 z-50">
+      <nav
+        ref={navRef}
+        className="w-full h-12 bg-[#242424] flex items-center px-4 fixed top-0 left-0 z-50 transition-transform duration-300"
+      >
         <Link href="/">
           <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto cursor-pointer" />
         </Link>
