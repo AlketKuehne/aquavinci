@@ -15,6 +15,8 @@ export default function DetailsPage() {
   const [width, setWidth] = useState("");
   const [isFragile, setIsFragile] = useState(false);
   const [fragileMaterial, setFragileMaterial] = useState("");
+  const [fclSelection, setFclSelection] = useState<string | null>(null);
+  const [lclSelection, setLclSelection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -166,6 +168,41 @@ export default function DetailsPage() {
               <option value="ceramic">Ceramic</option>
               <option value="crystal">Crystal</option>
             </select>
+          </div>
+        </div>
+
+        {/* New Boxes */}
+        <div className="flex justify-between w-full mt-8 gap-x-6">
+          {/* Box for FCL */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[50%]">
+            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
+            <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
+              How many {fclSelection || "containers"}?
+            </label>
+            <input
+              id="fclQuantity"
+              type="number"
+              placeholder={`Enter number of ${fclSelection || "containers"}`}
+              className="w-full p-2 border rounded bg-gray-100"
+              disabled={!fclSelection}
+              aria-label="FCL Quantity"
+            />
+          </div>
+
+          {/* Box for LCL */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[50%]">
+            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
+            <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
+              How many {lclSelection || "packages"}?
+            </label>
+            <input
+              id="lclQuantity"
+              type="number"
+              placeholder={`Enter number of ${lclSelection || "packages"}`}
+              className="w-full p-2 border rounded bg-gray-100"
+              disabled={!lclSelection}
+              aria-label="LCL Quantity"
+            />
           </div>
         </div>
       </div>
