@@ -98,7 +98,7 @@ export default function DetailsPage() {
         {/* Two Boxes */}
         <div className="flex justify-between w-full mt-4 gap-x-6">
           {/* Box for Weight and Dimensions */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[45%]">
             <h2 className="text-lg font-bold mb-4">Weight</h2>
             <input
               type="number"
@@ -136,7 +136,7 @@ export default function DetailsPage() {
           </div>
 
           {/* Box for Fragile Items */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-[45%]">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
             <div className="flex items-center mb-4">
               <input
