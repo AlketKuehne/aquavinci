@@ -94,10 +94,10 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-8 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
 
-        {/* Moved FCL and LCL Boxes to the Top */}
+        {/* FCL and LCL Boxes */}
         <div className="flex justify-between w-full gap-x-4">
           {/* Box for FCL */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
