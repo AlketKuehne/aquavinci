@@ -103,14 +103,15 @@ export default function DetailsPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
             <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
-              How many {fclSelection || "containers"}?
+              Enter number of containers
             </label>
             <input
               id="fclQuantity"
-              type="number"
-              placeholder={`Enter number of ${fclSelection || "containers"}`}
+              type="text"
+              placeholder="Enter number of containers"
+              value={fclSelection || ""}
+              onChange={(e) => setFclSelection(e.target.value)}
               className="w-full p-3 border rounded bg-gray-100"
-              disabled={!fclSelection}
               aria-label="FCL Quantity"
             />
           </div>
@@ -119,14 +120,15 @@ export default function DetailsPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
             <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
             <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
-              How many {lclSelection || "packages"}?
+              Enter number of packages
             </label>
             <input
               id="lclQuantity"
-              type="number"
-              placeholder={`Enter number of ${lclSelection || "packages"}`}
+              type="text"
+              placeholder="Enter number of packages"
+              value={lclSelection || ""}
+              onChange={(e) => setLclSelection(e.target.value)}
               className="w-full p-3 border rounded bg-gray-100"
-              disabled={!lclSelection}
               aria-label="LCL Quantity"
             />
           </div>
