@@ -101,32 +101,32 @@ export default function DetailsPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Dimensions & Weight</h2>
             <input
-              type="text"
-              placeholder="Weight (kg)"
+              type="number"
+              placeholder="Weight (in kg)"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               aria-label="Weight"
             />
             <input
-              type="text"
-              placeholder="Height (m)"
+              type="number"
+              placeholder="Height (in m)"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               aria-label="Height"
             />
             <input
-              type="text"
-              placeholder="Length (m)"
+              type="number"
+              placeholder="Length (in m)"
               value={length}
               onChange={(e) => setLength(e.target.value)}
               className="w-full p-2 border rounded mb-3 bg-gray-100"
               aria-label="Length"
             />
             <input
-              type="text"
-              placeholder="Width (m)"
+              type="number"
+              placeholder="Width (in m)"
               value={width}
               onChange={(e) => setWidth(e.target.value)}
               className="w-full p-2 border rounded bg-gray-100"
