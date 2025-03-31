@@ -94,7 +94,7 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-8 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
 
         {/* FCL and LCL Boxes */}
@@ -109,7 +109,7 @@ export default function DetailsPage() {
               id="fclQuantity"
               type="number"
               placeholder={`Enter number of ${fclSelection || "containers"}`}
-              className="w-full p-2 border rounded bg-gray-100"
+              className="w-full p-3 border rounded bg-gray-100"
               disabled={!fclSelection}
               aria-label="FCL Quantity"
             />
@@ -125,7 +125,7 @@ export default function DetailsPage() {
               id="lclQuantity"
               type="number"
               placeholder={`Enter number of ${lclSelection || "packages"}`}
-              className="w-full p-2 border rounded bg-gray-100"
+              className="w-full p-3 border rounded bg-gray-100"
               disabled={!lclSelection}
               aria-label="LCL Quantity"
             />
@@ -142,7 +142,7 @@ export default function DetailsPage() {
               placeholder="Weight (in kg)"
               value={weight}
               onChange={(e) => setWeight(e.target.value)}
-              className="w-full p-2 border rounded mb-4 bg-gray-100"
+              className="w-full p-3 border rounded mb-4 bg-gray-100"
               aria-label="Weight"
             />
             <h2 className="text-lg font-bold mb-4">Dimensions</h2>
@@ -151,7 +151,7 @@ export default function DetailsPage() {
               placeholder="Height (in m)"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              className="w-full p-3 border rounded mb-3 bg-gray-100"
               aria-label="Height"
             />
             <input
@@ -159,7 +159,7 @@ export default function DetailsPage() {
               placeholder="Length (in m)"
               value={length}
               onChange={(e) => setLength(e.target.value)}
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
+              className="w-full p-3 border rounded mb-3 bg-gray-100"
               aria-label="Length"
             />
             <input
@@ -167,7 +167,7 @@ export default function DetailsPage() {
               placeholder="Width (in m)"
               value={width}
               onChange={(e) => setWidth(e.target.value)}
-              className="w-full p-2 border rounded bg-gray-100"
+              className="w-full p-3 border rounded bg-gray-100"
               aria-label="Width"
             />
           </div>
@@ -194,7 +194,7 @@ export default function DetailsPage() {
               value={fragileMaterial}
               onChange={(e) => setFragileMaterial(e.target.value)}
               disabled={!isFragile}
-              className={`w-full p-2 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed`}
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
               aria-label="Fragile Material"
             >
               <option value="">Select Fragile Material</option>
