@@ -94,11 +94,11 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-8 px-6">
-        <h1 className="text-4xl font-extrabold mb-6 self-start">Details</h1>
+      <div className="flex flex-col items-start w-full max-w-6xl mt-6 px-6">
+        <h1 className="text-4xl font-extrabold mb-4 self-start">Details</h1>
 
         {/* FCL and LCL Boxes */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* Box for FCL */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
@@ -133,7 +133,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Weight and Dimensions, Fragile Item Boxes */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* Box for Weight and Dimensions */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
             <h2 className="text-lg font-bold mb-4">Weight</h2>
