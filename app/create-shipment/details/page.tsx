@@ -97,8 +97,43 @@ export default function DetailsPage() {
       <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
 
-        {/* Two Boxes */}
+        {/* Moved FCL and LCL Boxes to the Top */}
         <div className="flex justify-between w-full gap-x-4">
+          {/* Box for FCL */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
+            <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
+              How many {fclSelection || "containers"}?
+            </label>
+            <input
+              id="fclQuantity"
+              type="number"
+              placeholder={`Enter number of ${fclSelection || "containers"}`}
+              className="w-full p-2 border rounded bg-gray-100"
+              disabled={!fclSelection}
+              aria-label="FCL Quantity"
+            />
+          </div>
+
+          {/* Box for LCL */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
+            <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
+              How many {lclSelection || "packages"}?
+            </label>
+            <input
+              id="lclQuantity"
+              type="number"
+              placeholder={`Enter number of ${lclSelection || "packages"}`}
+              className="w-full p-2 border rounded bg-gray-100"
+              disabled={!lclSelection}
+              aria-label="LCL Quantity"
+            />
+          </div>
+        </div>
+
+        {/* Weight and Dimensions, Fragile Item Boxes */}
+        <div className="flex justify-between w-full mt-8 gap-x-4">
           {/* Box for Weight and Dimensions */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Weight</h2>
@@ -168,41 +203,6 @@ export default function DetailsPage() {
               <option value="ceramic">Ceramic</option>
               <option value="crystal">Crystal</option>
             </select>
-          </div>
-        </div>
-
-        {/* New Boxes */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
-          {/* Box for FCL */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
-            <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
-              How many {fclSelection || "containers"}?
-            </label>
-            <input
-              id="fclQuantity"
-              type="number"
-              placeholder={`Enter number of ${fclSelection || "containers"}`}
-              className="w-full p-2 border rounded bg-gray-100"
-              disabled={!fclSelection}
-              aria-label="FCL Quantity"
-            />
-          </div>
-
-          {/* Box for LCL */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
-            <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
-              How many {lclSelection || "packages"}?
-            </label>
-            <input
-              id="lclQuantity"
-              type="number"
-              placeholder={`Enter number of ${lclSelection || "packages"}`}
-              className="w-full p-2 border rounded bg-gray-100"
-              disabled={!lclSelection}
-              aria-label="LCL Quantity"
-            />
           </div>
         </div>
       </div>
