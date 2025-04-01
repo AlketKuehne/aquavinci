@@ -161,11 +161,11 @@ function DetailsPageContent() {
               </div>
             </div>
 
-            {/* Weight and Dimensions, Fragile Item Boxes */}
+            {/* Size & Weight Details, Fragile Item Boxes */}
             <div className="flex justify-between w-full mt-4 gap-x-4">
-              {/* Box for Weight and Dimensions */}
+              {/* Box for Size & Weight Details */}
               <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-                <h2 className="text-lg font-bold mb-4">Weight</h2>
+                <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2> {/* Updated header */}
                 <input
                   type="number"
                   placeholder="Weight (in kg)"
@@ -179,7 +179,6 @@ function DetailsPageContent() {
                   className="w-full p-3 border rounded mb-4 bg-gray-100"
                   aria-label="Weight"
                 />
-                <h2 className="text-lg font-bold mb-4">Dimensions</h2>
                 <input
                   type="number"
                   placeholder="Height (in m)"
