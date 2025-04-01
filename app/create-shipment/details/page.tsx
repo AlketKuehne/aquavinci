@@ -138,23 +138,25 @@ function DetailsPageContent() {
               className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300"
             >
               <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-                <h2 className="text-lg font-bold mb-4">Are you sure you want to leave?</h2>
-                <p className="mb-4">Your changes will not be saved if you leave this page.</p>
+                <h2 className="text-lg font-bold mb-4">Do you truly wish to leave this website?</h2>
+                <p className="mb-4">Your unsaved changes will be lost if you proceed.</p>
                 <div className="flex justify-end gap-4">
                   <button
-                    className="px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400 transition-colors duration-200"
-                    onClick={() => setShowCancelPopup(false)} // Stay on the page
+                    className="px-4 py-2 bg-gray-300 text-black rounded transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                    onClick={() => {
+                      setShowCancelPopup(false); // Close the popup and stay on the page
+                    }}
                   >
-                    Stay
+                    No
                   </button>
                   <button
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-200"
+                    className="px-4 py-2 bg-black text-white rounded transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black"
                     onClick={() => {
                       setShowCancelPopup(false);
                       if (pendingNavigation) router.push(pendingNavigation); // Navigate to the pending URL
                     }}
                   >
-                    Leave
+                    Yes
                   </button>
                 </div>
               </div>
