@@ -107,9 +107,9 @@ export default function DetailsPage() {
         <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
 
         {/* FCL and LCL Boxes */}
-        <div className="flex flex-col w-full gap-y-4">
+        <div className="flex justify-between w-full gap-x-4">
           {/* Box for FCL */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
             <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
               Enter number of containers
@@ -131,7 +131,7 @@ export default function DetailsPage() {
           </div>
 
           {/* Box for LCL */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
             <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
               Enter number of packages
