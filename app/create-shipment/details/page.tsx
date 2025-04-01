@@ -71,6 +71,40 @@ function DetailsPageContent() {
     }
   }, [showCancelPopup, pendingNavigation]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (showCancelPopup) {
+        e.preventDefault();
+        e.returnValue = ''; // Required for modern browsers to show the confirmation dialog
+      } else {
+        setShowCancelPopup(true); // Show the popup when attempting to leave
+        e.preventDefault();
+      }
+    };
+
+    const handlePopState = () => {
+      setShowCancelPopup(true); // Show the popup when navigating via the browser's back/forward buttons
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [showCancelPopup]);
+
+  const handleYes = () => {
+    setShowCancelPopup(false);
+    window.removeEventListener('beforeunload', () => {}); // Allow navigation
+    if (pendingNavigation) {
+      router.push(pendingNavigation);
+    } else {
+      window.location.reload(); // Handle reload case
+    }
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen relative">
       {!isAuthorized ? (
@@ -142,20 +176,15 @@ function DetailsPageContent() {
                 <div className="flex justify-center gap-8 mt-6">
                   <button
                     className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
-                    onClick={() => {
-                      setShowCancelPopup(false); // Close the popup and stay on the page
-                    }}
+                    onClick={() => setShowCancelPopup(false)} // Stay on the page
                   >
-                    Yes
+                    No
                   </button>
                   <button
                     className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
-                    onClick={() => {
-                      setShowCancelPopup(false);
-                      if (pendingNavigation) router.push(pendingNavigation); // Navigate to the pending URL
-                    }}
+                    onClick={handleYes} // Leave the page
                   >
-                    No
+                    Yes
                   </button>
                 </div>
               </div>
