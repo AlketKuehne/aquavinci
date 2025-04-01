@@ -226,22 +226,33 @@ export default function DetailsPage() {
 
             {/* Subcategory Section */}
             <h3 className="text-md font-semibold mb-2">
-              {fragileCategory ? `Select ${fragileCategory.charAt(0).toUpperCase() + fragileCategory.slice(1)}` : "Subcategory"}
+              {fragileCategory === "other" ? "Specify Other Category" : fragileCategory ? `Select ${fragileCategory.charAt(0).toUpperCase() + fragileCategory.slice(1)}` : "Subcategory"}
             </h3>
-            <select
-              id="fragileSubCategory"
-              value={fragileSubCategory || ""}
-              onChange={(e) => setFragileSubCategory(e.target.value)}
-              disabled={!isFragile || !fragileCategory}
-              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              aria-label="Fragile Subcategory"
-            >
-              <option value="">Select Subcategory</option>
-              {fragileCategory &&
-                fragileSubCategories[fragileCategory as keyof typeof fragileSubCategories].map((subCategory) => (
-                  <option key={subCategory} value={subCategory}>{subCategory}</option>
-                ))}
-            </select>
+            {fragileCategory === "other" ? (
+              <input
+                type="text"
+                placeholder="Specify your category"
+                value={fragileSubCategory || ""}
+                onChange={(e) => setFragileSubCategory(e.target.value)}
+                className="w-full p-3 border rounded bg-gray-100"
+                aria-label="Other Category"
+              />
+            ) : (
+              <select
+                id="fragileSubCategory"
+                value={fragileSubCategory || ""}
+                onChange={(e) => setFragileSubCategory(e.target.value)}
+                disabled={!isFragile || !fragileCategory}
+                className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+                aria-label="Fragile Subcategory"
+              >
+                <option value="">Select Subcategory</option>
+                {fragileCategory &&
+                  fragileSubCategories[fragileCategory as keyof typeof fragileSubCategories].map((subCategory) => (
+                    <option key={subCategory} value={subCategory}>{subCategory}</option>
+                  ))}
+              </select>
+            )}
           </div>
         </div>
       </div>
