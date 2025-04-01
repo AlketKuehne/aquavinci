@@ -96,13 +96,13 @@ export default function DetailsPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-6 px-6">
-        <h1 className="text-4xl font-extrabold mb-4 self-start">Details</h1>
+      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
+        <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
 
         {/* FCL and LCL Boxes */}
-        <div className="flex justify-between w-full mt-6 space-x-1">
+        <div className="flex justify-between w-full gap-x-4">
           {/* Box for FCL */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
             <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
               Enter number of containers
@@ -119,7 +119,7 @@ export default function DetailsPage() {
           </div>
 
           {/* Box for LCL */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
             <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
               Enter number of packages
@@ -137,9 +137,9 @@ export default function DetailsPage() {
         </div>
 
         {/* Weight and Dimensions, Fragile Item Boxes */}
-        <div className="flex justify-between w-full mt-6 space-x-1">
+        <div className="flex justify-between w-full mt-8 gap-x-4">
           {/* Box for Weight and Dimensions */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Weight</h2>
             <input
               type="number"
@@ -177,7 +177,7 @@ export default function DetailsPage() {
           </div>
 
           {/* Box for Fragile Items */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
             <div className="flex items-center mb-4">
               <input
