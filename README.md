@@ -101,10 +101,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](https://aquavinci.vercel.app/)
+https://aquavinci.vercel.app/
 
 ### Create Shipment
-![Create Shipment](https://aquavinci.vercel.app/create-shipment)
+https://aquavinci.vercel.app/create-shipment
 
 ---
 
