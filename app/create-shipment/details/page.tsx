@@ -140,9 +140,9 @@ function DetailsPageContent() {
               <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
                 <h2 className="text-lg font-bold mb-4">Do you truly wish to leave this website?</h2>
                 <p className="mb-4">Your unsaved changes will be lost if you proceed.</p>
-                <div className="flex justify-end gap-4">
+                <div className="flex justify-center gap-8 mt-6">
                   <button
-                    className="px-4 py-2 bg-gray-300 text-black rounded transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                    className="px-6 py-3 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
                     onClick={() => {
                       setShowCancelPopup(false); // Close the popup and stay on the page
                     }}
@@ -150,7 +150,7 @@ function DetailsPageContent() {
                     Yes
                   </button>
                   <button
-                    className="px-4 py-2 bg-black text-white rounded transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black"
+                    className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
                     onClick={() => {
                       setShowCancelPopup(false);
                       if (pendingNavigation) router.push(pendingNavigation); // Navigate to the pending URL
