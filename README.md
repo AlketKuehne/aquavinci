@@ -126,16 +126,9 @@ We welcome contributions! To get started:
 
 ---
 
-## 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
 ## 🌐 Links
 
-- **Live Demo**: [AquaVinci](https://your-live-demo-link.com)
-- **GitHub Repository**: [AquaVinci](https://github.com/your-username/aquavinci)
+- **GitHub Repository**: [AquaVinci](https://github.com/AlketKuehne/aquavinci)
 - **Documentation**: [Next.js Docs](https://nextjs.org/docs)
 
 ---
