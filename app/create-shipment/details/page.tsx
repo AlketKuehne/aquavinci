@@ -165,7 +165,8 @@ function DetailsPageContent() {
             <div className="flex justify-between w-full mt-4 gap-x-4">
               {/* Box for Size & Weight Details */}
               <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-                <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2> {/* Updated header */}
+                <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2> {/* Main header */}
+                <h3 className="text-md font-semibold mb-2">Weight</h3> {/* Subheadline for Weight */}
                 <input
                   type="number"
                   placeholder="Weight (in kg)"
@@ -179,6 +180,7 @@ function DetailsPageContent() {
                   className="w-full p-3 border rounded mb-4 bg-gray-100"
                   aria-label="Weight"
                 />
+                <h3 className="text-md font-semibold mb-2">Dimensions</h3> {/* Subheadline for Dimensions */}
                 <input
                   type="number"
                   placeholder="Height (in m)"
