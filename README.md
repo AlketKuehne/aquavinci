@@ -4,6 +4,7 @@ AquaVinci is a modern shipment management platform designed to streamline the pr
 
 ![Next.js](https://img.shields.io/badge/Next.js-13.4-blue?style=flat-square&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue?style=flat-square&logo=typescript)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow?style=flat-square&logo=javascript)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-blue?style=flat-square&logo=tailwindcss)
 ![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 
@@ -44,7 +45,9 @@ aquavinci/
 
 - **Framework**: [Next.js](https://nextjs.org)
 - **Styling**: [TailwindCSS](https://tailwindcss.com)
-- **Language**: [TypeScript](https://www.typescriptlang.org)
+- **Languages**:
+  - [TypeScript](https://www.typescriptlang.org)
+  - [JavaScript (ES6+)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - **Icons & Images**: [Next/Image](https://nextjs.org/docs/api-reference/next/image)
 - **State Management**: React `useState` and `useEffect`
 
@@ -98,13 +101,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](https://via.placeholder.com/800x400?text=Home+Page)
+![Home Page](https://aquavinci.vercel.app/)
 
 ### Create Shipment
-![Create Shipment](https://via.placeholder.com/800x400?text=Create+Shipment)
-
-### Shipment Details
-![Shipment Details](https://via.placeholder.com/800x400?text=Shipment+Details)
+![Create Shipment](https://aquavinci.vercel.app/create-shipment)
 
 ---
 
