@@ -400,7 +400,7 @@ export default function ShipmentPage() {
       setShowWarning(false);
       setDateWarning(false);
       setInvalidDateWarning(false);
-      router.push('/create-shipment/details');
+      router.push(`/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}`);
     }
   };
 
@@ -440,7 +440,7 @@ export default function ShipmentPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-6 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-8 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
         {/* First Form Section */}
