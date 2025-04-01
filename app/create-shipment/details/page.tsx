@@ -170,7 +170,12 @@ function DetailsPageContent() {
                   type="number"
                   placeholder="Weight (in kg)"
                   value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (parseFloat(value) >= 0 || value === "") {
+                      setWeight(value);
+                    }
+                  }}
                   className="w-full p-3 border rounded mb-4 bg-gray-100"
                   aria-label="Weight"
                 />
@@ -179,7 +184,12 @@ function DetailsPageContent() {
                   type="number"
                   placeholder="Height (in m)"
                   value={height}
-                  onChange={(e) => setHeight(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (parseFloat(value) >= 0 || value === "") {
+                      setHeight(value);
+                    }
+                  }}
                   className="w-full p-3 border rounded mb-3 bg-gray-100"
                   aria-label="Height"
                 />
@@ -187,7 +197,12 @@ function DetailsPageContent() {
                   type="number"
                   placeholder="Length (in m)"
                   value={length}
-                  onChange={(e) => setLength(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (parseFloat(value) >= 0 || value === "") {
+                      setLength(value);
+                    }
+                  }}
                   className="w-full p-3 border rounded mb-3 bg-gray-100"
                   aria-label="Length"
                 />
@@ -195,7 +210,12 @@ function DetailsPageContent() {
                   type="number"
                   placeholder="Width (in m)"
                   value={width}
-                  onChange={(e) => setWidth(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (parseFloat(value) >= 0 || value === "") {
+                      setWidth(value);
+                    }
+                  }}
                   className="w-full p-3 border rounded bg-gray-100"
                   aria-label="Width"
                 />
