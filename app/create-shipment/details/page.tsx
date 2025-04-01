@@ -263,6 +263,20 @@ export default function DetailsPage() {
                   ))}
               </select>
             )}
+
+            {/* Additional Protection Checkbox */}
+            <div className="flex items-center mt-4">
+              <input
+                type="checkbox"
+                id="extraProtection"
+                className="w-5 h-5"
+                disabled={!isFragile}
+                aria-label="Request Additional Protective Measures"
+              />
+              <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
+                Would you like to request additional protective measures?
+              </label>
+            </div>
           </div>
         </div>
 
