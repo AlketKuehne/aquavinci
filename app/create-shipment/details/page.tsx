@@ -135,7 +135,7 @@ export default function DetailsPage() {
         </div>
 
         {/* Weight and Dimensions, Fragile Item Boxes */}
-        <div className="flex justify-between w-full mt-6 gap-x-0.20">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* Box for Weight and Dimensions */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-[48%]">
             <h2 className="text-lg font-bold mb-4">Weight</h2>
