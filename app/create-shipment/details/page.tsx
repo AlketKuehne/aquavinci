@@ -269,12 +269,12 @@ export default function DetailsPage() {
         {/* Add two empty boxes */}
         <div className="flex justify-between w-full mt-4 gap-x-4">
           {/* Empty Box 1 */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2 h-64">
             {/* Empty content */}
           </div>
 
           {/* Empty Box 2 */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2 h-64">
             {/* Empty content */}
           </div>
         </div>
