@@ -147,7 +147,7 @@ function DetailsPageContent() {
                       setShowCancelPopup(false); // Close the popup and stay on the page
                     }}
                   >
-                    Stay on Page
+                    No
                   </button>
                   <button
                     className="px-4 py-2 bg-black text-white rounded transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black"
@@ -156,7 +156,7 @@ function DetailsPageContent() {
                       if (pendingNavigation) router.push(pendingNavigation); // Navigate to the pending URL
                     }}
                   >
-                    Leave Anyway
+                    Yes
                   </button>
                 </div>
               </div>
