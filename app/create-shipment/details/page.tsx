@@ -280,21 +280,7 @@ function DetailsPageContent() {
                     aria-label="Request Additional Protection"
                   />
                   <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
-                    Would you like to request additional protection for your fragile items?
-                  </label>
-                </div>
-
-                {/* New Protection Checkbox */}
-                <div className="flex items-center mt-10">
-                  <input
-                    type="checkbox"
-                    id="wantProtection"
-                    className="w-5 h-5"
-                    disabled={!isFragile}
-                    aria-label="Want Protection"
-                  />
-                  <label htmlFor="wantProtection" className="ml-2 text-lg font-medium">
-                    Do you want to ensure your fragile items are protected with the utmost care?
+                    Would you like to request extra protection for fragile items?
                   </label>
                 </div>
               </div>
