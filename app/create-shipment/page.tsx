@@ -174,8 +174,8 @@ export default function ShipmentPage() {
 
   const handleNumberOfPiecesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    if (/^\d*$/.test(value)) {
-      setNumberOfPieces(value); // Allow empty value
+    if (/^[1-9]\d*$/.test(value) || value === "") { // Ensure the first digit is not 0
+      setNumberOfPieces(value);
     }
   };
 
