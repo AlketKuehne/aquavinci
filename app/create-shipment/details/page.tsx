@@ -267,6 +267,9 @@ export default function DetailsPage() {
         </div>
       </div>
 
+      {/* Add extra spacing for scrolling */}
+      <div className="h-16"></div>
+
       {showCancelPopup && (
         <>
           <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-20"></div>
