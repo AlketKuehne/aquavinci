@@ -119,7 +119,12 @@ export default function DetailsPage() {
               type="text"
               placeholder="Enter number of containers"
               value={fclSelection || ""}
-              onChange={(e) => setFclSelection(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^\d*$/.test(value)) {
+                  setFclSelection(value);
+                }
+              }}
               className="w-full p-3 border rounded bg-gray-100"
               aria-label="FCL Quantity"
             />
