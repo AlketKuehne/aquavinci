@@ -17,6 +17,8 @@ export default function DetailsPage() {
   const [fragileMaterial, setFragileMaterial] = useState("");
   const [fclSelection, setFclSelection] = useState<string | null>(null);
   const [lclSelection, setLclSelection] = useState<string | null>(null);
+  const [fragileCategory, setFragileCategory] = useState<string | null>(null);
+  const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -184,26 +186,47 @@ export default function DetailsPage() {
                 checked={isFragile}
                 onChange={() => {
                   setIsFragile(!isFragile);
-                  if (!isFragile) setFragileMaterial(""); // Reset dropdown if unchecked
+                  if (!isFragile) {
+                    setFragileCategory(null);
+                    setFragileSubCategory(null);
+                  }
                 }}
                 className="w-5 h-5"
                 aria-label="Fragile Item"
               />
               <label htmlFor="fragileItem" className="ml-2 text-lg font-medium">Is this a fragile item?</label>
             </div>
+
+            {/* Category Dropdown */}
             <select
-              id="fragileMaterial"
-              value={fragileMaterial}
-              onChange={(e) => setFragileMaterial(e.target.value)}
+              id="fragileCategory"
+              value={fragileCategory || ""}
+              onChange={(e) => setFragileCategory(e.target.value)}
               disabled={!isFragile}
-              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-              aria-label="Fragile Material"
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
+              aria-label="Fragile Category"
             >
-              <option value="">Select Fragile Material</option>
-              <option value="glass">Glass</option>
-              <option value="porcelain">Porcelain</option>
+              <option value="">Select Fragile Category</option>
+              <option value="electronic">Electronic</option>
+              <option value="glassware">Glassware</option>
               <option value="ceramic">Ceramic</option>
-              <option value="crystal">Crystal</option>
+              <option value="other">Other</option>
+            </select>
+
+            {/* Subcategory Dropdown */}
+            <select
+              id="fragileSubCategory"
+              value={fragileSubCategory || ""}
+              onChange={(e) => setFragileSubCategory(e.target.value)}
+              disabled={!isFragile || fragileCategory !== "electronic"}
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+              aria-label="Fragile Subcategory"
+            >
+              <option value="">Select Subcategory</option>
+              <option value="mobilePhone">Mobile Phone</option>
+              <option value="laptop">Laptop</option>
+              <option value="tablet">Tablet</option>
+              <option value="other">Other</option>
             </select>
           </div>
         </div>
