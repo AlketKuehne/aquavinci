@@ -169,7 +169,7 @@ function DetailsPageContent() {
           {/* Cancel Popup */}
           {showCancelPopup && (
             <div
-              className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300"
+              className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 pointer-events-auto"
             >
               <div className="bg-white p-8 rounded-lg shadow-lg w-96 relative text-center">
                 <h2 className="text-lg font-bold mb-6">Are you certain you wish to leave this page? Unsaved changes will be lost.</h2>
