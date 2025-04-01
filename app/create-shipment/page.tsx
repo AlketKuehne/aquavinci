@@ -441,11 +441,11 @@ export default function ShipmentPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8"> {/* Keep `mt-12` for spacing above */}
-        <h1 className="text-4xl font-extrabold mb-4 self-start">Create Shipment</h1> {/* Reduced `mb-12` to `mb-4` */}
+      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8"> {/* Increased `mt-12` to `mt-16` */}
+        <h1 className="text-4xl font-extrabold mb-4 self-start">Create Shipment</h1> {/* Keep `mb-4` unchanged */}
 
         {/* First Form Section */}
-        <div className="flex justify-between w-full gap-x-4 mt-4"> {/* Keep `mt-4` */}
+        <div className="flex justify-between w-full gap-x-4 mt-4"> {/* Keep `mt-4` unchanged */}
           {/* Shippers Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
@@ -598,7 +598,7 @@ export default function ShipmentPage() {
         </div>
 
         {/* Second Form Section (From - To) */}
-        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` */}
+        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
           {/* From Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
@@ -703,7 +703,7 @@ export default function ShipmentPage() {
         </div>
 
         {/* FCL und LCL Boxen */}
-        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` */}
+        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
           {/* FCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
@@ -797,7 +797,7 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` */}
+        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
           {/* Box für Anzahl der Stücke und Dangerous Goods */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
