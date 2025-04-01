@@ -178,6 +178,7 @@ function DetailsPageContent() {
                     className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
                     onClick={() => {
                       setShowCancelPopup(false); // Close the popup and stay on the current page
+                      router.push('/details'); // Ensure the user stays on the "/details" page
                     }}
                   >
                     Yes
