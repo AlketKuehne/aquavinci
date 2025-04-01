@@ -141,7 +141,12 @@ export default function DetailsPage() {
               type="text"
               placeholder="Enter number of packages"
               value={lclSelection || ""}
-              onChange={(e) => setLclSelection(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^\d*$/.test(value)) {
+                  setLclSelection(value);
+                }
+              }}
               className="w-full p-3 border rounded bg-gray-100"
               aria-label="LCL Quantity"
             />
