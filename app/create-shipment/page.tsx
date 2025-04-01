@@ -440,7 +440,7 @@ export default function ShipmentPage() {
       </nav>
 
       {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-8 px-8">
         <h1 className="text-4xl font-extrabold mb-8 self-start">Create Shipment</h1>
 
         {/* First Form Section */}
@@ -597,7 +597,7 @@ export default function ShipmentPage() {
         </div>
 
         {/* Second Form Section (From - To) */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* From Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
@@ -702,7 +702,7 @@ export default function ShipmentPage() {
         </div>
 
         {/* FCL und LCL Boxen */}
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* FCL Box */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
@@ -796,7 +796,7 @@ export default function ShipmentPage() {
           </div>
         </div>
 
-        <div className="flex justify-between w-full mt-8 gap-x-4">
+        <div className="flex justify-between w-full mt-6 gap-x-4">
           {/* Box für Anzahl der Stücke und Dangerous Goods */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
