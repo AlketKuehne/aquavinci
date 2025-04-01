@@ -121,7 +121,7 @@ export default function DetailsPage() {
               value={fclSelection || ""}
               onChange={(e) => {
                 const value = e.target.value;
-                if (/^\d*$/.test(value)) {
+                if (/^\d*$/.test(value) && Number(value) <= 100) {
                   setFclSelection(value);
                 }
               }}
@@ -143,7 +143,7 @@ export default function DetailsPage() {
               value={lclSelection || ""}
               onChange={(e) => {
                 const value = e.target.value;
-                if (/^\d*$/.test(value)) {
+                if (/^\d*$/.test(value) && Number(value) <= 100) {
                   setLclSelection(value);
                 }
               }}
