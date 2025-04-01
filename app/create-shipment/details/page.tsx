@@ -115,9 +115,6 @@ export default function DetailsPage() {
           {/* Box for FCL */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
-            <label htmlFor="fclQuantity" className="block text-lg font-medium mb-2">
-              Enter number of containers
-            </label>
             <input
               id="fclQuantity"
               type="text"
@@ -137,9 +134,6 @@ export default function DetailsPage() {
           {/* Box for LCL */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
             <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
-            <label htmlFor="lclQuantity" className="block text-lg font-medium mb-2">
-              Enter number of packages
-            </label>
             <input
               id="lclQuantity"
               type="text"
