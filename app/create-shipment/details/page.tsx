@@ -175,16 +175,16 @@ function DetailsPageContent() {
                 <h2 className="text-lg font-bold mb-6">Are you certain you wish to leave this page? Unsaved changes will be lost.</h2>
                 <div className="flex justify-center gap-8 mt-6">
                   <button
-                    className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
-                    onClick={() => setShowCancelPopup(false)} // Stay on the page
-                  >
-                    No
-                  </button>
-                  <button
                     className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
                     onClick={handleYes} // Leave the page
                   >
                     Yes
+                  </button>
+                  <button
+                    className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
+                    onClick={() => setShowCancelPopup(false)} // Stay on the page
+                  >
+                    No
                   </button>
                 </div>
               </div>
