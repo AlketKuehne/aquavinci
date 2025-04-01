@@ -24,7 +24,11 @@ export default function DetailsPage() {
     electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
     glassware: ["Glass Bottle", "Window Glass", "Glassware Set", "Other"],
     ceramic: ["Ceramic Plate", "Ceramic Vase", "Ceramic Mug", "Other"],
-    other: ["Custom Item 1", "Custom Item 2", "Other"]
+    other: ["Custom Item 1", "Custom Item 2", "Other"],
+    furniture: ["Wooden Table", "Glass Table", "Chair", "Other"],
+    artwork: ["Painting", "Sculpture", "Canvas Art", "Other"],
+    musicalInstruments: ["Guitar", "Piano", "Violin", "Other"],
+    jewelry: ["Necklace", "Ring", "Bracelet", "Other"]
   };
 
   useEffect(() => {
@@ -231,6 +235,10 @@ export default function DetailsPage() {
               <option value="electronic">Electronic</option>
               <option value="glassware">Glassware</option>
               <option value="ceramic">Ceramic</option>
+              <option value="furniture">Furniture</option>
+              <option value="artwork">Artwork</option>
+              <option value="musicalInstruments">Musical Instruments</option>
+              <option value="jewelry">Jewelry</option>
               <option value="other">Other</option>
             </select>
 
