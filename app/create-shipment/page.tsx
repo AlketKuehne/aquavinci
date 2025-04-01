@@ -400,6 +400,7 @@ export default function ShipmentPage() {
       setShowWarning(false);
       setDateWarning(false);
       setInvalidDateWarning(false);
+      sessionStorage.setItem("authorizedForDetails", "true"); // Set authorization flag
       router.push(`/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}`);
     }
   };
