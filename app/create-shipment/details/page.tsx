@@ -88,8 +88,16 @@ function DetailsPageContent() {
       ) : (
         <>
           {/* Navigation Bar */}
-          <nav className={`relative w-full h-12 bg-[#242424] flex items-center px-4 z-10 ${showCancelPopup ? 'pointer-events-none' : ''}`}>
-            <Link href="/" className="flex items-center" onClick={(e) => { e.preventDefault(); handleNavigation('/'); }}>
+          <nav className={`relative w-full h-12 bg-[#242424] flex items-center px-4 z-10`}>
+            <Link
+              href="/"
+              className="flex items-center"
+              onClick={(e) => {
+                e.preventDefault();
+                setPendingNavigation('/');
+                setShowCancelPopup(true); // Ensure the popup is shown
+              }}
+            >
               <Image 
                 src="/logoname.png" 
                 alt="Logo" 
@@ -102,19 +110,54 @@ function DetailsPageContent() {
               <Link
                 href="/"
                 className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
-                onClick={(e) => { e.preventDefault(); handleNavigation('/'); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPendingNavigation('/');
+                  setShowCancelPopup(true); // Ensure the popup is shown
+                }}
               >
                 Homepage
               </Link>
               <Link
                 href="/create-shipment"
                 className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
-                onClick={(e) => { e.preventDefault(); handleNavigation('/create-shipment'); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPendingNavigation('/create-shipment');
+                  setShowCancelPopup(true); // Ensure the popup is shown
+                }}
               >
                 Create Shipment
               </Link>
             </div>
           </nav>
+
+          {/* Cancel Popup */}
+          {showCancelPopup && (
+            <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50">
+              <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+                <h2 className="text-lg font-bold mb-4">Are you sure you want to leave?</h2>
+                <p className="mb-4">Your changes will not be saved if you leave this page.</p>
+                <div className="flex justify-end gap-4">
+                  <button
+                    className="px-4 py-2 bg-gray-300 text-black rounded"
+                    onClick={() => setShowCancelPopup(false)} // Stay on the page
+                  >
+                    Stay
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-red-500 text-white rounded"
+                    onClick={() => {
+                      setShowCancelPopup(false);
+                      if (pendingNavigation) router.push(pendingNavigation); // Navigate to the pending URL
+                    }}
+                  >
+                    Leave
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Page Content */}
           <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
