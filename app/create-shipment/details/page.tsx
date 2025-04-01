@@ -204,7 +204,8 @@ export default function DetailsPage() {
               <label htmlFor="fragileItem" className="ml-2 text-lg font-medium">Is this a fragile item?</label>
             </div>
 
-            {/* Category Dropdown */}
+            {/* Category Section */}
+            <h3 className="text-md font-semibold mb-2">Categories</h3>
             <select
               id="fragileCategory"
               value={fragileCategory || ""}
@@ -213,17 +214,20 @@ export default function DetailsPage() {
                 setFragileSubCategory(null); // Reset subcategory when category changes
               }}
               disabled={!isFragile}
-              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-4"
               aria-label="Fragile Category"
             >
-              <option value="">Select Fragile Category</option>
+              <option value="">Select Category</option>
               <option value="electronic">Electronic</option>
               <option value="glassware">Glassware</option>
               <option value="ceramic">Ceramic</option>
               <option value="other">Other</option>
             </select>
 
-            {/* Subcategory Dropdown */}
+            {/* Subcategory Section */}
+            <h3 className="text-md font-semibold mb-2">
+              {fragileCategory ? `Select ${fragileCategory.charAt(0).toUpperCase() + fragileCategory.slice(1)}` : "Subcategory"}
+            </h3>
             <select
               id="fragileSubCategory"
               value={fragileSubCategory || ""}
