@@ -137,12 +137,11 @@ function DetailsPageContent() {
             <div
               className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50 transition-opacity duration-300"
             >
-              <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-                <h2 className="text-lg font-bold mb-4">Do you truly wish to leave this website?</h2>
-                <p className="mb-4">Your unsaved changes will be lost if you proceed.</p>
+              <div className="bg-white p-8 rounded-lg shadow-lg w-96 relative text-center">
+                <h2 className="text-lg font-bold mb-6">Are you certain you wish to leave this page? Unsaved changes will be lost.</h2>
                 <div className="flex justify-center gap-8 mt-6">
                   <button
-                    className="px-6 py-3 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
+                    className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
                     onClick={() => {
                       setShowCancelPopup(false); // Close the popup and stay on the page
                     }}
@@ -150,7 +149,7 @@ function DetailsPageContent() {
                     Yes
                   </button>
                   <button
-                    className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
+                    className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
                     onClick={() => {
                       setShowCancelPopup(false);
                       if (pendingNavigation) router.push(pendingNavigation); // Navigate to the pending URL
