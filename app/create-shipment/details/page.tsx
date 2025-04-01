@@ -271,10 +271,10 @@ export default function DetailsPage() {
                 id="extraProtection"
                 className="w-5 h-5"
                 disabled={!isFragile}
-                aria-label="Request Extra Protection"
+                aria-label="Request Additional Protection"
               />
               <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
-                Request extra protection?
+                Would you like to request additional protection?
               </label>
             </div>
           </div>
