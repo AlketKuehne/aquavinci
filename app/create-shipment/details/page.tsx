@@ -21,6 +21,7 @@ function DetailsPageContent() {
   const [isFragile, setIsFragile] = useState(false);
   const [fragileCategory, setFragileCategory] = useState<string | null>(null);
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
+  const [extraProtection, setExtraProtection] = useState(false); // State for extra protection checkbox
 
   const fragileSubCategories = {
     Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -213,6 +214,7 @@ function DetailsPageContent() {
                       if (!isFragile) {
                         setFragileCategory(null); // Reset category
                         setFragileSubCategory(null); // Reset subcategory
+                        setExtraProtection(false); // Reset extra protection checkbox
                       }
                     }}
                     className="w-5 h-5"
@@ -275,6 +277,8 @@ function DetailsPageContent() {
                   <input
                     type="checkbox"
                     id="extraProtection"
+                    checked={extraProtection}
+                    onChange={() => setExtraProtection(!extraProtection)}
                     className="w-5 h-5"
                     disabled={!isFragile}
                     aria-label="Request Additional Protection"
