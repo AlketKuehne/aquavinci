@@ -176,15 +176,24 @@ function DetailsPageContent() {
                 <div className="flex justify-center gap-8 mt-6">
                   <button
                     className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
-                    onClick={handleYes} // Leave the page
+                    onClick={() => {
+                      setShowCancelPopup(false); // Close the popup and stay on the current page
+                    }}
                   >
-                    Yes
+                    No
                   </button>
                   <button
                     className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
-                    onClick={() => setShowCancelPopup(false)} // Stay on the page
+                    onClick={() => {
+                      setShowCancelPopup(false);
+                      if (pendingNavigation) {
+                        router.push(pendingNavigation); // Navigate to the pending URL
+                      } else {
+                        window.location.reload(); // Reload the page if no pending navigation
+                      }
+                    }}
                   >
-                    No
+                    Yes
                   </button>
                 </div>
               </div>
