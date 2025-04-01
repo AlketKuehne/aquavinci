@@ -180,7 +180,7 @@ function DetailsPageContent() {
                       setShowCancelPopup(false); // Close the popup and stay on the current page
                     }}
                   >
-                    No
+                    Yes
                   </button>
                   <button
                     className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
@@ -193,7 +193,7 @@ function DetailsPageContent() {
                       }
                     }}
                   >
-                    Yes
+                    No
                   </button>
                 </div>
               </div>
