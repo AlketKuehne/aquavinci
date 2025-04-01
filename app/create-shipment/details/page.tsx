@@ -23,14 +23,14 @@ function DetailsPageContent() {
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
 
   const fragileSubCategories = {
-    electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
-    glassware: ["Glass Bottle", "Window Glass", "Glassware Set", "Other"],
-    ceramic: ["Ceramic Plate", "Ceramic Vase", "Ceramic Mug", "Other"],
-    furniture: ["Wooden Table", "Glass Table", "Chair", "Other"],
-    artwork: ["Painting", "Sculpture", "Canvas Art", "Other"],
-    musicalInstruments: ["Guitar", "Piano", "Violin", "Other"],
-    jewelry: ["Necklace", "Ring", "Bracelet", "Other"],
-    other: ["Custom Item 1", "Custom Item 2", "Other"],
+    Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
+    Glassware: ["Glass Bottle", "Window Glass", "Glassware Set", "Other"],
+    Ceramic: ["Ceramic Plate", "Ceramic Vase", "Ceramic Mug", "Other"],
+    Furniture: ["Wooden Table", "Glass Table", "Chair", "Other"],
+    Artwork: ["Painting", "Sculpture", "Canvas Art", "Other"],
+    MusicalInstruments: ["Guitar", "Piano", "Violin", "Other"],
+    Jewelry: ["Necklace", "Ring", "Bracelet", "Other"],
+    Other: ["Custom Item 1", "Custom Item 2", "Other"],
   };
 
   useEffect(() => {
