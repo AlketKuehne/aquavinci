@@ -129,7 +129,12 @@ function DetailsPageContent() {
                   type="text"
                   placeholder="Enter number of containers"
                   value={fclSelection || ""}
-                  onChange={(e) => setFclSelection(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^(?:[1-9][0-9]?|100)?$/.test(value)) {
+                      setFclSelection(value);
+                    }
+                  }}
                   className="w-full p-3 border rounded bg-gray-100"
                   aria-label="FCL Quantity"
                 />
@@ -143,7 +148,12 @@ function DetailsPageContent() {
                   type="text"
                   placeholder="Enter number of packages"
                   value={lclSelection || ""}
-                  onChange={(e) => setLclSelection(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^(?:[1-9][0-9]?|100)?$/.test(value)) {
+                      setLclSelection(value);
+                    }
+                  }}
                   className="w-full p-3 border rounded bg-gray-100"
                   aria-label="LCL Quantity"
                 />
