@@ -21,6 +21,7 @@ export default function DetailsPage() {
   const [lclSelection, setLclSelection] = useState<string | null>(null);
   const [fragileCategory, setFragileCategory] = useState<string | null>(null);
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   const fragileSubCategories = {
     electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -48,9 +49,12 @@ export default function DetailsPage() {
   }, []);
 
   useEffect(() => {
-    // Redirect to /create-shipment if shipmentType is missing
-    if (!shipmentType) {
-      router.push('/create-shipment');
+    // Check session storage for authorization
+    const authorized = sessionStorage.getItem("authorizedForDetails");
+    if (authorized === "true" && shipmentType) {
+      setIsAuthorized(true);
+    } else {
+      router.push('/create-shipment'); // Redirect if not authorized
     }
   }, [shipmentType, router]);
 
@@ -83,8 +87,7 @@ export default function DetailsPage() {
 
   return (
     <div className="flex flex-col items-center min-h-screen relative">
-      {/* Redirect message if accessed directly */}
-      {!shipmentType ? (
+      {!isAuthorized ? (
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
             <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
