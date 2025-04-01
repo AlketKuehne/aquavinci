@@ -20,6 +20,13 @@ export default function DetailsPage() {
   const [fragileCategory, setFragileCategory] = useState<string | null>(null);
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
 
+  const fragileSubCategories = {
+    electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
+    glassware: ["Glass Bottle", "Window Glass", "Glassware Set", "Other"],
+    ceramic: ["Ceramic Plate", "Ceramic Vase", "Ceramic Mug", "Other"],
+    other: ["Custom Item 1", "Custom Item 2", "Other"]
+  };
+
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
@@ -201,7 +208,10 @@ export default function DetailsPage() {
             <select
               id="fragileCategory"
               value={fragileCategory || ""}
-              onChange={(e) => setFragileCategory(e.target.value)}
+              onChange={(e) => {
+                setFragileCategory(e.target.value);
+                setFragileSubCategory(null); // Reset subcategory when category changes
+              }}
               disabled={!isFragile}
               className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
               aria-label="Fragile Category"
@@ -218,15 +228,15 @@ export default function DetailsPage() {
               id="fragileSubCategory"
               value={fragileSubCategory || ""}
               onChange={(e) => setFragileSubCategory(e.target.value)}
-              disabled={!isFragile || fragileCategory !== "electronic"}
+              disabled={!isFragile || !fragileCategory}
               className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
               aria-label="Fragile Subcategory"
             >
               <option value="">Select Subcategory</option>
-              <option value="mobilePhone">Mobile Phone</option>
-              <option value="laptop">Laptop</option>
-              <option value="tablet">Tablet</option>
-              <option value="other">Other</option>
+              {fragileCategory &&
+                fragileSubCategories[fragileCategory as keyof typeof fragileSubCategories].map((subCategory) => (
+                  <option key={subCategory} value={subCategory}>{subCategory}</option>
+                ))}
             </select>
           </div>
         </div>
