@@ -265,7 +265,7 @@ export default function DetailsPage() {
             )}
 
             {/* Additional Protection Checkbox */}
-            <div className="flex items-center mt-8">
+            <div className="flex items-center mt-6">
               <input
                 type="checkbox"
                 id="extraProtection"
