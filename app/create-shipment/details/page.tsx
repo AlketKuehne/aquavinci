@@ -209,12 +209,13 @@ function DetailsPageContent() {
                     type="checkbox"
                     id="fragileItem"
                     checked={isFragile}
-                    onChange={() => {
-                      setIsFragile(!isFragile);
-                      if (!isFragile) {
+                    onChange={(e) => {
+                      const isChecked = e.target.checked;
+                      setIsFragile(isChecked);
+                      if (!isChecked) {
                         setFragileCategory(null); // Reset category
                         setFragileSubCategory(null); // Reset subcategory
-                        setExtraProtection(false); // Reset extra protection checkbox
+                        setExtraProtection(false); // Immediately reset extra protection checkbox
                       }
                     }}
                     className="w-5 h-5"
