@@ -269,6 +269,34 @@ function DetailsPageContent() {
                       ))}
                   </select>
                 )}
+
+                {/* Additional Protection Checkbox */}
+                <div className="flex items-center mt-6">
+                  <input
+                    type="checkbox"
+                    id="extraProtection"
+                    className="w-5 h-5"
+                    disabled={!isFragile}
+                    aria-label="Request Additional Protection"
+                  />
+                  <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
+                    Would you like to request additional protection for your fragile items?
+                  </label>
+                </div>
+
+                {/* New Protection Checkbox */}
+                <div className="flex items-center mt-10">
+                  <input
+                    type="checkbox"
+                    id="wantProtection"
+                    className="w-5 h-5"
+                    disabled={!isFragile}
+                    aria-label="Want Protection"
+                  />
+                  <label htmlFor="wantProtection" className="ml-2 text-lg font-medium">
+                    Do you want to ensure your fragile items are protected with the utmost care?
+                  </label>
+                </div>
               </div>
             </div>
           </div>
