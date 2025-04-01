@@ -203,9 +203,9 @@ export default function DetailsPage() {
                 checked={isFragile}
                 onChange={() => {
                   setIsFragile(!isFragile);
-                  if (!isFragile) {
-                    setFragileCategory(null);
-                    setFragileSubCategory(null);
+                  if (isFragile) {
+                    setFragileCategory(null); // Reset category
+                    setFragileSubCategory(null); // Reset subcategory
                   }
                 }}
                 className="w-5 h-5"
