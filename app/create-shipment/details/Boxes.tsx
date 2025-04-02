@@ -25,6 +25,12 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
     Other: ["Custom Item 1", "Custom Item 2", "Other"],
   };
 
+  const handleNumberInput = (value: string, setter: (val: string) => void) => {
+    if (value === "" || /^[1-9][0-9]*$/.test(value)) {
+      setter(value);
+    }
+  };
+
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
@@ -53,32 +59,34 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
       <div className="flex justify-between w-full mt-4 gap-x-4">
         <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
           <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
+          <h3 className="text-md font-semibold mb-2">Weight</h3>
           <input
-            type="number"
+            type="text"
             placeholder="Weight (in kg)"
             value={weight}
-            onChange={(e) => setWeight(e.target.value)}
+            onChange={(e) => handleNumberInput(e.target.value, setWeight)}
             className="w-full p-3 border rounded mb-4 bg-gray-100"
           />
+          <h3 className="text-md font-semibold mb-2">Dimensions</h3>
           <input
-            type="number"
+            type="text"
             placeholder="Height (in m)"
             value={height}
-            onChange={(e) => setHeight(e.target.value)}
+            onChange={(e) => handleNumberInput(e.target.value, setHeight)}
             className="w-full p-3 border rounded mb-3 bg-gray-100"
           />
           <input
-            type="number"
+            type="text"
             placeholder="Length (in m)"
             value={length}
-            onChange={(e) => setLength(e.target.value)}
+            onChange={(e) => handleNumberInput(e.target.value, setLength)}
             className="w-full p-3 border rounded mb-3 bg-gray-100"
           />
           <input
-            type="number"
+            type="text"
             placeholder="Width (in m)"
             value={width}
-            onChange={(e) => setWidth(e.target.value)}
+            onChange={(e) => handleNumberInput(e.target.value, setWidth)}
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
