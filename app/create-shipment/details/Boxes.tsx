@@ -25,8 +25,8 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
     Other: ["Custom Item 1", "Custom Item 2", "Other"],
   };
 
-  const handleNumberInput = (value: string, setter: (val: string) => void) => {
-    if (value === "" || /^[1-9][0-9]*$/.test(value)) {
+  const handleNumberInput = (value: string, setter: (val: string) => void, max: number) => {
+    if (value === "" || (/^[1-9][0-9]*$/.test(value) && parseInt(value) <= max)) {
       setter(value);
     }
   };
@@ -39,9 +39,9 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
           <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
           <input
             type="text"
-            placeholder="Enter number of containers"
+            placeholder="Enter number of containers (1-100)"
             value={fclSelection || ""}
-            onChange={(e) => setFclSelection(e.target.value)}
+            onChange={(e) => handleNumberInput(e.target.value, setFclSelection, 100)}
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
@@ -64,7 +64,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             type="text"
             placeholder="Weight (in kg)"
             value={weight}
-            onChange={(e) => handleNumberInput(e.target.value, setWeight)}
+            onChange={(e) => handleNumberInput(e.target.value, setWeight, 1000)}
             className="w-full p-3 border rounded mb-4 bg-gray-100"
           />
           <h3 className="text-md font-semibold mb-2">Dimensions</h3>
@@ -72,21 +72,21 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             type="text"
             placeholder="Height (in m)"
             value={height}
-            onChange={(e) => handleNumberInput(e.target.value, setHeight)}
+            onChange={(e) => handleNumberInput(e.target.value, setHeight, 100)}
             className="w-full p-3 border rounded mb-3 bg-gray-100"
           />
           <input
             type="text"
             placeholder="Length (in m)"
             value={length}
-            onChange={(e) => handleNumberInput(e.target.value, setLength)}
+            onChange={(e) => handleNumberInput(e.target.value, setLength, 100)}
             className="w-full p-3 border rounded mb-3 bg-gray-100"
           />
           <input
             type="text"
             placeholder="Width (in m)"
             value={width}
-            onChange={(e) => handleNumberInput(e.target.value, setWidth)}
+            onChange={(e) => handleNumberInput(e.target.value, setWidth, 100)}
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
