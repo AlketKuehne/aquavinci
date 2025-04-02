@@ -9,6 +9,21 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   const [height, setHeight] = useState<string>("");
   const [length, setLength] = useState<string>("");
   const [width, setWidth] = useState<string>("");
+  const [isFragile, setIsFragile] = useState(false);
+  const [fragileCategory, setFragileCategory] = useState<string | null>(null);
+  const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
+  const [extraProtection, setExtraProtection] = useState(false);
+
+  const fragileSubCategories = {
+    Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
+    Glassware: ["Glass Bottle", "Window Glass", "Glassware Set", "Other"],
+    Ceramic: ["Ceramic Plate", "Ceramic Vase", "Ceramic Mug", "Other"],
+    Furniture: ["Wooden Table", "Glass Table", "Chair", "Other"],
+    Artwork: ["Painting", "Sculpture", "Canvas Art", "Other"],
+    MusicalInstruments: ["Guitar", "Piano", "Violin", "Other"],
+    Jewelry: ["Necklace", "Ring", "Bracelet", "Other"],
+    Other: ["Custom Item 1", "Custom Item 2", "Other"],
+  };
 
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
@@ -66,6 +81,70 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             onChange={(e) => setWidth(e.target.value)}
             className="w-full p-3 border rounded bg-gray-100"
           />
+        </div>
+        <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+          <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
+          <div className="flex items-center mb-4">
+            <input
+              type="checkbox"
+              id="fragileItem"
+              checked={isFragile}
+              onChange={(e) => {
+                const isChecked = e.target.checked;
+                setIsFragile(isChecked);
+                if (!isChecked) {
+                  setFragileCategory(null);
+                  setFragileSubCategory(null);
+                  setExtraProtection(false);
+                }
+              }}
+              className="w-5 h-5"
+            />
+            <label htmlFor="fragileItem" className="ml-2 text-lg font-medium">Is this a fragile item?</label>
+          </div>
+          <h3 className="text-md font-semibold mb-2">Categories</h3>
+          <select
+            id="fragileCategory"
+            value={fragileCategory || ""}
+            onChange={(e) => {
+              setFragileCategory(e.target.value);
+              setFragileSubCategory(null);
+            }}
+            disabled={!isFragile}
+            className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-4"
+          >
+            <option value="">Select Category</option>
+            {Object.keys(fragileSubCategories).map((category) => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+          <h3 className="text-md font-semibold mb-2">Subcategories</h3>
+          <select
+            id="fragileSubCategory"
+            value={fragileSubCategory || ""}
+            onChange={(e) => setFragileSubCategory(e.target.value)}
+            disabled={!isFragile || !fragileCategory}
+            className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+          >
+            <option value="">Select Subcategory</option>
+            {fragileCategory &&
+              fragileSubCategories[fragileCategory as keyof typeof fragileSubCategories].map((subCategory) => (
+                <option key={subCategory} value={subCategory}>{subCategory}</option>
+              ))}
+          </select>
+          <div className="flex items-center mt-6">
+            <input
+              type="checkbox"
+              id="extraProtection"
+              checked={extraProtection}
+              onChange={() => setExtraProtection(!extraProtection)}
+              className="w-5 h-5"
+              disabled={!isFragile}
+            />
+            <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
+              Request extra protection for fragile items?
+            </label>
+          </div>
         </div>
       </div>
     </div>
