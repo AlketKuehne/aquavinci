@@ -5,13 +5,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import NavigationBar from "./NavigationBar";
 import Boxes from "./Boxes";
-import Popup from "./Popup"; // Ensure this matches the file structure
+import Popup from "./Popup"; // Corrected path to match the file structure
 
 function DetailsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const shipmentType = searchParams.get("shipmentType");
-  const [showCancelPopup, setShowCancelPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
 
@@ -26,11 +26,11 @@ function DetailsPageContent() {
 
   const handleNavigation = (url: string) => {
     setPendingNavigation(url);
-    setShowCancelPopup(true);
+    setShowPopup(true);
   };
 
   const handleStay = () => {
-    setShowCancelPopup(false);
+    setShowPopup(false);
     setPendingNavigation(null);
   };
 
@@ -41,10 +41,10 @@ function DetailsPageContent() {
   };
 
   useEffect(() => {
-    if (!showCancelPopup && pendingNavigation) {
+    if (!showPopup && pendingNavigation) {
       handleConfirmNavigation();
     }
-  }, [showCancelPopup, pendingNavigation]);
+  }, [showPopup, pendingNavigation]);
 
   return (
     <div className="flex flex-col items-center min-h-screen relative">
@@ -65,11 +65,11 @@ function DetailsPageContent() {
       ) : (
         <>
           <NavigationBar onNavigate={handleNavigation} />
-          {showCancelPopup && (
+          {showPopup && (
             <Popup
               onStay={handleStay}
               onLeave={() => {
-                setShowCancelPopup(false);
+                setShowPopup(false);
                 if (pendingNavigation) {
                   router.push(pendingNavigation);
                 }
