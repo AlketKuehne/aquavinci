@@ -3,9 +3,9 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import NavigationBar from "./NavigationBar";
-import Boxes from "./Boxes";
-import CancelPopup from "./CancelPopup";
+import NavigationBar from "./NavigationBar"; // Ensure this matches the file structure
+import Boxes from "./Boxes"; // Ensure this matches the file structure
+import CancelPopup from "./CancelPopup"; // Ensure this matches the file structure
 
 function DetailsPageContent() {
   const router = useRouter();
