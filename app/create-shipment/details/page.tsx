@@ -3,9 +3,9 @@
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import NavigationBar from "./NavigationBar"; // Ensure this matches the file structure
-import Boxes from "./Boxes"; // Ensure this matches the file structure
-import CancelPopup from "./CancelPopup"; // Ensure this matches the file structure
+import NavigationBar from "./NavigationBar";
+import Boxes from "./Boxes";
+import Popup from "./Popup"; // Ensure this matches the file structure
 
 function DetailsPageContent() {
   const router = useRouter();
@@ -66,12 +66,12 @@ function DetailsPageContent() {
         <>
           <NavigationBar onNavigate={handleNavigation} />
           {showCancelPopup && (
-            <CancelPopup
-              onStay={handleStay} // Close the popup and stay on the current page
+            <Popup
+              onStay={handleStay}
               onLeave={() => {
-                setShowCancelPopup(false); // Close the popup
+                setShowCancelPopup(false);
                 if (pendingNavigation) {
-                  router.push(pendingNavigation); // Navigate to the pending URL
+                  router.push(pendingNavigation);
                 }
               }}
             />
