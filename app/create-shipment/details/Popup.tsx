@@ -2,7 +2,10 @@
 
 export default function Popup({ onStay, onLeave }: { onStay: () => void; onLeave: () => void }) {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
+    <div
+      style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} // Force background opacity with inline styles
+      className="fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center pointer-events-auto"
+    >
       <div className="bg-white p-8 rounded-lg shadow-lg w-96 relative text-center z-10">
         <h2 className="text-lg font-bold mb-6">Are you certain you wish to leave this page? Unsaved changes will be lost.</h2>
         <div className="flex justify-center gap-10 mt-6">
