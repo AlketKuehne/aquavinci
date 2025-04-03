@@ -28,15 +28,18 @@ AquaVinci is a modern shipment management platform designed to streamline the pr
 aquavinci/
 ├── app/
 │   ├── create-shipment/
-│   │   ├── page.tsx         # Main shipment creation page
+│   │   ├── page.tsx             # Main shipment creation page
 │   │   ├── details/
-│   │   │   ├── page.tsx     # Shipment details page
-│   ├── page.tsx             # Landing page
+│   │   │   ├── page.tsx         # Shipment details page
+│   │   │   ├── NavigationBar.tsx # Navigation bar component
+│   │   │   ├── Boxes.tsx        # Shipment details boxes (FCL, LCL, Size & Weight, Fragile Items)
+│   │   │   ├── Popup.tsx        # Popup component for cancel confirmation
+│   ├── page.tsx                 # Landing page
 ├── public/
-│   ├── logoname.png         # Project logo
+│   ├── logoname.png             # Project logo
 ├── styles/
-│   ├── globals.css          # Global styles
-├── README.md                # Project documentation
+│   ├── globals.css              # Global styles
+├── README.md                    # Project documentation
 ```
 
 ---
