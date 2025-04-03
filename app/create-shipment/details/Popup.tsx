@@ -7,13 +7,13 @@ export default function Popup({ onStay, onLeave }: { onStay: () => void; onLeave
         <h2 className="text-lg font-bold mb-6">Are you certain you wish to leave this page? Unsaved changes will be lost.</h2>
         <div className="flex justify-center gap-8 mt-6">
           <button
-            className="px-10 py-5 bg-gray-300 text-black text-lg rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
+            className="px-6 py-3 bg-gray-300 text-black text-base rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
             onClick={onLeave} // Ensure this calls the onLeave function to leave the page
           >
             Yes
           </button>
           <button
-            className="px-10 py-5 bg-black text-white text-lg rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
+            className="px-6 py-3 bg-black text-white text-base rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
             onClick={onStay} // Ensure this calls the onStay function to stay on the page
           >
             No
