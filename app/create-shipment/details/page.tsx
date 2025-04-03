@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import NavigationBar from "./NavigationBar";
 import Boxes from "./Boxes";
-import Popup from "./Popup"; // Corrected path to match the file structure
+import Popup from "./Popup";
 
 function DetailsPageContent() {
   const router = useRouter();
@@ -30,13 +30,13 @@ function DetailsPageContent() {
   };
 
   const handleStay = () => {
-    setShowPopup(false);
+    setShowPopup(false); // Close the popup and stay on the current page
     setPendingNavigation(null);
   };
 
   const handleConfirmNavigation = () => {
     if (pendingNavigation) {
-      router.push(pendingNavigation);
+      router.push(pendingNavigation); // Navigate to the pending URL
     }
   };
 
@@ -67,11 +67,11 @@ function DetailsPageContent() {
           <NavigationBar onNavigate={handleNavigation} />
           {showPopup && (
             <Popup
-              onStay={handleStay}
+              onStay={handleStay} // Stay on the current page
               onLeave={() => {
-                setShowPopup(false);
+                setShowPopup(false); // Close the popup
                 if (pendingNavigation) {
-                  router.push(pendingNavigation);
+                  router.push(pendingNavigation); // Navigate to the pending URL
                 }
               }}
             />

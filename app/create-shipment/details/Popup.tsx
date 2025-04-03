@@ -8,15 +8,15 @@ export default function Popup({ onStay, onLeave }: { onStay: () => void; onLeave
         <div className="flex justify-center gap-8 mt-6">
           <button
             className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
-            onClick={onStay}
+            onClick={onStay} // Ensure this calls the onStay function to stay on the page
           >
-            Yes
+            No
           </button>
           <button
             className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
-            onClick={onLeave}
+            onClick={onLeave} // Ensure this calls the onLeave function to leave the page
           >
-            No
+            Yes
           </button>
         </div>
       </div>
