@@ -5,11 +5,23 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import { countryDistances } from './country-distances';
+import Popup from "./details/Popup"; // Adjusted import path if necessary
 
-export default function ShipmentPage() {
+export default function CreateShipmentPage() {
   const router = useRouter();
   const navRef = useRef<HTMLDivElement>(null);
   let lastScrollY = 0;
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleStay = () => {
+    setShowPopup(false); // Close the popup and stay on the page
+  };
+
+  const handleLeave = () => {
+    setShowPopup(false); // Close the popup and handle navigation logic
+    // Add navigation logic here if needed
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -413,532 +425,540 @@ export default function ShipmentPage() {
   const isDeliveryDateEnabled = Boolean(shippingDate);
 
   return (
-    <div className="flex flex-col items-center min-h-screen">
-      {/* Navigation Bar */}
-      <nav
-        ref={navRef}
-        className="w-full h-12 bg-[#242424] flex items-center px-4 fixed top-0 left-0 z-50 transition-transform duration-300"
-      >
-        <Link href="/">
-          <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto cursor-pointer" />
-        </Link>
-
-        <div className="flex h-full ml-4">
-          <Link
-            href="/"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
-          >
-            Homepage
+    <div className="relative">
+      <div className="flex flex-col items-center min-h-screen">
+        {/* Navigation Bar */}
+        <nav
+          ref={navRef}
+          className="w-full h-12 bg-[#242424] flex items-center px-4 fixed top-0 left-0 z-50 transition-transform duration-300"
+        >
+          <Link href="/">
+            <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto cursor-pointer" />
           </Link>
-          <Link
-            href="/create-shipment"
-            className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
-            onClick={resetForm}
-          >
-            Create Shipment
-          </Link>
-        </div>
-      </nav>
 
-      {/* Page Content */}
-      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8"> {/* Increased `mt-12` to `mt-16` */}
-        <h1 className="text-4xl font-extrabold mb-4 self-start">Create Shipment</h1> {/* Keep `mb-4` unchanged */}
-
-        {/* First Form Section */}
-        <div className="flex justify-between w-full gap-x-4 mt-4"> {/* Keep `mt-4` unchanged */}
-          {/* Shippers Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
-            <input
-              id="consignorFullName"
-              name="consignorFullName"
-              type="text"
-              placeholder="Full Name *"
-              className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consignorFullName}
-              onChange={handleFullNameChange(setConsignorFullName)}
-              aria-label="Consignor Full Name"
-            />
-            <input
-              id="consignorEmail"
-              name="consignorEmail"
-              type="email"
-              placeholder="Email Address"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
-              value={consignorEmail}
-              onChange={(e) => setConsignorEmail(e.target.value)}
-              aria-label="Consignor Email Address"
-            />
-            <input
-              id="consignorPhone"
-              name="consignorPhone"
-              type="tel"
-              placeholder="Phone Number"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
-              value={consignorPhone}
-              onChange={handlePhoneNumberChange(setConsignorPhone)}
-              aria-label="Consignor Phone Number"
-            />
-            <input
-              id="consignorFullAddress"
-              name="consignorFullAddress"
-              type="text"
-              placeholder="Full Address *"
-              className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consignorFullAddress}
-              onChange={(e) => setConsignorFullAddress(e.target.value)}
-              aria-label="Consignor Full Address"
-            />
-            <select
-              id="consignorCountry"
-              name="consignorCountry"
-              className={`w-full p-2 border rounded mb-3 ${showError && !consignorCountry ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consignorCountry}
-              onChange={(e) => {
-                setConsignorCountry(e.target.value);
-                setConsignorCity("");
-              }}
-              aria-label="Consignor Country"
+          <div className="flex h-full ml-4">
+            <Link
+              href="/"
+              className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
             >
-              <option value="">Select Country *</option>
-              {countriesWithPorts.map((country: string) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-            <select
-              id="consignorCity"
-              name="consignorCity"
-              className={`w-full p-2 border rounded ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consignorCity ? 'bg-red-100' : ''}`}
-              value={consignorCity}
-              onChange={(e) => setConsignorCity(e.target.value)}
-              disabled={!consignorCountry}
-              aria-label="Consignor City"
+              Homepage
+            </Link>
+            <Link
+              href="/create-shipment"
+              className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-1250 hover:bg-gray-200 hover:text-black h-full"
+              onClick={resetForm}
             >
-              <option value="">Select City *</option>
-              {getCitiesByCountry(consignorCountry).map((city: string) => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
+              Create Shipment
+            </Link>
           </div>
+        </nav>
 
-          {/* Recipient Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
-            <input
-              id="consigneeFullName"
-              name="consigneeFullName"
-              type="text"
-              placeholder="Full Name *"
-              className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consigneeFullName}
-              onChange={handleFullNameChange(setConsigneeFullName)}
-              aria-label="Consignee Full Name"
-            />
-            <input
-              id="consigneeEmail"
-              name="consigneeEmail"
-              type="email"
-              placeholder="Email Address"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
-              value={consigneeEmail}
-              onChange={(e) => setConsigneeEmail(e.target.value)}
-              aria-label="Consignee Email Address"
-            />
-            <input
-              id="consigneePhone"
-              name="consigneePhone"
-              type="tel"
-              placeholder="Phone Number"
-              className="w-full p-2 border rounded mb-3 bg-gray-100"
-              value={consigneePhone}
-              onChange={handlePhoneNumberChange(setConsigneePhone)}
-              aria-label="Consignee Phone Number"
-            />
-            <input
-              id="consigneeFullAddress"
-              name="consigneeFullAddress"
-              type="text"
-              placeholder="Full Address *"
-              className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consigneeFullAddress}
-              onChange={(e) => setConsigneeFullAddress(e.target.value)}
-              aria-label="Consignee Full Address"
-            />
-            <select
-              id="consigneeCountry"
-              name="consigneeCountry"
-              className={`w-full p-2 border rounded mb-3 ${showError && !consigneeCountry ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={consigneeCountry}
-              onChange={(e) => {
-                setConsigneeCountry(e.target.value);
-                setConsigneeCity("");
-              }}
-              aria-label="Consignee Country"
-            >
-              <option value="">Select Country *</option>
-              {countriesWithPorts.map((country: string) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-            <select
-              id="consigneeCity"
-              name="consigneeCity"
-              className={`w-full p-2 border rounded ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consigneeCity ? 'bg-red-100' : ''}`}
-              value={consigneeCity}
-              onChange={(e) => setConsigneeCity(e.target.value)}
-              disabled={!consigneeCountry}
-              aria-label="Consignee City"
-            >
-              <option value="">Select City *</option>
-              {getCitiesByCountry(consigneeCountry).map((city: string) => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
-          </div>
-        </div>
+        {/* Page Content */}
+        <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8"> {/* Increased `mt-12` to `mt-16` */}
+          <h1 className="text-4xl font-extrabold mb-4 self-start">Create Shipment</h1> {/* Keep `mb-4` unchanged */}
 
-        {/* Second Form Section (From - To) */}
-        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
-          {/* From Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
-            <select
-              id="originCountry"
-              name="originCountry"
-              className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={country}
-              onChange={(e) => {
-                setCountry(e.target.value);
-                setOriginCity("");
-                setShippingDate(""); // Reset Shipping Date
-                setArrivalDate(""); // Reset Arrival Date
-              }}
-              aria-label="Origin Country"
-            >
-              <option value="">Select Country *</option>
-              {countriesWithPorts.map((country: string) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-            <select
-              id="originCity"
-              name="originCity"
-              className={`w-full p-2 border rounded mb-3 ${!country ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !originCity ? 'bg-red-100' : ''}`}
-              value={originCity}
-              onChange={(e) => {
-                setOriginCity(e.target.value);
-                setShippingDate(""); // Reset Shipping Date
-                setArrivalDate(""); // Reset Arrival Date
-              }}
-              disabled={!country}
-              aria-label="Origin City"
-            >
-              <option value="">Select City *</option>
-              {getCitiesByCountry(country).map((city: string) => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
-            <input
-              id="originStreet"
-              name="originStreet"
-              type="text"
-              placeholder="Street & House Number *"
-              className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={street}
-              onChange={(e) => setStreet(e.target.value)}
-              aria-label="Origin Street & House Number"
-            />
-          </div>
-
-          {/* To Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
-            <select
-              id="destinationCountry"
-              name="destinationCountry"
-              className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={destinationCountry}
-              onChange={(e) => {
-                setDestinationCountry(e.target.value);
-                setDestinationCity("");
-                setShippingDate(""); // Reset Shipping Date
-                setArrivalDate(""); // Reset Arrival Date
-              }}
-              aria-label="Destination Country"
-            >
-              <option value="">Select Country *</option>
-              {countriesWithPorts.map((country: string) => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
-            <select
-              id="destinationCity"
-              name="destinationCity"
-              className={`w-full p-2 border rounded mb-3 ${!destinationCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !destinationCity ? 'bg-red-100' : ''}`}
-              value={destinationCity}
-              onChange={(e) => {
-                setDestinationCity(e.target.value);
-                setShippingDate(""); // Reset Shipping Date
-                setArrivalDate(""); // Reset Arrival Date
-              }}
-              disabled={!destinationCountry}
-              aria-label="Destination City"
-            >
-              <option value="">Select City *</option>
-              {getCitiesByCountry(destinationCountry).map((city: string) => (
-                <option key={city} value={city}>{city}</option>
-              ))}
-            </select>
-            <input
-              id="destinationStreet"
-              name="destinationStreet"
-              type="text"
-              placeholder="Street & House Number *"
-              className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
-              value={destinationStreet}
-              onChange={(e) => setDestinationStreet(e.target.value)}
-              aria-label="Destination Street & House Number"
-            />
-          </div>
-        </div>
-
-        {/* FCL und LCL Boxen */}
-        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
-          {/* FCL Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
-            <label className="flex items-center space-x-2 mb-4">
+          {/* First Form Section */}
+          <div className="flex justify-between w-full gap-x-4 mt-4"> {/* Keep `mt-4` unchanged */}
+            {/* Shippers Box */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
               <input
-                id="shipmentTypeFCL"
-                name="shipmentType"
-                type="radio"
-                value="FCL"
-                onChange={() => handleShipmentChange("FCL")}
-                className="w-5 h-5"
-                aria-label="Full Container Load"
-              />
-              <span className="text-lg font-medium">FCL (Full Container Load){shipmentType === "FCL" && '*'}</span>
-            </label>
-            <select
-              id="fclSelection"
-              name="fclSelection"
-              disabled={shipmentType !== "FCL"}
-              value={fclSelection}
-              onChange={(e) => setFclSelection(e.target.value)}
-              className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "FCL" && !fclSelection ? 'bg-red-100' : ''}`}
-              aria-label="FCL Container Type"
-            >
-              <option value="">Select Container Type *</option>
-              <option value="20ft">20ft Container</option>
-              <option value="40ft">40ft Container</option>
-              <option value="45ft">45ft High Cube Container</option>
-              <option value="reefer">Reefer Container</option>
-              <option value="openTop">Open Top Container</option>
-            </select>
-            <label htmlFor="fclDescription" className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
-            <textarea
-              id="fclDescription"
-              name="fclDescription"
-              rows={2}
-              placeholder="Enter description of goods *"
-              className={`w-full p-3 border rounded ${shipmentType !== "FCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "FCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
-              disabled={shipmentType !== "FCL"}
-              value={shipmentType === "FCL" ? description : ""}
-              onChange={(e) => setDescription(e.target.value)}
-              aria-label="FCL Description of Goods"
-            ></textarea>
-          </div>
-
-          {/* LCL Box */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
-            <label className="flex items-center space-x-2 mb-4">
-              <input
-                id="shipmentTypeLCL"
-                name="shipmentType"
-                type="radio"
-                value="LCL"
-                onChange={() => handleShipmentChange("LCL")}
-                className="w-5 h-5"
-                aria-label="Less Container Load"
-              />
-              <span className="text-lg font-medium">LCL (Less Container Load)</span>
-            </label>
-            <select
-              id="lclSelection"
-              name="lclSelection"
-              disabled={shipmentType !== "LCL"}
-              value={lclSelection}
-              onChange={(e) => setLclSelection(e.target.value)}
-              className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "LCL" && !lclSelection ? 'bg-red-100' : ''}`}
-              aria-label="LCL Package Type"
-            >
-              <option value="">Select Package Type *</option>
-              <option value="palette">Palette</option>
-              <option value="barrel">Barrel</option>
-              <option value="crate">Crate</option>
-              <option value="box">Box</option>
-              <option value="bag">Bag</option>
-              <option value="bundle">Bundle</option>
-              <option value="carton">Carton</option>
-            </select>
-            <label htmlFor="lclDescription" className="block text-lg font-medium mb-2">Description of Goods</label>
-            <textarea
-              id="lclDescription"
-              name="lclDescription"
-              rows={2}
-              placeholder="Enter description of goods *"
-              className={`w-full p-3 border rounded ${shipmentType !== "LCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "LCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
-              disabled={shipmentType !== "LCL"}
-              value={shipmentType === "LCL" ? description : ""}
-              onChange={(e) => setDescription(e.target.value)}
-              aria-label="LCL Description of Goods"
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
-          {/* Box für Anzahl der Stücke und Dangerous Goods */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Additional Information</h2>
-            <div className="mt-4">
-              <label htmlFor="numberOfPieces" className="block text-lg font-medium text-gray-700">Number of Pieces</label>
-              <input
-                id="numberOfPieces"
-                name="numberOfPieces"
+                id="consignorFullName"
+                name="consignorFullName"
                 type="text"
-                placeholder="Number of Pieces (default: 1)"
-                value={numberOfPieces}
-                onChange={handleNumberOfPiecesChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                aria-label="Number of Pieces"
+                placeholder="Full Name *"
+                className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullName ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={consignorFullName}
+                onChange={handleFullNameChange(setConsignorFullName)}
+                aria-label="Consignor Full Name"
               />
-            </div>
-            <div className="mt-4 flex items-center">
               <input
-                id="dangerousGoods"
-                name="dangerousGoods"
-                type="checkbox"
-                checked={isDangerousGoods}
-                onChange={handleDangerousGoodsChange}
-                className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-                aria-label="Dangerous Goods"
+                id="consignorEmail"
+                name="consignorEmail"
+                type="email"
+                placeholder="Email Address"
+                className="w-full p-2 border rounded mb-3 bg-gray-100"
+                value={consignorEmail}
+                onChange={(e) => setConsignorEmail(e.target.value)}
+                aria-label="Consignor Email Address"
               />
-              <label htmlFor="dangerousGoods" className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
-            </div>
-          </div>
-
-          {/* Box für Datum */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
-            <h2 className="text-lg font-bold mb-4">Date Information</h2>
-            <div className="mt-4">
-              <label htmlFor="shippingDate" className="block text-lg font-medium text-gray-700">Shipping Date</label>
               <input
-                id="shippingDate"
-                name="shippingDate"
-                type="date"
-                value={shippingDate}
-                onChange={handleShippingDateChange}
-                min={getShippingDateConstraints().min}
-                max={getShippingDateConstraints().max}
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                  showError && !shippingDate ? 'bg-red-100' : ''
-                }`}
-                aria-label="Shipping Date"
+                id="consignorPhone"
+                name="consignorPhone"
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full p-2 border rounded mb-3 bg-gray-100"
+                value={consignorPhone}
+                onChange={handlePhoneNumberChange(setConsignorPhone)}
+                aria-label="Consignor Phone Number"
               />
-            </div>
-            <div className="mt-4">
-              <label htmlFor="arrivalDate" className="block text-lg font-medium text-gray-700">Arrival Date</label>
               <input
-                id="arrivalDate"
-                name="arrivalDate"
-                type="date"
-                value={arrivalDate}
+                id="consignorFullAddress"
+                name="consignorFullAddress"
+                type="text"
+                placeholder="Full Address *"
+                className={`w-full p-2 border rounded mb-3 ${showError && !consignorFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={consignorFullAddress}
+                onChange={(e) => setConsignorFullAddress(e.target.value)}
+                aria-label="Consignor Full Address"
+              />
+              <select
+                id="consignorCountry"
+                name="consignorCountry"
+                className={`w-full p-2 border rounded mb-3 ${showError && !consignorCountry ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={consignorCountry}
                 onChange={(e) => {
-                  const isValid = isArrivalDateValid(e.target.value);
-                  if (isValid) {
-                    handleArrivalDateChange(e);
-                  } else {
-                    setShowError(true);
-                    setArrivalDate(""); // Reset invalid date
-                  }
+                  setConsignorCountry(e.target.value);
+                  setConsignorCity("");
                 }}
-                min={getArrivalDateConstraints().min}
-                max={getArrivalDateConstraints().max}
-                disabled={!isDeliveryDateEnabled || !getArrivalDateConstraints().min} // Disable if not valid
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                  showError && !arrivalDate ? 'bg-red-100' : ''
-                } ${!isDeliveryDateEnabled || !getArrivalDateConstraints().min ? 'bg-gray-300 cursor-not-allowed' : ''}`}
-                aria-label="Arrival Date"
+                aria-label="Consignor Country"
+              >
+                <option value="">Select Country *</option>
+                {countriesWithPorts.map((country: string) => (
+                  <option key={country} value={country}>{country}</option>
+                ))}
+              </select>
+              <select
+                id="consignorCity"
+                name="consignorCity"
+                className={`w-full p-2 border rounded ${!consignorCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consignorCity ? 'bg-red-100' : ''}`}
+                value={consignorCity}
+                onChange={(e) => setConsignorCity(e.target.value)}
+                disabled={!consignorCountry}
+                aria-label="Consignor City"
+              >
+                <option value="">Select City *</option>
+                {getCitiesByCountry(consignorCountry).map((city: string) => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Recipient Box */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
+              <input
+                id="consigneeFullName"
+                name="consigneeFullName"
+                type="text"
+                placeholder="Full Name *"
+                className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullName ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={consigneeFullName}
+                onChange={handleFullNameChange(setConsigneeFullName)}
+                aria-label="Consignee Full Name"
+              />
+              <input
+                id="consigneeEmail"
+                name="consigneeEmail"
+                type="email"
+                placeholder="Email Address"
+                className="w-full p-2 border rounded mb-3 bg-gray-100"
+                value={consigneeEmail}
+                onChange={(e) => setConsigneeEmail(e.target.value)}
+                aria-label="Consignee Email Address"
+              />
+              <input
+                id="consigneePhone"
+                name="consigneePhone"
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full p-2 border rounded mb-3 bg-gray-100"
+                value={consigneePhone}
+                onChange={handlePhoneNumberChange(setConsigneePhone)}
+                aria-label="Consignee Phone Number"
+              />
+              <input
+                id="consigneeFullAddress"
+                name="consigneeFullAddress"
+                type="text"
+                placeholder="Full Address *"
+                className={`w-full p-2 border rounded mb-3 ${showError && !consigneeFullAddress ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={consigneeFullAddress}
+                onChange={(e) => setConsigneeFullAddress(e.target.value)}
+                aria-label="Consignee Full Address"
+              />
+              <select
+                id="consigneeCountry"
+                name="consigneeCountry"
+                className={`w-full p-2 border rounded mb-3 ${showError && !consigneeCountry ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={consigneeCountry}
+                onChange={(e) => {
+                  setConsigneeCountry(e.target.value);
+                  setConsigneeCity("");
+                }}
+                aria-label="Consignee Country"
+              >
+                <option value="">Select Country *</option>
+                {countriesWithPorts.map((country: string) => (
+                  <option key={country} value={country}>{country}</option>
+                ))}
+              </select>
+              <select
+                id="consigneeCity"
+                name="consigneeCity"
+                className={`w-full p-2 border rounded ${!consigneeCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !consigneeCity ? 'bg-red-100' : ''}`}
+                value={consigneeCity}
+                onChange={(e) => setConsigneeCity(e.target.value)}
+                disabled={!consigneeCountry}
+                aria-label="Consignee City"
+              >
+                <option value="">Select City *</option>
+                {getCitiesByCountry(consigneeCountry).map((city: string) => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* Second Form Section (From - To) */}
+          <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
+            {/* From Box */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
+              <select
+                id="originCountry"
+                name="originCountry"
+                className={`w-full p-2 border rounded mb-3 ${showError && !country ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={country}
+                onChange={(e) => {
+                  setCountry(e.target.value);
+                  setOriginCity("");
+                  setShippingDate(""); // Reset Shipping Date
+                  setArrivalDate(""); // Reset Arrival Date
+                }}
+                aria-label="Origin Country"
+              >
+                <option value="">Select Country *</option>
+                {countriesWithPorts.map((country: string) => (
+                  <option key={country} value={country}>{country}</option>
+                ))}
+              </select>
+              <select
+                id="originCity"
+                name="originCity"
+                className={`w-full p-2 border rounded mb-3 ${!country ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !originCity ? 'bg-red-100' : ''}`}
+                value={originCity}
+                onChange={(e) => {
+                  setOriginCity(e.target.value);
+                  setShippingDate(""); // Reset Shipping Date
+                  setArrivalDate(""); // Reset Arrival Date
+                }}
+                disabled={!country}
+                aria-label="Origin City"
+              >
+                <option value="">Select City *</option>
+                {getCitiesByCountry(country).map((city: string) => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
+              </select>
+              <input
+                id="originStreet"
+                name="originStreet"
+                type="text"
+                placeholder="Street & House Number *"
+                className={`w-full p-2 border rounded ${showError && !street ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={street}
+                onChange={(e) => setStreet(e.target.value)}
+                aria-label="Origin Street & House Number"
+              />
+            </div>
+
+            {/* To Box */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
+              <select
+                id="destinationCountry"
+                name="destinationCountry"
+                className={`w-full p-2 border rounded mb-3 ${showError && !destinationCountry ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={destinationCountry}
+                onChange={(e) => {
+                  setDestinationCountry(e.target.value);
+                  setDestinationCity("");
+                  setShippingDate(""); // Reset Shipping Date
+                  setArrivalDate(""); // Reset Arrival Date
+                }}
+                aria-label="Destination Country"
+              >
+                <option value="">Select Country *</option>
+                {countriesWithPorts.map((country: string) => (
+                  <option key={country} value={country}>{country}</option>
+                ))}
+              </select>
+              <select
+                id="destinationCity"
+                name="destinationCity"
+                className={`w-full p-2 border rounded mb-3 ${!destinationCountry ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-100'} ${showError && !destinationCity ? 'bg-red-100' : ''}`}
+                value={destinationCity}
+                onChange={(e) => {
+                  setDestinationCity(e.target.value);
+                  setShippingDate(""); // Reset Shipping Date
+                  setArrivalDate(""); // Reset Arrival Date
+                }}
+                disabled={!destinationCountry}
+                aria-label="Destination City"
+              >
+                <option value="">Select City *</option>
+                {getCitiesByCountry(destinationCountry).map((city: string) => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
+              </select>
+              <input
+                id="destinationStreet"
+                name="destinationStreet"
+                type="text"
+                placeholder="Street & House Number *"
+                className={`w-full p-2 border rounded ${showError && !destinationStreet ? 'bg-red-100' : 'bg-gray-100'}`}
+                value={destinationStreet}
+                onChange={(e) => setDestinationStreet(e.target.value)}
+                aria-label="Destination Street & House Number"
               />
             </div>
           </div>
-        </div>
 
-        {/* Continue Button */}
-        <div className="flex justify-end w-full mt-16 mb-16">
-          <button
-            className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black cursor-pointer"
-            onClick={handleContinueClick}
-          >
-            Continue
-          </button>
+          {/* FCL und LCL Boxen */}
+          <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
+            {/* FCL Box */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
+              <label className="flex items-center space-x-2 mb-4">
+                <input
+                  id="shipmentTypeFCL"
+                  name="shipmentType"
+                  type="radio"
+                  value="FCL"
+                  onChange={() => handleShipmentChange("FCL")}
+                  className="w-5 h-5"
+                  aria-label="Full Container Load"
+                />
+                <span className="text-lg font-medium">FCL (Full Container Load){shipmentType === "FCL" && '*'}</span>
+              </label>
+              <select
+                id="fclSelection"
+                name="fclSelection"
+                disabled={shipmentType !== "FCL"}
+                value={fclSelection}
+                onChange={(e) => setFclSelection(e.target.value)}
+                className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "FCL" && !fclSelection ? 'bg-red-100' : ''}`}
+                aria-label="FCL Container Type"
+              >
+                <option value="">Select Container Type *</option>
+                <option value="20ft">20ft Container</option>
+                <option value="40ft">40ft Container</option>
+                <option value="45ft">45ft High Cube Container</option>
+                <option value="reefer">Reefer Container</option>
+                <option value="openTop">Open Top Container</option>
+              </select>
+              <label htmlFor="fclDescription" className="block text-lg font-medium mb-2">Description of Goods{shipmentType === "FCL" && '*'}</label>
+              <textarea
+                id="fclDescription"
+                name="fclDescription"
+                rows={2}
+                placeholder="Enter description of goods *"
+                className={`w-full p-3 border rounded ${shipmentType !== "FCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "FCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
+                disabled={shipmentType !== "FCL"}
+                value={shipmentType === "FCL" ? description : ""}
+                onChange={(e) => setDescription(e.target.value)}
+                aria-label="FCL Description of Goods"
+              ></textarea>
+            </div>
+
+            {/* LCL Box */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
+              <label className="flex items-center space-x-2 mb-4">
+                <input
+                  id="shipmentTypeLCL"
+                  name="shipmentType"
+                  type="radio"
+                  value="LCL"
+                  onChange={() => handleShipmentChange("LCL")}
+                  className="w-5 h-5"
+                  aria-label="Less Container Load"
+                />
+                <span className="text-lg font-medium">LCL (Less Container Load)</span>
+              </label>
+              <select
+                id="lclSelection"
+                name="lclSelection"
+                disabled={shipmentType !== "LCL"}
+                value={lclSelection}
+                onChange={(e) => setLclSelection(e.target.value)}
+                className={`w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3 ${showError && shipmentType === "LCL" && !lclSelection ? 'bg-red-100' : ''}`}
+                aria-label="LCL Package Type"
+              >
+                <option value="">Select Package Type *</option>
+                <option value="palette">Palette</option>
+                <option value="barrel">Barrel</option>
+                <option value="crate">Crate</option>
+                <option value="box">Box</option>
+                <option value="bag">Bag</option>
+                <option value="bundle">Bundle</option>
+                <option value="carton">Carton</option>
+              </select>
+              <label htmlFor="lclDescription" className="block text-lg font-medium mb-2">Description of Goods</label>
+              <textarea
+                id="lclDescription"
+                name="lclDescription"
+                rows={2}
+                placeholder="Enter description of goods *"
+                className={`w-full p-3 border rounded ${shipmentType !== "LCL" ? "bg-[#D1D5DC] cursor-not-allowed" : showError && shipmentType === "LCL" && !description ? "bg-red-100" : "bg-gray-100"}`}
+                disabled={shipmentType !== "LCL"}
+                value={shipmentType === "LCL" ? description : ""}
+                onChange={(e) => setDescription(e.target.value)}
+                aria-label="LCL Description of Goods"
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="flex justify-between w-full mt-8 gap-x-4"> {/* Keep `mt-8` unchanged */}
+            {/* Box für Anzahl der Stücke und Dangerous Goods */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Additional Information</h2>
+              <div className="mt-4">
+                <label htmlFor="numberOfPieces" className="block text-lg font-medium text-gray-700">Number of Pieces</label>
+                <input
+                  id="numberOfPieces"
+                  name="numberOfPieces"
+                  type="text"
+                  placeholder="Number of Pieces (default: 1)"
+                  value={numberOfPieces}
+                  onChange={handleNumberOfPiecesChange}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  aria-label="Number of Pieces"
+                />
+              </div>
+              <div className="mt-4 flex items-center">
+                <input
+                  id="dangerousGoods"
+                  name="dangerousGoods"
+                  type="checkbox"
+                  checked={isDangerousGoods}
+                  onChange={handleDangerousGoodsChange}
+                  className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  aria-label="Dangerous Goods"
+                />
+                <label htmlFor="dangerousGoods" className="ml-2 block text-lg font-medium text-gray-700">Dangerous Goods</label>
+              </div>
+            </div>
+
+            {/* Box für Datum */}
+            <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+              <h2 className="text-lg font-bold mb-4">Date Information</h2>
+              <div className="mt-4">
+                <label htmlFor="shippingDate" className="block text-lg font-medium text-gray-700">Shipping Date</label>
+                <input
+                  id="shippingDate"
+                  name="shippingDate"
+                  type="date"
+                  value={shippingDate}
+                  onChange={handleShippingDateChange}
+                  min={getShippingDateConstraints().min}
+                  max={getShippingDateConstraints().max}
+                  className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                    showError && !shippingDate ? 'bg-red-100' : ''
+                  }`}
+                  aria-label="Shipping Date"
+                />
+              </div>
+              <div className="mt-4">
+                <label htmlFor="arrivalDate" className="block text-lg font-medium text-gray-700">Arrival Date</label>
+                <input
+                  id="arrivalDate"
+                  name="arrivalDate"
+                  type="date"
+                  value={arrivalDate}
+                  onChange={(e) => {
+                    const isValid = isArrivalDateValid(e.target.value);
+                    if (isValid) {
+                      handleArrivalDateChange(e);
+                    } else {
+                      setShowError(true);
+                      setArrivalDate(""); // Reset invalid date
+                    }
+                  }}
+                  min={getArrivalDateConstraints().min}
+                  max={getArrivalDateConstraints().max}
+                  disabled={!isDeliveryDateEnabled || !getArrivalDateConstraints().min} // Disable if not valid
+                  className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
+                    showError && !arrivalDate ? 'bg-red-100' : ''
+                  } ${!isDeliveryDateEnabled || !getArrivalDateConstraints().min ? 'bg-gray-300 cursor-not-allowed' : ''}`}
+                  aria-label="Arrival Date"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Continue Button */}
+          <div className="flex justify-end w-full mt-16 mb-16">
+            <button
+              className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black cursor-pointer"
+              onClick={handleContinueClick}
+            >
+              Continue
+            </button>
+          </div>
+          {dateWarning && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
+              <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
+                <button
+                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
+                  onClick={() => setDateWarning(false)}
+                >
+                  &times;
+                </button>
+                <div className="text-red-500 text-lg font-bold mb-4 text-center">
+                  !!WARNING!!
+                </div>
+                <div className="text-black text-lg">
+                  The shipping date must be before the arrival date.
+                </div>
+              </div>
+            </div>
+          )}
+          {invalidDateWarning && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
+              <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
+                <button
+                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
+                  onClick={() => setInvalidDateWarning(false)}
+                >
+                  &times;
+                </button>
+                <div className="text-red-500 text-lg font-bold mb-4 text-center">
+                  !!WARNING!!
+                </div>
+                <div className="text-black text-lg">
+                  Invalid date input. Please enter a valid date.
+                </div>
+              </div>
+            </div>
+          )}
+          {showWarning && (
+            <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
+              <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
+                <button
+                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
+                  onClick={() => setShowWarning(false)}
+                >
+                  &times;
+                </button>
+                <div className="text-red-500 text-lg font-bold mb-4 text-center">
+                  !!WARNING!!
+                </div>
+                <div className="text-black text-lg">
+                  You can't continue without filling the mandatory fields (*)
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-        {dateWarning && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
-            <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
-              <button
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
-                onClick={() => setDateWarning(false)}
-              >
-                &times;
-              </button>
-              <div className="text-red-500 text-lg font-bold mb-4 text-center">
-                !!WARNING!!
-              </div>
-              <div className="text-black text-lg">
-                The shipping date must be before the arrival date.
-              </div>
-            </div>
-          </div>
-        )}
-        {invalidDateWarning && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
-            <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
-              <button
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
-                onClick={() => setInvalidDateWarning(false)}
-              >
-                &times;
-              </button>
-              <div className="text-red-500 text-lg font-bold mb-4 text-center">
-                !!WARNING!!
-              </div>
-              <div className="text-black text-lg">
-                Invalid date input. Please enter a valid date.
-              </div>
-            </div>
-          </div>
-        )}
-        {showWarning && (
-          <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50 flex items-center justify-center pointer-events-auto">
-            <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
-              <button
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
-                onClick={() => setShowWarning(false)}
-              >
-                &times;
-              </button>
-              <div className="text-red-500 text-lg font-bold mb-4 text-center">
-                !!WARNING!!
-              </div>
-              <div className="text-black text-lg">
-                You can't continue without filling the mandatory fields (*)
-              </div>
-            </div>
-          </div>
-        )}
       </div>
+      {showPopup && (
+        <Popup
+          onStay={handleStay}
+          onLeave={handleLeave}
+        />
+      )}
     </div>
   );
 }
