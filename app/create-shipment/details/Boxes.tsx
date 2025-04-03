@@ -150,7 +150,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
               disabled={!isFragile}
             />
             <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
-              Request extra protection for fragile items?
+              Request additional protection for fragile items?
             </label>
           </div>
         </div>
