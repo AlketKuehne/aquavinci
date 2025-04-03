@@ -10,13 +10,13 @@ export default function Popup({ onStay, onLeave }: { onStay: () => void; onLeave
             className="px-8 py-4 bg-gray-300 text-black rounded-full transition-all duration-[1250ms] hover:bg-black hover:text-white cursor-pointer"
             onClick={onStay}
           >
-            No
+            Yes
           </button>
           <button
             className="px-8 py-4 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-gray-300 hover:text-black cursor-pointer"
             onClick={onLeave}
           >
-            Yes
+            No
           </button>
         </div>
       </div>
