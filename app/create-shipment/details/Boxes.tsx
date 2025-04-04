@@ -36,8 +36,8 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
-      <div className="flex justify-between w-full gap-x-2"> {/* Reduced gap between boxes */}
-        <div className={`bg-white p-6 shadow-lg rounded-lg w-1/3 ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
+      <div className="grid grid-cols-3 gap-6 w-full"> {/* Updated to grid layout with consistent spacing */}
+        <div className={`bg-white p-6 shadow-lg rounded-lg ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
           <input
             type="text"
@@ -47,7 +47,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-        <div className={`bg-white p-6 shadow-lg rounded-lg w-1/3 ${shipmentType === "FCL" ? "opacity-50 pointer-events-none" : ""}`}>
+        <div className={`bg-white p-6 shadow-lg rounded-lg ${shipmentType === "FCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
           <input
             type="text"
@@ -57,9 +57,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-      </div>
-      <div className="flex justify-between w-full mt-2 gap-x-2"> {/* Reduced gap between boxes */}
-        <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
+        <div className="bg-white p-6 shadow-lg rounded-lg">
           <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
           <h3 className="text-md font-semibold mb-2">Weight</h3>
           <input
@@ -92,7 +90,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
+        <div className="bg-white p-6 shadow-lg rounded-lg">
           <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
           <div className="flex items-center mb-4">
             <input
@@ -156,40 +154,40 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             </label>
           </div>
         </div>
-      </div>
-      <div className="bg-white p-6 shadow-lg rounded-lg w-1/3 mt-2"> {/* Adjusted spacing */}
-        <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
-        <label className="flex items-center mb-4">
-          <input
-            type="radio"
-            name="deliveryOption"
-            value="pickup"
-            checked={deliveryOption === "pickup"}
-            onChange={() => setDeliveryOption("pickup")}
-            className="w-5 h-5"
-          />
-          <span className="ml-2 text-lg font-medium">Pick Up</span>
-        </label>
-        <label className="flex items-center mb-4">
-          <input
-            type="radio"
-            name="deliveryOption"
-            value="deliver"
-            checked={deliveryOption === "deliver"}
-            onChange={() => setDeliveryOption("deliver")}
-            className="w-5 h-5"
-          />
-          <span className="ml-2 text-lg font-medium">Deliver</span>
-        </label>
-        <div className="mt-4">
-          <label htmlFor="arrivalDate" className="block text-md font-semibold mb-2">Arrival Date</label>
-          <input
-            type="date"
-            id="arrivalDate"
-            value={arrivalDate}
-            onChange={(e) => setArrivalDate(e.target.value)}
-            className="w-full p-3 border rounded bg-gray-100"
-          />
+        <div className="bg-white p-6 shadow-lg rounded-lg col-span-3"> {/* Full width for delivery option */}
+          <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
+          <label className="flex items-center mb-4">
+            <input
+              type="radio"
+              name="deliveryOption"
+              value="pickup"
+              checked={deliveryOption === "pickup"}
+              onChange={() => setDeliveryOption("pickup")}
+              className="w-5 h-5"
+            />
+            <span className="ml-2 text-lg font-medium">Pick Up</span>
+          </label>
+          <label className="flex items-center mb-4">
+            <input
+              type="radio"
+              name="deliveryOption"
+              value="deliver"
+              checked={deliveryOption === "deliver"}
+              onChange={() => setDeliveryOption("deliver")}
+              className="w-5 h-5"
+            />
+            <span className="ml-2 text-lg font-medium">Deliver</span>
+          </label>
+          <div className="mt-4">
+            <label htmlFor="arrivalDate" className="block text-md font-semibold mb-2">Arrival Date</label>
+            <input
+              type="date"
+              id="arrivalDate"
+              value={arrivalDate}
+              onChange={(e) => setArrivalDate(e.target.value)}
+              className="w-full p-3 border rounded bg-gray-100"
+            />
+          </div>
         </div>
       </div>
     </div>
