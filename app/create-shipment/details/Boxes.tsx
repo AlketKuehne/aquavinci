@@ -58,7 +58,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
         </div>
       </div>
       <div className="flex justify-between w-full mt-4 gap-x-4">
-        <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+        <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
           <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
           <h3 className="text-md font-semibold mb-2">Weight</h3>
           <input
@@ -91,7 +91,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+        <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
           <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
           <div className="flex items-center mb-4">
             <input
@@ -155,9 +155,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             </label>
           </div>
         </div>
-      </div>
-      <div className="flex justify-between w-full mt-4 gap-x-4">
-        <div className="bg-white p-6 shadow-lg rounded-lg w-1/2">
+        <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
           <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
           <label className="flex items-center mb-4">
             <input
