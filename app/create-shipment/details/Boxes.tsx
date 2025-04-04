@@ -36,7 +36,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
       <div className="flex justify-between w-full gap-x-4">
-        <div className={`bg-white p-6 shadow-lg rounded-lg w-1/2 ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
+        <div className={`bg-white p-6 shadow-lg rounded-lg w-1/3 ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
           <input
             type="text"
@@ -46,7 +46,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-        <div className={`bg-white p-6 shadow-lg rounded-lg w-1/2 ${shipmentType === "FCL" ? "opacity-50 pointer-events-none" : ""}`}>
+        <div className={`bg-white p-6 shadow-lg rounded-lg w-1/3 ${shipmentType === "FCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
           <input
             type="text"
