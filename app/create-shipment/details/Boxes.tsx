@@ -155,31 +155,31 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             </label>
           </div>
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
-          <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
-          <label className="flex items-center mb-4">
-            <input
-              type="radio"
-              name="deliveryOption"
-              value="pickup"
-              checked={deliveryOption === "pickup"}
-              onChange={() => setDeliveryOption("pickup")}
-              className="w-5 h-5"
-            />
-            <span className="ml-2 text-lg font-medium">Pick Up</span>
-          </label>
-          <label className="flex items-center">
-            <input
-              type="radio"
-              name="deliveryOption"
-              value="deliver"
-              checked={deliveryOption === "deliver"}
-              onChange={() => setDeliveryOption("deliver")}
-              className="w-5 h-5"
-            />
-            <span className="ml-2 text-lg font-medium">Deliver</span>
-          </label>
-        </div>
+      </div>
+      <div className="bg-white p-6 shadow-lg rounded-lg w-1/3 mt-4">
+        <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
+        <label className="flex items-center mb-4">
+          <input
+            type="radio"
+            name="deliveryOption"
+            value="pickup"
+            checked={deliveryOption === "pickup"}
+            onChange={() => setDeliveryOption("pickup")}
+            className="w-5 h-5"
+          />
+          <span className="ml-2 text-lg font-medium">Pick Up</span>
+        </label>
+        <label className="flex items-center">
+          <input
+            type="radio"
+            name="deliveryOption"
+            value="deliver"
+            checked={deliveryOption === "deliver"}
+            onChange={() => setDeliveryOption("deliver")}
+            className="w-5 h-5"
+          />
+          <span className="ml-2 text-lg font-medium">Deliver</span>
+        </label>
       </div>
     </div>
   );
