@@ -36,7 +36,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
-      <div className="flex justify-between w-full gap-x-4">
+      <div className="flex justify-between w-full gap-x-2"> {/* Reduced gap between boxes */}
         <div className={`bg-white p-6 shadow-lg rounded-lg w-1/3 ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
           <input
@@ -58,7 +58,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
           />
         </div>
       </div>
-      <div className="flex justify-between w-full mt-4 gap-x-4">
+      <div className="flex justify-between w-full mt-2 gap-x-2"> {/* Reduced gap between boxes */}
         <div className="bg-white p-6 shadow-lg rounded-lg w-1/3">
           <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
           <h3 className="text-md font-semibold mb-2">Weight</h3>
@@ -157,7 +157,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
           </div>
         </div>
       </div>
-      <div className="bg-white p-6 shadow-lg rounded-lg w-1/3 mt-4">
+      <div className="bg-white p-6 shadow-lg rounded-lg w-1/3 mt-2"> {/* Adjusted spacing */}
         <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
         <label className="flex items-center mb-4">
           <input
