@@ -14,6 +14,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
   const [extraProtection, setExtraProtection] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
+  const [arrivalDate, setArrivalDate] = useState<string>(""); // State for arrival date
 
   const fragileSubCategories = {
     Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -169,7 +170,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
           />
           <span className="ml-2 text-lg font-medium">Pick Up</span>
         </label>
-        <label className="flex items-center">
+        <label className="flex items-center mb-4">
           <input
             type="radio"
             name="deliveryOption"
@@ -180,6 +181,16 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
           />
           <span className="ml-2 text-lg font-medium">Deliver</span>
         </label>
+        <div className="mt-4">
+          <label htmlFor="arrivalDate" className="block text-md font-semibold mb-2">Arrival Date</label>
+          <input
+            type="date"
+            id="arrivalDate"
+            value={arrivalDate}
+            onChange={(e) => setArrivalDate(e.target.value)}
+            className="w-full p-3 border rounded bg-gray-100"
+          />
+        </div>
       </div>
     </div>
   );
