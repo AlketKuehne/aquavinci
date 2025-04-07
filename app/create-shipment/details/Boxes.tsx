@@ -57,7 +57,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg mt-6"> {/* Added consistent vertical spacing */}
+        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Consistent spacing */}
           <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
           <h3 className="text-md font-semibold mb-2">Weight</h3>
           <input
@@ -90,7 +90,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg">
+        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Consistent spacing */}
           <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
           <div className="flex items-center mb-4">
             <input
