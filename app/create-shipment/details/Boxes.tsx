@@ -36,7 +36,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
-      <div className="grid grid-cols-2 gap-6 w-full"> {/* Adjusted to 2 columns for wider boxes */}
+      <div className="grid grid-cols-2 gap-4 w-full"> {/* Adjusted gap to match /create-shipment */}
         <div className={`bg-white p-6 shadow-lg rounded-lg ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
           <input
