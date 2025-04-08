@@ -260,19 +260,29 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             ))}
           </select>
           <h3 className="text-md font-semibold mb-2">Subcategories</h3>
-          <select
-            id="fragileSubCategory"
-            value={fragileSubCategory || ""}
-            onChange={(e) => setFragileSubCategory(e.target.value)}
-            disabled={!isFragile || !fragileCategory}
-            className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
-          >
-            <option value="">Select Subcategory</option>
-            {fragileCategory &&
-              fragileSubCategories[fragileCategory as keyof typeof fragileSubCategories].map((subCategory) => (
-                <option key={subCategory} value={subCategory}>{subCategory}</option>
-              ))}
-          </select>
+          {fragileCategory === "Other" ? (
+            <input
+              type="text"
+              placeholder="Enter custom subcategory"
+              value={fragileSubCategory || ""}
+              onChange={(e) => setFragileSubCategory(e.target.value)}
+              className="w-full p-3 border rounded bg-gray-100"
+            />
+          ) : (
+            <select
+              id="fragileSubCategory"
+              value={fragileSubCategory || ""}
+              onChange={(e) => setFragileSubCategory(e.target.value)}
+              disabled={!isFragile || !fragileCategory}
+              className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+              <option value="">Select Subcategory</option>
+              {fragileCategory &&
+                fragileSubCategories[fragileCategory as keyof typeof fragileSubCategories].map((subCategory) => (
+                  <option key={subCategory} value={subCategory}>{subCategory}</option>
+                ))}
+            </select>
+          )}
           <div className="flex items-center mt-4">
             <input
               type="checkbox"
