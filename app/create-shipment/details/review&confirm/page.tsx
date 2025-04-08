@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
+import temporaryDatabank from "../../../../utils/temporaryDatabank";
 
 interface ShipmentData {
   consignorName: string;
@@ -44,26 +45,14 @@ interface ShipmentData {
 }
 
 export default function ReviewAndConfirmPage() {
-  const [fields, setFields] = useState<ShipmentData | null>(null);
-  const [editableField, setEditableField] = useState<keyof ShipmentData | null>(null);
+  const [fields, setFields] = useState<Partial<ShipmentData>>({});
 
-  // Load data from localStorage
+  // Load data from the temporaryDatabank
   useEffect(() => {
-    const storedData = localStorage.getItem("shipmentData");
-    if (storedData) {
-      setFields(JSON.parse(storedData));
-    }
+    setFields(temporaryDatabank.getData());
   }, []);
 
-  const handleFieldChange = (field: keyof ShipmentData, value: string) => {
-    if (fields) {
-      const updatedFields = { ...fields, [field]: value };
-      setFields(updatedFields);
-      localStorage.setItem("shipmentData", JSON.stringify(updatedFields)); // Save updated data to localStorage
-    }
-  };
-
-  if (!fields) {
+  if (!fields || Object.keys(fields).length === 0) {
     return <div>Loading...</div>; // Show a loading state while data is being fetched
   }
 
@@ -81,23 +70,8 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("consignor", "").replace(/([A-Z])/g, " $1")}</h3>
-                    {editableField === field ? (
-                      <input
-                        type="text"
-                        value={fields[field as keyof ShipmentData]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                    )}
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field as keyof ShipmentData)}
-                  >
-                    ✎
-                  </button>
                 </div>
               ))}
             </div>
@@ -111,23 +85,8 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("consignee", "").replace(/([A-Z])/g, " $1")}</h3>
-                    {editableField === field ? (
-                      <input
-                        type="text"
-                        value={fields[field as keyof ShipmentData]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                    )}
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field as keyof ShipmentData)}
-                  >
-                    ✎
-                  </button>
                 </div>
               ))}
             </div>
@@ -141,23 +100,8 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("origin", "").replace(/([A-Z])/g, " $1")}</h3>
-                    {editableField === field ? (
-                      <input
-                        type="text"
-                        value={fields[field as keyof ShipmentData]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                    )}
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field as keyof ShipmentData)}
-                  >
-                    ✎
-                  </button>
                 </div>
               ))}
             </div>
@@ -171,23 +115,8 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("destination", "").replace(/([A-Z])/g, " $1")}</h3>
-                    {editableField === field ? (
-                      <input
-                        type="text"
-                        value={fields[field as keyof ShipmentData]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                    )}
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field as keyof ShipmentData)}
-                  >
-                    ✎
-                  </button>
                 </div>
               ))}
             </div>
@@ -201,23 +130,8 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace(/([A-Z])/g, " $1")}</h3>
-                    {editableField === field ? (
-                      <input
-                        type="text"
-                        value={fields[field as keyof ShipmentData]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                    )}
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field as keyof ShipmentData)}
-                  >
-                    ✎
-                  </button>
                 </div>
               ))}
             </div>
@@ -231,12 +145,6 @@ export default function ReviewAndConfirmPage() {
                 {fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load"}
               </p>
             </div>
-            <button
-              className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-              onClick={() => setEditableField("shipmentType")}
-            >
-              ✎
-            </button>
           </div>
 
           {/* FCL or LCL Selection */}
@@ -244,46 +152,16 @@ export default function ReviewAndConfirmPage() {
             <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
               <div>
                 <h2 className="text-lg font-bold mb-2">Number of Containers</h2>
-                {editableField === "fclSelection" ? (
-                  <input
-                    type="text"
-                    value={fields.fclSelection || ""}
-                    onChange={(e) => handleFieldChange("fclSelection", e.target.value)}
-                    className="border rounded p-3 w-full"
-                  />
-                ) : (
-                  <p className="text-gray-700">{fields.fclSelection}</p>
-                )}
+                <p className="text-gray-700">{fields.fclSelection || "N/A"}</p>
               </div>
-              <button
-                className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                onClick={() => setEditableField("fclSelection")}
-              >
-                ✎
-              </button>
             </div>
           )}
           {fields.shipmentType === "LCL" && (
             <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
               <div>
                 <h2 className="text-lg font-bold mb-2">Number of Packages</h2>
-                {editableField === "lclSelection" ? (
-                  <input
-                    type="text"
-                    value={fields.lclSelection || ""}
-                    onChange={(e) => handleFieldChange("lclSelection", e.target.value)}
-                    className="border rounded p-3 w-full"
-                  />
-                ) : (
-                  <p className="text-gray-700">{fields.lclSelection}</p>
-                )}
+                <p className="text-gray-700">{fields.lclSelection || "N/A"}</p>
               </div>
-              <button
-                className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                onClick={() => setEditableField("lclSelection")}
-              >
-                ✎
-              </button>
             </div>
           )}
 
@@ -295,23 +173,8 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field}</h3>
-                    {editableField === field ? (
-                      <input
-                        type="text"
-                        value={fields[field as keyof ShipmentData]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                    )}
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field as keyof ShipmentData)}
-                  >
-                    ✎
-                  </button>
                 </div>
               ))}
             </div>
@@ -325,44 +188,14 @@ export default function ReviewAndConfirmPage() {
                 <div className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium">Category</h3>
-                    {editableField === "fragileCategory" ? (
-                      <input
-                        type="text"
-                        value={fields.fragileCategory || ""}
-                        onChange={(e) => handleFieldChange("fragileCategory", e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields.fragileCategory}</p>
-                    )}
+                    <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField("fragileCategory")}
-                  >
-                    ✎
-                  </button>
                 </div>
                 <div className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium">Subcategory</h3>
-                    {editableField === "fragileSubCategory" ? (
-                      <input
-                        type="text"
-                        value={fields.fragileSubCategory || ""}
-                        onChange={(e) => handleFieldChange("fragileSubCategory", e.target.value)}
-                        className="border rounded p-3 w-full"
-                      />
-                    ) : (
-                      <p className="text-gray-700">{fields.fragileSubCategory}</p>
-                    )}
+                    <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
                   </div>
-                  <button
-                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField("fragileSubCategory")}
-                  >
-                    ✎
-                  </button>
                 </div>
               </div>
             </div>
@@ -372,50 +205,18 @@ export default function ReviewAndConfirmPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
             <div>
               <h2 className="text-lg font-bold mb-2">Delivery Option</h2>
-              {editableField === "deliveryOption" ? (
-                <select
-                  value={fields.deliveryOption || ""}
-                  onChange={(e) => handleFieldChange("deliveryOption", e.target.value)}
-                  className="border rounded p-3 w-full"
-                >
-                  <option value="pickup">Pick Up</option>
-                  <option value="deliver">Deliver</option>
-                </select>
-              ) : (
-                <p className="text-gray-700">
-                  {fields.deliveryOption === "pickup" ? "Pick Up" : "Deliver"}
-                </p>
-              )}
+              <p className="text-gray-700">
+                {fields.deliveryOption === "pickup" ? "Pick Up" : "Deliver"}
+              </p>
             </div>
-            <button
-              className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-              onClick={() => setEditableField("deliveryOption")}
-            >
-              ✎
-            </button>
           </div>
 
           {/* Delivery Date */}
           <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
             <div>
               <h2 className="text-lg font-bold mb-2">Delivery Date</h2>
-              {editableField === "deliveryDate" ? (
-                <input
-                  type="date"
-                  value={fields.deliveryDate || ""}
-                  onChange={(e) => handleFieldChange("deliveryDate", e.target.value)}
-                  className="border rounded p-3 w-full"
-                />
-              ) : (
-                <p className="text-gray-700">{fields.deliveryDate}</p>
-              )}
+              <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
             </div>
-            <button
-              className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-              onClick={() => setEditableField("deliveryDate")}
-            >
-              ✎
-            </button>
           </div>
         </div>
       </div>
