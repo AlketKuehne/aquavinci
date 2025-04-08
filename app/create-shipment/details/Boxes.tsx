@@ -144,7 +144,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];
     const baseDate = new Date(minDeliveryDate);
     if (deliveryOption === "deliver") {
-      baseDate.setDate(baseDate.getDate() + 5); // Add 5 days for "Deliver" option
+      baseDate.setDate(baseDate.getDate() + 4); // Add 5 days for "Deliver" option
     }
     return baseDate.toISOString().split("T")[0];
   };
