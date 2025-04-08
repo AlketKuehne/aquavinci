@@ -48,7 +48,7 @@ export default function ReviewAndConfirmPage() {
               className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("shipmentType")}
             >
-              ✏️
+              🖊️
             </button>
           </div>
 
@@ -72,7 +72,7 @@ export default function ReviewAndConfirmPage() {
                 className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                 onClick={() => setEditableField("fclSelection")}
               >
-                ✏️
+                🖊️
               </button>
             </div>
           )}
@@ -95,7 +95,7 @@ export default function ReviewAndConfirmPage() {
                 className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                 onClick={() => setEditableField("lclSelection")}
               >
-                ✏️
+                🖊️
               </button>
             </div>
           )}
@@ -123,7 +123,7 @@ export default function ReviewAndConfirmPage() {
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field)}
                   >
-                    ✏️
+                    🖊️
                   </button>
                 </div>
               ))}
@@ -153,7 +153,7 @@ export default function ReviewAndConfirmPage() {
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField("fragileCategory")}
                   >
-                    ✏️
+                    🖊️
                   </button>
                 </div>
                 <div className="flex justify-between items-center">
@@ -174,7 +174,7 @@ export default function ReviewAndConfirmPage() {
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField("fragileSubCategory")}
                   >
-                    ✏️
+                    🖊️
                   </button>
                 </div>
               </div>
@@ -204,7 +204,7 @@ export default function ReviewAndConfirmPage() {
               className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("deliveryOption")}
             >
-              ✏️
+              🖊️
             </button>
           </div>
 
@@ -227,7 +227,7 @@ export default function ReviewAndConfirmPage() {
               className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("deliveryDate")}
             >
-              ✏️
+              🖊️
             </button>
           </div>
         </div>
