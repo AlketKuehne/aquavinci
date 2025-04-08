@@ -412,8 +412,18 @@ export default function CreateShipmentPage() {
       setShowWarning(false);
       setDateWarning(false);
       setInvalidDateWarning(false);
+
+      const minDays = getMinimumDeliveryDays(country, destinationCountry);
+      const shippingDateObj = new Date(shippingDate);
+      const minDeliveryDateObj = new Date(shippingDateObj);
+      minDeliveryDateObj.setDate(shippingDateObj.getDate() + minDays);
+
       sessionStorage.setItem("authorizedForDetails", "true"); // Set authorization flag
-      router.push(`/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}`);
+      router.push(
+        `/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}&shippingDate=${encodeURIComponent(
+          shippingDate
+        )}&minDeliveryDate=${encodeURIComponent(minDeliveryDateObj.toISOString().split("T")[0])}`
+      );
     }
   };
 

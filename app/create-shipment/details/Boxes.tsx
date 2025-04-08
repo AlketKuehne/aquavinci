@@ -65,9 +65,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
 
   const calculateMinDeliveryDate = (): string => {
     if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];
-    const shippingDateObj = new Date(shippingDate);
-    const minDeliveryDateObj = new Date(minDeliveryDate);
-    return minDeliveryDateObj > shippingDateObj ? minDeliveryDateObj.toISOString().split("T")[0] : shippingDateObj.toISOString().split("T")[0];
+    return minDeliveryDate; // Use the minDeliveryDate passed from /create-shipment
   };
 
   return (
