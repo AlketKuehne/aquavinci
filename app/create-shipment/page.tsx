@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import { countryDistances } from './country-distances';
 import Popup from "./details/Popup"; // Adjusted import path if necessary
-import databank from "../../../utils/Databank";
+import databank from "../../utils/databank"; // Corrected import path
 
 export default function CreateShipmentPage() {
   const router = useRouter();
@@ -423,7 +423,8 @@ export default function CreateShipmentPage() {
         consignorFullName,
         consignorFullAddress,
         consignorCity,
-        country,
+        consignorCountry: country, // Ensure consignorCountry is included
+        consigneeCountry, // Ensure consigneeCountry is included
         originCity,
         street,
         destinationCountry,
@@ -443,7 +444,7 @@ export default function CreateShipmentPage() {
         consignorPhone,
         consigneePhone,
         numberOfPieces,
-        isDangerousGoods
+        isDangerousGoods,
       };
 
       databank.saveData(formData); // Save the current inputs to the Databank

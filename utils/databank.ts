@@ -1,41 +1,29 @@
 interface ShipmentData {
-  consignorName: string;
+  consignorFullName: string;
+  consignorFullAddress: string;
+  consignorCity: string;
+  consignorCountry: string;
   consignorEmail: string;
   consignorPhone: string;
-  consignorAddress: string;
-  consignorCountry: string;
-  consignorCity: string;
-  consigneeName: string;
+  consigneeFullName: string;
+  consigneeFullAddress: string;
+  consigneeCity: string;
+  consigneeCountry: string;
   consigneeEmail: string;
   consigneePhone: string;
-  consigneeAddress: string;
-  consigneeCountry: string;
-  consigneeCity: string;
-  originCountry: string;
   originCity: string;
-  originStreet: string;
+  street: string;
   destinationCountry: string;
   destinationCity: string;
   destinationStreet: string;
-  containerType: string;
-  goodsDescription: string;
-  packageType: string;
-  numberOfPieces: string;
-  dangerousGoods: string;
-  shippingDate: string;
-  deliveryDate: string;
   shipmentType: string;
+  description: string;
   fclSelection: string;
   lclSelection: string;
-  weight: string;
-  height: string;
-  length: string;
-  width: string;
-  isFragile: boolean;
-  fragileCategory: string;
-  fragileSubCategory: string;
-  extraProtection: boolean;
-  deliveryOption: string;
+  numberOfPieces: string;
+  isDangerousGoods: boolean;
+  shippingDate: string;
+  deliveryDate: string;
 }
 
 class Databank {

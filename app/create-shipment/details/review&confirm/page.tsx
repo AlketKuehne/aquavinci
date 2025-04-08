@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
-import temporaryDatabank from "../../../../utils/temporaryDatabank";
+import databank from "../../../../../utils/Databank"; // Updated import to use databank
 
 interface ShipmentData {
   consignorName: string;
@@ -48,12 +48,15 @@ export default function ReviewAndConfirmPage() {
   const [fields, setFields] = useState<Partial<ShipmentData>>({});
 
   useEffect(() => {
-    const data = temporaryDatabank.getData();
-    if (Object.keys(data).length === 0) {
-      temporaryDatabank.updateField("consignorName", "John Doe");
-      temporaryDatabank.updateField("shipmentType", "FCL");
+    const data = databank.getData(); // Fetch data from databank
+    if (data.length === 0) {
+      databank.saveData({
+        consignorName: "John Doe",
+        shipmentType: "FCL",
+        // ...other default values...
+      } as ShipmentData);
     }
-    setFields(temporaryDatabank.getData());
+    setFields(data[data.length - 1] || {}); // Use the latest entry
   }, []);
 
   if (!fields || Object.keys(fields).length === 0) {
