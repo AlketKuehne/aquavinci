@@ -263,25 +263,29 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           </div>
           <div>
             <h3 className="text-md font-semibold mb-2">Protection</h3>
-            <label htmlFor="protectionSelect" className="block text-md font-medium mb-2">
+            <label className="block text-md font-medium mb-2">
               Select additional protection options:
             </label>
-            <select
-              id="protectionSelect"
-              multiple
-              value={selectedProtections}
-              onChange={handleProtectionChange}
-              className="w-full p-3 border rounded bg-gray-100"
-            >
-              {protectionOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-            <p className="mt-2 text-sm text-gray-600">
-              Hold down the Ctrl (Windows) or Command (Mac) key to select multiple options.
-            </p>
+            <div className="relative">
+              <div className="border rounded bg-gray-100 p-3 cursor-pointer">
+                {selectedProtections.length > 0
+                  ? selectedProtections.join(", ")
+                  : "Select protection options"}
+              </div>
+              <div className="absolute z-10 bg-white border rounded shadow-lg mt-1 w-full">
+                {protectionOptions.map((option) => (
+                  <label key={option} className="flex items-center px-3 py-2 hover:bg-gray-100">
+                    <input
+                      type="checkbox"
+                      checked={selectedProtections.includes(option)}
+                      onChange={() => toggleProtection(option)}
+                      className="w-5 h-5"
+                    />
+                    <span className="ml-2 text-lg font-medium">{option}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
