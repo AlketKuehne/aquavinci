@@ -9,6 +9,31 @@ export default function ReviewAndConfirmPage() {
   };
 
   const [fields, setFields] = useState({
+    consignorName: "Alex",
+    consignorEmail: "alex@example.com",
+    consignorPhone: "+123456789",
+    consignorAddress: "123 Main Street, City A",
+    consignorCountry: "USA",
+    consignorCity: "New York",
+    consigneeName: "John",
+    consigneeEmail: "john@example.com",
+    consigneePhone: "+987654321",
+    consigneeAddress: "456 Elm Street, City B",
+    consigneeCountry: "Canada",
+    consigneeCity: "Toronto",
+    originCountry: "USA",
+    originCity: "New York",
+    originStreet: "123 Main Street",
+    destinationCountry: "Canada",
+    destinationCity: "Toronto",
+    destinationStreet: "456 Elm Street",
+    containerType: "Standard",
+    goodsDescription: "Electronics",
+    packageType: "Box",
+    numberOfPieces: "10",
+    dangerousGoods: "No",
+    shippingDate: "2023-12-01",
+    deliveryDate: "2023-12-10",
     shipmentType: "FCL",
     fclSelection: "5",
     lclSelection: "",
@@ -21,7 +46,6 @@ export default function ReviewAndConfirmPage() {
     fragileSubCategory: "Laptop",
     extraProtection: true,
     deliveryOption: "deliver",
-    deliveryDate: "2023-12-01",
   });
 
   const [editableField, setEditableField] = useState<string | null>(null);
@@ -36,6 +60,156 @@ export default function ReviewAndConfirmPage() {
       <div className="flex flex-col items-start w-full max-w-6xl mt-4">
         <h1 className="text-4xl font-extrabold mb-6 text-left">Review & Confirm</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-7 w-full">
+          {/* Consignor (Shipper) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {["consignorName", "consignorEmail", "consignorPhone", "consignorAddress", "consignorCountry", "consignorCity"].map((field) => (
+                <div key={field} className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-md font-medium capitalize">{field.replace("consignor", "").replace(/([A-Z])/g, " $1")}</h3>
+                    {editableField === field ? (
+                      <input
+                        type="text"
+                        value={fields[field as keyof typeof fields]}
+                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        className="border rounded p-3 w-full"
+                      />
+                    ) : (
+                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                    )}
+                  </div>
+                  <button
+                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
+                    onClick={() => setEditableField(field)}
+                  >
+                    🖊️
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Consignee (Recipient) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {["consigneeName", "consigneeEmail", "consigneePhone", "consigneeAddress", "consigneeCountry", "consigneeCity"].map((field) => (
+                <div key={field} className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-md font-medium capitalize">{field.replace("consignee", "").replace(/([A-Z])/g, " $1")}</h3>
+                    {editableField === field ? (
+                      <input
+                        type="text"
+                        value={fields[field as keyof typeof fields]}
+                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        className="border rounded p-3 w-full"
+                      />
+                    ) : (
+                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                    )}
+                  </div>
+                  <button
+                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
+                    onClick={() => setEditableField(field)}
+                  >
+                    🖊️
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Origin (From) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {["originCountry", "originCity", "originStreet"].map((field) => (
+                <div key={field} className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-md font-medium capitalize">{field.replace("origin", "").replace(/([A-Z])/g, " $1")}</h3>
+                    {editableField === field ? (
+                      <input
+                        type="text"
+                        value={fields[field as keyof typeof fields]}
+                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        className="border rounded p-3 w-full"
+                      />
+                    ) : (
+                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                    )}
+                  </div>
+                  <button
+                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
+                    onClick={() => setEditableField(field)}
+                  >
+                    🖊️
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Destination (To) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {["destinationCountry", "destinationCity", "destinationStreet"].map((field) => (
+                <div key={field} className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-md font-medium capitalize">{field.replace("destination", "").replace(/([A-Z])/g, " $1")}</h3>
+                    {editableField === field ? (
+                      <input
+                        type="text"
+                        value={fields[field as keyof typeof fields]}
+                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        className="border rounded p-3 w-full"
+                      />
+                    ) : (
+                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                    )}
+                  </div>
+                  <button
+                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
+                    onClick={() => setEditableField(field)}
+                  >
+                    🖊️
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Additional Information */}
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Additional Information</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {["containerType", "goodsDescription", "packageType", "numberOfPieces", "dangerousGoods", "shippingDate", "deliveryDate"].map((field) => (
+                <div key={field} className="flex justify-between items-center">
+                  <div>
+                    <h3 className="text-md font-medium capitalize">{field.replace(/([A-Z])/g, " $1")}</h3>
+                    {editableField === field ? (
+                      <input
+                        type="text"
+                        value={fields[field as keyof typeof fields]}
+                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        className="border rounded p-3 w-full"
+                      />
+                    ) : (
+                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                    )}
+                  </div>
+                  <button
+                    className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
+                    onClick={() => setEditableField(field)}
+                  >
+                    🖊️
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Shipment Type */}
           <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
             <div>
