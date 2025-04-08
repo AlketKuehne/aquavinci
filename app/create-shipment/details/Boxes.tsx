@@ -231,19 +231,6 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
                 <option key={subCategory} value={subCategory}>{subCategory}</option>
               ))}
           </select>
-          <div className="flex items-center mt-6">
-            <input
-              type="checkbox"
-              id="extraProtection"
-              checked={extraProtection}
-              onChange={() => setExtraProtection(!extraProtection)}
-              className="w-5 h-5"
-              disabled={!isFragile}
-            />
-            <label htmlFor="extraProtection" className="ml-2 text-lg font-medium">
-              Request additional protection for fragile items?
-            </label>
-          </div>
         </div>
         <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Same width as other boxes */}
           <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
@@ -289,6 +276,19 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
         <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Insurance & Additional Protection */}
           <h2 className="text-lg font-bold mb-4">Insurance & Additional Protection</h2>
           <div className="mb-4">
+            <h3 className="text-md font-semibold mb-2">Request Additional Protection</h3>
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                id="extraProtection"
+                checked={extraProtection}
+                onChange={() => setExtraProtection(!extraProtection)}
+                className="w-5 h-5"
+              />
+              <span className="ml-2 text-lg font-medium">Request additional protection for fragile items?</span>
+            </label>
+          </div>
+          <div>
             <h3 className="text-md font-semibold mb-2">Insurance</h3>
             <label className="flex items-center">
               <input
