@@ -49,6 +49,13 @@ export default function ReviewAndConfirmPage() {
 
   // Load data from the temporaryDatabank
   useEffect(() => {
+    const data = temporaryDatabank.getData();
+    if (Object.keys(data).length === 0) {
+      // If no data exists, set default values
+      temporaryDatabank.updateField("consignorName", "N/A");
+      temporaryDatabank.updateField("consigneeName", "N/A");
+      temporaryDatabank.updateField("shipmentType", "FCL");
+    }
     setFields(temporaryDatabank.getData());
   }, []);
 

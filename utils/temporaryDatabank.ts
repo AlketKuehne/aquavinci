@@ -51,6 +51,15 @@ class TemporaryDatabank {
     this.data[field] = value as any; // Explicitly cast to `any` to handle `string | boolean`
   }
 
+  // Initialize with default values if empty
+  initializeDefaults(): void {
+    if (Object.keys(this.data).length === 0) {
+      this.updateField("consignorName", "N/A");
+      this.updateField("consigneeName", "N/A");
+      this.updateField("shipmentType", "FCL");
+    }
+  }
+
   // Reset the databank
   reset(): void {
     this.data = {};
@@ -58,4 +67,5 @@ class TemporaryDatabank {
 }
 
 const temporaryDatabank = new TemporaryDatabank();
+temporaryDatabank.initializeDefaults(); // Ensure defaults are set on initialization
 export default temporaryDatabank;
