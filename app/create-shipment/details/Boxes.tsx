@@ -218,7 +218,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
               value={deliveryDate}
               onChange={(e) => setDeliveryDate(e.target.value)}
               disabled={!deliveryOption} // Disabled if no option is selected
-              min={minDeliveryDate && new Date(minDeliveryDate).toISOString().split("T")[0]} // Ensure min is valid
+              min={minDeliveryDate} // Use the minimum delivery date passed from /create-shipment
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
