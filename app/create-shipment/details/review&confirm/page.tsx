@@ -33,8 +33,8 @@ export default function ReviewAndConfirmPage() {
   return (
     <div className="flex flex-col items-center w-full max-w-6xl mt-4 px-8 pt-12">
       <NavigationBar onNavigate={handleNavigate} />
-      <h1 className="text-4xl font-extrabold mb-8 self-start">Review & Confirm</h1>
-      <div className="grid grid-cols-2 gap-x-6 gap-y-8 w-full">
+      <h1 className="text-4xl font-extrabold mb-8 text-center">Review & Confirm</h1>
+      <div className="grid grid-cols-2 gap-x-6 gap-y-8 w-full justify-center">
         {/* Shipment Type */}
         <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center">
           <div>
