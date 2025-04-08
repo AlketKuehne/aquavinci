@@ -15,6 +15,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   const [extraProtection, setExtraProtection] = useState(false);
   const [insuranceRequired, setInsuranceRequired] = useState(false); // State for insurance checkbox
   const [selectedProtections, setSelectedProtections] = useState<string[]>([]); // State for multiple protection options
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
   const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
   const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
   const [country, setCountry] = useState<string | null>(null); // Add country state
@@ -63,6 +64,10 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     setSelectedProtections((prev) =>
       prev.includes(option) ? prev.filter((item) => item !== option) : [...prev, option]
     );
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
   };
 
   const handleProtectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -267,24 +272,29 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
               Select additional protection options:
             </label>
             <div className="relative">
-              <div className="border rounded bg-gray-100 p-3 cursor-pointer">
+              <div
+                className="border rounded bg-gray-100 p-3 cursor-pointer"
+                onClick={toggleDropdown}
+              >
                 {selectedProtections.length > 0
                   ? selectedProtections.join(", ")
                   : "Select protection options"}
               </div>
-              <div className="absolute z-10 bg-white border rounded shadow-lg mt-1 w-full">
-                {protectionOptions.map((option) => (
-                  <label key={option} className="flex items-center px-3 py-2 hover:bg-gray-100">
-                    <input
-                      type="checkbox"
-                      checked={selectedProtections.includes(option)}
-                      onChange={() => toggleProtection(option)}
-                      className="w-5 h-5"
-                    />
-                    <span className="ml-2 text-lg font-medium">{option}</span>
-                  </label>
-                ))}
-              </div>
+              {isDropdownOpen && (
+                <div className="absolute z-10 bg-white border rounded shadow-lg mt-1 w-full">
+                  {protectionOptions.map((option) => (
+                    <label key={option} className="flex items-center px-3 py-2 hover:bg-gray-100">
+                      <input
+                        type="checkbox"
+                        checked={selectedProtections.includes(option)}
+                        onChange={() => toggleProtection(option)}
+                        className="w-5 h-5"
+                      />
+                      <span className="ml-2 text-lg font-medium">{option}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
