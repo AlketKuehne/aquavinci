@@ -242,8 +242,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             />
           </div>
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Insurance and Additional Protection */}
-          <h2 className="text-lg font-bold mb-4">Insurance and Additional Protection</h2>
+        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Insurance & Additional Protection */}
+          <h2 className="text-lg font-bold mb-4">Insurance & Additional Protection</h2>
           <div className="mb-4">
             <h3 className="text-md font-semibold mb-2">Insurance</h3>
             <label className="flex items-center">
