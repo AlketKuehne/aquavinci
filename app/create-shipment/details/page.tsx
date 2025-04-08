@@ -115,27 +115,6 @@ function DetailsPageContent() {
             shippingDate={shippingDate || ""} // Ensure shippingDate is a string
             minDeliveryDate={minDeliveryDate || ""} // Ensure minDeliveryDate is a string
           />
-          <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
-            <h1 className="text-4xl font-extrabold mb-6 text-left">Shipment Details</h1>
-            <form className="grid grid-cols-2 gap-4 w-full max-w-4xl">
-              <div>
-                <label className="block text-sm font-medium">Container Type</label>
-                <input
-                  type="text"
-                  value={formData.containerType}
-                  onChange={(e) => handleInputChange("containerType", e.target.value)}
-                  className="border rounded p-2 w-full"
-                />
-              </div>
-              {/* Add other input fields similarly */}
-            </form>
-            <button
-              onClick={handleContinue}
-              className="mt-6 bg-blue-500 text-white px-4 py-2 rounded"
-            >
-              Continue
-            </button>
-          </div>
         </>
       )}
     </div>
