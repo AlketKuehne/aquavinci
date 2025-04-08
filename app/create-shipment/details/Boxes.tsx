@@ -63,6 +63,13 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     setDeliveryDate("");
   }, [shippingDate, minDeliveryDate]);
 
+  const calculateMinDeliveryDate = (): string => {
+    if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];
+    const shippingDateObj = new Date(shippingDate);
+    const minDeliveryDateObj = new Date(minDeliveryDate);
+    return minDeliveryDateObj > shippingDateObj ? minDeliveryDateObj.toISOString().split("T")[0] : shippingDateObj.toISOString().split("T")[0];
+  };
+
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
@@ -218,7 +225,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
               value={deliveryDate}
               onChange={(e) => setDeliveryDate(e.target.value)}
               disabled={!deliveryOption} // Disabled if no option is selected
-              min={minDeliveryDate} // Use the minimum delivery date passed from /create-shipment
+              min={calculateMinDeliveryDate()} // Dynamically calculate the minimum delivery date
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
