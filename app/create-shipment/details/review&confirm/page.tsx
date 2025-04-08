@@ -47,20 +47,17 @@ interface ShipmentData {
 export default function ReviewAndConfirmPage() {
   const [fields, setFields] = useState<Partial<ShipmentData>>({});
 
-  // Load data from the temporaryDatabank
   useEffect(() => {
     const data = temporaryDatabank.getData();
     if (Object.keys(data).length === 0) {
-      // If no data exists, set default values
-      temporaryDatabank.updateField("consignorName", "N/A");
-      temporaryDatabank.updateField("consigneeName", "N/A");
+      temporaryDatabank.updateField("consignorName", "John Doe");
       temporaryDatabank.updateField("shipmentType", "FCL");
     }
     setFields(temporaryDatabank.getData());
   }, []);
 
   if (!fields || Object.keys(fields).length === 0) {
-    return <div>Loading...</div>; // Show a loading state while data is being fetched
+    return <div>Loading...</div>;
   }
 
   return (
@@ -73,11 +70,11 @@ export default function ReviewAndConfirmPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
             <div className="grid grid-cols-2 gap-4">
-              {["consignorName", "consignorEmail", "consignorPhone", "consignorAddress", "consignorCountry", "consignorCity"].map((field) => (
+              {["consignorName", "consignorEmail", "consignorPhone"].map((field) => (
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("consignor", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                   </div>
                 </div>
               ))}
@@ -92,7 +89,7 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("consignee", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                   </div>
                 </div>
               ))}
@@ -107,7 +104,7 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("origin", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                   </div>
                 </div>
               ))}
@@ -122,7 +119,7 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace("destination", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                   </div>
                 </div>
               ))}
@@ -137,7 +134,7 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field.replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                   </div>
                 </div>
               ))}
@@ -180,7 +177,7 @@ export default function ReviewAndConfirmPage() {
                 <div key={field} className="flex justify-between items-center">
                   <div>
                     <h3 className="text-md font-medium capitalize">{field}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData] || "N/A"}</p>
+                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                   </div>
                 </div>
               ))}

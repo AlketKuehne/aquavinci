@@ -41,31 +41,69 @@ interface ShipmentData {
 class TemporaryDatabank {
   private data: Partial<ShipmentData> = {};
 
+  constructor() {
+    this.initializeDefaults();
+  }
+
+  // Initialize all fields with default values
+  private initializeDefaults(): void {
+    const defaultValues: Partial<ShipmentData> = {
+      consignorName: "No Input",
+      consignorEmail: "No Input",
+      consignorPhone: "No Input",
+      consignorAddress: "No Input",
+      consignorCountry: "No Input",
+      consignorCity: "No Input",
+      consigneeName: "No Input",
+      consigneeEmail: "No Input",
+      consigneePhone: "No Input",
+      consigneeAddress: "No Input",
+      consigneeCountry: "No Input",
+      consigneeCity: "No Input",
+      originCountry: "No Input",
+      originCity: "No Input",
+      originStreet: "No Input",
+      destinationCountry: "No Input",
+      destinationCity: "No Input",
+      destinationStreet: "No Input",
+      containerType: "No Input",
+      goodsDescription: "No Input",
+      packageType: "No Input",
+      numberOfPieces: "No Input",
+      dangerousGoods: "No Input",
+      shippingDate: "No Input",
+      deliveryDate: "No Input",
+      shipmentType: "No Input",
+      fclSelection: "No Input",
+      lclSelection: "No Input",
+      weight: "No Input",
+      height: "No Input",
+      length: "No Input",
+      width: "No Input",
+      isFragile: false,
+      fragileCategory: "No Input",
+      fragileSubCategory: "No Input",
+      extraProtection: false,
+      deliveryOption: "No Input",
+    };
+    this.data = { ...defaultValues };
+  }
+
   // Get the current data
   getData(): Partial<ShipmentData> {
     return this.data;
   }
 
-  // Update a specific field
+  // Update a specific field in real-time
   updateField(field: keyof ShipmentData, value: string | boolean): void {
     this.data[field] = value as any; // Explicitly cast to `any` to handle `string | boolean`
   }
 
-  // Initialize with default values if empty
-  initializeDefaults(): void {
-    if (Object.keys(this.data).length === 0) {
-      this.updateField("consignorName", "N/A");
-      this.updateField("consigneeName", "N/A");
-      this.updateField("shipmentType", "FCL");
-    }
-  }
-
   // Reset the databank
   reset(): void {
-    this.data = {};
+    this.initializeDefaults();
   }
 }
 
 const temporaryDatabank = new TemporaryDatabank();
-temporaryDatabank.initializeDefaults(); // Ensure defaults are set on initialization
 export default temporaryDatabank;
