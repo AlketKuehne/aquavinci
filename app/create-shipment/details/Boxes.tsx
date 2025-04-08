@@ -316,7 +316,12 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
                 type="checkbox"
                 id="extraProtection"
                 checked={extraProtection}
-                onChange={() => setExtraProtection(!extraProtection)}
+                onChange={() => {
+                  setExtraProtection(!extraProtection);
+                  if (!extraProtection) {
+                    setSelectedProtections([]); // Reset selected protections if unchecked
+                  }
+                }}
                 className="w-5 h-5"
               />
               <span className="ml-2 text-lg font-medium">Request additional protection for fragile items?</span>
@@ -329,14 +334,18 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             </label>
             <div className="relative" ref={dropdownRef}>
               <div
-                className="border rounded bg-gray-100 p-3 cursor-pointer"
-                onClick={toggleDropdown}
+                className={`border rounded p-3 cursor-pointer ${
+                  extraProtection ? "bg-gray-100" : "bg-gray-300 cursor-not-allowed"
+                }`}
+                onClick={() => {
+                  if (extraProtection) toggleDropdown();
+                }}
               >
                 {selectedProtections.length > 0
                   ? selectedProtections.join(", ")
                   : "Select protection options"}
               </div>
-              {isDropdownOpen && (
+              {isDropdownOpen && extraProtection && (
                 <div
                   className={`absolute z-10 bg-white border rounded shadow-lg mt-1 w-full max-h-[300px] overflow-y-auto ${
                     dropdownDirection === "up" ? "bottom-full mb-1" : "top-full mt-1"
