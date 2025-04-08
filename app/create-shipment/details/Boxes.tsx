@@ -151,6 +151,10 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     return baseDate.toISOString().split("T")[0];
   };
 
+  const handleContinueClick = () => {
+    router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm");
+  };
+
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8 pt-12"> {/* Adjusted pt-12 for padding */}
       <h1 className="text-4xl font-extrabold mb-8 self-start">Details</h1>
@@ -376,10 +380,11 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           </div>
         </div>
       </div>
-      <div className="flex justify-end w-full mt-12"> {/* Adjusted margin for lower positioning */}
+      {/* Continue Button */}
+      <div className="flex justify-end w-full mt-16 mb-16">
         <button
-          onClick={() => router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm")}
-          className="bg-black text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-[1250ms] hover:bg-white hover:text-black"
+          className="flex items-center px-6 py-3 bg-black text-white text-lg font-medium rounded-full transition-all duration-[1250ms] hover:bg-[#E5E5E5] hover:text-black cursor-pointer"
+          onClick={handleContinueClick}
         >
           Continue
         </button>
