@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
-import databank from "../../../../../utils/Databank"; // Updated import to use databank
+import databank from "../../../../utils/databank"; // Simplified import path
 
 interface ShipmentData {
   consignorName: string;
@@ -42,6 +42,13 @@ interface ShipmentData {
   fragileSubCategory: string;
   extraProtection: boolean;
   deliveryOption: string;
+  consignorFullName: string;
+  consignorFullAddress: string;
+  consigneeFullName: string;
+  consigneeFullAddress: string;
+  street: string;
+  description: string;
+  isDangerousGoods: boolean;
 }
 
 export default function ReviewAndConfirmPage() {
@@ -52,8 +59,49 @@ export default function ReviewAndConfirmPage() {
     if (data.length === 0) {
       databank.saveData({
         consignorName: "John Doe",
+        consignorEmail: "john.doe@example.com",
+        consignorPhone: "+123456789",
+        consignorAddress: "123 Main Street",
+        consignorCountry: "USA",
+        consignorCity: "New York",
+        consigneeName: "Jane Smith",
+        consigneeEmail: "jane.smith@example.com",
+        consigneePhone: "+987654321",
+        consigneeAddress: "456 Elm Street",
+        consigneeCountry: "Canada",
+        consigneeCity: "Toronto",
+        originCountry: "USA",
+        originCity: "New York",
+        originStreet: "123 Main Street",
+        destinationCountry: "Canada",
+        destinationCity: "Toronto",
+        destinationStreet: "456 Elm Street",
+        containerType: "20ft",
+        goodsDescription: "Electronics",
+        packageType: "Box",
+        numberOfPieces: "10",
+        dangerousGoods: "No",
+        shippingDate: "2023-10-01",
+        deliveryDate: "2023-10-10",
         shipmentType: "FCL",
-        // ...other default values...
+        fclSelection: "20ft",
+        lclSelection: "",
+        weight: "1000kg",
+        height: "2m",
+        length: "5m",
+        width: "2m",
+        isFragile: false,
+        fragileCategory: "",
+        fragileSubCategory: "",
+        extraProtection: false,
+        deliveryOption: "Deliver",
+        consignorFullName: "John Doe",
+        consignorFullAddress: "123 Main Street, New York, USA",
+        consigneeFullName: "Jane Smith",
+        consigneeFullAddress: "456 Elm Street, Toronto, Canada",
+        street: "123 Main Street",
+        description: "Electronics shipment",
+        isDangerousGoods: false,
       } as ShipmentData);
     }
     setFields(data[data.length - 1] || {}); // Use the latest entry
