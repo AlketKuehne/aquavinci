@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: { shipmentType: string | null; shippingDate: string; minDeliveryDate: string }) {
+  const router = useRouter(); // Initialize router for navigation
   const [fclSelection, setFclSelection] = useState<string | null>(null);
   const [lclSelection, setLclSelection] = useState<string | null>(null);
   const [weight, setWeight] = useState<string>("");
@@ -373,6 +375,14 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex justify-end w-full mt-8"> {/* Container for the button */}
+        <button
+          onClick={() => router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm")}
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300"
+        >
+          Continue
+        </button>
       </div>
     </div>
   );
