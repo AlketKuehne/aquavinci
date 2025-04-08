@@ -214,7 +214,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
               value={deliveryDate}
               onChange={(e) => setDeliveryDate(e.target.value)}
               disabled={!deliveryOption || !getDeliveryDateConstraints().min} // Disabled if no option or constraints
-              min={getDeliveryDateConstraints().min}
+              min={getDeliveryDateConstraints().min || new Date().toISOString().split("T")[0]} // Ensure min is valid
               max={getDeliveryDateConstraints().max}
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
