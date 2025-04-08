@@ -14,7 +14,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
   const [extraProtection, setExtraProtection] = useState(false);
   const [insuranceRequired, setInsuranceRequired] = useState(false); // State for insurance checkbox
-  const [bubbleWrapOption, setBubbleWrapOption] = useState<string | null>(null); // State for bubble wrap dropdown
+  const [selectedProtections, setSelectedProtections] = useState<string[]>([]); // State for multiple protection options
   const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
   const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
   const [country, setCountry] = useState<string | null>(null); // Add country state
@@ -32,6 +32,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   };
 
   const bubbleWrapOptions = ["None", "Standard Bubble Wrap", "Heavy-Duty Bubble Wrap"];
+
+  const protectionOptions = ["Bubble Wrap", "Foam Padding", "Shock Absorbers", "Waterproof Packaging"];
 
   const handleNumberInput = (value: string, setter: (val: string) => void, max: number) => {
     if (value === "" || (/^[1-9][0-9]*$/.test(value) && parseInt(value) <= max)) {
@@ -55,6 +57,12 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
 
     return { min: earliestDeliveryDate.toISOString().split("T")[0], max: "" }; // No maximum date
+  };
+
+  const toggleProtection = (option: string) => {
+    setSelectedProtections((prev) =>
+      prev.includes(option) ? prev.filter((item) => item !== option) : [...prev, option]
+    );
   };
 
   useEffect(() => {
@@ -250,22 +258,22 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           </div>
           <div>
             <h3 className="text-md font-semibold mb-2">Protection</h3>
-            <label htmlFor="bubbleWrap" className="block text-md font-medium mb-2">
-              Select additional bubble wrap protection:
+            <label className="block text-md font-medium mb-2">
+              Select additional protection options:
             </label>
-            <select
-              id="bubbleWrap"
-              value={bubbleWrapOption || ""}
-              onChange={(e) => setBubbleWrapOption(e.target.value)}
-              className="w-full p-3 border rounded bg-gray-100"
-            >
-              <option value="">Select an option</option>
-              {bubbleWrapOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
+            <div className="flex flex-col gap-2">
+              {protectionOptions.map((option) => (
+                <label key={option} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={selectedProtections.includes(option)}
+                    onChange={() => toggleProtection(option)}
+                    className="w-5 h-5"
+                  />
+                  <span className="ml-2 text-lg font-medium">{option}</span>
+                </label>
               ))}
-            </select>
+            </div>
           </div>
         </div>
       </div>
