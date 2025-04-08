@@ -13,6 +13,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   const [fragileCategory, setFragileCategory] = useState<string | null>(null);
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
   const [extraProtection, setExtraProtection] = useState(false);
+  const [insuranceRequired, setInsuranceRequired] = useState(false); // State for insurance checkbox
+  const [bubbleWrapOption, setBubbleWrapOption] = useState<string | null>(null); // State for bubble wrap dropdown
   const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
   const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
   const [country, setCountry] = useState<string | null>(null); // Add country state
@@ -28,6 +30,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     Jewelry: ["Necklace", "Ring", "Bracelet", "Other"],
     Other: ["Custom Item 1", "Custom Item 2", "Other"],
   };
+
+  const bubbleWrapOptions = ["None", "Standard Bubble Wrap", "Heavy-Duty Bubble Wrap"];
 
   const handleNumberInput = (value: string, setter: (val: string) => void, max: number) => {
     if (value === "" || (/^[1-9][0-9]*$/.test(value) && parseInt(value) <= max)) {
@@ -189,7 +193,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             </label>
           </div>
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg col-span-2"> {/* Full width for delivery option */}
+        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Same width as other boxes */}
           <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
           <label className="flex items-center mb-4">
             <input
@@ -228,6 +232,40 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
             />
+          </div>
+        </div>
+        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Insurance and Additional Protection */}
+          <h2 className="text-lg font-bold mb-4">Insurance and Additional Protection</h2>
+          <div className="mb-4">
+            <h3 className="text-md font-semibold mb-2">Insurance</h3>
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                checked={insuranceRequired}
+                onChange={(e) => setInsuranceRequired(e.target.checked)}
+                className="w-5 h-5"
+              />
+              <span className="ml-2 text-lg font-medium">Do you require insurance for this shipment?</span>
+            </label>
+          </div>
+          <div>
+            <h3 className="text-md font-semibold mb-2">Protection</h3>
+            <label htmlFor="bubbleWrap" className="block text-md font-medium mb-2">
+              Select additional bubble wrap protection:
+            </label>
+            <select
+              id="bubbleWrap"
+              value={bubbleWrapOption || ""}
+              onChange={(e) => setBubbleWrapOption(e.target.value)}
+              className="w-full p-3 border rounded bg-gray-100"
+            >
+              <option value="">Select an option</option>
+              {bubbleWrapOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
