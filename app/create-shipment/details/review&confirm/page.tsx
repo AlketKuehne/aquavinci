@@ -3,50 +3,48 @@
 import { useState } from "react";
 import NavigationBar from "./NavigationBar";
 
-export default function ReviewAndConfirmPage() {
-  const handleNavigate = (url: string) => {
-    window.location.href = url; // Navigate to the specified URL
-  };
+interface ShipmentData {
+  consignorName: string;
+  consignorEmail: string;
+  consignorPhone: string;
+  consignorAddress: string;
+  consignorCountry: string;
+  consignorCity: string;
+  consigneeName: string;
+  consigneeEmail: string;
+  consigneePhone: string;
+  consigneeAddress: string;
+  consigneeCountry: string;
+  consigneeCity: string;
+  originCountry: string;
+  originCity: string;
+  originStreet: string;
+  destinationCountry: string;
+  destinationCity: string;
+  destinationStreet: string;
+  containerType: string;
+  goodsDescription: string;
+  packageType: string;
+  numberOfPieces: string;
+  dangerousGoods: string;
+  shippingDate: string;
+  deliveryDate: string;
+  shipmentType: string;
+  fclSelection: string;
+  lclSelection: string;
+  weight: string;
+  height: string;
+  length: string;
+  width: string;
+  isFragile: boolean;
+  fragileCategory: string;
+  fragileSubCategory: string;
+  extraProtection: boolean;
+  deliveryOption: string;
+}
 
-  const [fields, setFields] = useState({
-    consignorName: "Alex",
-    consignorEmail: "alex@example.com",
-    consignorPhone: "+123456789",
-    consignorAddress: "123 Main Street, City A",
-    consignorCountry: "USA",
-    consignorCity: "New York",
-    consigneeName: "John",
-    consigneeEmail: "john@example.com",
-    consigneePhone: "+987654321",
-    consigneeAddress: "456 Elm Street, City B",
-    consigneeCountry: "Canada",
-    consigneeCity: "Toronto",
-    originCountry: "USA",
-    originCity: "New York",
-    originStreet: "123 Main Street",
-    destinationCountry: "Canada",
-    destinationCity: "Toronto",
-    destinationStreet: "456 Elm Street",
-    containerType: "Standard",
-    goodsDescription: "Electronics",
-    packageType: "Box",
-    numberOfPieces: "10",
-    dangerousGoods: "No",
-    shippingDate: "2023-12-01",
-    deliveryDate: "2023-12-10",
-    shipmentType: "FCL",
-    fclSelection: "5",
-    lclSelection: "",
-    weight: "1000",
-    height: "2",
-    length: "4",
-    width: "3",
-    isFragile: true,
-    fragileCategory: "Electronic",
-    fragileSubCategory: "Laptop",
-    extraProtection: true,
-    deliveryOption: "deliver",
-  });
+export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: ShipmentData }) {
+  const [fields, setFields] = useState(shipmentData);
 
   const [editableField, setEditableField] = useState<string | null>(null);
 
@@ -56,7 +54,7 @@ export default function ReviewAndConfirmPage() {
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
-      <NavigationBar onNavigate={handleNavigate} />
+      <NavigationBar onNavigate={(url) => (window.location.href = url)} />
       <div className="flex flex-col items-start w-full max-w-6xl mt-4">
         <h1 className="text-4xl font-extrabold mb-6 text-left">Review & Confirm</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-7 w-full">
@@ -71,12 +69,12 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]?.toString() || ""}
+                        value={fields[field]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                      <p className="text-gray-700">{fields[field]}</p>
                     )}
                   </div>
                   <button
@@ -101,12 +99,12 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]?.toString() || ""}
+                        value={fields[field]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                      <p className="text-gray-700">{fields[field]}</p>
                     )}
                   </div>
                   <button
@@ -131,12 +129,12 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]?.toString() || ""}
+                        value={fields[field]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                      <p className="text-gray-700">{fields[field]}</p>
                     )}
                   </div>
                   <button
@@ -161,12 +159,12 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]?.toString() || ""}
+                        value={fields[field]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                      <p className="text-gray-700">{fields[field]}</p>
                     )}
                   </div>
                   <button
@@ -191,12 +189,12 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]?.toString() || ""}
+                        value={fields[field]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                      <p className="text-gray-700">{fields[field]}</p>
                     )}
                   </div>
                   <button
@@ -285,12 +283,12 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]?.toString() || ""}
+                        value={fields[field]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field as keyof typeof fields]}</p>
+                      <p className="text-gray-700">{fields[field]}</p>
                     )}
                   </div>
                   <button
