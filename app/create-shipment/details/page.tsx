@@ -14,6 +14,8 @@ function DetailsPageContent() {
   const [showPopup, setShowPopup] = useState(false);
   const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
+  const shippingDate = searchParams.get("shippingDate");
+  const minDeliveryDate = searchParams.get("minDeliveryDate");
 
   useEffect(() => {
     const authorized = sessionStorage.getItem("authorizedForDetails");
@@ -76,7 +78,11 @@ function DetailsPageContent() {
               }}
             />
           )}
-          <Boxes shipmentType={shipmentType} />
+          <Boxes 
+            shipmentType={shipmentType} 
+            shippingDate={shippingDate || ""} // Ensure shippingDate is a string
+            minDeliveryDate={minDeliveryDate || ""} // Ensure minDeliveryDate is a string
+          />
         </>
       )}
     </div>
