@@ -24,6 +24,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
   const [country, setCountry] = useState<string | null>(null); // Add country state
   const [destinationCountry, setDestinationCountry] = useState<string | null>(null); // Add destination country state
+  const [showPopup, setShowPopup] = useState(false); // State for popup visibility
 
   const fragileSubCategories = {
     Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -152,7 +153,17 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   };
 
   const handleContinueClick = () => {
-    router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm");
+    // Validate mandatory fields
+    const isFclValid = shipmentType === "FCL" && fclSelection;
+    const isLclValid = shipmentType === "LCL" && lclSelection;
+    const isSizeWeightValid = weight && height && length && width;
+    const isDeliveryValid = deliveryOption && deliveryDate;
+
+    if ((isFclValid || isLclValid) && isSizeWeightValid && isDeliveryValid) {
+      router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm");
+    } else {
+      setShowPopup(true); // Show popup if validation fails
+    }
   };
 
   return (
@@ -389,6 +400,24 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           Continue
         </button>
       </div>
+      {/* Popup */}
+      {showPopup && (
+        <div
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.5)" }} // Semi-transparent background
+          className="fixed top-0 left-0 w-full h-full z-50 flex items-center justify-center pointer-events-auto"
+        >
+          <div className="bg-white p-6 rounded-lg shadow-lg relative w-96 z-10">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 cursor-pointer text-3xl"
+              onClick={() => setShowPopup(false)}
+            >
+              ×
+            </button>
+            <h2 className="text-lg font-bold mb-4">Incomplete Fields</h2>
+            <p className="text-gray-700">Please fill in all mandatory fields before continuing.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
