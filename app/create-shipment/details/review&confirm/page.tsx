@@ -44,11 +44,11 @@ interface ShipmentData {
 }
 
 export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: ShipmentData }) {
-  const [fields, setFields] = useState(shipmentData);
+  const [fields, setFields] = useState<ShipmentData>(shipmentData);
 
-  const [editableField, setEditableField] = useState<string | null>(null);
+  const [editableField, setEditableField] = useState<keyof ShipmentData | null>(null);
 
-  const handleFieldChange = (field: string, value: string) => {
+  const handleFieldChange = (field: keyof ShipmentData, value: string) => {
     setFields((prev) => ({ ...prev, [field]: value }));
   };
 
@@ -69,17 +69,17 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        value={fields[field as keyof ShipmentData]?.toString() || ""}
+                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field]}</p>
+                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                     )}
                   </div>
                   <button
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field)}
+                    onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
                     🖊️
                   </button>
@@ -99,17 +99,17 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        value={fields[field as keyof ShipmentData]?.toString() || ""}
+                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field]}</p>
+                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                     )}
                   </div>
                   <button
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field)}
+                    onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
                     🖊️
                   </button>
@@ -129,17 +129,17 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        value={fields[field as keyof ShipmentData]?.toString() || ""}
+                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field]}</p>
+                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                     )}
                   </div>
                   <button
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field)}
+                    onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
                     🖊️
                   </button>
@@ -159,17 +159,17 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        value={fields[field as keyof ShipmentData]?.toString() || ""}
+                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field]}</p>
+                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                     )}
                   </div>
                   <button
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field)}
+                    onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
                     🖊️
                   </button>
@@ -189,17 +189,17 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        value={fields[field as keyof ShipmentData]?.toString() || ""}
+                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field]}</p>
+                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                     )}
                   </div>
                   <button
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field)}
+                    onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
                     🖊️
                   </button>
@@ -283,17 +283,17 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field]?.toString() || ""}
-                        onChange={(e) => handleFieldChange(field, e.target.value)}
+                        value={fields[field as keyof ShipmentData]?.toString() || ""}
+                        onChange={(e) => handleFieldChange(field as keyof ShipmentData, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
                     ) : (
-                      <p className="text-gray-700">{fields[field]}</p>
+                      <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
                     )}
                   </div>
                   <button
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
-                    onClick={() => setEditableField(field)}
+                    onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
                     🖊️
                   </button>
