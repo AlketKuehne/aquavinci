@@ -71,7 +71,7 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]}
+                        value={fields[field as keyof typeof fields]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
@@ -101,7 +101,7 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]}
+                        value={fields[field as keyof typeof fields]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
@@ -131,7 +131,7 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]}
+                        value={fields[field as keyof typeof fields]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
@@ -161,7 +161,7 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]}
+                        value={fields[field as keyof typeof fields]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
@@ -191,7 +191,7 @@ export default function ReviewAndConfirmPage() {
                     {editableField === field ? (
                       <input
                         type="text"
-                        value={fields[field as keyof typeof fields]}
+                        value={fields[field as keyof typeof fields]?.toString() || ""}
                         onChange={(e) => handleFieldChange(field, e.target.value)}
                         className="border rounded p-3 w-full"
                       />
