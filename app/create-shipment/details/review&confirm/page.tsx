@@ -47,21 +47,19 @@ export default function ReviewAndConfirmPage() {
   const [fields, setFields] = useState<ShipmentData | null>(null);
   const [editableField, setEditableField] = useState<keyof ShipmentData | null>(null);
 
-  // Simulate fetching data from a backend or context
+  // Load data from localStorage
   useEffect(() => {
-    const fetchShipmentData = async () => {
-      // Replace this with actual API or context fetching logic
-      const response = await fetch("/api/shipment-data"); // Example API endpoint
-      const data: ShipmentData = await response.json();
-      setFields(data);
-    };
-
-    fetchShipmentData();
+    const storedData = localStorage.getItem("shipmentData");
+    if (storedData) {
+      setFields(JSON.parse(storedData));
+    }
   }, []);
 
   const handleFieldChange = (field: keyof ShipmentData, value: string) => {
     if (fields) {
-      setFields((prev) => ({ ...prev!, [field]: value }));
+      const updatedFields = { ...fields, [field]: value };
+      setFields(updatedFields);
+      localStorage.setItem("shipmentData", JSON.stringify(updatedFields)); // Save updated data to localStorage
     }
   };
 
