@@ -36,7 +36,28 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
 
   const bubbleWrapOptions = ["None", "Standard Bubble Wrap", "Heavy-Duty Bubble Wrap"];
 
-  const protectionOptions = ["Bubble Wrap", "Foam Padding", "Shock Absorbers", "Waterproof Packaging"];
+  const protectionOptions = [
+    "Bubble Wrap",
+    "Foam Padding",
+    "Shock Absorbers",
+    "Waterproof Packaging",
+    "Anti-Static Wrap",
+    "Corner Protectors",
+    "Thermal Insulation",
+    "Vibration Dampeners",
+    "Custom Crates",
+    "Heavy-Duty Straps",
+    "Pallet Covers",
+    "Edge Guards",
+    "Stretch Film",
+    "Humidity Control Packs",
+    "Impact Indicators",
+    "Tamper-Evident Seals",
+    "Reinforced Boxes",
+    "Cushioning Material",
+    "Protective Sleeves",
+    "Void Fillers",
+  ]; // Expanded list of protection options
 
   const handleNumberInput = (value: string, setter: (val: string) => void, max: number) => {
     if (value === "" || (/^[1-9][0-9]*$/.test(value) && parseInt(value) <= max)) {
@@ -101,7 +122,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
       const viewportHeight = window.innerHeight;
 
       // Check if there's enough space below; if not, drop up
-      if (dropdownRect.bottom + 150 > viewportHeight) {
+      if (dropdownRect.bottom + 300 > viewportHeight) {
         setDropdownDirection("up");
       } else {
         setDropdownDirection("down");
@@ -317,21 +338,23 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
               </div>
               {isDropdownOpen && (
                 <div
-                  className={`absolute z-10 bg-white border rounded shadow-lg mt-1 w-full ${
+                  className={`absolute z-10 bg-white border rounded shadow-lg mt-1 w-full max-h-[300px] overflow-y-auto ${
                     dropdownDirection === "up" ? "bottom-full mb-1" : "top-full mt-1"
                   }`}
                 >
-                  {protectionOptions.map((option) => (
-                    <label key={option} className="flex items-center px-3 py-2 hover:bg-gray-100">
-                      <input
-                        type="checkbox"
-                        checked={selectedProtections.includes(option)}
-                        onChange={() => toggleProtection(option)}
-                        className="w-5 h-5"
-                      />
-                      <span className="ml-2 text-lg font-medium">{option}</span>
-                    </label>
-                  ))}
+                  <div className="grid grid-cols-3 gap-4 p-3">
+                    {protectionOptions.map((option) => (
+                      <label key={option} className="flex items-center">
+                        <input
+                          type="checkbox"
+                          checked={selectedProtections.includes(option)}
+                          onChange={() => toggleProtection(option)}
+                          className="w-5 h-5"
+                        />
+                        <span className="ml-2 text-sm font-medium">{option}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
