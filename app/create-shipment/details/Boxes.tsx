@@ -189,8 +189,9 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
               onChange={(e) => setDeliveryDate(e.target.value)}
               disabled={!deliveryOption} // Disabled if no option is selected
               className={`w-full p-3 border rounded ${
-                deliveryOption ? "bg-gray-100" : "bg-gray-300 cursor-not-allowed"
+                deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
+              min={new Date().toISOString().split("T")[0]} // Ensure the date cannot be in the past
             />
           </div>
         </div>
