@@ -76,7 +76,7 @@ export default function CreateShipmentPage() {
   const [numberOfPieces, setNumberOfPieces] = useState('');
   const [isDangerousGoods, setIsDangerousGoods] = useState(false);
   const [shippingDate, setShippingDate] = useState('');
-  const [arrivalDate, setArrivalDate] = useState('');
+  const [deliveryDate, setDeliveryDate] = useState('');
   const [consignorCountry, setConsignorCountry] = useState("");
   const [consigneeCountry, setConsigneeCountry] = useState("");
 
@@ -225,17 +225,17 @@ export default function CreateShipmentPage() {
     return { min: getFormattedDate(today), max: "" }; // Minimum date is today
   };
 
-  const getArrivalDateConstraints = (): { min: string; max: string } => {
+  const getDeliveryDateConstraints = (): { min: string; max: string } => {
     if (!shippingDate || !country || !destinationCountry) {
       return { min: "", max: "" }; // No constraints
     }
 
     const shippingDateObj = new Date(shippingDate);
     const minDays = getMinimumDeliveryDays(country, destinationCountry);
-    const earliestArrivalDate = new Date(shippingDateObj);
-    earliestArrivalDate.setDate(earliestArrivalDate.getDate() + minDays);
+    const earliestDeliveryDate = new Date(shippingDateObj);
+    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
 
-    return { min: getFormattedDate(earliestArrivalDate), max: "" }; // No maximum date
+    return { min: getFormattedDate(earliestDeliveryDate), max: "" }; // No maximum date
   };
 
   const handleShippingDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -246,44 +246,44 @@ export default function CreateShipmentPage() {
     if (selectedDate < today) {
       setShowError(true);
       setShippingDate(""); // Reset invalid date
-      setArrivalDate(""); // Reset arrival date
+      setDeliveryDate(""); // Reset delivery date
     } else {
       setShowError(false);
       setShippingDate(getFormattedDate(selectedDate));
-      setArrivalDate(""); // Reset arrival date
+      setDeliveryDate(""); // Reset delivery date
     }
   };
 
-  const handleArrivalDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDeliveryDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedDate = new Date(e.target.value);
     const shippingDateObj = new Date(shippingDate);
 
     if (country && destinationCountry) {
       const minDays = getMinimumDeliveryDays(country, destinationCountry);
-      const earliestArrivalDate = new Date(shippingDateObj);
-      earliestArrivalDate.setDate(earliestArrivalDate.getDate() + minDays);
+      const earliestDeliveryDate = new Date(shippingDateObj);
+      earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
 
-      if (selectedDate < earliestArrivalDate) {
+      if (selectedDate < earliestDeliveryDate) {
         setShowError(true);
-        setArrivalDate(""); // Reset invalid date
+        setDeliveryDate(""); // Reset invalid date
       } else {
         setShowError(false);
-        setArrivalDate(getFormattedDate(selectedDate));
+        setDeliveryDate(getFormattedDate(selectedDate));
       }
     }
   };
 
-  // Ensure arrival date is not clickable if invalid
-  const isArrivalDateValid = (date: string): boolean => {
+  // Ensure delivery date is not clickable if invalid
+  const isDeliveryDateValid = (date: string): boolean => {
     if (!shippingDate || !country || !destinationCountry) return false;
 
     const selectedDate = new Date(date);
     const shippingDateObj = new Date(shippingDate);
     const minDays = getMinimumDeliveryDays(country, destinationCountry);
-    const earliestArrivalDate = new Date(shippingDateObj);
-    earliestArrivalDate.setDate(earliestArrivalDate.getDate() + minDays);
+    const earliestDeliveryDate = new Date(shippingDateObj);
+    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
 
-    return selectedDate >= earliestArrivalDate;
+    return selectedDate >= earliestDeliveryDate;
   };
 
   const handleContinue = () => {
@@ -330,8 +330,8 @@ export default function CreateShipmentPage() {
       consigneeFullAddress &&
       consigneeCity &&
       shippingDate &&
-      arrivalDate &&
-      new Date(shippingDate) < new Date(arrivalDate)
+      deliveryDate &&
+      new Date(shippingDate) < new Date(deliveryDate)
     );
     setIsButtonEnabled(isFormValid);
   }, [
@@ -352,7 +352,7 @@ export default function CreateShipmentPage() {
     consigneeFullAddress,
     consigneeCity,
     shippingDate,
-    arrivalDate,
+    deliveryDate,
   ]);
 
   // Handler zum Ändern des Versandtyps (setzt die Dropdowns und die Beschreibung zurück)
@@ -395,15 +395,15 @@ export default function CreateShipmentPage() {
   const handleContinueClick = () => {
     if (!isButtonEnabled) {
       setShowError(true);
-      if (!consignorFullName || !consignorFullAddress || !consignorCity || !country || !originCity || !street || !destinationCountry || !destinationCity || !destinationStreet || !shipmentType || !description || (shipmentType === "FCL" && !fclSelection) || (shipmentType === "LCL" && !lclSelection) || !consigneeFullName || !consigneeFullAddress || !consigneeCity || !shippingDate || !arrivalDate) {
+      if (!consignorFullName || !consignorFullAddress || !consignorCity || !country || !originCity || !street || !destinationCountry || !destinationCity || !destinationStreet || !shipmentType || !description || (shipmentType === "FCL" && !fclSelection) || (shipmentType === "LCL" && !lclSelection) || !consigneeFullName || !consigneeFullAddress || !consigneeCity || !shippingDate || !deliveryDate) {
         setShowWarning(true);
         setInvalidDateWarning(false);
         setDateWarning(false);
-      } else if (isNaN(new Date(shippingDate).getTime()) || isNaN(new Date(arrivalDate).getTime())) {
+      } else if (isNaN(new Date(shippingDate).getTime()) || isNaN(new Date(deliveryDate).getTime())) {
         setInvalidDateWarning(true);
         setShowWarning(false);
         setDateWarning(false);
-      } else if (shippingDate && arrivalDate && new Date(shippingDate) >= new Date(arrivalDate)) {
+      } else if (shippingDate && deliveryDate && new Date(shippingDate) >= new Date(deliveryDate)) {
         setDateWarning(true);
         setShowWarning(false);
         setInvalidDateWarning(false);
@@ -624,7 +624,7 @@ export default function CreateShipmentPage() {
                   setCountry(e.target.value);
                   setOriginCity("");
                   setShippingDate(""); // Reset Shipping Date
-                  setArrivalDate(""); // Reset Arrival Date
+                  setDeliveryDate(""); // Reset Delivery Date
                 }}
                 aria-label="Origin Country"
               >
@@ -641,7 +641,7 @@ export default function CreateShipmentPage() {
                 onChange={(e) => {
                   setOriginCity(e.target.value);
                   setShippingDate(""); // Reset Shipping Date
-                  setArrivalDate(""); // Reset Arrival Date
+                  setDeliveryDate(""); // Reset Delivery Date
                 }}
                 disabled={!country}
                 aria-label="Origin City"
@@ -675,7 +675,7 @@ export default function CreateShipmentPage() {
                   setDestinationCountry(e.target.value);
                   setDestinationCity("");
                   setShippingDate(""); // Reset Shipping Date
-                  setArrivalDate(""); // Reset Arrival Date
+                  setDeliveryDate(""); // Reset Delivery Date
                 }}
                 aria-label="Destination Country"
               >
@@ -692,7 +692,7 @@ export default function CreateShipmentPage() {
                 onChange={(e) => {
                   setDestinationCity(e.target.value);
                   setShippingDate(""); // Reset Shipping Date
-                  setArrivalDate(""); // Reset Arrival Date
+                  setDeliveryDate(""); // Reset Delivery Date
                 }}
                 disabled={!destinationCountry}
                 aria-label="Destination City"
@@ -861,28 +861,28 @@ export default function CreateShipmentPage() {
                 />
               </div>
               <div className="mt-4">
-                <label htmlFor="arrivalDate" className="block text-lg font-medium text-gray-700">Arrival Date</label>
+                <label htmlFor="deliveryDate" className="block text-lg font-medium text-gray-700">Delivery Date</label>
                 <input
-                  id="arrivalDate"
-                  name="arrivalDate"
+                  id="deliveryDate"
+                  name="deliveryDate"
                   type="date"
-                  value={arrivalDate}
+                  value={deliveryDate}
                   onChange={(e) => {
-                    const isValid = isArrivalDateValid(e.target.value);
+                    const isValid = isDeliveryDateValid(e.target.value);
                     if (isValid) {
-                      handleArrivalDateChange(e);
+                      handleDeliveryDateChange(e);
                     } else {
                       setShowError(true);
-                      setArrivalDate(""); // Reset invalid date
+                      setDeliveryDate(""); // Reset invalid date
                     }
                   }}
-                  min={getArrivalDateConstraints().min}
-                  max={getArrivalDateConstraints().max}
-                  disabled={!isDeliveryDateEnabled || !getArrivalDateConstraints().min} // Disable if not valid
+                  min={getDeliveryDateConstraints().min}
+                  max={getDeliveryDateConstraints().max}
+                  disabled={!isDeliveryDateEnabled || !getDeliveryDateConstraints().min} // Disable if not valid
                   className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ${
-                    showError && !arrivalDate ? 'bg-red-100' : ''
-                  } ${!isDeliveryDateEnabled || !getArrivalDateConstraints().min ? 'bg-gray-300 cursor-not-allowed' : ''}`}
-                  aria-label="Arrival Date"
+                    showError && !deliveryDate ? 'bg-red-100' : ''
+                  } ${!isDeliveryDateEnabled || !getDeliveryDateConstraints().min ? 'bg-gray-300 cursor-not-allowed' : ''}`}
+                  aria-label="Delivery Date"
                 />
               </div>
             </div>
@@ -913,7 +913,7 @@ export default function CreateShipmentPage() {
                   !!WARNING!!
                 </div>
                 <div className="text-black text-lg">
-                  The shipping date must be before the arrival date.
+                  The shipping date must be before the delivery date.
                 </div>
               </div>
             </div>
