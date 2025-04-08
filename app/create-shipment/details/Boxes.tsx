@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Boxes({ shipmentType }: { shipmentType: string | null }) {
   const [fclSelection, setFclSelection] = useState<string | null>(null);
@@ -15,6 +15,8 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   const [extraProtection, setExtraProtection] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
   const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
+  const [country, setCountry] = useState<string | null>(null); // Add country state
+  const [destinationCountry, setDestinationCountry] = useState<string | null>(null); // Add destination country state
 
   const fragileSubCategories = {
     Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -32,6 +34,30 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
       setter(value);
     }
   };
+
+  const getMinimumDeliveryDays = (origin: string, destination: string): number => {
+    // Example logic for minimum delivery days
+    if (!origin || !destination) return 0;
+    return 40; // Default to 40 days for demonstration
+  };
+
+  const getDeliveryDateConstraints = (): { min: string; max: string } => {
+    if (!country || !destinationCountry) {
+      return { min: "", max: "" }; // No constraints if countries are not selected
+    }
+
+    const today = new Date();
+    const minDays = getMinimumDeliveryDays(country, destinationCountry);
+    const earliestDeliveryDate = new Date(today);
+    earliestDeliveryDate.setDate(earliestDeliveryDate.getDate() + minDays);
+
+    return { min: earliestDeliveryDate.toISOString().split("T")[0], max: "" }; // No maximum date
+  };
+
+  useEffect(() => {
+    // Reset delivery date if constraints change
+    setDeliveryDate("");
+  }, [country, destinationCountry]);
 
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
@@ -187,11 +213,12 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
               id="dateField"
               value={deliveryDate}
               onChange={(e) => setDeliveryDate(e.target.value)}
-              disabled={!deliveryOption} // Disabled if no option is selected
+              disabled={!deliveryOption || !getDeliveryDateConstraints().min} // Disabled if no option or constraints
+              min={getDeliveryDateConstraints().min}
+              max={getDeliveryDateConstraints().max}
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
-              min={new Date().toISOString().split("T")[0]} // Ensure the date cannot be in the past
             />
           </div>
         </div>
