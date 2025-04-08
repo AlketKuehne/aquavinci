@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import { countryDistances } from './country-distances';
 import Popup from "./details/Popup"; // Adjusted import path if necessary
+import databank from "../../../utils/Databank";
 
 export default function CreateShipmentPage() {
   const router = useRouter();
@@ -417,6 +418,35 @@ export default function CreateShipmentPage() {
       const shippingDateObj = new Date(shippingDate);
       const minDeliveryDateObj = new Date(shippingDateObj);
       minDeliveryDateObj.setDate(shippingDateObj.getDate() + minDays);
+
+      const formData = {
+        consignorFullName,
+        consignorFullAddress,
+        consignorCity,
+        country,
+        originCity,
+        street,
+        destinationCountry,
+        destinationCity,
+        destinationStreet,
+        shipmentType,
+        description,
+        fclSelection,
+        lclSelection,
+        consigneeFullName,
+        consigneeFullAddress,
+        consigneeCity,
+        shippingDate,
+        deliveryDate,
+        consignorEmail,
+        consigneeEmail,
+        consignorPhone,
+        consigneePhone,
+        numberOfPieces,
+        isDangerousGoods
+      };
+
+      databank.saveData(formData); // Save the current inputs to the Databank
 
       sessionStorage.setItem("authorizedForDetails", "true"); // Set authorization flag
       router.push(
