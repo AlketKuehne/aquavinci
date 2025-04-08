@@ -179,13 +179,18 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
             <span className="ml-2 text-lg font-medium">Deliver</span>
           </label>
           <div className="mt-4">
-            <label htmlFor="arrivalDate" className="block text-md font-semibold mb-2">Arrival Date</label>
+            <label htmlFor="dateField" className="block text-md font-semibold mb-2">
+              {deliveryOption === "deliver" ? "Arrival Date" : deliveryOption === "pickup" ? "Pick Up Date" : "Date"}
+            </label>
             <input
               type="date"
-              id="arrivalDate"
+              id="dateField"
               value={arrivalDate}
               onChange={(e) => setArrivalDate(e.target.value)}
-              className="w-full p-3 border rounded bg-gray-100"
+              disabled={!deliveryOption} // Disabled if no option is selected
+              className={`w-full p-3 border rounded ${
+                deliveryOption ? "bg-gray-100" : "bg-gray-300 cursor-not-allowed"
+              }`}
             />
           </div>
         </div>
