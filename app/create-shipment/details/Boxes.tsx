@@ -317,10 +317,10 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
                 id="extraProtection"
                 checked={extraProtection}
                 onChange={() => {
-                  setExtraProtection(!extraProtection);
-                  if (!extraProtection) {
+                  if (extraProtection) {
                     setSelectedProtections([]); // Reset selected protections if unchecked
                   }
+                  setExtraProtection(!extraProtection);
                 }}
                 className="w-5 h-5"
               />
