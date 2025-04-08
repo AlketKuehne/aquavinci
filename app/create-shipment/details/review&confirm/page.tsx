@@ -31,13 +31,13 @@ export default function ReviewAndConfirmPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen w-full px-8">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full px-8 pt-8">
       <NavigationBar onNavigate={handleNavigate} />
-      <div className="flex flex-col items-center w-full max-w-4xl">
-        <h1 className="text-4xl font-extrabold mb-12 text-center">Review & Confirm</h1>
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 w-full">
+      <div className="flex flex-col items-center w-full max-w-6xl">
+        <h1 className="text-4xl font-extrabold mb-8 text-center">Review & Confirm</h1>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-7 w-full">
           {/* Shipment Type */}
-          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center">
+          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
             <div>
               <h2 className="text-lg font-bold mb-2">Shipment Type</h2>
               <p className="text-gray-700">
@@ -54,7 +54,7 @@ export default function ReviewAndConfirmPage() {
 
           {/* FCL or LCL Selection */}
           {fields.shipmentType === "FCL" && (
-            <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center">
+            <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
               <div>
                 <h2 className="text-lg font-bold mb-2">Number of Containers</h2>
                 {editableField === "fclSelection" ? (
@@ -77,7 +77,7 @@ export default function ReviewAndConfirmPage() {
             </div>
           )}
           {fields.shipmentType === "LCL" && (
-            <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center">
+            <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
               <div>
                 <h2 className="text-lg font-bold mb-2">Number of Packages</h2>
                 {editableField === "lclSelection" ? (
@@ -101,7 +101,7 @@ export default function ReviewAndConfirmPage() {
           )}
 
           {/* Size & Weight Details */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
             <div className="grid grid-cols-2 gap-4">
               {["weight", "height", "length", "width"].map((field) => (
@@ -132,7 +132,7 @@ export default function ReviewAndConfirmPage() {
 
           {/* Fragile Item */}
           {fields.isFragile && (
-            <div className="bg-white p-6 shadow-lg rounded-lg">
+            <div className="bg-white p-6 shadow-lg rounded-lg w-full">
               <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex justify-between items-center">
@@ -182,7 +182,7 @@ export default function ReviewAndConfirmPage() {
           )}
 
           {/* Delivery Option */}
-          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center">
+          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
             <div>
               <h2 className="text-lg font-bold mb-2">Delivery Option</h2>
               {editableField === "deliveryOption" ? (
@@ -209,7 +209,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Delivery Date */}
-          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center">
+          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
             <div>
               <h2 className="text-lg font-bold mb-2">Delivery Date</h2>
               {editableField === "deliveryDate" ? (
