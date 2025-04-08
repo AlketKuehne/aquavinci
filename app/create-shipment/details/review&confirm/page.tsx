@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NavigationBar from "./NavigationBar";
 
 interface ShipmentData {
@@ -43,14 +43,31 @@ interface ShipmentData {
   deliveryOption: string;
 }
 
-export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: ShipmentData }) {
-  const [fields, setFields] = useState<ShipmentData>(shipmentData);
-
+export default function ReviewAndConfirmPage() {
+  const [fields, setFields] = useState<ShipmentData | null>(null);
   const [editableField, setEditableField] = useState<keyof ShipmentData | null>(null);
 
+  // Simulate fetching data from a backend or context
+  useEffect(() => {
+    const fetchShipmentData = async () => {
+      // Replace this with actual API or context fetching logic
+      const response = await fetch("/api/shipment-data"); // Example API endpoint
+      const data: ShipmentData = await response.json();
+      setFields(data);
+    };
+
+    fetchShipmentData();
+  }, []);
+
   const handleFieldChange = (field: keyof ShipmentData, value: string) => {
-    setFields((prev) => ({ ...prev, [field]: value }));
+    if (fields) {
+      setFields((prev) => ({ ...prev!, [field]: value }));
+    }
   };
+
+  if (!fields) {
+    return <div>Loading...</div>; // Show a loading state while data is being fetched
+  }
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
@@ -81,7 +98,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               ))}
@@ -111,7 +128,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               ))}
@@ -141,7 +158,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               ))}
@@ -171,7 +188,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               ))}
@@ -201,7 +218,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               ))}
@@ -220,7 +237,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
               className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("shipmentType")}
             >
-              🖊️
+              ✎
             </button>
           </div>
 
@@ -244,7 +261,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                 className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                 onClick={() => setEditableField("fclSelection")}
               >
-                🖊️
+                ✎
               </button>
             </div>
           )}
@@ -267,7 +284,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                 className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                 onClick={() => setEditableField("lclSelection")}
               >
-                🖊️
+                ✎
               </button>
             </div>
           )}
@@ -295,7 +312,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField(field as keyof ShipmentData)}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               ))}
@@ -325,7 +342,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField("fragileCategory")}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
                 <div className="flex justify-between items-center">
@@ -346,7 +363,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
                     className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                     onClick={() => setEditableField("fragileSubCategory")}
                   >
-                    🖊️
+                    ✎
                   </button>
                 </div>
               </div>
@@ -376,7 +393,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
               className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("deliveryOption")}
             >
-              🖊️
+              ✎
             </button>
           </div>
 
@@ -399,7 +416,7 @@ export default function ReviewAndConfirmPage({ shipmentData }: { shipmentData: S
               className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("deliveryDate")}
             >
-              🖊️
+              ✎
             </button>
           </div>
         </div>
