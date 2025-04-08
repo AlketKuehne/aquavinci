@@ -36,14 +36,13 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   };
 
   const getMinimumDeliveryDays = (origin: string, destination: string): number => {
-    // Example logic for minimum delivery days
     if (!origin || !destination) return 0;
     return 40; // Default to 40 days for demonstration
   };
 
   const getDeliveryDateConstraints = (): { min: string; max: string } => {
     if (!country || !destinationCountry) {
-      return { min: "", max: "" }; // No constraints if countries are not selected
+      return { min: new Date().toISOString().split("T")[0], max: "" }; // Default to today if no countries are selected
     }
 
     const today = new Date();
@@ -213,8 +212,8 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
               id="dateField"
               value={deliveryDate}
               onChange={(e) => setDeliveryDate(e.target.value)}
-              disabled={!deliveryOption || !getDeliveryDateConstraints().min} // Disabled if no option or constraints
-              min={getDeliveryDateConstraints().min || new Date().toISOString().split("T")[0]} // Ensure min is valid
+              disabled={!deliveryOption} // Disabled if no option is selected
+              min={getDeliveryDateConstraints().min} // Ensure min is valid
               max={getDeliveryDateConstraints().max || ""}
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
