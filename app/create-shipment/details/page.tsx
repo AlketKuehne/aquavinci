@@ -76,10 +76,8 @@ function DetailsPageContent() {
   };
 
   const handleContinue = () => {
-    const existingData = databank.getData()[databank.getData().length - 1]; // Get the last saved row
-    const updatedData = { ...existingData, ...formData }; // Merge new inputs with existing data
-    databank.saveData(updatedData); // Save the updated data
-    window.location.href = "/create-shipment/details/review&confirm"; // Navigate to the next page
+    databank.updateData(formData); // Update the latest row in the Databank
+    router.push("/create-shipment/details/review&confirm"); // Navigate to the next page
   };
 
   return (
