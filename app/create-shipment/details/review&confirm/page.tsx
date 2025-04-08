@@ -44,7 +44,7 @@ export default function ReviewAndConfirmPage() {
             </p>
           </div>
           <button
-            className="text-blue-500 hover:text-blue-700"
+            className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
             onClick={() => setEditableField("shipmentType")}
           >
             ✏️
@@ -68,7 +68,7 @@ export default function ReviewAndConfirmPage() {
               )}
             </div>
             <button
-              className="text-blue-500 hover:text-blue-700"
+              className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("fclSelection")}
             >
               ✏️
@@ -91,7 +91,7 @@ export default function ReviewAndConfirmPage() {
               )}
             </div>
             <button
-              className="text-blue-500 hover:text-blue-700"
+              className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
               onClick={() => setEditableField("lclSelection")}
             >
               ✏️
@@ -119,7 +119,7 @@ export default function ReviewAndConfirmPage() {
                   )}
                 </div>
                 <button
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                   onClick={() => setEditableField(field)}
                 >
                   ✏️
@@ -149,7 +149,7 @@ export default function ReviewAndConfirmPage() {
                   )}
                 </div>
                 <button
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                   onClick={() => setEditableField("fragileCategory")}
                 >
                   ✏️
@@ -170,7 +170,7 @@ export default function ReviewAndConfirmPage() {
                   )}
                 </div>
                 <button
-                  className="text-blue-500 hover:text-blue-700"
+                  className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
                   onClick={() => setEditableField("fragileSubCategory")}
                 >
                   ✏️
@@ -200,7 +200,7 @@ export default function ReviewAndConfirmPage() {
             )}
           </div>
           <button
-            className="text-blue-500 hover:text-blue-700"
+            className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
             onClick={() => setEditableField("deliveryOption")}
           >
             ✏️
@@ -223,7 +223,7 @@ export default function ReviewAndConfirmPage() {
             )}
           </div>
           <button
-            className="text-blue-500 hover:text-blue-700"
+            className="text-black hover:text-white bg-transparent hover:bg-black rounded-full p-2 cursor-pointer transition-all"
             onClick={() => setEditableField("deliveryDate")}
           >
             ✏️
