@@ -324,7 +324,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
                 }}
                 className="w-5 h-5"
               />
-              <span className="ml-2 text-lg font-medium">Request additional protection for fragile items?</span>
+              <span className="ml-2 text-lg font-medium">Request additional protection for your shipment?</span>
             </label>
           </div>
           <div>
