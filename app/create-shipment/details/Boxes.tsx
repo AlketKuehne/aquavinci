@@ -65,6 +65,11 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     );
   };
 
+  const handleProtectionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, (option) => option.value);
+    setSelectedProtections(selectedOptions);
+  };
+
   useEffect(() => {
     // Reset delivery date if constraints change
     setDeliveryDate("");
@@ -258,22 +263,25 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           </div>
           <div>
             <h3 className="text-md font-semibold mb-2">Protection</h3>
-            <label className="block text-md font-medium mb-2">
+            <label htmlFor="protectionSelect" className="block text-md font-medium mb-2">
               Select additional protection options:
             </label>
-            <div className="flex flex-col gap-2">
+            <select
+              id="protectionSelect"
+              multiple
+              value={selectedProtections}
+              onChange={handleProtectionChange}
+              className="w-full p-3 border rounded bg-gray-100"
+            >
               {protectionOptions.map((option) => (
-                <label key={option} className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={selectedProtections.includes(option)}
-                    onChange={() => toggleProtection(option)}
-                    className="w-5 h-5"
-                  />
-                  <span className="ml-2 text-lg font-medium">{option}</span>
-                </label>
+                <option key={option} value={option}>
+                  {option}
+                </option>
               ))}
-            </div>
+            </select>
+            <p className="mt-2 text-sm text-gray-600">
+              Hold down the Ctrl (Windows) or Command (Mac) key to select multiple options.
+            </p>
           </div>
         </div>
       </div>
