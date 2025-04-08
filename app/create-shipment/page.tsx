@@ -423,10 +423,11 @@ export default function CreateShipmentPage() {
         consignorFullName,
         consignorFullAddress,
         consignorCity,
-        consignorCountry: country, // Ensure consignorCountry is included
-        consigneeCountry, // Ensure consigneeCountry is included
+        consignorCountry: country,
+        consigneeCountry,
         originCity,
-        street,
+        originStreet: street, // Map to required field
+        street, // Explicitly include the 'street' field
         destinationCountry,
         destinationCity,
         destinationStreet,
@@ -445,6 +446,24 @@ export default function CreateShipmentPage() {
         consigneePhone,
         numberOfPieces,
         isDangerousGoods,
+        consignorName: consignorFullName, // Map to required field
+        consignorAddress: consignorFullAddress, // Map to required field
+        consigneeName: consigneeFullName, // Map to required field
+        consigneeAddress: consigneeFullAddress, // Map to required field
+        goodsDescription: description, // Map to required field
+        containerType: shipmentType === "FCL" ? fclSelection : lclSelection, // Map to required field
+        packageType: shipmentType === "LCL" ? lclSelection : "", // Map to required field
+        originCountry: country, // Map to required field
+        dangerousGoods: isDangerousGoods, // Map to required field
+        weight: "", // Default value
+        height: "", // Default value
+        length: "", // Default value
+        width: "", // Default value
+        isFragile: false, // Default value
+        fragileCategory: "", // Default value
+        fragileSubCategory: "", // Default value
+        extraProtection: false, // Default value
+        deliveryOption: "", // Default value
       };
 
       databank.saveData(formData); // Save the current inputs to the Databank
