@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function Boxes({ shipmentType }: { shipmentType: string | null }) {
+export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: { shipmentType: string | null; shippingDate: string; minDeliveryDate: string }) {
   const [fclSelection, setFclSelection] = useState<string | null>(null);
   const [lclSelection, setLclSelection] = useState<string | null>(null);
   const [weight, setWeight] = useState<string>("");
@@ -57,6 +57,11 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
     // Reset delivery date if constraints change
     setDeliveryDate("");
   }, [country, destinationCountry]);
+
+  useEffect(() => {
+    // Reset delivery date if shipping date or constraints change
+    setDeliveryDate("");
+  }, [shippingDate, minDeliveryDate]);
 
   return (
     <div className="flex flex-col items-start w-full max-w-6xl mt-4 px-8">
@@ -212,9 +217,8 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
               id="dateField"
               value={deliveryDate}
               onChange={(e) => setDeliveryDate(e.target.value)}
-              disabled={!deliveryOption} // Disabled if no option is selected
-              min={getDeliveryDateConstraints().min} // Ensure min is valid
-              max={getDeliveryDateConstraints().max || ""}
+              disabled={!deliveryOption || !shippingDate || !minDeliveryDate} // Disabled if no option or constraints
+              min={minDeliveryDate} // Use the minimum delivery date passed from /create-shipment
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-white text-black" : "bg-gray-300 text-gray-500 cursor-not-allowed"
               }`}
