@@ -376,10 +376,10 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           </div>
         </div>
       </div>
-      <div className="flex justify-end w-full mt-8"> {/* Container for the button */}
+      <div className="flex justify-end w-full mt-12"> {/* Adjusted margin for lower positioning */}
         <button
           onClick={() => router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm")}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition duration-300"
+          className="bg-black text-white px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 hover:shadow-lg transition-transform duration-300"
         >
           Continue
         </button>
