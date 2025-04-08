@@ -142,7 +142,11 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
 
   const calculateMinDeliveryDate = (): string => {
     if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];
-    return minDeliveryDate; // Use the minDeliveryDate passed from /create-shipment
+    const baseDate = new Date(minDeliveryDate);
+    if (deliveryOption === "deliver") {
+      baseDate.setDate(baseDate.getDate() + 5); // Add 5 days for "Deliver" option
+    }
+    return baseDate.toISOString().split("T")[0];
   };
 
   return (
@@ -266,7 +270,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             </label>
           </div>
         </div>
-        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Same width as other boxes */}
+        <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Delivery Option */}
           <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
           <label className="flex items-center mb-4">
             <input
