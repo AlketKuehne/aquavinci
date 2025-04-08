@@ -77,6 +77,24 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     setSelectedProtections(selectedOptions);
   };
 
+  const closeDropdown = (e: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      setIsDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isDropdownOpen) {
+      document.addEventListener("mousedown", closeDropdown);
+    } else {
+      document.removeEventListener("mousedown", closeDropdown);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", closeDropdown);
+    };
+  }, [isDropdownOpen]);
+
   useEffect(() => {
     if (isDropdownOpen && dropdownRef.current) {
       const dropdownRect = dropdownRef.current.getBoundingClientRect();
