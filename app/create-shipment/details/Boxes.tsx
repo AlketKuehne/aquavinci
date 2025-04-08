@@ -413,8 +413,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             >
               ×
             </button>
-            <h2 className="text-lg font-bold mb-4">!!WARNING!!</h2>
-            <p className="text-gray-700">Please fill in all mandatory fields before continuing.</p>
+            <h2 className="text-red-500 text-lg font-bold mb-4 text-center">!!WARNING!!</h2>
+            <p className="text-black text-lg">Please fill in all mandatory fields before continuing.</p>
           </div>
         </div>
       )}
