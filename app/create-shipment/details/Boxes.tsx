@@ -14,7 +14,7 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
   const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
   const [extraProtection, setExtraProtection] = useState(false);
   const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
-  const [arrivalDate, setArrivalDate] = useState<string>(""); // State for arrival date
+  const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
 
   const fragileSubCategories = {
     Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -180,13 +180,13 @@ export default function Boxes({ shipmentType }: { shipmentType: string | null })
           </label>
           <div className="mt-4">
             <label htmlFor="dateField" className="block text-md font-semibold mb-2">
-              {deliveryOption === "deliver" ? "Arrival Date" : deliveryOption === "pickup" ? "Pick Up Date" : "Date"}
+              {deliveryOption === "deliver" ? "Delivery Date" : deliveryOption === "pickup" ? "Pick Up Date" : "Date"}
             </label>
             <input
               type="date"
               id="dateField"
-              value={arrivalDate}
-              onChange={(e) => setArrivalDate(e.target.value)}
+              value={deliveryDate}
+              onChange={(e) => setDeliveryDate(e.target.value)}
               disabled={!deliveryOption} // Disabled if no option is selected
               className={`w-full p-3 border rounded ${
                 deliveryOption ? "bg-gray-100" : "bg-gray-300 cursor-not-allowed"
