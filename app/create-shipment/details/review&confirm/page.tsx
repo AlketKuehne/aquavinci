@@ -72,7 +72,14 @@ export default function ReviewAndConfirmPage() {
       if (/^[a-zA-Z\s]*$/.test(value)) {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
-    } else {
+    } 
+    // Restrict input to numbers for numberOfPieces
+    else if (field === "numberOfPieces") {
+      if (/^\d*$/.test(value)) {
+        setFields((prev) => ({ ...prev, [field]: value }));
+      }
+    } 
+    else {
       setFields((prev) => ({ ...prev, [field]: value }));
     }
   };
