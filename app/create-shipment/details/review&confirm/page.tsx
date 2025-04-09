@@ -194,10 +194,11 @@ export default function ReviewAndConfirmPage() {
     const shipmentType = fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load";
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
-        <h2 className="text-lg font-bold mb-4">Shipment Type</h2>
+        <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2> {/* Updated header */}
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
         {renderField("Number of Containers or Packages", "numberOfPieces")}
+        {renderField("Number of Pieces (per container or package)", "packageType")} {/* New field */}
         {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
@@ -247,7 +248,7 @@ export default function ReviewAndConfirmPage() {
             {renderField("Street", "destinationStreet")} {/* Editable */}
           </div>
 
-          {/* Shipment Type */}
+          {/* Shipment Type & Details */}
           {renderShipmentType()}
 
           {/* Additional Information */}
