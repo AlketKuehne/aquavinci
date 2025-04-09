@@ -83,14 +83,14 @@ export default function ReviewAndConfirmPage() {
     );
   }
 
-  const renderField = (label: string, field: keyof ShipmentData) => (
+  const renderField = (label: string, field: keyof ShipmentData, editable: boolean = true) => (
     <div className="flex justify-between items-center">
       <div>
-        <h3 className="text-md font-bold">{label}:</h3> {/* Add colon and bold styling */}
-        {isEditing[field] ? (
+        <h3 className="text-md font-bold">{label}:</h3>
+        {editable && isEditing[field] ? (
           <input
             type="text"
-            value={fields[field] as string || ""} // Ensure value is a string
+            value={fields[field] as string || ""}
             onChange={(e) => handleInputChange(field, e.target.value)}
             className="border border-gray-300 rounded px-2 py-1"
           />
@@ -98,7 +98,7 @@ export default function ReviewAndConfirmPage() {
           <p className="text-gray-700">{fields[field] || "N/A"}</p>
         )}
       </div>
-      {!isEditing[field] && (
+      {editable && !isEditing[field] && (
         <div
           className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
           onClick={() => handleEditClick(field)}
@@ -106,7 +106,7 @@ export default function ReviewAndConfirmPage() {
           <FaEdit />
         </div>
       )}
-      {isEditing[field] && (
+      {editable && isEditing[field] && (
         <button
           className="ml-2 text-sm text-white bg-blue-500 px-2 py-1 rounded"
           onClick={() => handleSave(field)}
@@ -148,17 +148,17 @@ export default function ReviewAndConfirmPage() {
           {/* Origin (From) */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
-            {renderField("Country", "originCountry")}
-            {renderField("City", "originCity")}
-            {renderField("Street", "originStreet")}
+            {renderField("Country", "originCountry", false)} {/* Non-editable */}
+            {renderField("City", "originCity", false)} {/* Non-editable */}
+            {renderField("Street", "originStreet")} {/* Editable */}
           </div>
 
           {/* Destination (To) */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
-            {renderField("Country", "destinationCountry")}
-            {renderField("City", "destinationCity")}
-            {renderField("Street", "destinationStreet")}
+            {renderField("Country", "destinationCountry", false)} {/* Non-editable */}
+            {renderField("City", "destinationCity", false)} {/* Non-editable */}
+            {renderField("Street", "destinationStreet")} {/* Editable */}
           </div>
 
           {/* Additional Information */}
