@@ -20,7 +20,7 @@ interface ShipmentData {
   containerType: string;
   goodsDescription: string;
   packageType: string; // Represents "Number of Packages/Containers"
-  numberOfPackages: string; // Added to store the unified "Number of Packages" value
+  numberOfPackages: string; // Unified "Number of Packages/Containers" value
   numberOfPieces: string;
   dangerousGoods: string;
   shippingDate: string;
@@ -51,24 +51,32 @@ let dataStore: Partial<ShipmentData>[] = [];
 
 const databank = {
   saveData: (data: Partial<ShipmentData>) => {
-    // Ensure "numberOfPackages" is consistent with "packageType" or "lclSelection"
-    if (data.shipmentType === "LCL" && data.lclSelection) {
-      data.numberOfPackages = data.lclSelection; // Use "lclSelection" for "Number of Packages"
-    } else if (data.shipmentType === "FCL" && data.packageType) {
-      data.numberOfPackages = data.packageType; // Use "packageType" for "Number of Packages"
+    // Ensure "numberOfPackages" is consistent with the latest input
+    if (data.lclSelection) {
+      data.numberOfPackages = data.lclSelection; // Use "lclSelection" from /details
+    } else if (data.packageType) {
+      data.numberOfPackages = data.packageType; // Use "packageType" from /create-shipment
     }
     dataStore.push(data);
   },
   getData: () => {
-    return dataStore;
+    // Ensure "numberOfPackages" prioritizes /details input
+    if (dataStore.length > 0) {
+      const latestData = dataStore[dataStore.length - 1];
+      if (latestData.lclSelection) {
+        latestData.numberOfPackages = latestData.lclSelection; // Override with /details input
+      }
+      return dataStore;
+    }
+    return [];
   },
   updateData: (updatedData: Partial<ShipmentData>) => {
     if (dataStore.length > 0) {
       // Ensure "numberOfPackages" is consistent during updates
-      if (updatedData.shipmentType === "LCL" && updatedData.lclSelection) {
-        updatedData.numberOfPackages = updatedData.lclSelection;
-      } else if (updatedData.shipmentType === "FCL" && updatedData.packageType) {
-        updatedData.numberOfPackages = updatedData.packageType;
+      if (updatedData.lclSelection) {
+        updatedData.numberOfPackages = updatedData.lclSelection; // Use /details input
+      } else if (updatedData.packageType) {
+        updatedData.numberOfPackages = updatedData.packageType; // Use /create-shipment input
       }
       dataStore[dataStore.length - 1] = { ...dataStore[dataStore.length - 1], ...updatedData };
     }
