@@ -192,13 +192,48 @@ export default function ReviewAndConfirmPage() {
 
   const renderShipmentType = () => {
     const shipmentType = fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load";
+    const piecesLabel =
+      fields.shipmentType === "FCL"
+        ? "Number of Pieces (per container)"
+        : "Number of Pieces (per package)";
+
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
-        <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2> {/* Updated header */}
+        <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
         {renderField("Number of Containers or Packages", "numberOfPieces")}
-        {renderField("Number of Pieces (per container or package)", "packageType")} {/* New field */}
+        <div className="flex justify-between items-center">
+          <div>
+            <h3 className="text-md font-bold">{piecesLabel}:</h3>
+            {isEditing["packageType"] ? (
+              <input
+                type="text"
+                value={fields.packageType || ""}
+                onChange={(e) => handleInputChange("packageType", e.target.value)}
+                className="border border-gray-300 rounded px-2 py-1"
+              />
+            ) : (
+              <p className="text-gray-700">{fields.packageType || "N/A"}</p>
+            )}
+          </div>
+          {!isEditing["packageType"] && (
+            <div
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+              onClick={() => handleEditClick("packageType")}
+            >
+              <FaEdit />
+            </div>
+          )}
+          {isEditing["packageType"] && (
+            <button
+              className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+              onClick={() => handleSave("packageType")}
+            >
+              Save
+            </button>
+          )}
+        </div>
         {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
