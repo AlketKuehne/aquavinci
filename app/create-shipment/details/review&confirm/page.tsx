@@ -120,7 +120,7 @@ export default function ReviewAndConfirmPage() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
-      <div className="flex flex-col items-start w-full max-w-6xl mt-4">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-20"> {/* Increased `mt-4` to `mt-20` */}
         <h1 className="text-4xl font-extrabold mb-6 text-left">Review & Confirm</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-7 w-full">
           {/* Consignor (Shipper) */}
