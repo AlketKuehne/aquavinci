@@ -242,9 +242,9 @@ export default function ReviewAndConfirmPage() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
-      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8"> {/* Keep headline position */}
+      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8">
         <h1 className="text-4xl font-extrabold mb-6 self-start">Review & Confirm</h1>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-8 w-full mt-4"> {/* Adjusted layout */}
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 w-full mt-4">
           {/* Consignor (Shipper) */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
@@ -286,36 +286,52 @@ export default function ReviewAndConfirmPage() {
           {/* Shipment Type & Details */}
           {renderShipmentType()}
 
+          {/* Size & Weight Details */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
+            {renderField("Weight (in kg)", "weight")}
+            {renderField("Height (in m)", "height")}
+            {renderField("Length (in m)", "length")}
+            {renderField("Width (in m)", "width")}
+          </div>
+
+          {/* Fragile Item */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
+            {renderField("Is this a fragile item?", "isFragile", false)} {/* Non-editable */}
+            {fields.isFragile && (
+              <>
+                {renderField("Category", "fragileCategory")}
+                {renderField("Subcategory", "fragileSubCategory")}
+                {renderField("Do you require insurance for this shipment?", "extraProtection", false)} {/* Non-editable */}
+              </>
+            )}
+          </div>
+
+          {/* Delivery Option */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
+            {renderField("Pick Up or Deliver", "deliveryOption", false)} {/* Non-editable */}
+            {renderField("Date (TT.mm.jjjj)", "shippingDate", false)} {/* Non-editable */}
+          </div>
+
+          {/* Additional Protection */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
+            {renderField("Request Additional Protection", "extraProtection", false)} {/* Non-editable */}
+            {fields.extraProtection && (
+              <>
+                {renderField("Protection Options", "fragileCategory")} {/* Example field */}
+              </>
+            )}
+          </div>
+
           {/* Additional Information */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
             {renderField("Dangerous Goods", "dangerousGoods")}
             {renderField("Shipping Date", "shippingDate")}
             {renderField("Delivery Date", "deliveryDate")}
-          </div>
-
-          {/* Size & Weight Details */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-            {renderField("Weight", "weight")}
-            {renderField("Height", "height")}
-            {renderField("Length", "length")}
-            {renderField("Width", "width")}
-          </div>
-
-          {/* Fragile Item */}
-          {fields.isFragile && (
-            <div className="bg-white p-6 shadow-lg rounded-lg">
-              <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-              {renderField("Category", "fragileCategory")}
-              {renderField("Subcategory", "fragileSubCategory")}
-            </div>
-          )}
-
-          {/* Delivery Option */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
-            {renderField("Option", "deliveryOption")}
           </div>
         </div>
       </div>
