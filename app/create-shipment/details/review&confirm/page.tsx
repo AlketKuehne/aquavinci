@@ -120,11 +120,11 @@ export default function ReviewAndConfirmPage() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
-      <div className="flex flex-col items-center w-full max-w-4xl mt-16"> {/* Centered content and adjusted width */}
-        <h1 className="text-4xl font-extrabold mb-6 text-center">Review & Confirm</h1> {/* Centered heading */}
-        <div className="grid grid-cols-2 gap-x-2 gap-y-4 w-full"> {/* Reduced gap between boxes */}
+      <div className="flex flex-col items-start w-full max-w-6xl mt-16 px-8"> {/* Adjusted layout to match other pages */}
+        <h1 className="text-4xl font-extrabold mb-4 self-start">Review & Confirm</h1> {/* Header aligned to the left */}
+        <div className="flex flex-col gap-y-8 w-full"> {/* Adjusted to vertical layout with consistent spacing */}
           {/* Consignor (Shipper) */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
             {renderField("Full Name", "consignorName")}
             {renderField("Email", "consignorEmail")}
@@ -135,7 +135,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Consignee (Recipient) */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             {renderField("Full Name", "consigneeName")}
             {renderField("Email", "consigneeEmail")}
@@ -146,7 +146,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Origin (From) */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             {renderField("Country", "originCountry")}
             {renderField("City", "originCity")}
@@ -154,7 +154,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Destination (To) */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             {renderField("Country", "destinationCountry")}
             {renderField("City", "destinationCity")}
@@ -162,7 +162,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Additional Information */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
             {renderField("Container Type", "containerType")}
             {renderField("Goods Description", "goodsDescription")}
@@ -174,7 +174,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Size & Weight Details */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
             {renderField("Weight", "weight")}
             {renderField("Height", "height")}
@@ -184,7 +184,7 @@ export default function ReviewAndConfirmPage() {
 
           {/* Fragile Item */}
           {fields.isFragile && (
-            <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+            <div className="bg-white p-6 shadow-lg rounded-lg">
               <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
               {renderField("Category", "fragileCategory")}
               {renderField("Subcategory", "fragileSubCategory")}
@@ -192,7 +192,7 @@ export default function ReviewAndConfirmPage() {
           )}
 
           {/* Delivery Option */}
-          <div className="bg-white p-6 shadow-lg rounded-lg w-[95%]"> {/* Adjusted width to `w-[95%]` */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
             {renderField("Option", "deliveryOption")}
           </div>
