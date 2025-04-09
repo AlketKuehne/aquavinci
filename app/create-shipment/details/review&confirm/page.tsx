@@ -190,6 +190,19 @@ export default function ReviewAndConfirmPage() {
     );
   };
 
+  const renderShipmentType = () => {
+    const shipmentType = fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load";
+    return (
+      <div className="bg-white p-6 shadow-lg rounded-lg">
+        <h2 className="text-lg font-bold mb-4">Shipment Type</h2>
+        <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
+        {renderField("Container or Package Type", "containerType")}
+        {renderField("Number of Containers or Packages", "numberOfPieces")}
+        {renderField("Description of Goods", "goodsDescription")}
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -235,13 +248,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Shipment Type */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Shipment Type</h2>
-            {renderField("Type", "shipmentType", false)} {/* Non-editable */}
-            {renderField("Container or Package Type", "containerType")}
-            {renderField("Number of Containers or Packages", "numberOfPieces")}
-            {renderField("Description of Goods", "goodsDescription")}
-          </div>
+          {renderShipmentType()}
 
           {/* Additional Information */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
