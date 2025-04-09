@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import NavigationBar from "./NavigationBar";
 import databank from "../../../../utils/databank"; // Simplified import path
+import { FaEdit } from "react-icons/fa"; // Import edit icon
 
 interface ShipmentData {
   consignorName: string;
@@ -42,236 +44,147 @@ interface ShipmentData {
   fragileSubCategory: string;
   extraProtection: boolean;
   deliveryOption: string;
-  consignorFullName: string;
-  consignorFullAddress: string;
-  consigneeFullName: string;
-  consigneeFullAddress: string;
-  street: string;
-  description: string;
-  isDangerousGoods: boolean;
 }
 
 export default function ReviewAndConfirmPage() {
+  const router = useRouter();
   const [fields, setFields] = useState<Partial<ShipmentData>>({});
+  const [isEditing, setIsEditing] = useState<Record<keyof ShipmentData, boolean>>(
+    {} as Record<keyof ShipmentData, boolean>
+  ); // Correctly initialize with type assertion
 
   useEffect(() => {
     const data = databank.getData(); // Fetch data from databank
-    if (data.length === 0) {
-      databank.saveData({
-        consignorName: "John Doe",
-        consignorEmail: "john.doe@example.com",
-        consignorPhone: "+123456789",
-        consignorAddress: "123 Main Street",
-        consignorCountry: "USA",
-        consignorCity: "New York",
-        consigneeName: "Jane Smith",
-        consigneeEmail: "jane.smith@example.com",
-        consigneePhone: "+987654321",
-        consigneeAddress: "456 Elm Street",
-        consigneeCountry: "Canada",
-        consigneeCity: "Toronto",
-        originCountry: "USA",
-        originCity: "New York",
-        originStreet: "123 Main Street",
-        destinationCountry: "Canada",
-        destinationCity: "Toronto",
-        destinationStreet: "456 Elm Street",
-        containerType: "20ft",
-        goodsDescription: "Electronics",
-        packageType: "Box",
-        numberOfPieces: "10",
-        dangerousGoods: "No",
-        shippingDate: "2023-10-01",
-        deliveryDate: "2023-10-10",
-        shipmentType: "FCL",
-        fclSelection: "20ft",
-        lclSelection: "",
-        weight: "1000kg",
-        height: "2m",
-        length: "5m",
-        width: "2m",
-        isFragile: false,
-        fragileCategory: "",
-        fragileSubCategory: "",
-        extraProtection: false,
-        deliveryOption: "Deliver",
-        consignorFullName: "John Doe",
-        consignorFullAddress: "123 Main Street, New York, USA",
-        consigneeFullName: "Jane Smith",
-        consigneeFullAddress: "456 Elm Street, Toronto, Canada",
-        street: "123 Main Street",
-        description: "Electronics shipment",
-        isDangerousGoods: false,
-      } as ShipmentData);
-    }
     setFields(data[data.length - 1] || {}); // Use the latest entry
   }, []);
+
+  const handleEditClick = (field: keyof ShipmentData) => {
+    setIsEditing((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const handleInputChange = (field: keyof ShipmentData, value: string) => {
+    setFields((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSave = (field: keyof ShipmentData) => {
+    setIsEditing((prev) => ({ ...prev, [field]: false }));
+    databank.updateData({ [field]: fields[field] }); // Save updated field to databank
+  };
 
   if (!fields || Object.keys(fields).length === 0) {
     return <div>Loading...</div>;
   }
 
+  const renderField = (label: string, field: keyof ShipmentData) => (
+    <div className="flex justify-between items-center">
+      <div>
+        <h3 className="text-md font-medium">{label}</h3>
+        {isEditing[field] ? (
+          <input
+            type="text"
+            value={fields[field] as string || ""} // Ensure value is a string
+            onChange={(e) => handleInputChange(field, e.target.value)}
+            className="border border-gray-300 rounded px-2 py-1"
+          />
+        ) : (
+          <p className="text-gray-700">{fields[field] || "N/A"}</p>
+        )}
+      </div>
+      {!isEditing[field] && (
+        <FaEdit
+          className="text-blue-500 cursor-pointer"
+          onClick={() => handleEditClick(field)}
+        />
+      )}
+      {isEditing[field] && (
+        <button
+          className="ml-2 text-sm text-white bg-blue-500 px-2 py-1 rounded"
+          onClick={() => handleSave(field)}
+        >
+          Save
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
-      <NavigationBar onNavigate={(url) => (window.location.href = url)} />
+      <NavigationBar onNavigate={(url) => router.push(url)} />
       <div className="flex flex-col items-start w-full max-w-6xl mt-4">
         <h1 className="text-4xl font-extrabold mb-6 text-left">Review & Confirm</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-7 w-full">
           {/* Consignor (Shipper) */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {["consignorName", "consignorEmail", "consignorPhone"].map((field) => (
-                <div key={field} className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium capitalize">{field.replace("consignor", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderField("Full Name", "consignorName")}
+            {renderField("Email", "consignorEmail")}
+            {renderField("Phone", "consignorPhone")}
+            {renderField("Address", "consignorAddress")}
+            {renderField("Country", "consignorCountry")}
+            {renderField("City", "consignorCity")}
           </div>
 
           {/* Consignee (Recipient) */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {["consigneeName", "consigneeEmail", "consigneePhone", "consigneeAddress", "consigneeCountry", "consigneeCity"].map((field) => (
-                <div key={field} className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium capitalize">{field.replace("consignee", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderField("Full Name", "consigneeName")}
+            {renderField("Email", "consigneeEmail")}
+            {renderField("Phone", "consigneePhone")}
+            {renderField("Address", "consigneeAddress")}
+            {renderField("Country", "consigneeCountry")}
+            {renderField("City", "consigneeCity")}
           </div>
 
           {/* Origin (From) */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {["originCountry", "originCity", "originStreet"].map((field) => (
-                <div key={field} className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium capitalize">{field.replace("origin", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderField("Country", "originCountry")}
+            {renderField("City", "originCity")}
+            {renderField("Street", "originStreet")}
           </div>
 
           {/* Destination (To) */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {["destinationCountry", "destinationCity", "destinationStreet"].map((field) => (
-                <div key={field} className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium capitalize">{field.replace("destination", "").replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderField("Country", "destinationCountry")}
+            {renderField("City", "destinationCity")}
+            {renderField("Street", "destinationStreet")}
           </div>
 
           {/* Additional Information */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {["containerType", "goodsDescription", "packageType", "numberOfPieces", "dangerousGoods", "shippingDate", "deliveryDate"].map((field) => (
-                <div key={field} className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium capitalize">{field.replace(/([A-Z])/g, " $1")}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderField("Container Type", "containerType")}
+            {renderField("Goods Description", "goodsDescription")}
+            {renderField("Package Type", "packageType")}
+            {renderField("Number of Pieces", "numberOfPieces")}
+            {renderField("Dangerous Goods", "dangerousGoods")}
+            {renderField("Shipping Date", "shippingDate")}
+            {renderField("Delivery Date", "deliveryDate")}
           </div>
-
-          {/* Shipment Type */}
-          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
-            <div>
-              <h2 className="text-lg font-bold mb-2">Shipment Type</h2>
-              <p className="text-gray-700">
-                {fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load"}
-              </p>
-            </div>
-          </div>
-
-          {/* FCL or LCL Selection */}
-          {fields.shipmentType === "FCL" && (
-            <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
-              <div>
-                <h2 className="text-lg font-bold mb-2">Number of Containers</h2>
-                <p className="text-gray-700">{fields.fclSelection || "N/A"}</p>
-              </div>
-            </div>
-          )}
-          {fields.shipmentType === "LCL" && (
-            <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
-              <div>
-                <h2 className="text-lg font-bold mb-2">Number of Packages</h2>
-                <p className="text-gray-700">{fields.lclSelection || "N/A"}</p>
-              </div>
-            </div>
-          )}
 
           {/* Size & Weight Details */}
           <div className="bg-white p-6 shadow-lg rounded-lg w-full">
             <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-            <div className="grid grid-cols-2 gap-4">
-              {["weight", "height", "length", "width"].map((field) => (
-                <div key={field} className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium capitalize">{field}</h3>
-                    <p className="text-gray-700">{fields[field as keyof ShipmentData]}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {renderField("Weight", "weight")}
+            {renderField("Height", "height")}
+            {renderField("Length", "length")}
+            {renderField("Width", "width")}
           </div>
 
           {/* Fragile Item */}
           {fields.isFragile && (
             <div className="bg-white p-6 shadow-lg rounded-lg w-full">
               <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium">Category</h3>
-                    <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h3 className="text-md font-medium">Subcategory</h3>
-                    <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
-                  </div>
-                </div>
-              </div>
+              {renderField("Category", "fragileCategory")}
+              {renderField("Subcategory", "fragileSubCategory")}
             </div>
           )}
 
           {/* Delivery Option */}
-          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
-            <div>
-              <h2 className="text-lg font-bold mb-2">Delivery Option</h2>
-              <p className="text-gray-700">
-                {fields.deliveryOption === "pickup" ? "Pick Up" : "Deliver"}
-              </p>
-            </div>
-          </div>
-
-          {/* Delivery Date */}
-          <div className="bg-white p-6 shadow-lg rounded-lg flex justify-between items-center w-full">
-            <div>
-              <h2 className="text-lg font-bold mb-2">Delivery Date</h2>
-              <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
-            </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg w-full">
+            <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
+            {renderField("Option", "deliveryOption")}
           </div>
         </div>
       </div>
