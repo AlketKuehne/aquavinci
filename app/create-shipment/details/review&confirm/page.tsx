@@ -55,7 +55,11 @@ export default function ReviewAndConfirmPage() {
 
   useEffect(() => {
     const data = databank.getData(); // Fetch data from databank
-    setFields(data[data.length - 1] || {}); // Use the latest entry
+    if (data && data.length > 0) {
+      setFields(data[data.length - 1]); // Use the latest entry
+    } else {
+      setFields({}); // Ensure fields is initialized even if no data exists
+    }
   }, []);
 
   const handleEditClick = (field: keyof ShipmentData) => {
@@ -72,7 +76,11 @@ export default function ReviewAndConfirmPage() {
   };
 
   if (!fields || Object.keys(fields).length === 0) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg font-bold text-gray-700">No data available to display.</p>
+      </div>
+    );
   }
 
   const renderField = (label: string, field: keyof ShipmentData) => (
