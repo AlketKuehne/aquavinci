@@ -196,44 +196,13 @@ export default function ReviewAndConfirmPage() {
       fields.shipmentType === "FCL"
         ? "Number of Pieces (per container)"
         : "Number of Pieces (per package)";
-    const piecesField = fields.shipmentType === "FCL" ? "numberOfPieces" : "packageType";
 
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
-        <div className="flex justify-between items-center">
-          <div>
-            <h3 className="text-md font-bold">{piecesLabel}:</h3>
-            {isEditing[piecesField] ? (
-              <input
-                type="text"
-                value={fields[piecesField] || ""}
-                onChange={(e) => handleInputChange(piecesField, e.target.value)}
-                className="border border-gray-300 rounded px-2 py-1"
-              />
-            ) : (
-              <p className="text-gray-700">{fields[piecesField] || "N/A"}</p>
-            )}
-          </div>
-          {!isEditing[piecesField] && (
-            <div
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-              onClick={() => handleEditClick(piecesField)}
-            >
-              <FaEdit />
-            </div>
-          )}
-          {isEditing[piecesField] && (
-            <button
-              className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-              onClick={() => handleSave(piecesField)}
-            >
-              Save
-            </button>
-          )}
-        </div>
+        {renderField(piecesLabel, "numberOfPieces")} {/* Corrected field */}
         {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
@@ -329,6 +298,7 @@ export default function ReviewAndConfirmPage() {
           {/* Additional Information */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
+            {renderField("Number of Pieces (default: 1)", "numberOfPieces")} {/* Corrected field */}
             {renderField("Dangerous Goods", "dangerousGoods")}
             {renderField("Shipping Date", "shippingDate")}
             {renderField("Delivery Date", "deliveryDate")}
