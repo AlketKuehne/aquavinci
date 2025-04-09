@@ -120,9 +120,9 @@ export default function ReviewAndConfirmPage() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
-      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8"> {/* Adjusted `mt-16` to `mt-12` */}
-        <h1 className="text-4xl font-extrabold mb-6 self-start">Review & Confirm</h1> {/* Header pushed slightly up */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-8 w-full"> {/* Two boxes side by side */}
+      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8"> {/* Keep headline position */}
+        <h1 className="text-4xl font-extrabold mb-6 self-start">Review & Confirm</h1>
+        <div className="grid grid-cols-2 gap-x-4 gap-y-6 w-full mt-4"> {/* Reduced gap and moved boxes down */}
           {/* Consignor (Shipper) */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
