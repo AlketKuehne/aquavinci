@@ -78,7 +78,7 @@ export default function ReviewAndConfirmPage() {
   const renderField = (label: string, field: keyof ShipmentData) => (
     <div className="flex justify-between items-center">
       <div>
-        <h3 className="text-md font-medium">{label}</h3>
+        <h3 className="text-md font-bold">{label}:</h3> {/* Add colon and bold styling */}
         {isEditing[field] ? (
           <input
             type="text"
