@@ -19,7 +19,8 @@ interface ShipmentData {
   destinationStreet: string;
   containerType: string;
   goodsDescription: string;
-  packageType: string;
+  packageType: string; // Represents "Number of Packages/Containers"
+  numberOfPackages: string; // Added to store the unified "Number of Packages" value
   numberOfPieces: string;
   dangerousGoods: string;
   shippingDate: string;
@@ -50,6 +51,12 @@ let dataStore: Partial<ShipmentData>[] = [];
 
 const databank = {
   saveData: (data: Partial<ShipmentData>) => {
+    // Ensure "numberOfPackages" is consistent with "packageType" or "lclSelection"
+    if (data.shipmentType === "LCL" && data.lclSelection) {
+      data.numberOfPackages = data.lclSelection; // Use "lclSelection" for "Number of Packages"
+    } else if (data.shipmentType === "FCL" && data.packageType) {
+      data.numberOfPackages = data.packageType; // Use "packageType" for "Number of Packages"
+    }
     dataStore.push(data);
   },
   getData: () => {
@@ -57,6 +64,12 @@ const databank = {
   },
   updateData: (updatedData: Partial<ShipmentData>) => {
     if (dataStore.length > 0) {
+      // Ensure "numberOfPackages" is consistent during updates
+      if (updatedData.shipmentType === "LCL" && updatedData.lclSelection) {
+        updatedData.numberOfPackages = updatedData.lclSelection;
+      } else if (updatedData.shipmentType === "FCL" && updatedData.packageType) {
+        updatedData.numberOfPackages = updatedData.packageType;
+      }
       dataStore[dataStore.length - 1] = { ...dataStore[dataStore.length - 1], ...updatedData };
     }
   },
