@@ -183,7 +183,7 @@ export default function ReviewAndConfirmPage() {
             className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
             onClick={() => handleSave(field)}
           >
-            Save
+          Save
           </button>
         )}
       </div>
