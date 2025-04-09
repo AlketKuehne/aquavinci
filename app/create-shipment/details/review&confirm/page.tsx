@@ -194,8 +194,8 @@ export default function ReviewAndConfirmPage() {
     const shipmentType = fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load";
     const piecesLabel =
       fields.shipmentType === "FCL"
-        ? "Enter number of containers (1-100)"
-        : "Enter number of packages";
+        ? "Number of Pieces (per container)"
+        : "Number of Pieces (per package)";
     const piecesField = fields.shipmentType === "FCL" ? "numberOfPieces" : "packageType";
 
     return (
@@ -234,7 +234,7 @@ export default function ReviewAndConfirmPage() {
             </button>
           )}
         </div>
-        {renderField("Number of Pieces (per container or package)", "goodsDescription")} {/* Fixed */}
+        {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
   };
