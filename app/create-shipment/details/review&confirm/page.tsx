@@ -213,6 +213,18 @@ export default function ReviewAndConfirmPage() {
     );
   };
 
+  const renderSizeAndWeightDetails = () => {
+    return (
+      <div className="bg-white p-6 shadow-lg rounded-lg">
+        <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
+        {renderField("Weight (in kg)", "weight")} {/* Ensure value is read */}
+        {renderField("Height (in m)", "height")} {/* Ensure value is read */}
+        {renderField("Length (in m)", "length")} {/* Ensure value is read */}
+        {renderField("Width (in m)", "width")} {/* Ensure value is read */}
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -261,13 +273,7 @@ export default function ReviewAndConfirmPage() {
           {renderShipmentType()}
 
           {/* Size & Weight Details */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-            {renderField("Weight (in kg)", "weight")}
-            {renderField("Height (in m)", "height")}
-            {renderField("Length (in m)", "length")}
-            {renderField("Width (in m)", "width")}
-          </div>
+          {renderSizeAndWeightDetails()}
 
           {/* Fragile Item */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
