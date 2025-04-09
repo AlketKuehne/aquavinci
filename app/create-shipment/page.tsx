@@ -445,7 +445,8 @@ export default function CreateShipmentPage() {
         consignorPhone,
         consigneePhone,
         numberOfPieces,
-        isDangerousGoods,
+        dangerousGoods: isDangerousGoods ? "Yes" : "No", // Convert boolean to string
+        isDangerousGoods, // Include the boolean field explicitly
         consignorName: consignorFullName, // Map to required field
         consignorAddress: consignorFullAddress, // Map to required field
         consigneeName: consigneeFullName, // Map to required field
@@ -454,7 +455,6 @@ export default function CreateShipmentPage() {
         containerType: shipmentType === "FCL" ? fclSelection : lclSelection, // Map to required field
         packageType: shipmentType === "LCL" ? lclSelection : "", // Map to required field
         originCountry: country, // Map to required field
-        dangerousGoods: isDangerousGoods, // Map to required field
         weight: "", // Default value
         height: "", // Default value
         length: "", // Default value
