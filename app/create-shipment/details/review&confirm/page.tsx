@@ -91,10 +91,12 @@ export default function ReviewAndConfirmPage() {
         )}
       </div>
       {!isEditing[field] && (
-        <FaEdit
-          className="text-blue-500 cursor-pointer"
+        <div
+          className="flex items-center justify-center w-8 h-8 rounded-full bg-black text-white cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
           onClick={() => handleEditClick(field)}
-        />
+        >
+          <FaEdit />
+        </div>
       )}
       {isEditing[field] && (
         <button
