@@ -43,34 +43,23 @@ interface ShipmentData {
   street: string;
   description: string;
   isDangerousGoods: boolean;
+  selectedProtections?: string[]; // Added missing property
 }
 
-class Databank {
-  private data: ShipmentData[] = [];
+let dataStore: Partial<ShipmentData>[] = [];
 
-  // Save a new row of data
-  saveData(newData: ShipmentData): void {
-    this.data.push(newData);
-  }
-
-  // Get all saved data
-  getData(): ShipmentData[] {
-    return this.data;
-  }
-
-  // Update the latest row with new inputs
-  updateData(updatedData: Partial<ShipmentData>): void {
-    if (this.data.length > 0) {
-      const lastIndex = this.data.length - 1;
-      this.data[lastIndex] = { ...this.data[lastIndex], ...updatedData };
+const databank = {
+  saveData: (data: Partial<ShipmentData>) => {
+    dataStore.push(data);
+  },
+  getData: () => {
+    return dataStore;
+  },
+  updateData: (updatedData: Partial<ShipmentData>) => {
+    if (dataStore.length > 0) {
+      dataStore[dataStore.length - 1] = { ...dataStore[dataStore.length - 1], ...updatedData };
     }
-  }
+  },
+};
 
-  // Reset all data
-  reset(): void {
-    this.data = [];
-  }
-}
-
-const databank = new Databank();
 export default databank;
