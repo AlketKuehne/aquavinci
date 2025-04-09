@@ -64,7 +64,13 @@ export default function ReviewAndConfirmPage() {
   }, []);
 
   const handleEditClick = (field: keyof ShipmentData) => {
-    setIsEditing((prev) => ({ ...prev, [field]: true }));
+    // Reset all other fields to non-editing state
+    setIsEditing(() =>
+      Object.keys(fields).reduce((acc, key) => {
+        acc[key as keyof ShipmentData] = key === field;
+        return acc;
+      }, {} as Record<keyof ShipmentData, boolean>)
+    );
   };
 
   const handleInputChange = (field: keyof ShipmentData, value: string) => {
@@ -154,7 +160,7 @@ export default function ReviewAndConfirmPage() {
               <option value="" disabled>
                 Select a city
               </option>
-              {cities.map((city: string) => ( // Explicitly typed `city` as `string`
+              {cities.map((city: string) => (
                 <option key={city} value={city}>
                   {city}
                 </option>
