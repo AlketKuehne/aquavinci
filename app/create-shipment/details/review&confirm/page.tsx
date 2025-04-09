@@ -180,7 +180,7 @@ export default function ReviewAndConfirmPage() {
         )}
         {editable && isEditing[field] && (
           <button
-            className="ml-2 text-sm text-white bg-blue-500 px-2 py-1 rounded"
+            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
             onClick={() => handleSave(field)}
           >
             Save
