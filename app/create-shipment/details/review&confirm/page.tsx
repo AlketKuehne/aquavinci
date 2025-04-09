@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import NavigationBar from "./NavigationBar";
 import databank from "../../../../utils/databank"; // Simplified import path
+import countryCityData from "../../../../utils/countryCityData"; // Import country-city mapping
 import { FaEdit } from "react-icons/fa"; // Import edit icon
 
 interface ShipmentData {
@@ -131,6 +132,58 @@ export default function ReviewAndConfirmPage() {
     </div>
   );
 
+  const renderFieldWithDropdown = (
+    label: string,
+    field: keyof ShipmentData,
+    countryField: keyof ShipmentData,
+    editable: boolean = true
+  ) => {
+    const country = fields[countryField] as string; // Get the selected country
+    const cities = countryCityData[country] || []; // Get cities for the selected country
+
+    return (
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">{label}:</h3>
+          {editable && isEditing[field] ? (
+            <select
+              value={fields[field] as string || ""}
+              onChange={(e) => handleInputChange(field, e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            >
+              <option value="" disabled>
+                Select a city
+              </option>
+              {cities.map((city: string) => ( // Explicitly typed `city` as `string`
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <p className="text-gray-700">{fields[field] || "N/A"}</p>
+          )}
+        </div>
+        {editable && !isEditing[field] && (
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+            onClick={() => handleEditClick(field)}
+          >
+            <FaEdit />
+          </div>
+        )}
+        {editable && isEditing[field] && (
+          <button
+            className="ml-2 text-sm text-white bg-blue-500 px-2 py-1 rounded"
+            onClick={() => handleSave(field)}
+          >
+            Save
+          </button>
+        )}
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -145,7 +198,7 @@ export default function ReviewAndConfirmPage() {
             {renderField("Phone", "consignorPhone")}
             {renderField("Address", "consignorAddress")}
             {renderField("Country", "consignorCountry", false)} {/* Non-editable */}
-            {renderField("City", "consignorCity")}
+            {renderFieldWithDropdown("City", "consignorCity", "consignorCountry")} {/* Dropdown */}
           </div>
 
           {/* Consignee (Recipient) */}
@@ -156,14 +209,14 @@ export default function ReviewAndConfirmPage() {
             {renderField("Phone", "consigneePhone")}
             {renderField("Address", "consigneeAddress")}
             {renderField("Country", "consigneeCountry", false)} {/* Non-editable */}
-            {renderField("City", "consigneeCity")}
+            {renderFieldWithDropdown("City", "consigneeCity", "consigneeCountry")} {/* Dropdown */}
           </div>
 
           {/* Origin (From) */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             {renderField("Country", "originCountry", false)} {/* Non-editable */}
-            {renderField("City", "originCity", false)} {/* Non-editable */}
+            {renderFieldWithDropdown("City", "originCity", "originCountry")} {/* Dropdown */}
             {renderField("Street", "originStreet")} {/* Editable */}
           </div>
 
@@ -171,7 +224,7 @@ export default function ReviewAndConfirmPage() {
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             {renderField("Country", "destinationCountry", false)} {/* Non-editable */}
-            {renderField("City", "destinationCity", false)} {/* Non-editable */}
+            {renderFieldWithDropdown("City", "destinationCity", "destinationCountry")} {/* Dropdown */}
             {renderField("Street", "destinationStreet")} {/* Editable */}
           </div>
 
