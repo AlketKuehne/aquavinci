@@ -2,28 +2,29 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation"; // Import useRouter for navigation
+import databank from "../../../utils/databank"; // Import databank for shared state
 
 export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: { shipmentType: string | null; shippingDate: string; minDeliveryDate: string }) {
   const router = useRouter(); // Initialize router for navigation
-  const [fclSelection, setFclSelection] = useState<string | null>(null);
-  const [lclSelection, setLclSelection] = useState<string | null>(null);
+  const [fclSelection, setFclSelection] = useState<string | undefined>(undefined);
+  const [lclSelection, setLclSelection] = useState<string | undefined>(undefined);
   const [weight, setWeight] = useState<string>("");
   const [height, setHeight] = useState<string>("");
   const [length, setLength] = useState<string>("");
   const [width, setWidth] = useState<string>("");
   const [isFragile, setIsFragile] = useState(false);
-  const [fragileCategory, setFragileCategory] = useState<string | null>(null);
-  const [fragileSubCategory, setFragileSubCategory] = useState<string | null>(null);
+  const [fragileCategory, setFragileCategory] = useState<string | undefined>(undefined);
+  const [fragileSubCategory, setFragileSubCategory] = useState<string | undefined>(undefined);
   const [extraProtection, setExtraProtection] = useState(false);
   const [insuranceRequired, setInsuranceRequired] = useState(false); // State for insurance checkbox
   const [selectedProtections, setSelectedProtections] = useState<string[]>([]); // State for multiple protection options
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State for dropdown visibility
   const [dropdownDirection, setDropdownDirection] = useState<"down" | "up">("down"); // State for dropdown direction
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for dropdown container
-  const [deliveryOption, setDeliveryOption] = useState<string | null>(null);
+  const [deliveryOption, setDeliveryOption] = useState<string | undefined>(undefined);
   const [deliveryDate, setDeliveryDate] = useState<string>(""); // State for delivery date
-  const [country, setCountry] = useState<string | null>(null); // Add country state
-  const [destinationCountry, setDestinationCountry] = useState<string | null>(null); // Add destination country state
+  const [country, setCountry] = useState<string | undefined>(undefined); // Add country state
+  const [destinationCountry, setDestinationCountry] = useState<string | undefined>(undefined); // Add destination country state
   const [showPopup, setShowPopup] = useState(false); // State for popup visibility
 
   const fragileSubCategories = {
@@ -143,6 +144,39 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     setDeliveryDate("");
   }, [shippingDate, minDeliveryDate]);
 
+  useEffect(() => {
+    // Save data to databank as the user types
+    databank.updateData({
+      fclSelection,
+      lclSelection,
+      weight,
+      height,
+      length,
+      width,
+      isFragile,
+      fragileCategory,
+      fragileSubCategory,
+      extraProtection,
+      selectedProtections,
+      deliveryOption,
+      deliveryDate,
+    });
+  }, [
+    fclSelection,
+    lclSelection,
+    weight,
+    height,
+    length,
+    width,
+    isFragile,
+    fragileCategory,
+    fragileSubCategory,
+    extraProtection,
+    selectedProtections,
+    deliveryOption,
+    deliveryDate,
+  ]);
+
   const calculateMinDeliveryDate = (): string => {
     if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];
     const baseDate = new Date(minDeliveryDate);
@@ -234,8 +268,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
                 const isChecked = e.target.checked;
                 setIsFragile(isChecked);
                 if (!isChecked) {
-                  setFragileCategory(null);
-                  setFragileSubCategory(null);
+                  setFragileCategory(undefined);
+                  setFragileSubCategory(undefined);
                   setInsuranceRequired(false); // Reset insurance if fragile is unchecked
                 }
               }}
@@ -249,7 +283,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             value={fragileCategory || ""}
             onChange={(e) => {
               setFragileCategory(e.target.value);
-              setFragileSubCategory(null);
+              setFragileSubCategory(undefined);
             }}
             disabled={!isFragile}
             className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-4"
