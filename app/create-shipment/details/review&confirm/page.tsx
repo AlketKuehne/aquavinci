@@ -144,7 +144,7 @@ export default function ReviewAndConfirmPage() {
             {renderField("Email", "consignorEmail")}
             {renderField("Phone", "consignorPhone")}
             {renderField("Address", "consignorAddress")}
-            {renderField("Country", "consignorCountry")}
+            {renderField("Country", "consignorCountry", false)} {/* Non-editable */}
             {renderField("City", "consignorCity")}
           </div>
 
@@ -155,7 +155,7 @@ export default function ReviewAndConfirmPage() {
             {renderField("Email", "consigneeEmail")}
             {renderField("Phone", "consigneePhone")}
             {renderField("Address", "consigneeAddress")}
-            {renderField("Country", "consigneeCountry")}
+            {renderField("Country", "consigneeCountry", false)} {/* Non-editable */}
             {renderField("City", "consigneeCity")}
           </div>
 
