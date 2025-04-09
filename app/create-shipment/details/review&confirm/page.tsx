@@ -196,52 +196,46 @@ export default function ReviewAndConfirmPage() {
       <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8"> {/* Keep headline position */}
         <h1 className="text-4xl font-extrabold mb-6 self-start">Review & Confirm</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 w-full mt-3"> {/* Adjusted layout */}
-          {/* Consignor and Consignee */}
-          <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
-            <h2 className="text-lg font-bold mb-4">Consignor (Shipper) & Consignee (Recipient)</h2>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-4">
-              {/* Consignor */}
-              <div>
-                {renderField("Full Name", "consignorName")}
-                {renderField("Email", "consignorEmail")}
-                {renderField("Phone", "consignorPhone")}
-                {renderField("Address", "consignorAddress")}
-                {renderField("Country", "consignorCountry", false)} {/* Non-editable */}
-                {renderFieldWithDropdown("City", "consignorCity", "consignorCountry")} {/* Dropdown */}
-              </div>
-              {/* Consignee */}
-              <div>
-                {renderField("Full Name", "consigneeName")}
-                {renderField("Email", "consigneeEmail")}
-                {renderField("Phone", "consigneePhone")}
-                {renderField("Address", "consigneeAddress")}
-                {renderField("Country", "consigneeCountry", false)} {/* Non-editable */}
-                {renderFieldWithDropdown("City", "consigneeCity", "consigneeCountry")} {/* Dropdown */}
-              </div>
-            </div>
+          {/* Consignor (Shipper) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
+            {renderField("Full Name", "consignorName")}
+            {renderField("Email", "consignorEmail")}
+            {renderField("Phone", "consignorPhone")}
+            {renderField("Address", "consignorAddress")}
+            {renderField("Country", "consignorCountry", false)} {/* Non-editable */}
+            {renderFieldWithDropdown("City", "consignorCity", "consignorCountry")} {/* Dropdown */}
           </div>
 
-          {/* Origin and Destination */}
-          <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
-            <h2 className="text-lg font-bold mb-4">Origin (From) & Destination (To)</h2>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-4">
-              {/* Origin */}
-              <div>
-                {renderField("Country", "originCountry", false)} {/* Non-editable */}
-                {renderFieldWithDropdown("City", "originCity", "originCountry")} {/* Dropdown */}
-                {renderField("Street", "originStreet")} {/* Editable */}
-              </div>
-              {/* Destination */}
-              <div>
-                {renderField("Country", "destinationCountry", false)} {/* Non-editable */}
-                {renderFieldWithDropdown("City", "destinationCity", "destinationCountry")} {/* Dropdown */}
-                {renderField("Street", "destinationStreet")} {/* Editable */}
-              </div>
-            </div>
+          {/* Consignee (Recipient) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
+            {renderField("Full Name", "consigneeName")}
+            {renderField("Email", "consigneeEmail")}
+            {renderField("Phone", "consigneePhone")}
+            {renderField("Address", "consigneeAddress")}
+            {renderField("Country", "consigneeCountry", false)} {/* Non-editable */}
+            {renderFieldWithDropdown("City", "consigneeCity", "consigneeCountry")} {/* Dropdown */}
+          </div>
+
+          {/* Origin (From) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
+            {renderField("Country", "originCountry", false)} {/* Non-editable */}
+            {renderFieldWithDropdown("City", "originCity", "originCountry")} {/* Dropdown */}
+            {renderField("Street", "originStreet")} {/* Editable */}
+          </div>
+
+          {/* Destination (To) */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
+            {renderField("Country", "destinationCountry", false)} {/* Non-editable */}
+            {renderFieldWithDropdown("City", "destinationCity", "destinationCountry")} {/* Dropdown */}
+            {renderField("Street", "destinationStreet")} {/* Editable */}
           </div>
 
           {/* Shipment Type */}
-          <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Shipment Type</h2>
             {renderField("Type", "shipmentType", false)} {/* Non-editable */}
             {renderField("Container or Package Type", "containerType")}
@@ -250,7 +244,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Additional Information */}
-          <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Additional Information</h2>
             {renderField("Dangerous Goods", "dangerousGoods")}
             {renderField("Shipping Date", "shippingDate")}
@@ -258,7 +252,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Size & Weight Details */}
-          <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
             {renderField("Weight", "weight")}
             {renderField("Height", "height")}
@@ -268,7 +262,7 @@ export default function ReviewAndConfirmPage() {
 
           {/* Fragile Item */}
           {fields.isFragile && (
-            <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
+            <div className="bg-white p-6 shadow-lg rounded-lg">
               <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
               {renderField("Category", "fragileCategory")}
               {renderField("Subcategory", "fragileSubCategory")}
@@ -276,7 +270,7 @@ export default function ReviewAndConfirmPage() {
           )}
 
           {/* Delivery Option */}
-          <div className="bg-white p-6 shadow-lg rounded-lg col-span-2">
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
             {renderField("Option", "deliveryOption")}
           </div>
