@@ -45,6 +45,7 @@ interface ShipmentData {
   fragileSubCategory: string;
   extraProtection: boolean;
   deliveryOption: string;
+  selectedProtections: string[]; // Added missing property
 }
 
 export default function ReviewAndConfirmPage() {
@@ -352,6 +353,41 @@ export default function ReviewAndConfirmPage() {
             {renderField("Dangerous Goods", "dangerousGoods")}
             {renderField("Shipping Date", "shippingDate")}
             {renderField("Delivery Date", "deliveryDate")}
+          </div>
+
+          {/* Data from /details/Boxes */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
+            <p className="text-gray-700">Number of Containers: {fields.fclSelection || "N/A"}</p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
+            <p className="text-gray-700">Number of Packages: {fields.lclSelection || "N/A"}</p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
+            <p className="text-gray-700">Weight: {fields.weight || "N/A"}</p>
+            <p className="text-gray-700">Height: {fields.height || "N/A"}</p>
+            <p className="text-gray-700">Length: {fields.length || "N/A"}</p>
+            <p className="text-gray-700">Width: {fields.width || "N/A"}</p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
+            <p className="text-gray-700">Is Fragile: {fields.isFragile ? "Yes" : "No"}</p>
+            <p className="text-gray-700">Category: {fields.fragileCategory || "N/A"}</p>
+            <p className="text-gray-700">Subcategory: {fields.fragileSubCategory || "N/A"}</p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
+            <p className="text-gray-700">Option: {fields.deliveryOption || "N/A"}</p>
+            <p className="text-gray-700">Date: {fields.deliveryDate || "N/A"}</p>
+          </div>
+          <div className="bg-white p-6 shadow-lg rounded-lg">
+            <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
+            <p className="text-gray-700">Requested: {fields.extraProtection ? "Yes" : "No"}</p>
+            <p className="text-gray-700">
+              Selected Protections: {fields.selectedProtections?.join(", ") || "N/A"}
+            </p>
           </div>
         </div>
       </div>
