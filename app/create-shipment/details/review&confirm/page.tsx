@@ -67,7 +67,14 @@ export default function ReviewAndConfirmPage() {
   };
 
   const handleInputChange = (field: keyof ShipmentData, value: string) => {
-    setFields((prev) => ({ ...prev, [field]: value }));
+    // Restrict input to letters for consignorName and consigneeName
+    if (field === "consignorName" || field === "consigneeName") {
+      if (/^[a-zA-Z\s]*$/.test(value)) {
+        setFields((prev) => ({ ...prev, [field]: value }));
+      }
+    } else {
+      setFields((prev) => ({ ...prev, [field]: value }));
+    }
   };
 
   const handleSave = (field: keyof ShipmentData) => {
