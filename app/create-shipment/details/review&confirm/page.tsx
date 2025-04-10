@@ -276,7 +276,7 @@ export default function ReviewAndConfirmPage() {
                 className="border border-gray-300 rounded px-2 py-1"
               />
             ) : (
-              <p className="text-gray-700">{fields.fclSelection || "N/A"}</p> {/* Ensure user input is displayed */}
+              <p className="text-gray-700">{fields.fclSelection || "N/A"}</p> /* Ensure user input is displayed */
             )}
           </div>
         ) : (
@@ -290,7 +290,7 @@ export default function ReviewAndConfirmPage() {
                 className="border border-gray-300 rounded px-2 py-1"
               />
             ) : (
-              <p className="text-gray-700">{fields.lclSelection || "N/A"}</p> {/* Ensure user input is displayed */}
+              <p className="text-gray-700">{fields.lclSelection || "N/A"}</p> /* Ensure user input is displayed */
             )}
           </div>
         )}
