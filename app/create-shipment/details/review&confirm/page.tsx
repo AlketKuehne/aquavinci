@@ -277,7 +277,7 @@ export default function ReviewAndConfirmPage() {
               className="border border-gray-300 rounded px-2 py-1"
             />
           ) : (
-            <p className="text-gray-700">{fields.fclSelection || "N/A"}</p>
+            <p className="text-gray-700">{fields.fclSelection || fields.fclSelection === "" ? fields.fclSelection : "N/A"}</p> {/* Ensure user input is displayed */}
           )}
         </div>
         <div className="mt-1">
