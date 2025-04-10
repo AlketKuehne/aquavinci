@@ -296,9 +296,9 @@ export default function ReviewAndConfirmPage() {
             </p>
           </div>
 
-          {/* Delivery Option */}
+          {/* Shipping Details */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
+            <h2 className="text-lg font-bold mb-4">Shipping Details</h2>
             {renderField("Pick Up or Deliver", "deliveryOption", false)} {/* Non-editable */}
             {renderField("Date (TT.mm.jjjj)", "shippingDate", false)} {/* Non-editable */}
           </div>
