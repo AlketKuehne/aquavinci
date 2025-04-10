@@ -207,6 +207,50 @@ export default function ReviewAndConfirmPage() {
     );
   };
 
+  const renderFieldWithDropdownOptions = (
+    label: string,
+    field: keyof ShipmentData,
+    options: string[],
+    editable: boolean = true
+  ) => (
+    <div className="flex justify-between items-center">
+      <div>
+        <h3 className="text-md font-bold">{label}:</h3>
+        {editable && isEditing[field] ? (
+          <select
+            value={fields[field] as string || ""}
+            onChange={(e) => handleInputChange(field, e.target.value)}
+            className="border border-gray-300 rounded px-2 py-1"
+          >
+            {options.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <p className="text-gray-700">{fields[field] || "N/A"}</p>
+        )}
+      </div>
+      {editable && !isEditing[field] && (
+        <div
+          className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+          onClick={() => handleEditClick(field)}
+        >
+          <FaEdit />
+        </div>
+      )}
+      {editable && isEditing[field] && (
+        <button
+          className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+          onClick={() => handleSave(field)}
+        >
+          Save
+        </button>
+      )}
+    </div>
+  );
+
   const renderShipmentType = () => {
     const isFCL = fields.shipmentType === "FCL"; // Determine if the shipment type is FCL
     const shipmentType = isFCL ? "Full Container Load" : "Less Container Load";
@@ -336,6 +380,15 @@ export default function ReviewAndConfirmPage() {
     </div>
   );
 
+  const renderAdditionalInformation = () => (
+    <div className="bg-white p-6 shadow-lg rounded-lg">
+      <h2 className="text-lg font-bold mb-4">Additional Information</h2>
+      {renderFieldWithDropdownOptions("Dangerous Goods", "dangerousGoods", ["Yes", "No"])}
+      {renderField("Shipping Date", "shippingDate")}
+      {renderField("Delivery Date", "deliveryDate")}
+    </div>
+  );
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -404,12 +457,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Additional Information */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Additional Information</h2>
-            {renderField("Dangerous Goods", "dangerousGoods")}
-            {renderField("Shipping Date", "shippingDate")}
-            {renderField("Delivery Date", "deliveryDate")}
-          </div>
+          {renderAdditionalInformation()}
 
           {/* Data from /details/Boxes */}
           
