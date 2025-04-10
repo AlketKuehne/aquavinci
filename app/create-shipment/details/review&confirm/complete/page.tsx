@@ -17,7 +17,19 @@ export default function CompletePage() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(confirmedOrder),
-    });
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to save order");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Order saved successfully:", data);
+      })
+      .catch((error) => {
+        console.error("Error saving order:", error);
+      });
   }, []);
 
   return (
