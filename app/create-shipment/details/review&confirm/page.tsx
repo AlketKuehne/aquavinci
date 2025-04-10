@@ -451,67 +451,6 @@ export default function ReviewAndConfirmPage() {
     );
   };
 
-  const renderFragileItem = () => (
-    <div className="bg-white p-6 shadow-lg rounded-lg">
-      <h2 className="text-lg font-bold mb-3">Fragile Item</h2> {/* Reduced spacing */}
-      <div className="mb-1"> {/* Reduced spacing */}
-        <h3 className="text-md font-bold">Is Fragile:</h3>
-        <p className="text-gray-700">{fields.isFragile ? "Yes" : "No"}</p>
-      </div>
-      <div className="mb-1"> {/* Reduced spacing */}
-        <h3 className="text-md font-bold">Category:</h3>
-        <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
-      </div>
-      <div className="mb-1"> {/* Reduced spacing */}
-        <h3 className="text-md font-bold">Subcategory:</h3>
-        <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
-      </div>
-      <div className="mt-4 flex justify-between items-center">
-        <div>
-          <h3 className="text-md font-bold">Required Insurance:</h3>
-          {fields.isFragile ? (
-            isEditing["extraProtection"] ? (
-              <select
-                value={fields.extraProtection ? "Yes" : "No"}
-                onChange={(e) =>
-                  handleInputChange("extraProtection", e.target.value === "Yes" ? "true" : "false")
-                }
-                className="p-2 border rounded bg-gray-100"
-              >
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            ) : (
-              <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
-            )
-          ) : (
-            <p className="text-gray-700">N/A</p>
-          )}
-        </div>
-        {fields.isFragile && (
-          <div>
-            {!isEditing["extraProtection"] && (
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-                onClick={() => handleEditClick("extraProtection")}
-              >
-                <FaEdit />
-              </div>
-            )}
-            {isEditing["extraProtection"] && (
-              <button
-                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-                onClick={() => handleSave("extraProtection")}
-              >
-                Save
-              </button>
-            )}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-
   const renderShippingDetails = () => (
     <div className="bg-white p-6 shadow-lg rounded-lg">
       <h2 className="text-lg font-bold mb-4">Shipping Date Details</h2>
@@ -532,51 +471,6 @@ export default function ReviewAndConfirmPage() {
           <h3 className="text-md font-bold">Delivery Date:</h3>
           <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p> {/* Uneditable */}
         </div>
-      </div>
-    </div>
-  );
-
-  const renderAdditionalProtection = () => (
-    <div className="bg-white p-6 shadow-lg rounded-lg">
-      <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
-      <p className="text-gray-700">
-        Requested: {fields.extraProtection ? "Yes" : "No"}
-      </p>
-      <p className="text-gray-700">
-        Selected Protections: {fields.selectedProtections?.join(", ") || "N/A"}
-      </p>
-      <div className="flex justify-between items-center mt-4">
-        <div>
-          <h3 className="text-md font-bold">Dangerous Goods:</h3>
-          {isEditing["dangerousGoods"] ? (
-            <select
-              value={fields.dangerousGoods || "No"}
-              onChange={(e) => handleInputChange("dangerousGoods", e.target.value)}
-              className="border border-gray-300 rounded px-2 py-1"
-            >
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-          ) : (
-            <p className="text-gray-700">{fields.dangerousGoods || "No"}</p>
-          )}
-        </div>
-        {!isEditing["dangerousGoods"] && (
-          <div
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-            onClick={() => handleEditClick("dangerousGoods")}
-          >
-            <FaEdit />
-          </div>
-        )}
-        {isEditing["dangerousGoods"] && (
-          <button
-            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-            onClick={() => handleSave("dangerousGoods")}
-          >
-            Save
-          </button>
-        )}
       </div>
     </div>
   );
@@ -631,14 +525,8 @@ export default function ReviewAndConfirmPage() {
           {/* Size & Weight Details */}
           {renderSizeAndWeightDetails()}
 
-          {/* Fragile Item */}
-          {renderFragileItem()}
-
           {/* Shipping Details */}
           {renderShippingDetails()}
-
-          {/* Additional Protection */}
-          {renderAdditionalProtection()}
 
           {/* Data from /details/Boxes */}
           
@@ -648,20 +536,6 @@ export default function ReviewAndConfirmPage() {
             <p className="text-gray-700">Height: {fields.height || "N/A"}</p>
             <p className="text-gray-700">Length: {fields.length || "N/A"}</p>
             <p className="text-gray-700">Width: {fields.width || "N/A"}</p>
-          </div>
-
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-            <p className="text-gray-700">Is Fragile: No</p>
-            <p className="text-gray-700">Category: N/A</p>
-            <p className="text-gray-700">Subcategory: N/A</p>
-          </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
-            <p className="text-gray-700">Requested: {fields.extraProtection ? "Yes" : "No"}</p>
-            <p className="text-gray-700">
-              Selected Protections: {fields.selectedProtections?.join(", ") || "N/A"}
-            </p>
           </div>
         </div>
       </div>
