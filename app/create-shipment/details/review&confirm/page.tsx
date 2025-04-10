@@ -539,12 +539,14 @@ export default function ReviewAndConfirmPage() {
   const renderAdditionalProtection = () => (
     <div className="bg-white p-6 shadow-lg rounded-lg">
       <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
-      <p className="text-gray-700">
-        Requested: {fields.extraProtection ? "Yes" : "No"}
-      </p>
-      <p className="text-gray-700">
-        Selected Protections: {fields.selectedProtections?.join(", ") || "N/A"}
-      </p>
+      <div className="mb-4">
+        <h3 className="text-md font-bold">Requested:</h3>
+        <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+      </div>
+      <div className="mb-4">
+        <h3 className="text-md font-bold">Selected Protections:</h3>
+        <p className="text-gray-700">{fields.selectedProtections?.join(", ") || "N/A"}</p>
+      </div>
       <div className="flex justify-between items-center mt-4">
         <div>
           <h3 className="text-md font-bold">Dangerous Goods:</h3>
