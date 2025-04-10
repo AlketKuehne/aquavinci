@@ -593,7 +593,7 @@ export default function ReviewAndConfirmPage() {
   );
 
   const renderConfirmButton = () => (
-    <div className="flex justify-end items-center mt-[-50px] mr-0">
+    <div className="flex justify-end items-center mt-[-150px] -mr-90">
       <button
         className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-transparent hover:text-black cursor-pointer" // Added `cursor-pointer`
         onClick={handleConfirm} // Ensure the onClick handler is properly set
