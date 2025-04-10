@@ -1,6 +1,6 @@
 "use client";
 
-import NavigationBar from "../../../../components/NavigationBar"; // Corrected import path
+import NavigationBar from "./NavigationBar"; // Corrected import path
 
 export default function CompletePage() {
   return (
