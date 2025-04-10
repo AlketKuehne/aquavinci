@@ -242,21 +242,21 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           <h3 className="text-md font-semibold mb-2">Sizes per Piece</h3>
           <input
             type="text"
-            placeholder="Height (in cm)"
+            placeholder="Height (in m)"
             value={height}
             onChange={(e) => handleNumberInput(e.target.value, setHeight, 10000)}
             className="w-full p-3 border rounded mb-3 bg-gray-100"
           />
           <input
             type="text"
-            placeholder="Length (in cm)"
+            placeholder="Length (in m)"
             value={length}
             onChange={(e) => handleNumberInput(e.target.value, setLength, 10000)}
             className="w-full p-3 border rounded mb-3 bg-gray-100"
           />
           <input
             type="text"
-            placeholder="Width (in cm)"
+            placeholder="Width (in m)"
             value={width}
             onChange={(e) => handleNumberInput(e.target.value, setWidth, 10000)}
             className="w-full p-3 border rounded bg-gray-100"
