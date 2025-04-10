@@ -11,12 +11,12 @@ import databank from "../../../utils/databank";
 function DetailsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const shipmentType = searchParams.get("shipmentType");
+  const shipmentType = searchParams?.get("shipmentType") || ""; // Added null check with fallback
   const [showPopup, setShowPopup] = useState(false);
   const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
-  const shippingDate = searchParams.get("shippingDate");
-  const minDeliveryDate = searchParams.get("minDeliveryDate");
+  const shippingDate = searchParams?.get("shippingDate") || ""; // Added null check with fallback
+  const minDeliveryDate = searchParams?.get("minDeliveryDate") || ""; // Added null check with fallback
 
   useEffect(() => {
     const authorized = sessionStorage.getItem("authorizedForDetails");
