@@ -220,11 +220,11 @@ export default function ReviewAndConfirmPage() {
 
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
-        <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
+        <h2 className="text-lg font-bold mb-3">Size & Weight Details</h2> {/* Reduced spacing */}
         <div className="text-gray-700"> {/* Labels and values use the same style */}
           {renderField("Weight (in kg)", "weight")}
           {isLCL && (
-            <p className="text-black font-bold text-md mt-2 mb-2">Sizes per Piece</p> /* Reduced spacing */
+            <p className="text-black font-bold text-md mt-1 mb-1">Sizes per Piece</p> /* Reduced spacing */
           )}
           {renderField("Height (in m)", "height")}
           {renderField("Length (in m)", "length")}
@@ -236,16 +236,16 @@ export default function ReviewAndConfirmPage() {
 
   const renderFragileItem = () => (
     <div className="bg-white p-6 shadow-lg rounded-lg">
-      <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-      <div className="mb-2">
+      <h2 className="text-lg font-bold mb-3">Fragile Item</h2> {/* Reduced spacing */}
+      <div className="mb-1"> {/* Reduced spacing */}
         <h3 className="text-md font-bold">Is Fragile:</h3>
         <p className="text-gray-700">{fields.isFragile ? "Yes" : "No"}</p>
       </div>
-      <div className="mb-2">
+      <div className="mb-1"> {/* Reduced spacing */}
         <h3 className="text-md font-bold">Category:</h3>
         <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
       </div>
-      <div className="mb-2">
+      <div className="mb-1"> {/* Reduced spacing */}
         <h3 className="text-md font-bold">Subcategory:</h3>
         <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
       </div>
