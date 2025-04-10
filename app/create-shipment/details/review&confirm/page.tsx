@@ -297,19 +297,6 @@ export default function ReviewAndConfirmPage() {
             <p className="text-gray-700">{fields.numberOfPieces || "N/A"}</p>
           )}
         </div>
-        <div className="mt-1">
-          <h3 className="text-md font-bold">Number of Packages:</h3>
-          {isEditing["numberOfPackages"] ? (
-            <input
-              type="text"
-              value={fields.numberOfPackages || ""}
-              onChange={(e) => handleInputChange("numberOfPackages", e.target.value)}
-              className="border border-gray-300 rounded px-2 py-1"
-            />
-          ) : (
-            <p className="text-gray-700">{fields.numberOfPackages || "N/A"}</p>
-          )}
-        </div>
         {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
