@@ -332,9 +332,38 @@ export default function ReviewAndConfirmPage() {
         <h3 className="text-md font-bold">Subcategory:</h3>
         <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
       </div>
-      <div>
-        <h3 className="text-md font-bold">Required Insurance:</h3>
-        <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+      <div className="flex items-center mt-4">
+        <h3 className="text-md font-bold mr-4">Required Insurance:</h3>
+        {isEditing["extraProtection"] ? (
+          <select
+            value={fields.extraProtection ? "Yes" : "No"}
+            onChange={(e) =>
+              handleInputChange("extraProtection", e.target.value === "Yes" ? "true" : "false")
+            }
+            className="p-2 border rounded bg-gray-100"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        ) : (
+          <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+        )}
+        {!isEditing["extraProtection"] && (
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white ml-2"
+            onClick={() => handleEditClick("extraProtection")}
+          >
+            <FaEdit />
+          </div>
+        )}
+        {isEditing["extraProtection"] && (
+          <button
+            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+            onClick={() => handleSave("extraProtection")}
+          >
+            Save
+          </button>
+        )}
       </div>
     </div>
   );
@@ -427,17 +456,6 @@ export default function ReviewAndConfirmPage() {
 
           {/* Shipping Details */}
           {renderShippingDetails()}
-
-          {/* Additional Protection */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
-            {renderField("Request Additional Protection", "extraProtection", false)} {/* Non-editable */}
-            {fields.extraProtection && (
-              <>
-                {renderField("Protection Options", "fragileCategory")} {/* Example field */}
-              </>
-            )}
-          </div>
 
           {/* Additional Information */}
           {renderAdditionalInformation()}
