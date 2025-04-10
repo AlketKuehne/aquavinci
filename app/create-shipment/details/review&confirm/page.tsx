@@ -82,8 +82,8 @@ export default function ReviewAndConfirmPage() {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
     } 
-    // Restrict input to numbers for numberOfPieces
-    else if (field === "numberOfPieces") {
+    // Restrict input to numbers for numeric fields
+    else if (["numberOfPieces", "weight", "height", "length", "width"].includes(field)) {
       if (/^\d*$/.test(value)) {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
