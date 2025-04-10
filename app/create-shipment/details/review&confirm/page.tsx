@@ -206,7 +206,7 @@ export default function ReviewAndConfirmPage() {
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
-        <div className="mt-2"> {/* Adjusted spacing */}
+        <div className="mt-1"> {/* Adjusted spacing */}
           <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3> {/* Sub-header in bold */}
           <p className="text-gray-700">{containerOrPackageValue || "N/A"}</p> {/* Value not bold */}
         </div>
@@ -217,10 +217,15 @@ export default function ReviewAndConfirmPage() {
   };
 
   const renderSizeAndWeightDetails = () => {
+    const isLCL = fields.shipmentType === "LCL"; // Check if the shipment type is LCL
+
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
         {renderField("Weight (in kg)", "weight")} {/* Ensure value is read */}
+        {isLCL && ( // Add subheader for LCL
+          <p className="text-md font-bold text-gray-700 mt-2 mb-2">Sizes per piece</p>
+        )}
         {renderField("Height (in m)", "height")} {/* Ensure value is read */}
         {renderField("Length (in m)", "length")} {/* Ensure value is read */}
         {renderField("Width (in m)", "width")} {/* Ensure value is read */}
