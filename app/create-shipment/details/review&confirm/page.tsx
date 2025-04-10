@@ -193,15 +193,13 @@ export default function ReviewAndConfirmPage() {
   };
 
   const renderShipmentType = () => {
-    const shipmentType = fields.shipmentType === "FCL" ? "Full Container Load" : "Less Container Load";
-    const piecesLabel =
-      fields.shipmentType === "FCL"
-        ? "Number of Pieces (per container)"
-        : "Number of Pieces (per package)";
-    const packagesLabel =
-      fields.shipmentType === "FCL"
-        ? "Number of Containers"
-        : "Number of Packages";
+    const isFCL = fields.shipmentType === "FCL"; // Determine if the shipment type is FCL
+    const shipmentType = isFCL ? "Full Container Load" : "Less Container Load";
+    const containerOrPackageLabel = isFCL ? "Number of Containers" : "Number of Packages";
+    const containerOrPackageValue = isFCL ? fields.fclSelection : fields.lclSelection;
+    const piecesLabel = isFCL
+      ? "Number of Pieces (per container)"
+      : "Number of Pieces (per package)";
 
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
@@ -209,8 +207,8 @@ export default function ReviewAndConfirmPage() {
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
         <div className="mb-4">
-          <h3 className="text-md font-bold">{packagesLabel}:</h3> {/* Sub-header in bold */}
-          <p className="text-gray-700">{fields.numberOfPackages || "N/A"}</p> {/* Value not bold */}
+          <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3> {/* Sub-header in bold */}
+          <p className="text-gray-700">{containerOrPackageValue || "N/A"}</p> {/* Value not bold */}
         </div>
         {renderField(piecesLabel, "numberOfPieces")} {/* Corrected field */}
         {renderField("Description of Goods", "goodsDescription")}
