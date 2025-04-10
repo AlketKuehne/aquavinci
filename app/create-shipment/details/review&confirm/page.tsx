@@ -90,8 +90,8 @@ export default function ReviewAndConfirmPage() {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
     } 
-    // Restrict input to numbers for numeric fields
-    else if (["numberOfPieces", "weight", "height", "length", "width"].includes(field)) {
+    // Restrict input to numbers for numeric fields and phone numbers
+    else if (["numberOfPieces", "weight", "height", "length", "width", "consignorPhone", "consigneePhone"].includes(field)) {
       if (/^\d*$/.test(value)) {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
@@ -594,7 +594,7 @@ export default function ReviewAndConfirmPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
             {renderField("Full Name", "consignorName")}
             {renderField("Email", "consignorEmail")}
-            {renderField("Phone", "consignorPhone")}
+            {renderField("Phone", "consignorPhone")} {/* Editable and saves correctly */}
             {renderField("Address", "consignorAddress")}
             {renderField("Country", "consignorCountry", false)} {/* Non-editable */}
             {renderFieldWithDropdown("City", "consignorCity", "consignorCountry")} {/* Dropdown */}
@@ -605,7 +605,7 @@ export default function ReviewAndConfirmPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             {renderField("Full Name", "consigneeName")}
             {renderField("Email", "consigneeEmail")}
-            {renderField("Phone", "consigneePhone")}
+            {renderField("Phone", "consigneePhone")} {/* Editable and saves correctly */}
             {renderField("Address", "consigneeAddress")}
             {renderField("Country", "consigneeCountry", false)} {/* Non-editable */}
             {renderFieldWithDropdown("City", "consigneeCity", "consigneeCountry")} {/* Dropdown */}
