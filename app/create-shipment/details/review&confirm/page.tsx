@@ -70,12 +70,6 @@ export default function ReviewAndConfirmPage() {
     setIsEditing((prev) => {
       const updatedEditing = Object.keys(fields).reduce((acc, key) => {
         const typedKey = key as keyof ShipmentData; // Explicitly type the key
-        if (prev[typedKey]) {
-          setFields((prevFields) => ({
-            ...prevFields,
-            [typedKey]: databank.getData()?.[databank.getData().length - 1]?.[typedKey], // Revert to initial value
-          }));
-        }
         acc[typedKey] = typedKey === field;
         return acc;
       }, {} as Record<keyof ShipmentData, boolean>);
@@ -109,7 +103,7 @@ export default function ReviewAndConfirmPage() {
 
   const handleSave = (field: keyof ShipmentData) => {
     setIsEditing((prev) => ({ ...prev, [field]: false }));
-    databank.updateData({ [field]: fields[field] }); // Save updated field to databank
+    databank.updateData({ ...fields }); // Save all updated fields to databank
   };
 
   if (!fields || Object.keys(fields).length === 0) {
@@ -130,7 +124,6 @@ export default function ReviewAndConfirmPage() {
             value={fields[field] as string || ""}
             onChange={(e) => handleInputChange(field, e.target.value)}
             className="border border-gray-300 rounded px-2 py-1"
-            onBlur={() => handleEditClick(field)} // Revert changes on blur
           />
         ) : (
           <p className="text-gray-700">{fields[field] || "N/A"}</p>
@@ -594,7 +587,7 @@ export default function ReviewAndConfirmPage() {
             <h2 className="text-lg font-bold mb-4">Consignor (Shipper)</h2>
             {renderField("Full Name", "consignorName")}
             {renderField("Email", "consignorEmail")}
-            {renderField("Phone", "consignorPhone")} {/* Editable and saves correctly */}
+            {renderField("Phone", "consignorPhone")}
             {renderField("Address", "consignorAddress")}
             {renderField("Country", "consignorCountry", false)} {/* Non-editable */}
             {renderFieldWithDropdown("City", "consignorCity", "consignorCountry")} {/* Dropdown */}
@@ -605,7 +598,7 @@ export default function ReviewAndConfirmPage() {
             <h2 className="text-lg font-bold mb-4">Consignee (Recipient)</h2>
             {renderField("Full Name", "consigneeName")}
             {renderField("Email", "consigneeEmail")}
-            {renderField("Phone", "consigneePhone")} {/* Editable and saves correctly */}
+            {renderField("Phone", "consigneePhone")}
             {renderField("Address", "consigneeAddress")}
             {renderField("Country", "consigneeCountry", false)} {/* Non-editable */}
             {renderFieldWithDropdown("City", "consigneeCity", "consigneeCountry")} {/* Dropdown */}
