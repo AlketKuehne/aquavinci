@@ -536,12 +536,48 @@ export default function ReviewAndConfirmPage() {
     </div>
   );
 
-  const renderAdditionalInformation = () => (
+  const renderAdditionalProtection = () => (
     <div className="bg-white p-6 shadow-lg rounded-lg">
-      <h2 className="text-lg font-bold mb-4">Additional Information</h2>
-      {renderFieldWithDropdownOptions("Dangerous Goods", "dangerousGoods", ["Yes", "No"])}
-      {renderField("Shipping Date", "shippingDate")}
-      {renderField("Delivery Date", "deliveryDate")}
+      <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
+      <p className="text-gray-700">
+        Requested: {fields.extraProtection ? "Yes" : "No"}
+      </p>
+      <p className="text-gray-700">
+        Selected Protections: {fields.selectedProtections?.join(", ") || "N/A"}
+      </p>
+      <div className="flex justify-between items-center mt-4">
+        <div>
+          <h3 className="text-md font-bold">Dangerous Goods:</h3>
+          {isEditing["dangerousGoods"] ? (
+            <select
+              value={fields.dangerousGoods || "No"}
+              onChange={(e) => handleInputChange("dangerousGoods", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          ) : (
+            <p className="text-gray-700">{fields.dangerousGoods || "No"}</p>
+          )}
+        </div>
+        {!isEditing["dangerousGoods"] && (
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+            onClick={() => handleEditClick("dangerousGoods")}
+          >
+            <FaEdit />
+          </div>
+        )}
+        {isEditing["dangerousGoods"] && (
+          <button
+            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+            onClick={() => handleSave("dangerousGoods")}
+          >
+            Save
+          </button>
+        )}
+      </div>
     </div>
   );
 
@@ -601,8 +637,8 @@ export default function ReviewAndConfirmPage() {
           {/* Shipping Details */}
           {renderShippingDetails()}
 
-          {/* Additional Information */}
-          {renderAdditionalInformation()}
+          {/* Additional Protection */}
+          {renderAdditionalProtection()}
 
           {/* Data from /details/Boxes */}
           
