@@ -181,7 +181,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];
     const baseDate = new Date(minDeliveryDate);
     if (deliveryOption === "deliver") {
-      baseDate.setDate(baseDate.getDate() + 4); // Add 5 days for "Deliver" option
+      baseDate.setDate(baseDate.getDate() + 4); // Add 4 days for "Deliver" option
     }
     return baseDate.toISOString().split("T")[0];
   };
@@ -220,7 +220,12 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
             type="text"
             placeholder="Enter number of packages"
             value={lclSelection || ""}
-            onChange={(e) => setLclSelection(e.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (value === "" || (/^[1-9][0-9]?$|^100$/.test(value) && parseInt(value) <= 100)) {
+                setLclSelection(value);
+              }
+            }}
             className="w-full p-3 border rounded bg-gray-100"
           />
         </div>
