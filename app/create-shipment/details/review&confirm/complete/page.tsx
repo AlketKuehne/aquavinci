@@ -1,8 +1,25 @@
 "use client";
 
 import NavigationBar from "./NavigationBar"; // Corrected import path
+import { useEffect } from "react";
 
 export default function CompletePage() {
+  useEffect(() => {
+    // Simulate order data
+    const confirmedOrder = {
+      id: Date.now(),
+      status: "Confirmed",
+      date: new Date().toISOString(),
+    };
+
+    // Save the order to the databank
+    fetch("/api/saveOrder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(confirmedOrder),
+    });
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar />
