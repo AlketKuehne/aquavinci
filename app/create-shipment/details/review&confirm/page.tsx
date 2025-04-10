@@ -96,6 +96,12 @@ export default function ReviewAndConfirmPage() {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
     } 
+    // Restrict "Number of Packages" to numbers with max value of 100 and no leading zero
+    else if (field === "numberOfPackages") {
+      if (/^\d*$/.test(value) && (value === "" || (parseInt(value) > 0 && parseInt(value) <= 100))) {
+        setFields((prev) => ({ ...prev, [field]: value }));
+      }
+    } 
     else {
       setFields((prev) => ({ ...prev, [field]: value }));
     }
@@ -221,13 +227,44 @@ export default function ReviewAndConfirmPage() {
         </div>
         <div className="mt-1">
           <h3 className="text-md font-bold">{piecesLabel}:</h3>
-          <p className="text-gray-700">
-            {isFCL ? fields.fclSelection || "N/A" : fields.lclSelection || "N/A"}
-          </p>
+          {isEditing[isFCL ? "fclSelection" : "lclSelection"] ? (
+            <input
+              type="text"
+              value={fields[isFCL ? "fclSelection" : "lclSelection"] as string || ""}
+              onChange={(e) => handleInputChange(isFCL ? "fclSelection" : "lclSelection", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">
+              {isFCL ? fields.fclSelection || "N/A" : fields.lclSelection || "N/A"}
+            </p>
+          )}
         </div>
-        <div className="mt-1"> {/* Restored "Number of Pieces" */}
+        <div className="mt-1">
           <h3 className="text-md font-bold">{piecesPerUnitLabel}:</h3>
-          <p className="text-gray-700">{fields.numberOfPieces || "N/A"}</p>
+          {isEditing["numberOfPieces"] ? (
+            <input
+              type="text"
+              value={fields.numberOfPieces || ""}
+              onChange={(e) => handleInputChange("numberOfPieces", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.numberOfPieces || "N/A"}</p>
+          )}
+        </div>
+        <div className="mt-1">
+          <h3 className="text-md font-bold">Number of Packages:</h3>
+          {isEditing["numberOfPackages"] ? (
+            <input
+              type="text"
+              value={fields.numberOfPackages || ""}
+              onChange={(e) => handleInputChange("numberOfPackages", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.numberOfPackages || "N/A"}</p>
+          )}
         </div>
         {renderField("Description of Goods", "goodsDescription")}
       </div>
