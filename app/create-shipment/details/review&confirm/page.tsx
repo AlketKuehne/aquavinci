@@ -255,20 +255,18 @@ export default function ReviewAndConfirmPage() {
     const isFCL = fields.shipmentType === "FCL"; // Determine if the shipment type is FCL
     const shipmentType = isFCL ? "Full Container Load" : "Less Container Load";
     const containerOrPackageLabel = isFCL ? "Container Type" : "Package Type"; // Dynamic label
-    const containerOrPackageValue = fields.containerType || "N/A"; // Value for the field
-    const containersLabel = "Number of Containers"; // Label for containers
-    const piecesLabel = "Number of Pieces"; // Label for pieces
-  
+    const containerOrPackageValue = isFCL ? fields.containerType : fields.packageType; // Use correct field based on shipment type
+
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         <div className="mt-1">
           <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3>
-          <p className="text-gray-700">{containerOrPackageValue}</p> {/* Non-editable value */}
+          <p className="text-gray-700">{containerOrPackageValue || "N/A"}</p> {/* Display user input or "N/A" */}
         </div>
         <div className="mt-1">
-          <h3 className="text-md font-bold">{containersLabel}:</h3>
+          <h3 className="text-md font-bold">Number of Containers:</h3>
           {isEditing["fclSelection"] ? (
             <input
               type="text"
@@ -277,11 +275,11 @@ export default function ReviewAndConfirmPage() {
               className="border border-gray-300 rounded px-2 py-1"
             />
           ) : (
-            <p className="text-gray-700">{fields.fclSelection || fields.fclSelection === "" ? fields.fclSelection : "N/A"}</p> /* Ensure user input is displayed */
+            <p className="text-gray-700">{fields.fclSelection || "N/A"}</p>
           )}
         </div>
         <div className="mt-1">
-          <h3 className="text-md font-bold">{piecesLabel}:</h3>
+          <h3 className="text-md font-bold">Number of Pieces:</h3>
           {isEditing["numberOfPieces"] ? (
             <input
               type="text"
