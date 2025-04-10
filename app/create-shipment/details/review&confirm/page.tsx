@@ -308,144 +308,57 @@ export default function ReviewAndConfirmPage() {
           )}
         </div>
         {renderField("Description of Goods", "goodsDescription")}
-      </div>
-    );
-  };
-
-  const renderSizeAndWeightDetails = () => {
-    const isLCL = fields.shipmentType === "LCL"; // Check if the shipment type is LCL
-
-    return (
-      <div className="bg-white p-6 shadow-lg rounded-lg">
-        <h2 className="text-lg font-bold mb-3">Size & Weight Details</h2> {/* Reduced spacing */}
-        <div className="text-gray-700"> {/* Labels and values use the same style */}
-          <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-md font-bold">Weight (in kg):</h3>
-              {isEditing["weight"] ? (
-                <input
-                  type="text"
-                  value={fields.weight || ""}
-                  onChange={(e) => handleInputChange("weight", e.target.value)}
-                  className="border border-gray-300 rounded px-2 py-1"
-                />
-              ) : (
-                <p className="text-gray-700">{fields.weight || "N/A"}</p>
-              )}
-            </div>
-            {!isEditing["weight"] && (
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-                onClick={() => handleEditClick("weight")}
-              >
-                <FaEdit />
-              </div>
-            )}
-            {isEditing["weight"] && (
-              <button
-                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-                onClick={() => handleSave("weight")}
-              >
-                Save
-              </button>
-            )}
-          </div>
-          {isLCL && (
-            <p className="text-black font-bold text-md mt-1 mb-1">Sizes per Piece</p>
+        <div className="mt-1">
+          <h3 className="text-md font-bold">Weight (in kg):</h3>
+          {isEditing["weight"] ? (
+            <input
+              type="text"
+              value={fields.weight || ""}
+              onChange={(e) => handleInputChange("weight", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.weight || "N/A"}</p>
           )}
-          <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-md font-bold">Height (in cm):</h3>
-              {isEditing["height"] ? (
-                <input
-                  type="text"
-                  value={fields.height || ""}
-                  onChange={(e) => handleInputChange("height", e.target.value)}
-                  className="border border-gray-300 rounded px-2 py-1"
-                />
-              ) : (
-                <p className="text-gray-700">{fields.height || "N/A"}</p>
-              )}
-            </div>
-            {!isEditing["height"] && (
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-                onClick={() => handleEditClick("height")}
-              >
-                <FaEdit />
-              </div>
-            )}
-            {isEditing["height"] && (
-              <button
-                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-                onClick={() => handleSave("height")}
-              >
-                Save
-              </button>
-            )}
-          </div>
-          <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-md font-bold">Length (in cm):</h3>
-              {isEditing["length"] ? (
-                <input
-                  type="text"
-                  value={fields.length || ""}
-                  onChange={(e) => handleInputChange("length", e.target.value)}
-                  className="border border-gray-300 rounded px-2 py-1"
-                />
-              ) : (
-                <p className="text-gray-700">{fields.length || "N/A"}</p>
-              )}
-            </div>
-            {!isEditing["length"] && (
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-                onClick={() => handleEditClick("length")}
-              >
-                <FaEdit />
-              </div>
-            )}
-            {isEditing["length"] && (
-              <button
-                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-                onClick={() => handleSave("length")}
-              >
-                Save
-              </button>
-            )}
-          </div>
-          <div className="flex justify-between items-center">
-            <div>
-              <h3 className="text-md font-bold">Width (in cm):</h3>
-              {isEditing["width"] ? (
-                <input
-                  type="text"
-                  value={fields.width || ""}
-                  onChange={(e) => handleInputChange("width", e.target.value)}
-                  className="border border-gray-300 rounded px-2 py-1"
-                />
-              ) : (
-                <p className="text-gray-700">{fields.width || "N/A"}</p>
-              )}
-            </div>
-            {!isEditing["width"] && (
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-                onClick={() => handleEditClick("width")}
-              >
-                <FaEdit />
-              </div>
-            )}
-            {isEditing["width"] && (
-              <button
-                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-                onClick={() => handleSave("width")}
-              >
-                Save
-              </button>
-            )}
-          </div>
+        </div>
+        <div className="mt-1">
+          <h3 className="text-md font-bold">Height (in cm):</h3>
+          {isEditing["height"] ? (
+            <input
+              type="text"
+              value={fields.height || ""}
+              onChange={(e) => handleInputChange("height", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.height || "N/A"}</p>
+          )}
+        </div>
+        <div className="mt-1">
+          <h3 className="text-md font-bold">Length (in cm):</h3>
+          {isEditing["length"] ? (
+            <input
+              type="text"
+              value={fields.length || ""}
+              onChange={(e) => handleInputChange("length", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.length || "N/A"}</p>
+          )}
+        </div>
+        <div className="mt-1">
+          <h3 className="text-md font-bold">Width (in cm):</h3>
+          {isEditing["width"] ? (
+            <input
+              type="text"
+              value={fields.width || ""}
+              onChange={(e) => handleInputChange("width", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.width || "N/A"}</p>
+          )}
         </div>
       </div>
     );
@@ -627,9 +540,6 @@ export default function ReviewAndConfirmPage() {
 
           {/* Shipment Type & Details */}
           {renderShipmentType()}
-
-          {/* Size & Weight Details */}
-          {renderSizeAndWeightDetails()}
 
           {/* Fragile Item */}
           {renderFragileItem()}
