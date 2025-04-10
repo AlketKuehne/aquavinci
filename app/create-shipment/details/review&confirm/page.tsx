@@ -222,11 +222,11 @@ export default function ReviewAndConfirmPage() {
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-        {renderField("Weight (in kg)", "weight")}
-        {isLCL && (
-          <p className="text-black font-bold text-md mt-6 mb-4">Sizes per Piece</p> 
-        )}
-        <div className="text-gray-700"> {/* Labels not bold */}
+        <div className="text-gray-700"> {/* Labels and values use the same style */}
+          {renderField("Weight (in kg)", "weight")}
+          {isLCL && (
+            <p className="text-black font-bold text-md mt-6 mb-4">Sizes per Piece</p>
+          )}
           {renderField("Height (in m)", "height")}
           {renderField("Length (in m)", "length")}
           {renderField("Width (in m)", "width")}
