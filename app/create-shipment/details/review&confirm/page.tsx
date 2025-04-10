@@ -6,6 +6,7 @@ import NavigationBar from "./NavigationBar";
 import databank from "../../../../utils/databank"; // Simplified import path
 import countryCityData from "../../../../utils/countryCityData"; // Import country-city mapping
 import { FaEdit } from "react-icons/fa"; // Import edit icon
+import fs from "fs";
 
 interface ShipmentData {
   consignorName: string;
@@ -107,35 +108,25 @@ export default function ReviewAndConfirmPage() {
   };
 
   const handleConfirm = () => {
-    console.log("Confirm button clicked!"); // Log when the button is clicked
-  
-    // Save all user inputs into an array
-    const userInputs = { ...fields }; // Clone the current fields
-    console.log("User inputs to save:", userInputs); // Log the inputs
-  
-    // Send all data to the backend
-    fetch("/api/saveOrder", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInputs),
-    })
-      .then((response) => {
-        console.log("Response received:", response); // Log the response
-        if (!response.ok) {
-          throw new Error("Failed to save order");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Order saved successfully:", data); // Log success
-        // Redirect to the specified URL
-        window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
-      })
-      .catch((error) => {
-        console.error("Error saving order:", error); // Log any errors
-      });
+    const userInputs = { ...fields }; // Alle Benutzereingaben
+    const filePath = "/workspaces/aquavinci/shipments.json";
+
+    // Lade bestehende Daten, falls vorhanden
+    let existingData = [];
+    if (fs.existsSync(filePath)) {
+      const fileContent = fs.readFileSync(filePath, "utf-8");
+      existingData = JSON.parse(fileContent);
+    }
+
+    // Füge die neuen Daten hinzu
+    existingData.push(userInputs);
+
+    // Speichere die Daten in der Datei
+    fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
+
+    // Weiterleitung zur Zielseite
+    window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
   };
-  
 
   if (!fields || Object.keys(fields).length === 0) {
     return (
