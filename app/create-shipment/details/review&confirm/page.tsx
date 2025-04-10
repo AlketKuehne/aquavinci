@@ -335,15 +335,12 @@ export default function ReviewAndConfirmPage() {
             <div className="flex justify-between items-center">
               <div>
                 <h3 className="text-md font-bold">Shipping Date:</h3>
-                <p className="text-gray-700">{fields.shippingDate || "N/A"}</p>
-              </div>
-              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white">
-                <FaEdit />
+                <p className="text-gray-700">{fields.shippingDate || "N/A"}</p> {/* Uneditable */}
               </div>
             </div>
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-md font-bold">Delivery Date:</h3> {/* Renamed */}
+                <h3 className="text-md font-bold">Delivery Date:</h3>
                 <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
               </div>
             </div>
