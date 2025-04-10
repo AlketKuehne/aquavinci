@@ -224,11 +224,13 @@ export default function ReviewAndConfirmPage() {
         <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
         {renderField("Weight (in kg)", "weight")}
         {isLCL && (
-          <p className="text-black font-bold text-md mb-4">Sizes per piece</p>
+          <p className="text-black font-bold text-md mt-6 mb-4">Sizes per Piece</p> {/* Adjusted spacing */}
         )}
-        {renderField("Height (in m)", "height")}
-        {renderField("Length (in m)", "length")}
-        {renderField("Width (in m)", "width")}
+        <div className="text-gray-700"> {/* Labels not bold */}
+          {renderField("Height (in m)", "height")}
+          {renderField("Length (in m)", "length")}
+          {renderField("Width (in m)", "width")}
+        </div>
       </div>
     );
   };
