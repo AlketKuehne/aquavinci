@@ -206,7 +206,7 @@ export default function ReviewAndConfirmPage() {
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
-        <div className="mb-4">
+        <div className="mt-2"> {/* Adjusted spacing */}
           <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3> {/* Sub-header in bold */}
           <p className="text-gray-700">{containerOrPackageValue || "N/A"}</p> {/* Value not bold */}
         </div>
