@@ -576,6 +576,17 @@ export default function ReviewAndConfirmPage() {
     </div>
   );
 
+  const renderConfirmButton = () => (
+    <div className="flex justify-end items-center mt-6">
+      <button
+        className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-transparent hover:text-black"
+        onClick={() => console.log("Confirm button clicked!")}
+      >
+        Confirm
+      </button>
+    </div>
+  );
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -630,13 +641,19 @@ export default function ReviewAndConfirmPage() {
           {renderFragileItem()}
 
           {/* Shipping Details */}
-          {renderShippingDetails()}
+          <div className="col-span-1">
+            {renderShippingDetails()}
+          </div>
 
           {/* Additional Protection */}
-          {renderAdditionalProtection()}
+          <div className="col-span-1">
+            {renderAdditionalProtection()}
+          </div>
+        </div>
 
-          {/* Data from /details/Boxes */}
-
+        {/* Confirm Button */}
+        <div className="flex justify-end w-full mt-4">
+          {renderConfirmButton()}
         </div>
       </div>
     </div>
