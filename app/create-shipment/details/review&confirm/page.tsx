@@ -526,12 +526,6 @@ export default function ReviewAndConfirmPage() {
           <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p> {/* Uneditable */}
         </div>
       </div>
-      <button
-        className="absolute bottom-4 right-4 px-4 py-2 bg-black text-white rounded transition-all duration-[1250ms] hover:bg-transparent hover:text-black border border-black"
-        onClick={() => console.log("Button clicked!")}
-      >
-        Action Button
-      </button>
     </div>
   );
 
@@ -579,12 +573,6 @@ export default function ReviewAndConfirmPage() {
           </button>
         )}
       </div>
-      <button
-        className="absolute bottom-4 right-4 px-4 py-2 bg-black text-white rounded transition-all duration-[1250ms] hover:bg-transparent hover:text-black border border-black"
-        onClick={() => console.log("Button clicked!")}
-      >
-        Action Button
-      </button>
     </div>
   );
 
