@@ -66,13 +66,21 @@ export default function ReviewAndConfirmPage() {
   }, []);
 
   const handleEditClick = (field: keyof ShipmentData) => {
-    // Reset all other fields to non-editing state
-    setIsEditing(() =>
-      Object.keys(fields).reduce((acc, key) => {
-        acc[key as keyof ShipmentData] = key === field;
+    // Reset all other fields to non-editing state and revert unsaved changes
+    setIsEditing((prev) => {
+      const updatedEditing = Object.keys(fields).reduce((acc, key) => {
+        const typedKey = key as keyof ShipmentData; // Explicitly type the key
+        if (prev[typedKey]) {
+          setFields((prevFields) => ({
+            ...prevFields,
+            [typedKey]: databank.getData()?.[databank.getData().length - 1]?.[typedKey], // Revert to initial value
+          }));
+        }
+        acc[typedKey] = typedKey === field;
         return acc;
-      }, {} as Record<keyof ShipmentData, boolean>)
-    );
+      }, {} as Record<keyof ShipmentData, boolean>);
+      return updatedEditing;
+    });
   };
 
   const handleInputChange = (field: keyof ShipmentData, value: string) => {
@@ -116,6 +124,7 @@ export default function ReviewAndConfirmPage() {
             value={fields[field] as string || ""}
             onChange={(e) => handleInputChange(field, e.target.value)}
             className="border border-gray-300 rounded px-2 py-1"
+            onBlur={() => handleEditClick(field)} // Revert changes on blur
           />
         ) : (
           <p className="text-gray-700">{fields[field] || "N/A"}</p>
