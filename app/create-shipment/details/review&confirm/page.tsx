@@ -642,19 +642,6 @@ export default function ReviewAndConfirmPage() {
 
           {/* Data from /details/Boxes */}
 
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-            <p className="text-gray-700">Is Fragile: No</p>
-            <p className="text-gray-700">Category: N/A</p>
-            <p className="text-gray-700">Subcategory: N/A</p>
-          </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
-            <p className="text-gray-700">Requested: {fields.extraProtection ? "Yes" : "No"}</p>
-            <p className="text-gray-700">
-              Selected Protections: {fields.selectedProtections?.join(", ") || "N/A"}
-            </p>
-          </div>
         </div>
       </div>
     </div>
