@@ -224,7 +224,7 @@ export default function ReviewAndConfirmPage() {
         <div className="text-gray-700"> {/* Labels and values use the same style */}
           {renderField("Weight (in kg)", "weight")}
           {isLCL && (
-            <p className="text-black font-bold text-md mt-2 mb-2">Sizes per Piece</p> {/* Reduced spacing */}
+            <p className="text-black font-bold text-md mt-2 mb-2">Sizes per Piece</p> /* Reduced spacing */
           )}
           {renderField("Height (in m)", "height")}
           {renderField("Length (in m)", "length")}
