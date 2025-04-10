@@ -288,14 +288,12 @@ export default function ReviewAndConfirmPage() {
           {/* Fragile Item */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-            {renderField("Is this a fragile item?", "isFragile", false)} {/* Non-editable */}
-            {fields.isFragile && (
-              <>
-                {renderField("Category", "fragileCategory")}
-                {renderField("Subcategory", "fragileSubCategory")}
-                {renderField("Do you require insurance for this shipment?", "extraProtection", false)} {/* Non-editable */}
-              </>
-            )}
+            <p className="text-gray-700">Is Fragile: {fields.isFragile ? "Yes" : "No"}</p>
+            <p className="text-gray-700">Category: {fields.fragileCategory || "N/A"}</p>
+            <p className="text-gray-700">Subcategory: {fields.fragileSubCategory || "N/A"}</p>
+            <p className="text-gray-700">
+              Required Insurance: {fields.extraProtection ? "Yes" : "No"}
+            </p>
           </div>
 
           {/* Delivery Option */}
