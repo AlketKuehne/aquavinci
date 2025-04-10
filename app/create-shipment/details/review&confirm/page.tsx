@@ -312,6 +312,30 @@ export default function ReviewAndConfirmPage() {
     </div>
   );
 
+  const renderShippingDetails = () => (
+    <div className="bg-white p-6 shadow-lg rounded-lg">
+      <h2 className="text-lg font-bold mb-4">Shipping Details</h2>
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
+          <p className="text-gray-700">{fields.deliveryOption || "N/A"}</p>
+        </div>
+      </div>
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">Shipping Date:</h3>
+          <p className="text-gray-700">{fields.shippingDate || "N/A"}</p> {/* Uneditable */}
+        </div>
+      </div>
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">Delivery Date:</h3>
+          <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p> {/* Uneditable */}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -366,27 +390,7 @@ export default function ReviewAndConfirmPage() {
           {renderFragileItem()}
 
           {/* Shipping Details */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Shipping Details</h2>
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
-                <p className="text-gray-700">{fields.deliveryOption || "N/A"}</p>
-              </div>
-            </div>
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="text-md font-bold">Shipping Date:</h3>
-                <p className="text-gray-700">{fields.shippingDate || "N/A"}</p> {/* Uneditable */}
-              </div>
-            </div>
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="text-md font-bold">Delivery Date:</h3>
-                <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
-              </div>
-            </div>
-          </div>
+          {renderShippingDetails()}
 
           {/* Additional Protection */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
