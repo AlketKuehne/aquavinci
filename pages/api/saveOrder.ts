@@ -9,7 +9,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     console.log("Received order:", order); // Log the received order
 
     try {
-      addOrder(order);
+      addOrder(order); // Save the order to `confirmedOrders.json`
       console.log("Order saved successfully!"); // Log success
       res.status(200).json({ message: "Order saved successfully!" });
     } catch (error) {

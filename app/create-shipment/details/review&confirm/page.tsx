@@ -108,12 +108,16 @@ export default function ReviewAndConfirmPage() {
 
   const handleConfirm = () => {
     console.log("Confirm button clicked!"); // Log when the button is clicked
-
+  
+    // Save all user inputs into an array
+    const userInputs = { ...fields }; // Clone the current fields
+    console.log("User inputs to save:", userInputs); // Log the inputs
+  
     // Send all data to the backend
     fetch("/api/saveOrder", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(fields),
+      body: JSON.stringify(userInputs),
     })
       .then((response) => {
         console.log("Response received:", response); // Log the response
@@ -124,12 +128,14 @@ export default function ReviewAndConfirmPage() {
       })
       .then((data) => {
         console.log("Order saved successfully:", data); // Log success
-        router.push("/create-shipment/details/review&confirm/complete");
+        // Redirect to the specified URL
+        window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
       })
       .catch((error) => {
         console.error("Error saving order:", error); // Log any errors
       });
   };
+  
 
   if (!fields || Object.keys(fields).length === 0) {
     return (
