@@ -288,12 +288,22 @@ export default function ReviewAndConfirmPage() {
           {/* Fragile Item */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-            <p className="text-gray-700">Is Fragile: {fields.isFragile ? "Yes" : "No"}</p>
-            <p className="text-gray-700">Category: {fields.fragileCategory || "N/A"}</p>
-            <p className="text-gray-700">Subcategory: {fields.fragileSubCategory || "N/A"}</p>
-            <p className="text-gray-700">
-              Required Insurance: {fields.extraProtection ? "Yes" : "No"}
-            </p>
+            <div className="mb-4">
+              <h3 className="text-md font-bold">Is Fragile:</h3>
+              <p className="text-gray-700">{fields.isFragile ? "Yes" : "No"}</p>
+            </div>
+            <div className="mb-4">
+              <h3 className="text-md font-bold">Category:</h3>
+              <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
+            </div>
+            <div className="mb-4">
+              <h3 className="text-md font-bold">Subcategory:</h3>
+              <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
+            </div>
+            <div>
+              <h3 className="text-md font-bold">Required Insurance:</h3>
+              <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+            </div>
           </div>
 
           {/* Shipping Details */}
