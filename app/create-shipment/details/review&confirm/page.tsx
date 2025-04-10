@@ -641,14 +641,6 @@ export default function ReviewAndConfirmPage() {
           {renderAdditionalProtection()}
 
           {/* Data from /details/Boxes */}
-          
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-            <p className="text-gray-700">Weight: {fields.weight || "N/A"}</p>
-            <p className="text-gray-700">Height: {fields.height || "N/A"}</p>
-            <p className="text-gray-700">Length: {fields.length || "N/A"}</p>
-            <p className="text-gray-700">Width: {fields.width || "N/A"}</p>
-          </div>
 
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
