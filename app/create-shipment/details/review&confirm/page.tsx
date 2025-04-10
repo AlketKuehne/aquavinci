@@ -309,9 +309,9 @@ export default function ReviewAndConfirmPage() {
           {isLCL && (
             <p className="text-black font-bold text-md mt-1 mb-1">Sizes per Piece</p> /* Reduced spacing */
           )}
-          {renderField("Height (in m)", "height")}
-          {renderField("Length (in m)", "length")}
-          {renderField("Width (in m)", "width")}
+          {renderField("Height (in cm)", "height")}
+          {renderField("Length (in cm)", "length")}
+          {renderField("Width (in cm)", "width")}
         </div>
       </div>
     );
