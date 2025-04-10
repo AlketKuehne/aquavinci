@@ -107,6 +107,8 @@ export default function ReviewAndConfirmPage() {
   };
 
   const handleConfirm = () => {
+    console.log("Confirm button clicked!"); // Log when the button is clicked
+
     // Send all data to the backend
     fetch("/api/saveOrder", {
       method: "POST",
@@ -114,17 +116,18 @@ export default function ReviewAndConfirmPage() {
       body: JSON.stringify(fields),
     })
       .then((response) => {
+        console.log("Response received:", response); // Log the response
         if (!response.ok) {
           throw new Error("Failed to save order");
         }
         return response.json();
       })
       .then((data) => {
-        console.log("Order saved successfully:", data);
+        console.log("Order saved successfully:", data); // Log success
         router.push("/create-shipment/details/review&confirm/complete");
       })
       .catch((error) => {
-        console.error("Error saving order:", error);
+        console.error("Error saving order:", error); // Log any errors
       });
   };
 

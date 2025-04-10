@@ -2,9 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { addOrder } from "utils/orderDatabank"; // Use alias from tsconfig.json
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log("API called with method:", req.method); // Log the HTTP method
+
   if (req.method === "POST") {
     const order = req.body;
-
     console.log("Received order:", order); // Log the received order
 
     try {
@@ -21,6 +22,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       }
     }
   } else {
+    console.log("Invalid method:", req.method); // Log invalid methods
     res.status(405).json({ message: "Method not allowed" });
   }
 }
