@@ -5,8 +5,8 @@ const ordersFilePath = path.join(process.cwd(), "data", "confirmedOrders.json");
 
 // Ensure the file exists
 if (!fs.existsSync(ordersFilePath)) {
-  fs.mkdirSync(path.dirname(ordersFilePath), { recursive: true });
-  fs.writeFileSync(ordersFilePath, JSON.stringify([]));
+  fs.mkdirSync(path.dirname(ordersFilePath), { recursive: true }); // Create the `data` folder if it doesn't exist
+  fs.writeFileSync(ordersFilePath, JSON.stringify([])); // Create the `confirmedOrders.json` file with an empty array
 }
 
 export function getOrders() {
