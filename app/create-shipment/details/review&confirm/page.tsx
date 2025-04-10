@@ -444,7 +444,7 @@ export default function ReviewAndConfirmPage() {
             <h2 className="text-lg font-bold mb-4">Origin (From)</h2>
             {renderField("Country", "originCountry", false)} {/* Non-editable */}
             {renderFieldWithDropdown("City", "originCity", "originCountry")} {/* Dropdown */}
-            {renderField("Street", "originStreet")} {/* Editable */}
+            {renderField("Address", "originStreet")} {/* Editable */}
           </div>
 
           {/* Destination (To) */}
@@ -452,7 +452,7 @@ export default function ReviewAndConfirmPage() {
             <h2 className="text-lg font-bold mb-4">Destination (To)</h2>
             {renderField("Country", "destinationCountry", false)} {/* Non-editable */}
             {renderFieldWithDropdown("City", "destinationCity", "destinationCountry")} {/* Dropdown */}
-            {renderField("Street", "destinationStreet")} {/* Editable */}
+            {renderField("Address", "destinationStreet")} {/* Editable */}
           </div>
 
           {/* Shipment Type & Details */}
