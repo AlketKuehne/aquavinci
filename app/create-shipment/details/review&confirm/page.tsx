@@ -208,21 +208,26 @@ export default function ReviewAndConfirmPage() {
     const containerOrPackageValue = fields.containerType || "N/A"; // Value for the field
     const piecesLabel = isFCL
       ? "Number of Containers"
-      : "Number of Packages"; // Restored label
-
+      : "Number of Packages"; // Label for containers/packages
+    const piecesPerUnitLabel = "Number of Pieces"; // Label for pieces
+  
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
-        <div className="mt-1"> {/* Adjusted spacing */}
-          <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3> {/* Dynamic subheader */}
+        <div className="mt-1">
+          <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3>
           <p className="text-gray-700">{containerOrPackageValue}</p> {/* Non-editable value */}
         </div>
-        <div className="mt-1"> {/* Restored field */}
+        <div className="mt-1">
           <h3 className="text-md font-bold">{piecesLabel}:</h3>
           <p className="text-gray-700">
             {isFCL ? fields.fclSelection || "N/A" : fields.lclSelection || "N/A"}
           </p>
+        </div>
+        <div className="mt-1"> {/* Restored "Number of Pieces" */}
+          <h3 className="text-md font-bold">{piecesPerUnitLabel}:</h3>
+          <p className="text-gray-700">{fields.numberOfPieces || "N/A"}</p>
         </div>
         {renderField("Description of Goods", "goodsDescription")}
       </div>
