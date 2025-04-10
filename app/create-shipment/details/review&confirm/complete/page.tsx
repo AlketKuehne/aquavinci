@@ -2,8 +2,11 @@
 
 import NavigationBar from "./NavigationBar"; // Corrected import path
 import { useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter
 
 export default function CompletePage() {
+  const router = useRouter(); // Initialize router
+
   useEffect(() => {
     // Simulate order data
     const confirmedOrder = {
@@ -26,6 +29,7 @@ export default function CompletePage() {
       })
       .then((data) => {
         console.log("Order saved successfully:", data);
+        router.push("/confirmation"); // Navigate to confirmation page
       })
       .catch((error) => {
         console.error("Error saving order:", error);
