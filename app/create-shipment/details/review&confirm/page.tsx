@@ -342,9 +342,9 @@ export default function ReviewAndConfirmPage() {
           </div>
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-            <p className="text-gray-700">Is Fragile: {fields.isFragile ? "Yes" : "No"}</p>
-            <p className="text-gray-700">Category: {fields.fragileCategory || "N/A"}</p>
-            <p className="text-gray-700">Subcategory: {fields.fragileSubCategory || "N/A"}</p>
+            <p className="text-gray-700">Is Fragile: No</p>
+            <p className="text-gray-700">Category: N/A</p>
+            <p className="text-gray-700">Subcategory: N/A</p>
           </div>
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
