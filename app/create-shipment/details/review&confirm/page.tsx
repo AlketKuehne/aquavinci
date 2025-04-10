@@ -224,7 +224,7 @@ export default function ReviewAndConfirmPage() {
         <div className="text-gray-700"> {/* Labels and values use the same style */}
           {renderField("Weight (in kg)", "weight")}
           {isLCL && (
-            <p className="text-black font-bold text-md mt-6 mb-4">Sizes per Piece</p>
+            <p className="text-black font-bold text-md mt-2 mb-2">Sizes per Piece</p> {/* Reduced spacing */}
           )}
           {renderField("Height (in m)", "height")}
           {renderField("Length (in m)", "length")}
@@ -233,6 +233,28 @@ export default function ReviewAndConfirmPage() {
       </div>
     );
   };
+
+  const renderFragileItem = () => (
+    <div className="bg-white p-6 shadow-lg rounded-lg">
+      <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
+      <div className="mb-2">
+        <h3 className="text-md font-bold">Is Fragile:</h3>
+        <p className="text-gray-700">{fields.isFragile ? "Yes" : "No"}</p>
+      </div>
+      <div className="mb-2">
+        <h3 className="text-md font-bold">Category:</h3>
+        <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
+      </div>
+      <div className="mb-2">
+        <h3 className="text-md font-bold">Subcategory:</h3>
+        <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
+      </div>
+      <div>
+        <h3 className="text-md font-bold">Required Insurance:</h3>
+        <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+      </div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
@@ -285,25 +307,7 @@ export default function ReviewAndConfirmPage() {
           {renderSizeAndWeightDetails()}
 
           {/* Fragile Item */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-            <div className="mb-4">
-              <h3 className="text-md font-bold">Is Fragile:</h3>
-              <p className="text-gray-700">{fields.isFragile ? "Yes" : "No"}</p>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-md font-bold">Category:</h3>
-              <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
-            </div>
-            <div className="mb-4">
-              <h3 className="text-md font-bold">Subcategory:</h3>
-              <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
-            </div>
-            <div>
-              <h3 className="text-md font-bold">Required Insurance:</h3>
-              <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
-            </div>
-          </div>
+          {renderFragileItem()}
 
           {/* Shipping Details */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
