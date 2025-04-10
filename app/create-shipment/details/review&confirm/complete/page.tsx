@@ -28,7 +28,7 @@ export default function CompletePage() {
           Your Shipment was Successful!
         </h1>
         <p className="text-lg text-gray-700">
-          Thank you for using our service. You can now track your shipment or create a new one.
+          Thank you for using our service.
         </p>
       </div>
     </div>
