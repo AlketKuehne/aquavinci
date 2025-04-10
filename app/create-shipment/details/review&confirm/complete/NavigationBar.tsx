@@ -3,8 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
-export default function NavigationBar({ onNavigate }: { onNavigate: (url: string) => void }) {
+export default function NavigationBar() {
+  const router = useRouter(); // Initialize router
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -31,37 +33,25 @@ export default function NavigationBar({ onNavigate }: { onNavigate: (url: string
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <Link
-        href="/"
-        className="flex items-center"
-        onClick={(e) => {
-          e.preventDefault();
-          onNavigate("/");
-        }}
+      <div
+        className="flex items-center cursor-pointer"
+        onClick={() => router.push("/")}
       >
-        <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto cursor-pointer" />
-      </Link>
+        <Image src="/logoname.png" alt="Logo" width={140} height={50} className="h-10 w-auto" />
+      </div>
       <div className="flex h-full ml-4">
-        <Link
-          href="/"
-          className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
-          onClick={(e) => {
-            e.preventDefault();
-            onNavigate("/");
-          }}
+        <div
+          className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full cursor-pointer"
+          onClick={() => router.push("/")}
         >
           Homepage
-        </Link>
-        <Link
-          href="/create-shipment"
-          className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
-          onClick={(e) => {
-            e.preventDefault();
-            onNavigate("/create-shipment");
-          }}
+        </div>
+        <div
+          className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full cursor-pointer"
+          onClick={() => router.push("/create-shipment")}
         >
           Create Shipment
-        </Link>
+        </div>
       </div>
     </nav>
   );
