@@ -277,7 +277,7 @@ export default function ReviewAndConfirmPage() {
               className="border border-gray-300 rounded px-2 py-1"
             />
           ) : (
-            <p className="text-gray-700">{fields.fclSelection || fields.fclSelection === "" ? fields.fclSelection : "N/A"}</p> {/* Ensure user input is displayed */}
+            <p className="text-gray-700">{fields.fclSelection || fields.fclSelection === "" ? fields.fclSelection : "N/A"}</p> /* Ensure user input is displayed */
           )}
         </div>
         <div className="mt-1">
@@ -332,37 +332,47 @@ export default function ReviewAndConfirmPage() {
         <h3 className="text-md font-bold">Subcategory:</h3>
         <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
       </div>
-      <div className="flex items-center mt-4">
-        <h3 className="text-md font-bold mr-4">Required Insurance:</h3>
-        {isEditing["extraProtection"] ? (
-          <select
-            value={fields.extraProtection ? "Yes" : "No"}
-            onChange={(e) =>
-              handleInputChange("extraProtection", e.target.value === "Yes" ? "true" : "false")
-            }
-            className="p-2 border rounded bg-gray-100"
-          >
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        ) : (
-          <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
-        )}
-        {!isEditing["extraProtection"] && (
-          <div
-            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white ml-2"
-            onClick={() => handleEditClick("extraProtection")}
-          >
-            <FaEdit />
+      <div className="mt-4 flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">Required Insurance:</h3>
+          {fields.isFragile ? (
+            isEditing["extraProtection"] ? (
+              <select
+                value={fields.extraProtection ? "Yes" : "No"}
+                onChange={(e) =>
+                  handleInputChange("extraProtection", e.target.value === "Yes" ? "true" : "false")
+                }
+                className="p-2 border rounded bg-gray-100"
+              >
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            ) : (
+              <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+            )
+          ) : (
+            <p className="text-gray-700">N/A</p>
+          )}
+        </div>
+        {fields.isFragile && (
+          <div>
+            {!isEditing["extraProtection"] && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                onClick={() => handleEditClick("extraProtection")}
+              >
+                <FaEdit />
+              </div>
+            )}
+            {isEditing["extraProtection"] && (
+              <button
+                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+                onClick={() => handleSave("extraProtection")}
+              >
+                Save
+              </button>
+            )}
           </div>
-        )}
-        {isEditing["extraProtection"] && (
-          <button
-            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-            onClick={() => handleSave("extraProtection")}
-          >
-            Save
-          </button>
         )}
       </div>
     </div>
