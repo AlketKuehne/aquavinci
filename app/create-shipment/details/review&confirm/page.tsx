@@ -207,8 +207,8 @@ export default function ReviewAndConfirmPage() {
     const containerOrPackageLabel = isFCL ? "Container Type" : "Package Type"; // Dynamic label
     const containerOrPackageValue = fields.containerType || "N/A"; // Value for the field
     const piecesLabel = isFCL
-      ? "Number of Pieces (per container)"
-      : "Number of Pieces (per package)";
+      ? "Number of Containers"
+      : "Number of Packages"; // Restored label
 
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
@@ -218,7 +218,12 @@ export default function ReviewAndConfirmPage() {
           <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3> {/* Dynamic subheader */}
           <p className="text-gray-700">{containerOrPackageValue}</p> {/* Non-editable value */}
         </div>
-        {renderField(piecesLabel, "numberOfPieces")} {/* Corrected field */}
+        <div className="mt-1"> {/* Restored field */}
+          <h3 className="text-md font-bold">{piecesLabel}:</h3>
+          <p className="text-gray-700">
+            {isFCL ? fields.fclSelection || "N/A" : fields.lclSelection || "N/A"}
+          </p>
+        </div>
         {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
