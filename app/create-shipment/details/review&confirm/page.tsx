@@ -364,14 +364,7 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Data from /details/Boxes */}
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
-            <p className="text-gray-700">Number of Containers: {fields.fclSelection || "N/A"}</p>
-          </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
-            <p className="text-gray-700">Number of Packages: {fields.lclSelection || "N/A"}</p>
-          </div>
+          
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
             <p className="text-gray-700">Weight: {fields.weight || "N/A"}</p>
@@ -379,6 +372,7 @@ export default function ReviewAndConfirmPage() {
             <p className="text-gray-700">Length: {fields.length || "N/A"}</p>
             <p className="text-gray-700">Width: {fields.width || "N/A"}</p>
           </div>
+
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
             <p className="text-gray-700">Is Fragile: No</p>
