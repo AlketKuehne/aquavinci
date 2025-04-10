@@ -1,4 +1,4 @@
-"use client";
+"use client"; // This component is a client component
 
 import NavigationBar from "./NavigationBar"; // Corrected import path
 import { useEffect } from "react";
