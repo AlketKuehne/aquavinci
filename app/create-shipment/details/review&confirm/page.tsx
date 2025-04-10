@@ -506,7 +506,7 @@ export default function ReviewAndConfirmPage() {
   );
 
   const renderShippingDetails = () => (
-    <div className="bg-white p-6 shadow-lg rounded-lg relative">
+    <div className="bg-white p-6 shadow-lg rounded-lg">
       <h2 className="text-lg font-bold mb-4">Shipping Date Details</h2>
       <div className="flex justify-between items-center">
         <div>
@@ -577,7 +577,7 @@ export default function ReviewAndConfirmPage() {
   );
 
   const renderConfirmButton = () => (
-    <div className="flex justify-end items-center mt-6">
+    <div className="flex justify-end items-center mt-[-20px] mr-4">
       <button
         className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-transparent hover:text-black"
         onClick={() => console.log("Confirm button clicked!")}
@@ -646,14 +646,11 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Additional Protection */}
-          <div className="col-span-1">
+          <div className="col-span-1 relative">
             {renderAdditionalProtection()}
+            {/* Confirm Button */}
+            {renderConfirmButton()}
           </div>
-        </div>
-
-        {/* Confirm Button */}
-        <div className="flex justify-end w-full mt-4">
-          {renderConfirmButton()}
         </div>
       </div>
     </div>
