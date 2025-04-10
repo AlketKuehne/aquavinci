@@ -222,13 +222,25 @@ export default function ReviewAndConfirmPage() {
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-        {renderField("Weight (in kg)", "weight")} {/* Ensure value is read */}
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-gray-700">Weight (in kg):</span>
+          <span className="text-gray-700">{fields.weight || "N/A"}</span>
+        </div>
         {isLCL && ( // Add subheader for LCL
-          <p className="text-md font-bold text-gray-700 mt-2 mb-2">Sizes per piece</p>
+          <p className="text-black font-bold text-md mb-2">Sizes per piece</p>
         )}
-        {renderField("Height (in m)", "height")} {/* Ensure value is read */}
-        {renderField("Length (in m)", "length")} {/* Ensure value is read */}
-        {renderField("Width (in m)", "width")} {/* Ensure value is read */}
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-gray-700">Height (in m):</span>
+          <span className="text-gray-700">{fields.height || "N/A"}</span>
+        </div>
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-gray-700">Length (in m):</span>
+          <span className="text-gray-700">{fields.length || "N/A"}</span>
+        </div>
+        <div className="flex justify-between items-center">
+          <span className="text-gray-700">Width (in m):</span>
+          <span className="text-gray-700">{fields.width || "N/A"}</span>
+        </div>
       </div>
     );
   };
