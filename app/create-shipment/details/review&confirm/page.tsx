@@ -380,7 +380,7 @@ export default function ReviewAndConfirmPage() {
 
   const renderShippingDetails = () => (
     <div className="bg-white p-6 shadow-lg rounded-lg">
-      <h2 className="text-lg font-bold mb-4">Shipping Details</h2>
+      <h2 className="text-lg font-bold mb-4">Shipping Date Details</h2>
       <div className="flex justify-between items-center">
         <div>
           <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
