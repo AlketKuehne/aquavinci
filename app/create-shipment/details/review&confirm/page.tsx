@@ -265,19 +265,35 @@ export default function ReviewAndConfirmPage() {
           <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3>
           <p className="text-gray-700">{containerOrPackageValue || "N/A"}</p> {/* Display user input or "N/A" */}
         </div>
-        <div className="mt-1">
-          <h3 className="text-md font-bold">Number of Containers:</h3>
-          {isEditing["fclSelection"] ? (
-            <input
-              type="text"
-              value={fields.fclSelection || ""}
-              onChange={(e) => handleInputChange("fclSelection", e.target.value)}
-              className="border border-gray-300 rounded px-2 py-1"
-            />
-          ) : (
-            <p className="text-gray-700">{fields.fclSelection || "N/A"}</p>
-          )}
-        </div>
+        {isFCL ? (
+          <div className="mt-1">
+            <h3 className="text-md font-bold">Number of Containers:</h3>
+            {isEditing["fclSelection"] ? (
+              <input
+                type="text"
+                value={fields.fclSelection || ""}
+                onChange={(e) => handleInputChange("fclSelection", e.target.value)}
+                className="border border-gray-300 rounded px-2 py-1"
+              />
+            ) : (
+              <p className="text-gray-700">{fields.fclSelection || "N/A"}</p> {/* Ensure user input is displayed */}
+            )}
+          </div>
+        ) : (
+          <div className="mt-1">
+            <h3 className="text-md font-bold">Number of Packages:</h3>
+            {isEditing["lclSelection"] ? (
+              <input
+                type="text"
+                value={fields.lclSelection || ""}
+                onChange={(e) => handleInputChange("lclSelection", e.target.value)}
+                className="border border-gray-300 rounded px-2 py-1"
+              />
+            ) : (
+              <p className="text-gray-700">{fields.lclSelection || "N/A"}</p> {/* Ensure user input is displayed */}
+            )}
+          </div>
+        )}
         <div className="mt-1">
           <h3 className="text-md font-bold">Number of Pieces:</h3>
           {isEditing["numberOfPieces"] ? (
