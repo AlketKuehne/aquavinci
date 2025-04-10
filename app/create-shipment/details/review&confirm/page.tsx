@@ -46,6 +46,7 @@ interface ShipmentData {
   extraProtection: boolean;
   deliveryOption: string;
   selectedProtections: string[]; // Added missing property
+  numberOfPackages?: string; // Added missing property
 }
 
 export default function ReviewAndConfirmPage() {
@@ -197,12 +198,20 @@ export default function ReviewAndConfirmPage() {
       fields.shipmentType === "FCL"
         ? "Number of Pieces (per container)"
         : "Number of Pieces (per package)";
+    const packagesLabel =
+      fields.shipmentType === "FCL"
+        ? "Number of Containers"
+        : "Number of Packages";
 
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
+        <div className="mb-4">
+          <h3 className="text-md font-bold">{packagesLabel}:</h3> {/* Sub-header in bold */}
+          <p className="text-gray-700">{fields.numberOfPackages || "N/A"}</p> {/* Value not bold */}
+        </div>
         {renderField(piecesLabel, "numberOfPieces")} {/* Corrected field */}
         {renderField("Description of Goods", "goodsDescription")}
       </div>
