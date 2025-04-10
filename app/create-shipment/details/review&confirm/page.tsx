@@ -459,11 +459,6 @@ export default function ReviewAndConfirmPage() {
             <p className="text-gray-700">Subcategory: N/A</p>
           </div>
           <div className="bg-white p-6 shadow-lg rounded-lg">
-            <h2 className="text-lg font-bold mb-4">Delivery Option</h2>
-            <p className="text-gray-700">Option: {fields.deliveryOption || "N/A"}</p>
-            <p className="text-gray-700">Date: {fields.deliveryDate || "N/A"}</p>
-          </div>
-          <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
             <p className="text-gray-700">Requested: {fields.extraProtection ? "Yes" : "No"}</p>
             <p className="text-gray-700">
