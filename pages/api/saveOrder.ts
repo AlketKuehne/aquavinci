@@ -14,7 +14,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     } catch (error) {
       console.error("Error saving order:", error); // Log any errors
 
-      // Narrow the type of `error` to handle it properly
       if (error instanceof Error) {
         res.status(500).json({ message: "Failed to save order", error: error.message });
       } else {

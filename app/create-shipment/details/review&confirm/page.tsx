@@ -106,6 +106,28 @@ export default function ReviewAndConfirmPage() {
     databank.updateData({ ...fields }); // Save all updated fields to databank
   };
 
+  const handleConfirm = () => {
+    // Send all data to the backend
+    fetch("/api/saveOrder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fields),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to save order");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Order saved successfully:", data);
+        router.push("/create-shipment/details/review&confirm/complete");
+      })
+      .catch((error) => {
+        console.error("Error saving order:", error);
+      });
+  };
+
   if (!fields || Object.keys(fields).length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -574,7 +596,7 @@ export default function ReviewAndConfirmPage() {
     <div className="flex justify-end items-right mt-[-150px] -mr-90">
       <button
         className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-transparent hover:text-black"
-        onClick={() => router.push("/create-shipment/details/review&confirm/complete")}
+        onClick={handleConfirm}
       >
         Confirm
       </button>
