@@ -197,57 +197,12 @@ export default function ReviewAndConfirmPage() {
       fields.shipmentType === "FCL"
         ? "Number of Pieces (per container)"
         : "Number of Pieces (per package)";
-    const containersLabel =
-      fields.shipmentType === "FCL"
-        ? "Number of Containers (1-100)"
-        : "Number of Packages";
-
-    const handleContainerOrPackageChange = (value: string) => {
-      if (/^\d*$/.test(value)) { // Ensure only numbers are allowed
-        setFields((prev) => ({
-          ...prev,
-          packageType: value, // Update the "Number of Containers/Packages" field
-          numberOfPieces: value, // Sync with "Number of Pieces"
-        }));
-      }
-    };
 
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         {renderField("Container or Package Type", "containerType")}
-        <div className="flex justify-between items-center">
-          <div>
-            <h3 className="text-md font-bold">{containersLabel}:</h3>
-            {isEditing["packageType"] ? (
-              <input
-                type="text"
-                value={fields.packageType || ""}
-                onChange={(e) => handleContainerOrPackageChange(e.target.value)}
-                className="border border-gray-300 rounded px-2 py-1"
-              />
-            ) : (
-              <p className="text-gray-700">{fields.packageType || "N/A"}</p>
-            )}
-          </div>
-          {!isEditing["packageType"] && (
-            <div
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
-              onClick={() => handleEditClick("packageType")}
-            >
-              <FaEdit />
-            </div>
-          )}
-          {isEditing["packageType"] && (
-            <button
-              className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
-              onClick={() => handleSave("packageType")}
-            >
-              Save
-            </button>
-          )}
-        </div>
         {renderField(piecesLabel, "numberOfPieces")} {/* Corrected field */}
         {renderField("Description of Goods", "goodsDescription")}
       </div>
