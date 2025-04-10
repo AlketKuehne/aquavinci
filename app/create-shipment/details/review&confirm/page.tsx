@@ -222,24 +222,60 @@ export default function ReviewAndConfirmPage() {
     return (
       <div className="bg-white p-6 shadow-lg rounded-lg">
         <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-gray-700">Weight (in kg):</span>
-          <span className="text-gray-700">{fields.weight || "N/A"}</span>
+        <div className="mb-4">
+          <h3 className="text-gray-700">Weight (in kg):</h3>
+          <input
+            type="text"
+            value={fields.weight || ""}
+            onChange={(e) => {
+              if (/^\d*$/.test(e.target.value)) {
+                setFields((prev) => ({ ...prev, weight: e.target.value }));
+              }
+            }}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+          />
         </div>
         {isLCL && ( // Add subheader for LCL
-          <p className="text-black font-bold text-md mb-2">Sizes per piece</p>
+          <p className="text-black font-bold text-md mb-4">Sizes per piece</p>
         )}
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-gray-700">Height (in m):</span>
-          <span className="text-gray-700">{fields.height || "N/A"}</span>
+        <div className="mb-4">
+          <h3 className="text-gray-700">Height (in m):</h3>
+          <input
+            type="text"
+            value={fields.height || ""}
+            onChange={(e) => {
+              if (/^\d*$/.test(e.target.value)) {
+                setFields((prev) => ({ ...prev, height: e.target.value }));
+              }
+            }}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+          />
         </div>
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-gray-700">Length (in m):</span>
-          <span className="text-gray-700">{fields.length || "N/A"}</span>
+        <div className="mb-4">
+          <h3 className="text-gray-700">Length (in m):</h3>
+          <input
+            type="text"
+            value={fields.length || ""}
+            onChange={(e) => {
+              if (/^\d*$/.test(e.target.value)) {
+                setFields((prev) => ({ ...prev, length: e.target.value }));
+              }
+            }}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+          />
         </div>
-        <div className="flex justify-between items-center">
-          <span className="text-gray-700">Width (in m):</span>
-          <span className="text-gray-700">{fields.width || "N/A"}</span>
+        <div>
+          <h3 className="text-gray-700">Width (in m):</h3>
+          <input
+            type="text"
+            value={fields.width || ""}
+            onChange={(e) => {
+              if (/^\d*$/.test(e.target.value)) {
+                setFields((prev) => ({ ...prev, width: e.target.value }));
+              }
+            }}
+            className="w-full p-2 border border-gray-300 rounded mt-1"
+          />
         </div>
       </div>
     );
