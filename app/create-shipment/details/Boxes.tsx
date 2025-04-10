@@ -218,7 +218,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
           <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
           <input
             type="text"
-            placeholder="Enter number of packages"
+            placeholder="Enter number of packages (1-100)"
             value={lclSelection || ""}
             onChange={(e) => {
               const value = e.target.value;
