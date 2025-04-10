@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { addOrder } from "../../../utils/orderDatabank"; // Corrected import path
+import { addOrder } from "utils/orderDatabank"; // Use alias from tsconfig.json
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "POST") {
