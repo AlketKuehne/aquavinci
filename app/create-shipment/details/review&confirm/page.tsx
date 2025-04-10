@@ -321,8 +321,27 @@ export default function ReviewAndConfirmPage() {
           {/* Shipping Details */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
             <h2 className="text-lg font-bold mb-4">Shipping Details</h2>
-            {renderField("Pick Up or Deliver", "deliveryOption", false)} {/* Non-editable */}
-            {renderField("Date (TT.mm.jjjj)", "shippingDate", false)} {/* Non-editable */}
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
+                <p className="text-gray-700">{fields.deliveryOption || "N/A"}</p>
+              </div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-md font-bold">Shipping Date:</h3>
+                <p className="text-gray-700">{fields.shippingDate || "N/A"}</p>
+              </div>
+              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white">
+                <FaEdit />
+              </div>
+            </div>
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-md font-bold">Delivery Date:</h3> {/* Renamed */}
+                <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
+              </div>
+            </div>
           </div>
 
           {/* Additional Protection */}
