@@ -6,7 +6,6 @@ import NavigationBar from "./NavigationBar";
 import databank from "../../../../utils/databank"; // Simplified import path
 import countryCityData from "../../../../utils/countryCityData"; // Import country-city mapping
 import { FaEdit } from "react-icons/fa"; // Import edit icon
-import fs from "fs";
 
 interface ShipmentData {
   consignorName: string;
@@ -108,24 +107,35 @@ export default function ReviewAndConfirmPage() {
   };
 
   const handleConfirm = () => {
-    const userInputs = { ...fields }; // Alle Benutzereingaben
-    const filePath = "/workspaces/aquavinci/shipments.json";
+    const userInputs = { ...fields }; // All user inputs
 
-    // Lade bestehende Daten, falls vorhanden
-    let existingData = [];
-    if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, "utf-8");
-      existingData = JSON.parse(fileContent);
-    }
+    // Fetch existing data from the server
+    fetch('/api/getFileData')
+      .then((response) => response.json())
+      .then((data) => {
+        const existingData = Array.isArray(data) ? data : []; // Ensure existingData is an array
+        existingData.push(userInputs); // Add new data
 
-    // Füge die neuen Daten hinzu
-    existingData.push(userInputs);
-
-    // Speichere die Daten in der Datei
-    fs.writeFileSync(filePath, JSON.stringify(existingData, null, 2));
-
-    // Weiterleitung zur Zielseite
-    window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
+        // Save updated data back to the server
+        fetch('/api/saveFileData', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(existingData),
+        })
+          .then((saveResponse) => {
+            if (!saveResponse.ok) {
+              throw new Error('Failed to save data');
+            }
+            // Redirect to the confirmation page
+            window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
+          })
+          .catch((error) => {
+            console.error('Error saving data:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Error fetching existing data:', error);
+      });
   };
 
   if (!fields || Object.keys(fields).length === 0) {
