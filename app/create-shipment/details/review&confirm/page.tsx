@@ -537,7 +537,7 @@ export default function ReviewAndConfirmPage() {
   );
 
   const renderShippingDetails = () => (
-    <div className="bg-white p-6 shadow-lg rounded-lg">
+    <div className="">
       <h2 className="text-lg font-bold mb-3">Shipping Date Details</h2>
       <div className="mb-1">
         <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
@@ -657,7 +657,9 @@ export default function ReviewAndConfirmPage() {
           </div>
 
           {/* Shipment Type & Details */}
+          <div className="bg-white p-6 shadow-lg rounded-lg">
           {renderShipmentType()}
+          </div>
 
           {/* Size & Weight Details */}
           {renderSizeAndWeightDetails()}
