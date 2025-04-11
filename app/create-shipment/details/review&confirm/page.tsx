@@ -675,7 +675,7 @@ export default function ReviewAndConfirmPage() {
             {renderAdditionalProtection()}
           </div>
 
-          <div className="col-span-2 flex justify-end items-center mt-8">
+          <div className="col-span-1 flex justify-end items-center mt-8">
             {/* Confirm Button */}
             {renderConfirmButton()}
           </div>
