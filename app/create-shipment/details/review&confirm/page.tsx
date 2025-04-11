@@ -537,19 +537,19 @@ export default function ReviewAndConfirmPage() {
   );
 
   const renderShippingDetails = () => (
-    <div className="bg-white p-6 shadow-lg rounded-lg">
-      <h2 className="text-lg font-bold mb-3">Shipping Date Details</h2> {/* Adjusted spacing to match "Fragile Item" */}
-      <div className="mb-1"> {/* Added consistent spacing */}
+    <div className="col-span-1 bg-white p-6 shadow-lg rounded-lg">
+      <h2 className="text-lg font-bold mb-3">Shipping Date Details</h2>
+      <div className="mb-1">
         <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
         <p className="text-gray-700">{fields.deliveryOption || "N/A"}</p>
       </div>
-      <div className="mb-1"> {/* Added consistent spacing */}
+      <div className="mb-1">
         <h3 className="text-md font-bold">Shipping Date:</h3>
-        <p className="text-gray-700">{fields.shippingDate || "N/A"}</p> {/* Uneditable */}
+        <p className="text-gray-700">{fields.shippingDate || "N/A"}</p>
       </div>
-      <div className="mb-1"> {/* Added consistent spacing */}
+      <div className="mb-1">
         <h3 className="text-md font-bold">Delivery Date:</h3>
-        <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p> {/* Uneditable */}
+        <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
       </div>
     </div>
   );
@@ -666,7 +666,7 @@ export default function ReviewAndConfirmPage() {
           {renderFragileItem()}
 
           {/* Shipping Details */}
-          <div className="col-span-2">
+          <div className="col-span-1">
             {renderShippingDetails()}
           </div>
 
