@@ -118,6 +118,8 @@ export default function ReviewAndConfirmPage() {
       // Add new data
       existingData.push(userInputs);
   
+      console.log("Data being sent to the server:", existingData); // Debugging log
+  
       // Save updated data back to the server
       const saveResponse = await fetch('/api/saveFileData', {
         method: 'POST',
