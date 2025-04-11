@@ -106,37 +106,36 @@ export default function ReviewAndConfirmPage() {
     databank.updateData({ ...fields }); // Save all updated fields to databank
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     const userInputs = { ...fields }; // All user inputs
-
-    // Fetch existing data from the server
-    fetch('/api/getFileData')
-      .then((response) => response.json())
-      .then((data) => {
-        const existingData = Array.isArray(data) ? data : []; // Ensure existingData is an array
-        existingData.push(userInputs); // Add new data
-
-        // Save updated data back to the server
-        fetch('/api/saveFileData', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(existingData),
-        })
-          .then((saveResponse) => {
-            if (!saveResponse.ok) {
-              throw new Error('Failed to save data');
-            }
-            // Redirect to the confirmation page
-            window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
-          })
-          .catch((error) => {
-            console.error('Error saving data:', error);
-          });
-      })
-      .catch((error) => {
-        console.error('Error fetching existing data:', error);
+  
+    try {
+      // Fetch existing data from the server
+      const response = await fetch('/api/getFileData');
+      const data = await response.json();
+      const existingData = Array.isArray(data) ? data : []; // Ensure existingData is an array
+  
+      // Add new data
+      existingData.push(userInputs);
+  
+      // Save updated data back to the server
+      const saveResponse = await fetch('/api/saveFileData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(existingData),
       });
+  
+      if (!saveResponse.ok) {
+        throw new Error('Failed to save data');
+      }
+  
+      // Redirect to the confirmation page
+      window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm";
+    } catch (error) {
+      console.error('Error during confirmation:', error);
+    }
   };
+  
 
   if (!fields || Object.keys(fields).length === 0) {
     return (
