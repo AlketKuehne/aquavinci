@@ -162,7 +162,7 @@ export default function ReviewAndConfirmPage() {
           <p className="text-gray-700">{fields[field] || "N/A"}</p>
         )}
       </div>
-      {editable && !isEditing[field] && (
+      {editable && !isEditing[field] && ( // Corrected field access
         <div
           className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
           onClick={() => handleEditClick(field)}
