@@ -128,11 +128,11 @@ export default function ReviewAndConfirmPage() {
       if (!saveResponse.ok) {
         throw new Error('Failed to save data');
       }
-  
-      // Redirect to the confirmation page
-      window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm";
     } catch (error) {
       console.error('Error during confirmation:', error);
+    } finally {
+      // Redirect to the confirmation page regardless of API success or failure
+      window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
     }
   };
   
