@@ -282,7 +282,7 @@ export default function ReviewAndConfirmPage() {
     const containerOrPackageValue = isFCL ? fields.containerType : fields.packageType; // Use correct field based on shipment type
 
     return (
-      <div className="bg-white p-6 shadow-lg rounded-lg">
+      <div className="">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         <div className="mt-1">
@@ -666,7 +666,7 @@ export default function ReviewAndConfirmPage() {
           {renderFragileItem()}
 
           {/* Shipping Details */}
-          <div className="col-span-1">
+          <div className="bg-white p-6 shadow-lg rounded-lg">
             {renderShippingDetails()}
           </div>
 
