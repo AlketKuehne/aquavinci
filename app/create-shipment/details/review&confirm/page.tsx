@@ -666,7 +666,7 @@ export default function ReviewAndConfirmPage() {
           {renderFragileItem()}
 
           {/* Shipping Details */}
-          <div className="col-span-1">
+          <div className="col-span-2">
             {renderShippingDetails()}
           </div>
 
