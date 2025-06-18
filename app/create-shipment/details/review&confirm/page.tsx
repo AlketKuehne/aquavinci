@@ -107,29 +107,22 @@ export default function ReviewAndConfirmPage() {
   };
 
   const handleConfirm = async () => {
-    const userInputs = { ...fields }; // All user inputs
-  
+    const userInputs = { ...fields };
     try {
       // Fetch existing data from the server
       const response = await fetch('/api/getFileData');
       const data = await response.json();
-      const existingData = Array.isArray(data) ? data : []; // Ensure existingData is an array
-  
-      // Add new data
+      const existingData = Array.isArray(data) ? data : [];
       existingData.push(userInputs);
-  
-      // Save updated data back to the server
       const saveResponse = await fetch('/api/saveFileData', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(existingData),
       });
-  
       if (!saveResponse.ok) {
         throw new Error('Failed to save data');
       }
-  
-      // Redirect to the confirmation page
+      sessionStorage.setItem("authorizedForComplete", "true");
       router.push("/create-shipment/details/review&confirm/complete");
     } catch (error) {
       console.error('Error during confirmation:', error);
