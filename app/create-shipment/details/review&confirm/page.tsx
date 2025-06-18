@@ -130,7 +130,7 @@ export default function ReviewAndConfirmPage() {
       }
   
       // Redirect to the confirmation page
-      window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm";
+      window.location.href = "https://aquavinci.vercel.app/create-shipment/details/review&confirm/complete";
     } catch (error) {
       console.error('Error during confirmation:', error);
     }
