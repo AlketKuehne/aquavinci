@@ -3,9 +3,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import NavigationBar from "./NavigationBar";
-import databank from "../../../../utils/databank"; // Simplified import path
-import countryCityData from "../../../../utils/countryCityData"; // Import country-city mapping
-import { FaEdit } from "react-icons/fa"; // Import edit icon
+import countryCityData from "../../../../utils/countryCityData";
+import { FaEdit } from "react-icons/fa";
 
 interface ShipmentData {
   consignorName: string;
@@ -57,12 +56,7 @@ export default function ReviewAndConfirmPage() {
   ); // Correctly initialize with type assertion
 
   useEffect(() => {
-    const data = databank.getData(); // Fetch data from databank
-    if (data && data.length > 0) {
-      setFields(data[data.length - 1]); // Use the latest entry
-    } else {
-      setFields({}); // Ensure fields is initialized even if no data exists
-    }
+    setFields({});
   }, []);
 
   const handleEditClick = (field: keyof ShipmentData) => {
@@ -103,7 +97,6 @@ export default function ReviewAndConfirmPage() {
 
   const handleSave = (field: keyof ShipmentData) => {
     setIsEditing((prev) => ({ ...prev, [field]: false }));
-    databank.updateData({ ...fields }); // Save all updated fields to databank
   };
 
   const handleConfirm = async () => {

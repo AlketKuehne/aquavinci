@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation"; // Import useRouter for navigation
-import databank from "../../../utils/databank"; // Import databank for shared state
+import { useRouter } from "next/navigation";
 
 export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: { shipmentType: string | null; shippingDate: string; minDeliveryDate: string }) {
   const router = useRouter(); // Initialize router for navigation
@@ -143,39 +142,6 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     // Reset delivery date if shipping date or constraints change
     setDeliveryDate("");
   }, [shippingDate, minDeliveryDate]);
-
-  useEffect(() => {
-    // Save data to databank as the user types
-    databank.updateData({
-      fclSelection,
-      lclSelection,
-      weight,
-      height,
-      length,
-      width,
-      isFragile,
-      fragileCategory,
-      fragileSubCategory,
-      extraProtection,
-      selectedProtections,
-      deliveryOption,
-      deliveryDate,
-    });
-  }, [
-    fclSelection,
-    lclSelection,
-    weight,
-    height,
-    length,
-    width,
-    isFragile,
-    fragileCategory,
-    fragileSubCategory,
-    extraProtection,
-    selectedProtections,
-    deliveryOption,
-    deliveryDate,
-  ]);
 
   const calculateMinDeliveryDate = (): string => {
     if (!shippingDate || !minDeliveryDate) return new Date().toISOString().split("T")[0];

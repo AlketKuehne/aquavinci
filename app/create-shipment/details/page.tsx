@@ -6,7 +6,6 @@ import Link from "next/link";
 import NavigationBar from "./NavigationBar";
 import Boxes from "./Boxes";
 import Popup from "./Popup";
-import databank from "../../../utils/databank";
 
 function DetailsPageContent() {
   const router = useRouter();
@@ -76,8 +75,7 @@ function DetailsPageContent() {
   };
 
   const handleContinue = () => {
-    databank.updateData(formData); // Update the latest row in the Databank
-    router.push("/create-shipment/details/review&confirm"); // Navigate to the next page
+    router.push("/create-shipment/details/review&confirm");
   };
 
   return (

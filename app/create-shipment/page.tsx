@@ -6,7 +6,6 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from 'next/navigation';
 import { countryDistances } from './country-distances';
 import Popup from "./details/Popup"; // Adjusted import path if necessary
-import databank from "../../utils/databank"; // Corrected import path
 
 export default function CreateShipmentPage() {
   const router = useRouter();
@@ -413,62 +412,11 @@ export default function CreateShipmentPage() {
       setShowWarning(false);
       setDateWarning(false);
       setInvalidDateWarning(false);
-
       const minDays = getMinimumDeliveryDays(country, destinationCountry);
       const shippingDateObj = new Date(shippingDate);
       const minDeliveryDateObj = new Date(shippingDateObj);
       minDeliveryDateObj.setDate(shippingDateObj.getDate() + minDays);
-
-      const formData = {
-        consignorFullName,
-        consignorFullAddress,
-        consignorCity,
-        consignorCountry: country,
-        consigneeCountry,
-        originCity,
-        originStreet: street, // Map to required field
-        street, // Explicitly include the 'street' field
-        destinationCountry,
-        destinationCity,
-        destinationStreet,
-        shipmentType,
-        description,
-        fclSelection,
-        lclSelection,
-        consigneeFullName,
-        consigneeFullAddress,
-        consigneeCity,
-        shippingDate,
-        deliveryDate,
-        consignorEmail,
-        consigneeEmail,
-        consignorPhone,
-        consigneePhone,
-        numberOfPieces,
-        dangerousGoods: isDangerousGoods ? "Yes" : "No", // Convert boolean to string
-        isDangerousGoods, // Include the boolean field explicitly
-        consignorName: consignorFullName, // Map to required field
-        consignorAddress: consignorFullAddress, // Map to required field
-        consigneeName: consigneeFullName, // Map to required field
-        consigneeAddress: consigneeFullAddress, // Map to required field
-        goodsDescription: description, // Map to required field
-        containerType: shipmentType === "FCL" ? fclSelection : lclSelection, // Map to required field
-        packageType: shipmentType === "LCL" ? lclSelection : "", // Map to required field
-        originCountry: country, // Map to required field
-        weight: "", // Default value
-        height: "", // Default value
-        length: "", // Default value
-        width: "", // Default value
-        isFragile: false, // Default value
-        fragileCategory: "", // Default value
-        fragileSubCategory: "", // Default value
-        extraProtection: false, // Default value
-        deliveryOption: "", // Default value
-      };
-
-      databank.saveData(formData); // Save the current inputs to the Databank
-
-      sessionStorage.setItem("authorizedForDetails", "true"); // Set authorization flag
+      sessionStorage.setItem("authorizedForDetails", "true");
       router.push(
         `/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}&shippingDate=${encodeURIComponent(
           shippingDate
