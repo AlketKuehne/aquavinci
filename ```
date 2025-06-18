@@ -1,0 +1,299 @@
+[33mcommit 2e8252963824a4a4f63baa002b184a820ec9267c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 14:01:48 2025 +0000
+
+    edited issue
+
+[33mcommit d79d43bea7a86d150bffb05143809f0c84b460ce[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:53:37 2025 +0000
+
+    issue fix
+
+[33mcommit fa0da2303489a28be4126e1b3439a33f8f88ea3a[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:46:22 2025 +0000
+
+    issue fix try
+
+[33mcommit 9b34a5e0e2dc9e0f85d6f4dda60cbb4677d5565a[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:39:41 2025 +0000
+
+    issue fix try
+
+[33mcommit 73908ac842afd506b549cba3a3879a2261f27edf[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:31:31 2025 +0000
+
+    issue fix
+
+[33mcommit 60a4ccd6429ebab52239f9f498d1ad6be67f969c[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:21:32 2025 +0000
+
+    issue fix try
+
+[33mcommit f2929c8cc4095f81fcac92f574cceaf7037664db[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:17:09 2025 +0000
+
+    issue fix
+
+[33mcommit 98f9ead2c38129499d75afdc15cfa2f6a2d0001a[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:12:28 2025 +0000
+
+    issue fix try
+
+[33mcommit 2e1819766261a827480dfce9e4d120c75dbd9ee8[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:09:53 2025 +0000
+
+    issue fix
+
+[33mcommit 2bb63a2f88ce74dc7ed8c25ef947ca8a85170971[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:07:21 2025 +0000
+
+    issue fix try
+
+[33mcommit 630c134f203ac67059dada4995525d838923a0ba[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 13:04:55 2025 +0000
+
+    issue fix
+
+[33mcommit dc172a669f442104269ae3e3ca91d034d2abf4fd[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:53:44 2025 +0000
+
+    edited issue
+
+[33mcommit e7390b8f5705385c5680755878c0acb052dc8f06[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:50:05 2025 +0000
+
+    issue fix try
+
+[33mcommit ce0c23d8620cbd6b2248e9ca1eaa885ca51805ab[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:47:01 2025 +0000
+
+    issue fix try
+
+[33mcommit cf4f5873fdaefefa4434ecbde89991b75d961782[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:40:47 2025 +0000
+
+    issue fix try
+
+[33mcommit 719e6186a48a8fbd7f91ba7be4b9f8d034b6960f[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:38:09 2025 +0000
+
+    deleted file
+
+[33mcommit ec4da24f42e9c05d1633f1f5c105e7202942ad1b[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:34:42 2025 +0000
+
+    issue fix
+
+[33mcommit 5884f3a33c36af9d6c40686fcb07213379d2fcc4[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 12:07:04 2025 +0000
+
+    databank
+
+[33mcommit 127066f8bc9ecaebb3b1a53ac139c0c6ad3c286e[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 11:53:15 2025 +0000
+
+    added function for databank
+
+[33mcommit 909660dd659ce78c41b15de2ab9be959fcbe40dd[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 11:50:59 2025 +0000
+
+    supabase based edits
+
+[33mcommit b5a0be6c4ca8aed36704a5f5cdb4f52496cae9b5[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Mon Jun 16 11:44:07 2025 +0000
+
+    added supabaseClient
+
+[33mcommit f13480b39ed48a2a96db891cacd3586555d09617[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 09:07:34 2025 +0000
+
+    added dev container
+
+[33mcommit 02040919e302dc9cc8283aa1e743c7f374d1cc58[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:59:13 2025 +0000
+
+    added a few thins
+
+[33mcommit bc2b0385363a94402f063053e784114ee9f32779[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:48:19 2025 +0000
+
+    databank try
+
+[33mcommit 11762c10318101fd0a2855d8053584e8ccbd5745[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:41:19 2025 +0000
+
+    databank another try
+
+[33mcommit e839ba21cbb9d7e1495999a6b26d99050df0ec9d[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:24:21 2025 +0000
+
+    edit
+
+[33mcommit d465bec2002a8b502f6b6f124953fc21bbd3abed[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:18:03 2025 +0000
+
+    issue fix
+
+[33mcommit 16e9bfeb1a73c2f27a22b6f0e761a341b46189e4[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:10:22 2025 +0000
+
+    confirm button fix
+
+[33mcommit 12c92c3ded4528a8886ecb9485e4c780cb0ce324[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:08:56 2025 +0000
+
+    Issue fix try
+
+[33mcommit 5bba70c34c33aa35080c25c3a6ace83e01b3cef6[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:03:18 2025 +0000
+
+    issue finally solved
+
+[33mcommit ebdeb3ffc6324e3c66247a217686318e9ed60b26[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 08:02:16 2025 +0000
+
+    issue fix
+
+[33mcommit d2d7258544d8bc06c6ddcd3ba9f83355df8aadeb[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:59:38 2025 +0000
+
+    databank fix try 1
+
+[33mcommit cd056f557620672cc5cded5cde8b4b0c04b06ee4[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:56:52 2025 +0000
+
+    issue fix try
+
+[33mcommit 9af987850cd12bd789bf10e79cc04fe64a2f4cdb[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:54:20 2025 +0000
+
+    issue fix try
+
+[33mcommit 86e2eef35475b61818c24e8ac559dda8dbfcdd53[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:42:36 2025 +0000
+
+    edited size of ox
+
+[33mcommit 65315c95d7bea98b08d0c27851ca8ae0ace55d72[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:40:09 2025 +0000
+
+    seperated elements
+
+[33mcommit 654c479350d9faf8a72e643a89cf34469e480f8b[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:36:20 2025 +0000
+
+    edited Confirm button functionality
+
+[33mcommit 1e3cbfd5912826958d1487dbbcd333c06e3b8c23[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Fri Apr 11 07:30:35 2025 +0000
+
+    issue fix try
+
+[33mcommit 3397df1abb9d5151d41f8138dbca115dec6bfd7e[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 19:07:12 2025 +0000
+
+    databank trY
+
+[33mcommit 85fac087105aa8bc8b29b0926aeba9b6cb70d571[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 16:19:46 2025 +0000
+
+    confirm button fix try
+
+[33mcommit 07029cc806ab7246a44edbf09d72b98460a5b984[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 16:13:54 2025 +0000
+
+    Test Push für Webhook
+
+[33mcommit ba50b98dee556ecd6f1bf19950ee991b5af198d3[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 16:06:05 2025 +0000
+
+    Test Push für Webhook
+
+[33mcommit 119ed184de5b7727b631d7156f0d5bc8cf9bf81b[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:56:34 2025 +0000
+
+    reconnected git to vercel
+
+[33mcommit bb4f3b587a06e4983831bbecc436e6fb2a1793bd[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:51:24 2025 +0000
+
+    edited text
+
+[33mcommit 76832b5a4eb79f2a9a866841cbcfa5f627395bed[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:16:05 2025 +0000
+
+    button move
+
+[33mcommit 759435aa64db628eed3dac1b8f276a8563862d98[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:12:38 2025 +0000
+
+    edited file
+
+[33mcommit e6fc331cee07cb44de95941f9bf74665657176b5[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:07:23 2025 +0000
+
+    save issue fix
+
+[33mcommit 723d1bbb1f49e886300935b3a4caa2621eed458e[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:04:27 2025 +0000
+
+    moved confirm button
+
+[33mcommit ee088d938977e264b0c54355af46482100e953cd[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 15:02:12 2025 +0000
+
+    issue fix 343
+
+[33mcommit 052355ad76e6ad4a4e194167d1454538f4958135[m
+Author: AlketKuehne <alketrrushi0@gmail.com>
+Date:   Thu Apr 10 14:59:15 2025 +0000
+
+    Iss
