@@ -82,10 +82,10 @@ export default function ReviewAndConfirmPage() {
         destinationCountry: raw.destinationCountry || details.destinationCountry || "",
         destinationCity: raw.destinationCity || details.destinationCity || "",
         destinationStreet: raw.destinationStreet || details.destinationStreet || "",
-        containerType: details.containerType || raw.containerType || "", // Typ
+        containerType: raw.containerType || details.containerType || "", // Typ aus create-shipment
         fclSelection: raw.fclSelection || details.fclSelection || "", // Anzahl
+        packageType: raw.packageType || details.packageType || "",
         goodsDescription: raw.description || details.goodsDescription || "",
-        packageType: details.packageType || raw.lclSelection || "",
         numberOfPieces: raw.numberOfPieces || details.numberOfPieces || "1",
         dangerousGoods: (typeof raw.isDangerousGoods === "boolean" ? (raw.isDangerousGoods ? "Yes" : "No") : (details.dangerousGoods || "No")),
         shippingDate: raw.shippingDate || details.shippingDate || "",

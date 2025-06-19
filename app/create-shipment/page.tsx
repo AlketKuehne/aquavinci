@@ -421,7 +421,9 @@ export default function CreateShipmentPage() {
       const allShipmentData = {
         shipmentType,
         fclSelection,
+        containerType: shipmentType === "FCL" ? fclSelection : "",
         lclSelection,
+        packageType: shipmentType === "LCL" ? lclSelection : "",
         description,
         consignorFullName,
         consignorFullAddress,
