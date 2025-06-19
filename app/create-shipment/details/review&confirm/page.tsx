@@ -317,8 +317,8 @@ export default function ReviewAndConfirmPage() {
   const renderShipmentType = () => {
     const isFCL = fields.shipmentType === "FCL"; // Determine if the shipment type is FCL
     const shipmentType = isFCL ? "Full Container Load" : "Less Container Load";
-    const containerOrPackageLabel = isFCL ? "Container Type" : "Package Type"; // Dynamic label
-    const containerOrPackageValue = isFCL ? fields.containerType : fields.packageType; // Use correct field based on shipment type
+    const containerOrPackageLabel = isFCL ? "Number of Containers" : "Number of Packages";
+    const containerOrPackageValue = isFCL ? fields.fclSelection : fields.lclSelection; // Use correct field based on shipment type
 
     return (
       <div className="">
