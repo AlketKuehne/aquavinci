@@ -314,7 +314,7 @@ export default function ReviewAndConfirmPage() {
     return (
       <div className="">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
-        <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
+        <p className="text-gray-700 font-medium mb-4">{fields.shipmentType}</p> {/* Display shipment type */}
         <div className="mt-1">
           <h3 className="text-md font-bold">{numberLabel}:</h3>
           <p className="text-gray-700">{numberValue || "N/A"}</p> {/* Display user input or "N/A" */}
