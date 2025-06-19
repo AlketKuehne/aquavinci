@@ -25,6 +25,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
   const [country, setCountry] = useState<string | undefined>(undefined); // Add country state
   const [destinationCountry, setDestinationCountry] = useState<string | undefined>(undefined); // Add destination country state
   const [showPopup, setShowPopup] = useState(false); // State for popup visibility
+  const [containerType, setContainerType] = useState<string>(""); // State for container type
+  const [packageType, setPackageType] = useState<string>(""); // State for package type
 
   const fragileSubCategories = {
     Electronic: ["Mobile Phone", "Laptop", "Tablet", "Other"],
@@ -154,8 +156,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
 
   const handleContinueClick = () => {
     // Validate mandatory fields
-    const isFclValid = shipmentType === "FCL" && fclSelection;
-    const isLclValid = shipmentType === "LCL" && lclSelection;
+    const isFclValid = shipmentType === "FCL" && fclSelection && containerType;
+    const isLclValid = shipmentType === "LCL" && lclSelection && packageType;
     const isSizeWeightValid = weight && height && length && width;
     const isDeliveryValid = deliveryOption && deliveryDate;
 
@@ -164,7 +166,9 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
       const shipmentData = {
         shipmentType,
         fclSelection: fclSelection || "",
+        containerType: containerType || "",
         lclSelection: lclSelection || "",
+        packageType: packageType || "",
         weight,
         height,
         length,
@@ -191,16 +195,47 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
       <div className="grid grid-cols-2 gap-x-4 gap-y-7 w-full"> {/* gap-x for vertical, gap-y for horizontal */}
         <div className={`bg-white p-6 shadow-lg rounded-lg ${shipmentType === "LCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Full Container Load</h2>
+          {/* Container Type Dropdown */}
+          <select
+            value={containerType || ""}
+            onChange={e => setContainerType(e.target.value)}
+            disabled={shipmentType !== "FCL"}
+            className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
+          >
+            <option value="">Select Container Type</option>
+            <option value="20ft">20ft Container</option>
+            <option value="40ft">40ft Container</option>
+            <option value="45ft">45ft High Cube Container</option>
+            <option value="reefer">Reefer Container</option>
+            <option value="openTop">Open Top Container</option>
+          </select>
           <input
             type="text"
             placeholder="Enter number of containers (1-100)"
             value={fclSelection || ""}
             onChange={(e) => handleNumberInput(e.target.value, setFclSelection, 100)}
             className="w-full p-3 border rounded bg-gray-100"
+            disabled={shipmentType !== "FCL"}
           />
         </div>
         <div className={`bg-white p-6 shadow-lg rounded-lg ${shipmentType === "FCL" ? "opacity-50 pointer-events-none" : ""}`}>
           <h2 className="text-lg font-bold mb-4">Less Container Load</h2>
+          {/* Package Type Dropdown */}
+          <select
+            value={packageType || ""}
+            onChange={e => setPackageType(e.target.value)}
+            disabled={shipmentType !== "LCL"}
+            className="w-full p-3 border rounded bg-gray-100 disabled:bg-gray-300 disabled:cursor-not-allowed mb-3"
+          >
+            <option value="">Select Package Type</option>
+            <option value="palette">Palette</option>
+            <option value="barrel">Barrel</option>
+            <option value="crate">Crate</option>
+            <option value="box">Box</option>
+            <option value="bag">Bag</option>
+            <option value="bundle">Bundle</option>
+            <option value="carton">Carton</option>
+          </select>
           <input
             type="text"
             placeholder="Enter number of packages (1-100)"
@@ -212,6 +247,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
               }
             }}
             className="w-full p-3 border rounded bg-gray-100"
+            disabled={shipmentType !== "LCL"}
           />
         </div>
         <div className="bg-white p-6 shadow-lg rounded-lg"> {/* Consistent spacing */}
