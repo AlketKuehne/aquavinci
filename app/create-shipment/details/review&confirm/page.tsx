@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import NavigationBar from "./NavigationBar";
 import countryCityData from "../../../../utils/countryCityData";
 import { FaEdit } from "react-icons/fa";
+import { supabase } from '../../../../utils/supabaseClient';
 
 interface ShipmentData {
   consignorName: string;
@@ -155,23 +156,14 @@ export default function ReviewAndConfirmPage() {
   const handleConfirm = async () => {
     const userInputs = { ...fields };
     try {
-      // Fetch existing data from the server
-      const response = await fetch('/api/getFileData');
-      const data = await response.json();
-      const existingData = Array.isArray(data) ? data : [];
-      existingData.push(userInputs);
-      const saveResponse = await fetch('/api/saveFileData', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(existingData),
-      });
-      if (!saveResponse.ok) {
-        throw new Error('Failed to save data');
-      }
+      // Speichere die Daten in Supabase (Tabelle 'shipments')
+      const { error } = await supabase.from('shipments').insert([userInputs]);
+      if (error) throw error;
       sessionStorage.setItem("authorizedForComplete", "true");
       router.push("/create-shipment/details/review&confirm/complete");
     } catch (error) {
       console.error('Error during confirmation:', error);
+      alert('Fehler beim Speichern in der Datenbank!');
     }
   };
   
