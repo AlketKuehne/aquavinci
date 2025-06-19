@@ -83,7 +83,7 @@ export default function ReviewAndConfirmPage() {
         destinationCity: raw.destinationCity || details.destinationCity || "",
         destinationStreet: raw.destinationStreet || details.destinationStreet || "",
         containerType: raw.containerType || details.containerType || "", // Typ aus create-shipment
-        fclSelection: raw.fclSelection || details.fclSelection || "", // Anzahl
+        fclSelection: details.fclSelection || raw.fclSelection || "", // Anzahl aus Details bevorzugen
         packageType: raw.packageType || details.packageType || "",
         goodsDescription: raw.description || details.goodsDescription || "",
         numberOfPieces: raw.numberOfPieces || details.numberOfPieces || "1",
