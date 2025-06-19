@@ -83,7 +83,7 @@ export default function ReviewAndConfirmPage() {
         containerType: raw.fclSelection || "",
         goodsDescription: raw.description || "",
         packageType: raw.lclSelection || "",
-        numberOfPieces: raw.numberOfPieces || "",
+        numberOfPieces: raw.numberOfPieces || "1", // Default auf 1, wenn leer
         dangerousGoods: raw.isDangerousGoods ? "Yes" : "No",
         shippingDate: raw.shippingDate || "",
         deliveryDate: raw.deliveryDate || "",
@@ -94,12 +94,12 @@ export default function ReviewAndConfirmPage() {
         height: raw.height || "",
         length: raw.length || "",
         width: raw.width || "",
-        isFragile: raw.isFragile || false,
+        isFragile: typeof raw.isFragile === "boolean" ? raw.isFragile : false,
         fragileCategory: raw.fragileCategory || "",
         fragileSubCategory: raw.fragileSubCategory || "",
-        extraProtection: raw.extraProtection || false,
+        extraProtection: typeof raw.extraProtection === "boolean" ? raw.extraProtection : false,
         deliveryOption: raw.deliveryOption || "",
-        selectedProtections: raw.selectedProtections || [],
+        selectedProtections: Array.isArray(raw.selectedProtections) ? raw.selectedProtections : [],
         numberOfPackages: raw.numberOfPackages || ""
       };
       setFields(mapped);
