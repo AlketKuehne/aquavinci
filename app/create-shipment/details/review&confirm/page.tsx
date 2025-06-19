@@ -56,7 +56,11 @@ export default function ReviewAndConfirmPage() {
   ); // Correctly initialize with type assertion
 
   useEffect(() => {
-    setFields({});
+    // Lade die Daten aus sessionStorage, falls vorhanden
+    const stored = sessionStorage.getItem("shipmentDetails");
+    if (stored) {
+      setFields(JSON.parse(stored));
+    }
   }, []);
 
   const handleEditClick = (field: keyof ShipmentData) => {

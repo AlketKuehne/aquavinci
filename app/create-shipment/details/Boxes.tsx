@@ -160,7 +160,26 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
     const isDeliveryValid = deliveryOption && deliveryDate;
 
     if ((isFclValid || isLclValid) && isSizeWeightValid && isDeliveryValid) {
-      router.push("https://aquavinci.vercel.app/create-shipment/details/review&confirm");
+      // Speichere alle relevanten Daten in sessionStorage
+      const shipmentData = {
+        shipmentType,
+        fclSelection: fclSelection || "",
+        lclSelection: lclSelection || "",
+        weight,
+        height,
+        length,
+        width,
+        isFragile,
+        fragileCategory: fragileCategory || "",
+        fragileSubCategory: fragileSubCategory || "",
+        extraProtection,
+        selectedProtections,
+        deliveryOption: deliveryOption || "",
+        deliveryDate,
+        // Hier können weitere Felder ergänzt werden, falls benötigt
+      };
+      sessionStorage.setItem("shipmentDetails", JSON.stringify(shipmentData));
+      router.push("/create-shipment/details/review&confirm");
     } else {
       setShowPopup(true); // Show popup if validation fails
     }
