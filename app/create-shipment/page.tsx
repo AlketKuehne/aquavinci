@@ -417,6 +417,36 @@ export default function CreateShipmentPage() {
       const minDeliveryDateObj = new Date(shippingDateObj);
       minDeliveryDateObj.setDate(shippingDateObj.getDate() + minDays);
       sessionStorage.setItem("authorizedForDetails", "true");
+      // Alle Werte in sessionStorage speichern
+      const allShipmentData = {
+        shipmentType,
+        fclSelection,
+        lclSelection,
+        description,
+        consignorFullName,
+        consignorFullAddress,
+        consignorCity,
+        consignorCountry,
+        consignorEmail,
+        consignorPhone,
+        consigneeFullName,
+        consigneeFullAddress,
+        consigneeCity,
+        consigneeCountry,
+        consigneeEmail,
+        consigneePhone,
+        country,
+        originCity,
+        street,
+        destinationCountry,
+        destinationCity,
+        destinationStreet,
+        numberOfPieces,
+        isDangerousGoods,
+        shippingDate,
+        deliveryDate
+      };
+      sessionStorage.setItem("allShipmentData", JSON.stringify(allShipmentData));
       router.push(
         `/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}&shippingDate=${encodeURIComponent(
           shippingDate
