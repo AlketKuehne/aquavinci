@@ -156,8 +156,8 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
 
   const handleContinueClick = () => {
     // Validate mandatory fields
-    const isFclValid = shipmentType === "FCL" && fclSelection && containerType;
-    const isLclValid = shipmentType === "LCL" && lclSelection && packageType;
+    const isFclValid = shipmentType === "FCL" && fclSelection;
+    const isLclValid = shipmentType === "LCL" && lclSelection;
     const isSizeWeightValid = weight && height && length && width;
     const isDeliveryValid = deliveryOption && deliveryDate;
 
@@ -166,9 +166,7 @@ export default function Boxes({ shipmentType, shippingDate, minDeliveryDate }: {
       const shipmentData = {
         shipmentType,
         fclSelection: fclSelection || "",
-        containerType: containerType || "",
         lclSelection: lclSelection || "",
-        packageType: packageType || "",
         weight,
         height,
         length,
