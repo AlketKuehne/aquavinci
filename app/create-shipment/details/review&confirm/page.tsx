@@ -58,57 +58,57 @@ export default function ReviewAndConfirmPage() {
   useEffect(() => {
     // Versuche zuerst, die Daten aus 'allShipmentData' zu laden (von /create-shipment)
     const allData = sessionStorage.getItem("allShipmentData");
+    const detailsData = sessionStorage.getItem("shipmentDetails");
+    const details = detailsData ? JSON.parse(detailsData) : {};
     if (allData) {
       const raw = JSON.parse(allData);
-      // Mapping von /create-shipment Feldern auf Review-Felder
+      // Mapping von /create-shipment Feldern auf Review-Felder, ergänze mit Details-Daten
       const mapped = {
-        consignorName: raw.consignorFullName || "",
-        consignorEmail: raw.consignorEmail || "",
-        consignorPhone: raw.consignorPhone || "",
-        consignorAddress: raw.consignorFullAddress || "",
-        consignorCountry: raw.consignorCountry || raw.country || "",
-        consignorCity: raw.consignorCity || "",
-        consigneeName: raw.consigneeFullName || "",
-        consigneeEmail: raw.consigneeEmail || "",
-        consigneePhone: raw.consigneePhone || "",
-        consigneeAddress: raw.consigneeFullAddress || "",
-        consigneeCountry: raw.consigneeCountry || "",
-        consigneeCity: raw.consigneeCity || "",
-        originCountry: raw.country || "",
-        originCity: raw.originCity || "",
-        originStreet: raw.street || "",
-        destinationCountry: raw.destinationCountry || "",
-        destinationCity: raw.destinationCity || "",
-        destinationStreet: raw.destinationStreet || "",
-        containerType: raw.fclSelection || "",
-        goodsDescription: raw.description || "",
-        packageType: raw.lclSelection || "",
-        numberOfPieces: raw.numberOfPieces || "1", // Default auf 1, wenn leer
-        dangerousGoods: raw.isDangerousGoods ? "Yes" : "No",
-        shippingDate: raw.shippingDate || "",
-        deliveryDate: raw.deliveryDate || "",
-        shipmentType: raw.shipmentType || "",
-        fclSelection: raw.fclSelection || "",
-        lclSelection: raw.lclSelection || "",
-        weight: raw.weight || "",
-        height: raw.height || "",
-        length: raw.length || "",
-        width: raw.width || "",
-        isFragile: typeof raw.isFragile === "boolean" ? raw.isFragile : false,
-        fragileCategory: raw.fragileCategory || "",
-        fragileSubCategory: raw.fragileSubCategory || "",
-        extraProtection: typeof raw.extraProtection === "boolean" ? raw.extraProtection : false,
-        deliveryOption: raw.deliveryOption || "",
-        selectedProtections: Array.isArray(raw.selectedProtections) ? raw.selectedProtections : [],
-        numberOfPackages: raw.numberOfPackages || ""
+        consignorName: raw.consignorFullName || details.consignorName || "",
+        consignorEmail: raw.consignorEmail || details.consignorEmail || "",
+        consignorPhone: raw.consignorPhone || details.consignorPhone || "",
+        consignorAddress: raw.consignorFullAddress || details.consignorAddress || "",
+        consignorCountry: raw.consignorCountry || raw.country || details.consignorCountry || "",
+        consignorCity: raw.consignorCity || details.consignorCity || "",
+        consigneeName: raw.consigneeFullName || details.consigneeName || "",
+        consigneeEmail: raw.consigneeEmail || details.consigneeEmail || "",
+        consigneePhone: raw.consigneePhone || details.consigneePhone || "",
+        consigneeAddress: raw.consigneeFullAddress || details.consigneeAddress || "",
+        consigneeCountry: raw.consigneeCountry || details.consigneeCountry || "",
+        consigneeCity: raw.consigneeCity || details.consigneeCity || "",
+        originCountry: raw.country || details.originCountry || "",
+        originCity: raw.originCity || details.originCity || "",
+        originStreet: raw.street || details.originStreet || "",
+        destinationCountry: raw.destinationCountry || details.destinationCountry || "",
+        destinationCity: raw.destinationCity || details.destinationCity || "",
+        destinationStreet: raw.destinationStreet || details.destinationStreet || "",
+        containerType: details.containerType || raw.containerType || "", // Typ
+        fclSelection: raw.fclSelection || details.fclSelection || "", // Anzahl
+        goodsDescription: raw.description || details.goodsDescription || "",
+        packageType: details.packageType || raw.lclSelection || "",
+        numberOfPieces: raw.numberOfPieces || details.numberOfPieces || "1",
+        dangerousGoods: (typeof raw.isDangerousGoods === "boolean" ? (raw.isDangerousGoods ? "Yes" : "No") : (details.dangerousGoods || "No")),
+        shippingDate: raw.shippingDate || details.shippingDate || "",
+        deliveryDate: raw.deliveryDate || details.deliveryDate || "",
+        shipmentType: raw.shipmentType || details.shipmentType || "",
+        weight: details.weight || raw.weight || "",
+        height: details.height || raw.height || "",
+        length: details.length || raw.length || "",
+        width: details.width || raw.width || "",
+        isFragile: typeof details.isFragile === "boolean" ? details.isFragile : (typeof raw.isFragile === "boolean" ? raw.isFragile : false),
+        fragileCategory: details.fragileCategory || raw.fragileCategory || "",
+        fragileSubCategory: details.fragileSubCategory || raw.fragileSubCategory || "",
+        extraProtection: typeof details.extraProtection === "boolean" ? details.extraProtection : (typeof raw.extraProtection === "boolean" ? raw.extraProtection : false),
+        deliveryOption: details.deliveryOption || raw.deliveryOption || "",
+        selectedProtections: Array.isArray(details.selectedProtections) ? details.selectedProtections : (Array.isArray(raw.selectedProtections) ? raw.selectedProtections : []),
+        numberOfPackages: details.numberOfPackages || raw.numberOfPackages || ""
       };
       setFields(mapped);
       return;
     }
     // Fallback: Lade die Daten aus 'shipmentDetails' (von Details-Schritt)
-    const stored = sessionStorage.getItem("shipmentDetails");
-    if (stored) {
-      setFields(JSON.parse(stored));
+    if (detailsData) {
+      setFields(details);
     }
   }, []);
 
