@@ -59,7 +59,50 @@ export default function ReviewAndConfirmPage() {
     // Versuche zuerst, die Daten aus 'allShipmentData' zu laden (von /create-shipment)
     const allData = sessionStorage.getItem("allShipmentData");
     if (allData) {
-      setFields(JSON.parse(allData));
+      const raw = JSON.parse(allData);
+      // Mapping von /create-shipment Feldern auf Review-Felder
+      const mapped = {
+        consignorName: raw.consignorFullName || "",
+        consignorEmail: raw.consignorEmail || "",
+        consignorPhone: raw.consignorPhone || "",
+        consignorAddress: raw.consignorFullAddress || "",
+        consignorCountry: raw.consignorCountry || raw.country || "",
+        consignorCity: raw.consignorCity || "",
+        consigneeName: raw.consigneeFullName || "",
+        consigneeEmail: raw.consigneeEmail || "",
+        consigneePhone: raw.consigneePhone || "",
+        consigneeAddress: raw.consigneeFullAddress || "",
+        consigneeCountry: raw.consigneeCountry || "",
+        consigneeCity: raw.consigneeCity || "",
+        originCountry: raw.country || "",
+        originCity: raw.originCity || "",
+        originStreet: raw.street || "",
+        destinationCountry: raw.destinationCountry || "",
+        destinationCity: raw.destinationCity || "",
+        destinationStreet: raw.destinationStreet || "",
+        containerType: raw.fclSelection || "",
+        goodsDescription: raw.description || "",
+        packageType: raw.lclSelection || "",
+        numberOfPieces: raw.numberOfPieces || "",
+        dangerousGoods: raw.isDangerousGoods ? "Yes" : "No",
+        shippingDate: raw.shippingDate || "",
+        deliveryDate: raw.deliveryDate || "",
+        shipmentType: raw.shipmentType || "",
+        fclSelection: raw.fclSelection || "",
+        lclSelection: raw.lclSelection || "",
+        weight: raw.weight || "",
+        height: raw.height || "",
+        length: raw.length || "",
+        width: raw.width || "",
+        isFragile: raw.isFragile || false,
+        fragileCategory: raw.fragileCategory || "",
+        fragileSubCategory: raw.fragileSubCategory || "",
+        extraProtection: raw.extraProtection || false,
+        deliveryOption: raw.deliveryOption || "",
+        selectedProtections: raw.selectedProtections || [],
+        numberOfPackages: raw.numberOfPackages || ""
+      };
+      setFields(mapped);
       return;
     }
     // Fallback: Lade die Daten aus 'shipmentDetails' (von Details-Schritt)
