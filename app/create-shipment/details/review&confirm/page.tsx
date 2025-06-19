@@ -315,18 +315,17 @@ export default function ReviewAndConfirmPage() {
   );
 
   const renderShipmentType = () => {
-    const isFCL = fields.shipmentType === "FCL"; // Determine if the shipment type is FCL
-    const shipmentType = isFCL ? "Full Container Load" : "Less Container Load";
-    const containerOrPackageLabel = isFCL ? "Number of Containers" : "Number of Packages";
-    const containerOrPackageValue = isFCL ? fields.fclSelection : fields.lclSelection; // Use correct field based on shipment type
+    const isFCL = fields.shipmentType === "FCL";
+    const numberLabel = isFCL ? "Number of Containers" : `Number of ${fields.packageType ? fields.packageType.charAt(0).toUpperCase() + fields.packageType.slice(1) : "Packages"}`;
+    const numberValue = isFCL ? fields.fclSelection : fields.lclSelection; // Use correct field based on shipment type
 
     return (
       <div className="">
         <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
         <p className="text-gray-700 font-medium mb-4">{shipmentType}</p> {/* Display shipment type */}
         <div className="mt-1">
-          <h3 className="text-md font-bold">{containerOrPackageLabel}:</h3>
-          <p className="text-gray-700">{containerOrPackageValue || "N/A"}</p> {/* Display user input or "N/A" */}
+          <h3 className="text-md font-bold">{numberLabel}:</h3>
+          <p className="text-gray-700">{numberValue || "N/A"}</p> {/* Display user input or "N/A" */}
         </div>
         {isFCL ? (
           <div className="mt-1">
