@@ -56,7 +56,13 @@ export default function ReviewAndConfirmPage() {
   ); // Correctly initialize with type assertion
 
   useEffect(() => {
-    // Lade die Daten aus sessionStorage, falls vorhanden
+    // Versuche zuerst, die Daten aus 'allShipmentData' zu laden (von /create-shipment)
+    const allData = sessionStorage.getItem("allShipmentData");
+    if (allData) {
+      setFields(JSON.parse(allData));
+      return;
+    }
+    // Fallback: Lade die Daten aus 'shipmentDetails' (von Details-Schritt)
     const stored = sessionStorage.getItem("shipmentDetails");
     if (stored) {
       setFields(JSON.parse(stored));
