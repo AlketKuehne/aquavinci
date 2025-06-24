@@ -69,7 +69,9 @@ export default function DatabankPage() {
             <tr key={s.id || idx}>
               {Object.entries(s).map(([key, value]) => (
                 <td key={key} className="border px-4 py-2">
-                  {Array.isArray(value)
+                  {key === "created_at"
+                    ? new Date(value as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
+                    : Array.isArray(value)
                     ? value.join(", ")
                     : typeof value === "boolean"
                       ? value ? "Yes" : "No"
