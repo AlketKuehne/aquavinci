@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface Shipment {
   id: string;
@@ -56,6 +56,13 @@ export default function DatabankPage() {
     };
   }, []);
 
+  const handleDelete = async (id: string) => {
+    if (!confirm("Wirklich löschen?")) return;
+    const { error } = await supabase.from("shipments").delete().eq("id", id);
+    if (!error) setShipments((prev) => prev.filter((s) => s.id !== id));
+    // Optional: Fehlerbehandlung
+  };
+
   return (
     <div className="p-8">
       <h1 className="text-4xl font-extrabold mb-6 self-start">Databank</h1>
@@ -66,6 +73,7 @@ export default function DatabankPage() {
             {shipments[0] && Object.keys(shipments[0]).map((key) => (
               <th key={key} className="border px-4 py-2">{key}</th>
             ))}
+            <th className="border px-4 py-2">Delete</th> {/* Neue Spalte Delete */}
           </tr>
         </thead>
         <tbody>
@@ -92,6 +100,15 @@ export default function DatabankPage() {
                       : value?.toString()}
                 </td>
               ))}
+              <td className="border px-4 py-2 text-center">
+                <button
+                  onClick={() => handleDelete(s.id)}
+                  title="Löschen"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]"
+                >
+                  <FaTrash />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
