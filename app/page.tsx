@@ -63,7 +63,7 @@ export default function Home() {
         
         {/* Description */}
         <p className="text-center text-sm sm:text-base font-[family-name:var(--font-geist-mono)] w-[500px] mt-2 mb-6">
-        Wir sind Ihr zuverlässiger Partner für Seefracht. Ob LCL oder FCL – wir transportieren Ihre Waren sicher, effizient und kostengünstig. Vertrauen Sie auf unseren schnellen und professionellen Service!
+        We are your reliable partner for ocean freight. Whether LCL or FCL – we transport your goods safely, efficiently, and cost-effectively. Rely on our fast and professional service!
         </p>
 
         {/* Buttons */}
