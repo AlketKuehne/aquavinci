@@ -119,7 +119,7 @@ export default function DatabasePage() {
           <h1 className="text-4xl font-extrabold mb-6 self-start">Database</h1>
           <table className="min-w-full border ml-16 rounded-xl overflow-hidden">
             <thead>
-              <tr className="bg-white">
+              <tr className="bg-[#F5F5F5]">
                 <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
                 <th className="border px-4 py-2">Delete</th>
                 {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
@@ -134,8 +134,8 @@ export default function DatabasePage() {
             </thead>
             <tbody>
               {shipments.map((s, idx) => (
-                <tr key={s.id || idx} className="bg-white even:bg-[#F5F5F5]">
-                  <td className="border px-4 py-2 text-center rounded-l-lg">
+                <tr key={s.id || idx} className={idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"}>
+                  <td className="border px-4 py-2 text-center">{/* keine Rundung */}
                     <button
                       onClick={() => router.push(`/create-shipment/details/review&confirm/${s.id}`)}
                       title="Bearbeiten"
@@ -144,7 +144,7 @@ export default function DatabasePage() {
                       <FaEdit />
                     </button>
                   </td>
-                  <td className="border px-4 py-2 text-center">
+                  <td className="border px-4 py-2 text-center">{/* keine Rundung */}
                     <button
                       onClick={() => handleDelete(s.id)}
                       title="Löschen"
@@ -155,14 +155,12 @@ export default function DatabasePage() {
                   </td>
                   {Object.entries(s).map(([key, value], i, arr) => (
                     key === "id" ? (
-                      <td key={key} className="border px-4 py-2">
-                        {value?.toString()}
-                      </td>
+                      <td key={key} className="border px-4 py-2">{value?.toString()}</td>
                     ) : null
                   ))}
                   {Object.entries(s).map(([key, value], i, arr) => (
                     key !== "id" ? (
-                      <td key={key} className={`border px-4 py-2${i === arr.length - 1 ? ' rounded-r-lg' : ''}`}>
+                      <td key={key} className={`border px-4 py-2${idx === shipments.length - 1 && i === arr.length - 1 ? ' rounded-br-xl' : ''}${idx === shipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
                         {key === "created_at"
                           ? new Date(value as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
                           : Array.isArray(value)
