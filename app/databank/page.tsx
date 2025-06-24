@@ -53,27 +53,27 @@ export default function DatabankPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Alle Shipments (Echtzeit)</h1>
+      <h1 className="text-3xl font-bold mb-6">All Shipments (Realtime)</h1>
       <table className="min-w-full border">
         <thead>
           <tr>
-            <th className="border px-4 py-2">ID</th>
-            <th className="border px-4 py-2">Typ</th>
-            <th className="border px-4 py-2">Gewicht</th>
-            <th className="border px-4 py-2">Größe (LxBxH)</th>
-            <th className="border px-4 py-2">Lieferdatum</th>
-            <th className="border px-4 py-2">Erstellt am</th>
+            {shipments[0] && Object.keys(shipments[0]).map((key) => (
+              <th key={key} className="border px-4 py-2">{key}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
-          {shipments.map((s) => (
-            <tr key={s.id}>
-              <td className="border px-4 py-2">{s.id}</td>
-              <td className="border px-4 py-2">{s.shipmenttype}</td>
-              <td className="border px-4 py-2">{s.weight}</td>
-              <td className="border px-4 py-2">{s.length} x {s.width} x {s.height}</td>
-              <td className="border px-4 py-2">{s.deliverydate}</td>
-              <td className="border px-4 py-2">{new Date(s.created_at).toLocaleString()}</td>
+          {shipments.map((s, idx) => (
+            <tr key={s.id || idx}>
+              {Object.entries(s).map(([key, value]) => (
+                <td key={key} className="border px-4 py-2">
+                  {Array.isArray(value)
+                    ? value.join(", ")
+                    : typeof value === "boolean"
+                      ? value ? "Yes" : "No"
+                      : value?.toString()}
+                </td>
+              ))}
             </tr>
           ))}
         </tbody>
