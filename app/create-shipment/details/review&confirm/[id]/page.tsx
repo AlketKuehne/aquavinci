@@ -139,85 +139,97 @@ export default function ReviewAndConfirmIdPage() {
     );
   }
 
-  const renderField = (label: string, field: keyof ShipmentData, isDropdown = true) => {
-    const isEditingField = isEditing[field];
-    const fieldValue = fields[field] as string;
-
-    return (
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
-        {isEditingField ? (
-          <input
-            type="text"
-            value={fieldValue}
-            onChange={(e) => handleInputChange(field, e.target.value)}
-            className="block w-full p-2 border border-gray-300 rounded-md"
-          />
-        ) : (
-          <div className="flex items-center justify-between p-2 border border-gray-300 rounded-md">
-            <span className="text-gray-700">{fieldValue}</span>
-            <button
-              onClick={() => handleEditClick(field)}
-              className="text-blue-500 hover:underline"
-            >
-              <FaEdit className="inline-block mr-1" />
-              Edit
-            </button>
-          </div>
-        )}
-      </div>
-    );
+  // Hilfsfunktion: Gibt zurück, ob ein Feld editierbar ist (wie im Original)
+  const isFieldEditable = (field: keyof ShipmentData): boolean => {
+    // Felder, die im Original NICHT editierbar sind:
+    const nonEditable: (keyof ShipmentData)[] = [
+      "consignorCountry", "consigneeCountry", "originCountry", "destinationCountry"
+    ];
+    return !nonEditable.includes(field);
   };
 
-  const renderFieldWithDropdown = (label: string, field: keyof ShipmentData, countryField: keyof ShipmentData) => {
-    const isEditingField = isEditing[field];
-    const fieldValue = fields[field] as string;
-    const countryValue = fields[countryField] as string;
+  // renderField angepasst: editable-Flag wie im Original
+  const renderField = (label: string, field: keyof ShipmentData, editable: boolean = isFieldEditable(field)) => (
+    <div className="flex justify-between items-center">
+      <div>
+        <h3 className="text-md font-bold">{label}:</h3>
+        {editable && isEditing[field] ? (
+          <input
+            type="text"
+            value={fields[field] as string || ""}
+            onChange={(e) => handleInputChange(field, e.target.value)}
+            className="border border-gray-300 rounded px-2 py-1"
+          />
+        ) : (
+          <p className="text-gray-700">{fields[field] || "N/A"}</p>
+        )}
+      </div>
+      {editable && !isEditing[field] && (
+        <div
+          className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+          onClick={() => handleEditClick(field)}
+        >
+          <FaEdit />
+        </div>
+      )}
+      {editable && isEditing[field] && (
+        <button
+          className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+          onClick={() => handleSave(field)}
+        >
+          Save
+        </button>
+      )}
+    </div>
+  );
 
-    // Get cities based on selected country
-    const cities = countryValue ? countryCityData[countryValue] : [];
-
+  // renderFieldWithDropdown angepasst: editable-Flag wie im Original
+  const renderFieldWithDropdown = (
+    label: string,
+    field: keyof ShipmentData,
+    countryField: keyof ShipmentData,
+    editable: boolean = isFieldEditable(field)
+  ) => {
+    const country = fields[countryField] as string;
+    const cities = countryCityData[country] || [];
     return (
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
-        {isEditingField ? (
-          <>
+      <div className="flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">{label}:</h3>
+          {editable && isEditing[field] ? (
             <select
-              value={countryValue}
-              onChange={(e) => handleInputChange(countryField, e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-md mb-2"
-            >
-              <option value="">Select Country</option>
-              {Object.keys(countryCityData).map((country) => (
-                <option key={country} value={country}>
-                  {country}
-                </option>
-              ))}
-            </select>
-            <select
-              value={fieldValue}
+              value={fields[field] as string || ""}
               onChange={(e) => handleInputChange(field, e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-md"
+              className="border border-gray-300 rounded px-2 py-1"
             >
-              <option value="">Select City</option>
-              {cities.map((city) => (
+              <option value="" disabled>
+                Select a city
+              </option>
+              {cities.map((city: string) => (
                 <option key={city} value={city}>
                   {city}
                 </option>
               ))}
             </select>
-          </>
-        ) : (
-          <div className="flex items-center justify-between p-2 border border-gray-300 rounded-md">
-            <span className="text-gray-700">{fieldValue}</span>
-            <button
-              onClick={() => handleEditClick(field)}
-              className="text-blue-500 hover:underline"
-            >
-              <FaEdit className="inline-block mr-1" />
-              Edit
-            </button>
+          ) : (
+            <p className="text-gray-700">{fields[field] || "N/A"}</p>
+          )}
+        </div>
+        {editable && !isEditing[field] && (
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+            onClick={() => handleEditClick(field)}
+          >
+            <FaEdit />
           </div>
+        )}
+        {editable && isEditing[field] && (
+          <button
+            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+            onClick={() => handleSave(field)}
+          >
+            Save
+          </button>
         )}
       </div>
     );
