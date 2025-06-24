@@ -580,7 +580,7 @@ export default function ReviewAndConfirmIdPage() {
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
       <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8" ref={editRef}>
-        <h1 className="text-4xl font-extrabold mb-6 self-start">Review & Confirm</h1>
+        <h1 className="text-4xl font-extrabold mb-6 self-start">Edit Shipment</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 w-full mt-2">
           {/* Consignor (Shipper) */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
