@@ -84,7 +84,7 @@ export default function Home() {
 
           <Link
             href="/database"
-            className="group rounded-full border border-transparent flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 bg-white text-black transition-all duration-[1250ms] hover:bg-[#242424] hover:text-white focus:outline-none"
+            className="group rounded-full border-2 flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 bg-[#E5E5E5] text-black border-[#E5E5E5] transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5] hover:border-black focus:outline-none"
           >
             Database
           </Link>
