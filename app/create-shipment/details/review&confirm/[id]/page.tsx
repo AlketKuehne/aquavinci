@@ -80,22 +80,22 @@ export default function ReviewAndConfirmIdPage() {
     });
   };
 
-  const handleInputChange = (field: keyof ShipmentData, value: string) => {
+  const handleInputChange = (field: keyof ShipmentData, value: string | boolean | string[]) => {
     // Restrict input to letters for consignorName and consigneeName
     if (field === "consignorName" || field === "consigneeName") {
-      if (/^[a-zA-Z\s]*$/.test(value)) {
+      if (typeof value === "string" && /^[a-zA-Z\s]*$/.test(value)) {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
     } 
     // Restrict input to numbers for numeric fields and phone numbers
     else if (["numberOfPieces", "weight", "height", "length", "width", "consignorPhone", "consigneePhone"].includes(field)) {
-      if (/^\d*$/.test(value)) {
+      if (typeof value === "string" && /^\d*$/.test(value)) {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
     } 
     // Restrict "Number of Packages" to numbers with max value of 100 and no leading zero
     else if (field === "numberOfPackages") {
-      if (/^\d*$/.test(value) && (value === "" || (parseInt(value) > 0 && parseInt(value) <= 100))) {
+      if (typeof value === "string" && /^\d*$/.test(value) && (value === "" || (parseInt(value) > 0 && parseInt(value) <= 100))) {
         setFields((prev) => ({ ...prev, [field]: value }));
       }
     } 
