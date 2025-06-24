@@ -70,10 +70,13 @@ export default function DatabankPage() {
         <thead>
           <tr>
             <th className="border px-4 py-2">Edit</th> {/* Neue Spalte */}
-            {shipments[0] && Object.keys(shipments[0]).map((key) => (
-              <th key={key} className="border px-4 py-2">{key}</th>
+            <th className="border px-4 py-2">Delete</th> {/* Delete jetzt direkt nach Edit */}
+            {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
+              key === "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
             ))}
-            <th className="border px-4 py-2">Delete</th> {/* Neue Spalte Delete */}
+            {shipments[0] && Object.keys(shipments[0]).map((key) => (
+              key !== "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -89,17 +92,6 @@ export default function DatabankPage() {
                   <FaEdit />
                 </button>
               </td>
-              {Object.entries(s).map(([key, value]) => (
-                <td key={key} className="border px-4 py-2">
-                  {key === "created_at"
-                    ? new Date(value as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
-                    : Array.isArray(value)
-                    ? value.join(", ")
-                    : typeof value === "boolean"
-                      ? value ? "Yes" : "No"
-                      : value?.toString()}
-                </td>
-              ))}
               <td className="border px-4 py-2 text-center">
                 <button
                   onClick={() => handleDelete(s.id)}
@@ -109,6 +101,26 @@ export default function DatabankPage() {
                   <FaTrash />
                 </button>
               </td>
+              {Object.entries(s).map(([key, value]) => (
+                key === "id" ? (
+                  <td key={key} className="border px-4 py-2">
+                    {value?.toString()}
+                  </td>
+                ) : null
+              ))}
+              {Object.entries(s).map(([key, value]) => (
+                key !== "id" ? (
+                  <td key={key} className="border px-4 py-2">
+                    {key === "created_at"
+                      ? new Date(value as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
+                      : Array.isArray(value)
+                      ? value.join(", ")
+                      : typeof value === "boolean"
+                        ? value ? "Yes" : "No"
+                        : value?.toString()}
+                  </td>
+                ) : null
+              ))}
             </tr>
           ))}
         </tbody>
