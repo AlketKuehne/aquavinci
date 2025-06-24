@@ -135,20 +135,22 @@ export default function DatabasePage() {
             <tbody>
               {shipments.map((s, idx) => (
                 <tr key={s.id || idx} className={idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"}>
-                  <td className="border px-4 py-2 text-center">{/* keine Rundung */}
+                  <td className="border px-4 py-2 text-center">
                     <button
-                      onClick={() => router.push(`/create-shipment/details/review&confirm/${s.id}`)}
+                      onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
                       title="Bearbeiten"
-                      className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]"
+                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                      disabled={!(loggedIn && username === "alket.rrushi")}
                     >
                       <FaEdit />
                     </button>
                   </td>
-                  <td className="border px-4 py-2 text-center">{/* keine Rundung */}
+                  <td className="border px-4 py-2 text-center">
                     <button
-                      onClick={() => handleDelete(s.id)}
+                      onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
                       title="Löschen"
-                      className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]"
+                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                      disabled={!(loggedIn && username === "alket.rrushi")}
                     >
                       <FaTrash />
                     </button>
