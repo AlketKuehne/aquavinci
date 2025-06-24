@@ -55,7 +55,7 @@ export default function DatabankPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">All Shipments (Realtime)</h1>
+      <h1 className="text-3xl font-bold mb-6">All Shipments</h1>
       <table className="min-w-full border">
         <thead>
           <tr>
