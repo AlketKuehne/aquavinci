@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter, useParams } from "next/navigation";
 import NavigationBar from "../NavigationBar";
 import countryCityData from "../../../../../utils/countryCityData";
@@ -8,7 +8,6 @@ import { FaEdit } from "react-icons/fa";
 import { supabase } from "../../../../../utils/supabaseClient";
 
 interface ShipmentData {
-  id: string;
   consignorName: string;
   consignorEmail: string;
   consignorPhone: string;
@@ -58,6 +57,7 @@ export default function ReviewAndConfirmIdPage() {
   const [isEditing, setIsEditing] = useState<Record<keyof ShipmentData, boolean>>({} as Record<keyof ShipmentData, boolean>);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const editRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const fetchShipment = async () => {
@@ -68,6 +68,17 @@ export default function ReviewAndConfirmIdPage() {
     };
     fetchShipment();
   }, [id]);
+
+  // Click outside to close edit mode
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (editRef.current && !editRef.current.contains(event.target as Node)) {
+        setIsEditing({} as Record<keyof ShipmentData, boolean>);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleEditClick = (field: keyof ShipmentData) => {
     setIsEditing((prev) => {
@@ -441,7 +452,7 @@ export default function ReviewAndConfirmIdPage() {
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
       <NavigationBar onNavigate={(url) => router.push(url)} />
-      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8">
+      <div className="flex flex-col items-start w-full max-w-6xl mt-12 px-8" ref={editRef}>
         <h1 className="text-4xl font-extrabold mb-6 self-start">Review & Confirm</h1>
         <div className="grid grid-cols-2 gap-x-4 gap-y-8 w-full mt-2">
           {/* Consignor (Shipper) */}
