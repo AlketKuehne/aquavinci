@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
+import { FaEdit } from "react-icons/fa";
 
 interface Shipment {
   id: string;
@@ -75,10 +76,9 @@ export default function DatabankPage() {
                 <button
                   onClick={() => router.push(`/create-shipment/details/review&confirm/${s.id}`)}
                   title="Bearbeiten"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13zm0 0L4 19l5-1 1-5z" />
-                  </svg>
+                  <FaEdit />
                 </button>
               </td>
               {Object.entries(s).map(([key, value]) => (
