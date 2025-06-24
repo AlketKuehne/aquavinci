@@ -115,8 +115,15 @@ export default function ReviewAndConfirmIdPage() {
     }
   };
 
-  const handleSave = (field: keyof ShipmentData) => {
-    setIsEditing((prev) => ({ ...prev, [field]: false }));
+  const handleSave = async (field: keyof ShipmentData) => {
+    try {
+      const updateObj: Partial<ShipmentData> = { [field]: fields[field] };
+      const { error } = await supabase.from("shipments").update(updateObj).eq("id", id);
+      if (error) throw error;
+      setIsEditing((prev) => ({ ...prev, [field]: false }));
+    } catch (error) {
+      setError('Fehler beim Speichern in der Datenbank!');
+    }
   };
 
   const handleConfirm = async () => {
