@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
 
 interface Shipment {
@@ -25,6 +26,7 @@ interface Shipment {
 
 export default function DatabankPage() {
   const [shipments, setShipments] = useState<Shipment[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     // Initial load
@@ -59,7 +61,7 @@ export default function DatabankPage() {
       <table className="min-w-full border ml-16"> {/* Tabelle weiter nach rechts */}
         <thead>
           <tr>
-            <th className="border px-4 py-2">Aktion</th> {/* Neue Spalte */}
+            <th className="border px-4 py-2">Edit</th> {/* Neue Spalte */}
             {shipments[0] && Object.keys(shipments[0]).map((key) => (
               <th key={key} className="border px-4 py-2">{key}</th>
             ))}
@@ -70,7 +72,10 @@ export default function DatabankPage() {
             <tr key={s.id || idx}>
               <td className="border px-4 py-2 text-center">
                 {/* Klickbarer Stift */}
-                <button onClick={() => alert(`Edit Shipment: ${s.id}`)} title="Bearbeiten">
+                <button
+                  onClick={() => router.push(`/create-shipment/details/review&confirm/${s.id}`)}
+                  title="Bearbeiten"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13zm0 0L4 19l5-1 1-5z" />
                   </svg>
