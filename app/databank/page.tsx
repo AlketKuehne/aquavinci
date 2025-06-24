@@ -65,7 +65,7 @@ export default function DatabankPage() {
 
   return (
     <div className="p-8">
-      <h1 className="text-4xl font-extrabold mb-6 self-start">Databank</h1>
+      <h1 className="text-4xl font-extrabold mb-6 self-start">Database</h1>
       <table className="min-w-full border ml-16"> {/* Tabelle weiter nach rechts */}
         <thead>
           <tr>
