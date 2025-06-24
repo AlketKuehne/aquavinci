@@ -235,231 +235,346 @@ export default function ReviewAndConfirmIdPage() {
     );
   };
 
+  // --- ab hier: 1:1 Kopie der Render-Logik aus dem Original für die späteren Boxen ---
+
+  // --- Shipment Type & Details ---
   const renderShipmentType = () => {
-    const isEditingField = isEditing.shipmentType;
-    const fieldValue = fields.shipmentType as string;
+    const isFCL = fields.shipmentType === "FCL";
+    const numberLabel = isFCL ? "Number of Containers" : `Number of ${fields.packageType ? fields.packageType.charAt(0).toUpperCase() + fields.packageType.slice(1) : "Packages"}`;
+    const numberValue = isFCL ? fields.fclSelection : fields.lclSelection;
 
     return (
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-1">Shipment Type</label>
-        {isEditingField ? (
-          <select
-            value={fieldValue}
-            onChange={(e) => handleInputChange("shipmentType", e.target.value)}
-            className="block w-full p-2 border border-gray-300 rounded-md"
-          >
-            <option value="">Select Shipment Type</option>
-            <option value="FCL">FCL</option>
-            <option value="LCL">LCL</option>
-          </select>
+      <div className="">
+        <h2 className="text-lg font-bold mb-4">Shipment Type & Details</h2>
+        <p className="text-gray-700 font-medium mb-4">{fields.shipmentType}</p>
+        <div className="mt-1">
+          <h3 className="text-md font-bold">{numberLabel}:</h3>
+          <p className="text-gray-700">{numberValue || "N/A"}</p>
+        </div>
+        {isFCL ? (
+          <div className="mt-1">
+            <h3 className="text-md font-bold">Number of Containers:</h3>
+            {isEditing["fclSelection"] ? (
+              <input
+                type="text"
+                value={fields.fclSelection || ""}
+                onChange={(e) => handleInputChange("fclSelection", e.target.value)}
+                className="border border-gray-300 rounded px-2 py-1"
+              />
+            ) : (
+              <p className="text-gray-700">{fields.fclSelection || "N/A"}</p>
+            )}
+          </div>
         ) : (
-          <div className="flex items-center justify-between p-2 border border-gray-300 rounded-md">
-            <span className="text-gray-700">{fieldValue}</span>
-            <button
-              onClick={() => handleEditClick("shipmentType")}
-              className="text-blue-500 hover:underline"
-            >
-              <FaEdit className="inline-block mr-1" />
-              Edit
-            </button>
+          <div className="mt-1">
+            <h3 className="text-md font-bold">Number of Packages:</h3>
+            {isEditing["lclSelection"] ? (
+              <input
+                type="text"
+                value={fields.lclSelection || ""}
+                onChange={(e) => handleInputChange("lclSelection", e.target.value)}
+                className="border border-gray-300 rounded px-2 py-1"
+              />
+            ) : (
+              <p className="text-gray-700">{fields.lclSelection || "N/A"}</p>
+            )}
           </div>
         )}
+        <div className="mt-1">
+          <h3 className="text-md font-bold">Number of Pieces:</h3>
+          {isEditing["numberOfPieces"] ? (
+            <input
+              type="text"
+              value={fields.numberOfPieces || ""}
+              onChange={(e) => handleInputChange("numberOfPieces", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            />
+          ) : (
+            <p className="text-gray-700">{fields.numberOfPieces || "N/A"}</p>
+          )}
+        </div>
+        {renderField("Description of Goods", "goodsDescription")}
       </div>
     );
   };
 
+  // --- Size & Weight Details ---
   const renderSizeAndWeightDetails = () => {
-    const isEditingField = isEditing.weight;
-    const weightValue = fields.weight as string;
-    const heightValue = fields.height as string;
-    const lengthValue = fields.length as string;
-    const widthValue = fields.width as string;
-
+    const isLCL = fields.shipmentType === "LCL";
     return (
-      <div className="bg-white p-6 shadow-lg rounded-lg mb-4">
-        <h2 className="text-lg font-bold mb-4">Size & Weight Details</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
-            {isEditingField ? (
-              <input
-                type="text"
-                value={weightValue}
-                onChange={(e) => handleInputChange("weight", e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-md"
-              />
-            ) : (
-              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-md">
-                <span className="text-gray-700">{weightValue}</span>
-                <button
-                  onClick={() => handleEditClick("weight")}
-                  className="text-blue-500 hover:underline"
-                >
-                  <FaEdit className="inline-block mr-1" />
-                  Edit
-                </button>
-              </div>
-            )}
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Dimensions (L x W x H)</label>
-            <div className="grid grid-cols-3 gap-2">
-              <input
-                type="text"
-                value={lengthValue}
-                onChange={(e) => handleInputChange("length", e.target.value)}
-                placeholder="Length"
-                className="block w-full p-2 border border-gray-300 rounded-md"
-              />
-              <input
-                type="text"
-                value={widthValue}
-                onChange={(e) => handleInputChange("width", e.target.value)}
-                placeholder="Width"
-                className="block w-full p-2 border border-gray-300 rounded-md"
-              />
-              <input
-                type="text"
-                value={heightValue}
-                onChange={(e) => handleInputChange("height", e.target.value)}
-                placeholder="Height"
-                className="block w-full p-2 border border-gray-300 rounded-md"
-              />
+      <div className="bg-white p-6 shadow-lg rounded-lg">
+        <h2 className="text-lg font-bold mb-3">Size & Weight Details</h2>
+        <div className="text-gray-700">
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-md font-bold">Weight (in kg):</h3>
+              {isEditing["weight"] ? (
+                <input
+                  type="text"
+                  value={fields.weight || ""}
+                  onChange={(e) => handleInputChange("weight", e.target.value)}
+                  className="border border-gray-300 rounded px-2 py-1"
+                />
+              ) : (
+                <p className="text-gray-700">{fields.weight || "N/A"}</p>
+              )}
             </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const renderFragileItem = () => {
-    const isEditingField = isEditing.isFragile;
-    const fieldValue = fields.isFragile as boolean;
-
-    return (
-      <div className="bg-white p-6 shadow-lg rounded-lg mb-4">
-        <h2 className="text-lg font-bold mb-4">Fragile Item</h2>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            checked={fieldValue}
-            onChange={(e) => handleInputChange("isFragile", e.target.checked)}
-            className="mr-2"
-          />
-          <label className="text-gray-700">Is this shipment fragile?</label>
-        </div>
-        {fieldValue && (
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Fragile Category</label>
-            <input
-              type="text"
-              value={fields.fragileCategory as string}
-              onChange={(e) => handleInputChange("fragileCategory", e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-md"
-            />
-            <label className="block text-sm font-medium text-gray-700 mb-1 mt-2">Fragile Sub-Category</label>
-            <input
-              type="text"
-              value={fields.fragileSubCategory as string}
-              onChange={(e) => handleInputChange("fragileSubCategory", e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-md"
-            />
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  const renderShippingDetails = () => {
-    const isEditingField = isEditing.shippingDate;
-    const shippingDateValue = fields.shippingDate as string;
-    const deliveryDateValue = fields.deliveryDate as string;
-
-    return (
-      <div className="bg-white p-6 shadow-lg rounded-lg mb-4">
-        <h2 className="text-lg font-bold mb-4">Shipping Details</h2>
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Shipping Date</label>
-            {isEditingField ? (
-              <input
-                type="date"
-                value={shippingDateValue}
-                onChange={(e) => handleInputChange("shippingDate", e.target.value)}
-                className="block w-full p-2 border border-gray-300 rounded-md"
-              />
-            ) : (
-              <div className="flex items-center justify-between p-2 border border-gray-300 rounded-md">
-                <span className="text-gray-700">{shippingDateValue}</span>
-                <button
-                  onClick={() => handleEditClick("shippingDate")}
-                  className="text-blue-500 hover:underline"
-                >
-                  <FaEdit className="inline-block mr-1" />
-                  Edit
-                </button>
+            {!isEditing["weight"] && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                onClick={() => handleEditClick("weight")}
+              >
+                <FaEdit />
               </div>
             )}
+            {isEditing["weight"] && (
+              <button
+                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+                onClick={() => handleSave("weight")}
+              >
+                Save
+              </button>
+            )}
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Delivery Date</label>
-            <input
-              type="date"
-              value={deliveryDateValue}
-              onChange={(e) => handleInputChange("deliveryDate", e.target.value)}
-              className="block w-full p-2 border border-gray-300 rounded-md"
-            />
+          {isLCL && (
+            <p className="text-black font-bold text-md mt-1 mb-1">Sizes per Piece</p>
+          )}
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-md font-bold">Height (in cm):</h3>
+              {isEditing["height"] ? (
+                <input
+                  type="text"
+                  value={fields.height || ""}
+                  onChange={(e) => handleInputChange("height", e.target.value)}
+                  className="border border-gray-300 rounded px-2 py-1"
+                />
+              ) : (
+                <p className="text-gray-700">{fields.height || "N/A"}</p>
+              )}
+            </div>
+            {!isEditing["height"] && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                onClick={() => handleEditClick("height")}
+              >
+                <FaEdit />
+              </div>
+            )}
+            {isEditing["height"] && (
+              <button
+                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+                onClick={() => handleSave("height")}
+              >
+                Save
+              </button>
+            )}
+          </div>
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-md font-bold">Length (in cm):</h3>
+              {isEditing["length"] ? (
+                <input
+                  type="text"
+                  value={fields.length || ""}
+                  onChange={(e) => handleInputChange("length", e.target.value)}
+                  className="border border-gray-300 rounded px-2 py-1"
+                />
+              ) : (
+                <p className="text-gray-700">{fields.length || "N/A"}</p>
+              )}
+            </div>
+            {!isEditing["length"] && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                onClick={() => handleEditClick("length")}
+              >
+                <FaEdit />
+              </div>
+            )}
+            {isEditing["length"] && (
+              <button
+                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+                onClick={() => handleSave("length")}
+              >
+                Save
+              </button>
+            )}
+          </div>
+          <div className="flex justify-between items-center">
+            <div>
+              <h3 className="text-md font-bold">Width (in cm):</h3>
+              {isEditing["width"] ? (
+                <input
+                  type="text"
+                  value={fields.width || ""}
+                  onChange={(e) => handleInputChange("width", e.target.value)}
+                  className="border border-gray-300 rounded px-2 py-1"
+                />
+              ) : (
+                <p className="text-gray-700">{fields.width || "N/A"}</p>
+              )}
+            </div>
+            {!isEditing["width"] && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                onClick={() => handleEditClick("width")}
+              >
+                <FaEdit />
+              </div>
+            )}
+            {isEditing["width"] && (
+              <button
+                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+                onClick={() => handleSave("width")}
+              >
+                Save
+              </button>
+            )}
           </div>
         </div>
       </div>
     );
   };
 
-  const renderAdditionalProtection = () => {
-    const isEditingField = isEditing.extraProtection;
-    const fieldValue = fields.extraProtection as boolean;
-
-    return (
-      <div className="bg-white p-6 shadow-lg rounded-lg mb-4">
-        <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            checked={fieldValue}
-            onChange={(e) => handleInputChange("extraProtection", e.target.checked)}
-            className="mr-2"
-          />
-          <label className="text-gray-700">Do you need additional protection for this shipment?</label>
+  // --- Fragile Item ---
+  const renderFragileItem = () => (
+    <div className="bg-white p-6 shadow-lg rounded-lg">
+      <h2 className="text-lg font-bold mb-3">Fragile Item</h2>
+      <div className="mb-1">
+        <h3 className="text-md font-bold">Is Fragile:</h3>
+        <p className="text-gray-700">{fields.isFragile ? "Yes" : "No"}</p>
+      </div>
+      <div className="mb-1">
+        <h3 className="text-md font-bold">Category:</h3>
+        <p className="text-gray-700">{fields.fragileCategory || "N/A"}</p>
+      </div>
+      <div className="mb-1">
+        <h3 className="text-md font-bold">Subcategory:</h3>
+        <p className="text-gray-700">{fields.fragileSubCategory || "N/A"}</p>
+      </div>
+      <div className="mt-4 flex justify-between items-center">
+        <div>
+          <h3 className="text-md font-bold">Required Insurance:</h3>
+          {fields.isFragile ? (
+            isEditing["extraProtection"] ? (
+              <select
+                value={fields.extraProtection ? "Yes" : "No"}
+                onChange={(e) => handleInputChange("extraProtection", e.target.value === "Yes" ? "true" : "false")}
+                className="p-2 border rounded bg-gray-100"
+              >
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            ) : (
+              <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+            )
+          ) : (
+            <p className="text-gray-700">N/A</p>
+          )}
         </div>
-        {fieldValue && (
-          <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Protection Type</label>
-            <select
-              value={fields.selectedProtections?.[0] as string}
-              onChange={(e) => handleInputChange("selectedProtections", [e.target.value])}
-              className="block w-full p-2 border border-gray-300 rounded-md"
-            >
-              <option value="">Select Protection Type</option>
-              <option value="Insurance">Insurance</option>
-              <option value="Packing">Packing</option>
-              <option value="Both">Both</option>
-            </select>
+        {fields.isFragile && (
+          <div>
+            {!isEditing["extraProtection"] && (
+              <div
+                className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+                onClick={() => handleEditClick("extraProtection")}
+              >
+                <FaEdit />
+              </div>
+            )}
+            {isEditing["extraProtection"] && (
+              <button
+                className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+                onClick={() => handleSave("extraProtection")}
+              >
+                Save
+              </button>
+            )}
           </div>
         )}
       </div>
-    );
-  };
+    </div>
+  );
 
-  const renderConfirmButton = () => {
-    return (
+  // --- Additional Protection ---
+  const renderAdditionalProtection = () => (
+    <div className="bg-white p-6 shadow-lg rounded-lg">
+      <h2 className="text-lg font-bold mb-4">Additional Protection</h2>
+      <div className="mb-4">
+        <h3 className="text-md font-bold">Requested:</h3>
+        <p className="text-gray-700">{fields.extraProtection ? "Yes" : "No"}</p>
+      </div>
+      <div className="mb-4">
+        <h3 className="text-md font-bold">Selected Protections:</h3>
+        <p className="text-gray-700">{fields.selectedProtections?.join(", ") || "N/A"}</p>
+      </div>
+      <div className="flex justify-between items-center mt-4">
+        <div>
+          <h3 className="text-md font-bold">Dangerous Goods:</h3>
+          {isEditing["dangerousGoods"] ? (
+            <select
+              value={fields.dangerousGoods || "No"}
+              onChange={(e) => handleInputChange("dangerousGoods", e.target.value)}
+              className="border border-gray-300 rounded px-2 py-1"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          ) : (
+            <p className="text-gray-700">{fields.dangerousGoods || "No"}</p>
+          )}
+        </div>
+        {!isEditing["dangerousGoods"] && (
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-full bg-white text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-white"
+            onClick={() => handleEditClick("dangerousGoods")}
+          >
+            <FaEdit />
+          </div>
+        )}
+        {isEditing["dangerousGoods"] && (
+          <button
+            className="ml-2 text-sm text-white bg-black px-2 py-1 rounded cursor-pointer transition-all duration-[1250ms] hover:bg-white hover:text-black"
+            onClick={() => handleSave("dangerousGoods")}
+          >
+            Save
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  // --- Shipping Details ---
+  const renderShippingDetails = () => (
+    <div className="">
+      <h2 className="text-lg font-bold mb-3">Shipping Date Details</h2>
+      <div className="mb-1">
+        <h3 className="text-md font-bold">Pick Up or Deliver:</h3>
+        <p className="text-gray-700">{fields.deliveryOption || "N/A"}</p>
+      </div>
+      <div className="mb-1">
+        <h3 className="text-md font-bold">Shipping Date:</h3>
+        <p className="text-gray-700">{fields.shippingDate || "N/A"}</p>
+      </div>
+      <div className="mb-1">
+        <h3 className="text-md font-bold">Delivery Date:</h3>
+        <p className="text-gray-700">{fields.deliveryDate || "N/A"}</p>
+      </div>
+    </div>
+  );
+
+  // --- Confirm Button ---
+  const renderConfirmButton = () => (
+    <div className="flex justify-end items-center mt-8">
       <button
+        className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-transparent hover:text-black cursor-pointer"
         onClick={handleConfirm}
-        className="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-700 transition-colors"
       >
-        Confirm Shipment
+        Confirm
       </button>
-    );
-  };
+    </div>
+  );
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen w-full px-8 pt-4">
