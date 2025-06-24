@@ -15,7 +15,7 @@ export default function CompletePage() {
       date: new Date().toISOString(),
     };
 
-    // Save the order to the databank
+    // Save the order to the database
     fetch("/api/saveOrder", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

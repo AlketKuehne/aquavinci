@@ -53,7 +53,7 @@ export default function NavigationBar() {
           Create Shipment
         </div>
         <a
-          href="https://aquavinci.vercel.app/databank"
+          href="https://aquavinci.vercel.app/database"
           className="flex items-center justify-center px-6 text-lg text-white bg-[#242424] transition-all duration-[1250ms] hover:bg-gray-200 hover:text-black h-full"
           target="_blank"
           rel="noopener noreferrer"

@@ -25,7 +25,7 @@ interface Shipment {
   // ...weitere Felder nach Bedarf
 }
 
-export default function DatabankPage() {
+export default function DatabasePage() {
   const [shipments, setShipments] = useState<Shipment[]>([]);
   const router = useRouter();
 

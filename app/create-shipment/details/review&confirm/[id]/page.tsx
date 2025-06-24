@@ -130,7 +130,7 @@ export default function ReviewAndConfirmIdPage() {
     try {
       const { error } = await supabase.from("shipments").update(fields).eq("id", id);
       if (error) throw error;
-      router.push("/databank");
+      router.push("/database");
     } catch (error) {
       setError('Fehler beim Speichern in der Datenbank!');
     }
