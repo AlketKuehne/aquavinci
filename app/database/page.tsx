@@ -115,7 +115,7 @@ export default function DatabasePage() {
           </form>
         </div>
       ) : (
-        <div className="p-8">
+        <div className="p-8 mt-12">
           <h1 className="text-4xl font-extrabold mb-6 self-start">Database</h1>
           <table className="min-w-full border ml-16 rounded-xl overflow-hidden">
             <thead>
