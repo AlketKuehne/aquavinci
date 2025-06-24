@@ -89,14 +89,14 @@ export default function DatabasePage() {
       <NavigationBar onNavigate={(url) => router.push(url)} />
       {!loggedIn ? (
         <div className="flex flex-col items-center justify-center min-h-[80vh]">
-          <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md flex flex-col gap-4 min-w-[320px]">
+          <form onSubmit={handleLogin} className="bg-white p-8 rounded-xl shadow-md flex flex-col gap-4 min-w-[320px]">
             <label className="font-bold text-lg" htmlFor="username">Nutzer</label>
             <input
               id="username"
               type="text"
               value={username}
               onChange={e => setUsername(e.target.value)}
-              className="border border-gray-300 rounded px-3 py-2"
+              className="border border-gray-300 rounded-lg px-3 py-2"
               autoComplete="username"
               required
             />
@@ -106,34 +106,36 @@ export default function DatabasePage() {
               type="password"
               value={password}
               onChange={e => setPassword(e.target.value)}
-              className="border border-gray-300 rounded px-3 py-2"
+              className="border border-gray-300 rounded-lg px-3 py-2"
               autoComplete="current-password"
               required
             />
             {error && <div className="text-red-600 text-sm">{error}</div>}
-            <button type="submit" className="mt-2 bg-black text-white rounded px-4 py-2 hover:bg-gray-800 transition-all">Login</button>
+            <button type="submit" className="mt-2 bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-800 transition-all">Login</button>
           </form>
         </div>
       ) : (
         <div className="p-8">
           <h1 className="text-4xl font-extrabold mb-6 self-start">Database</h1>
-          <table className="min-w-full border ml-16">
+          <table className="min-w-full border ml-16 rounded-xl overflow-hidden">
             <thead>
               <tr>
-                <th className="border px-4 py-2">Edit</th>
+                <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
                 <th className="border px-4 py-2">Delete</th>
                 {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
                   key === "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
                 ))}
-                {shipments[0] && Object.keys(shipments[0]).map((key) => (
-                  key !== "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
+                {shipments[0] && Object.keys(shipments[0]).map((key, idx, arr) => (
+                  key !== "id"
+                    ? <th key={key} className={`border px-4 py-2${idx === arr.length - 1 ? ' rounded-tr-xl' : ''}`}>{key}</th>
+                    : null
                 ))}
               </tr>
             </thead>
             <tbody>
               {shipments.map((s, idx) => (
-                <tr key={s.id || idx}>
-                  <td className="border px-4 py-2 text-center">
+                <tr key={s.id || idx} className="bg-white even:bg-[#F5F5F5]">
+                  <td className="border px-4 py-2 text-center rounded-l-lg">
                     <button
                       onClick={() => router.push(`/create-shipment/details/review&confirm/${s.id}`)}
                       title="Bearbeiten"
@@ -151,16 +153,16 @@ export default function DatabasePage() {
                       <FaTrash />
                     </button>
                   </td>
-                  {Object.entries(s).map(([key, value]) => (
+                  {Object.entries(s).map(([key, value], i, arr) => (
                     key === "id" ? (
                       <td key={key} className="border px-4 py-2">
                         {value?.toString()}
                       </td>
                     ) : null
                   ))}
-                  {Object.entries(s).map(([key, value]) => (
+                  {Object.entries(s).map(([key, value], i, arr) => (
                     key !== "id" ? (
-                      <td key={key} className="border px-4 py-2">
+                      <td key={key} className={`border px-4 py-2${i === arr.length - 1 ? ' rounded-r-lg' : ''}`}>
                         {key === "created_at"
                           ? new Date(value as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
                           : Array.isArray(value)
