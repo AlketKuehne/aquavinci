@@ -27,9 +27,11 @@ export default function DatabankPage() {
   const [shipments, setShipments] = useState<Shipment[]>([]);
 
   useEffect(() => {
-    // Initiales Laden
+    // Initial load
     const fetchShipments = async () => {
-      const { data } = await supabase.from("shipments").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("shipments").select("*").order("created_at", { ascending: false });
+      console.log("Supabase data:", data);
+      console.log("Supabase error:", error);
       if (data) setShipments(data as Shipment[]);
     };
     fetchShipments();
