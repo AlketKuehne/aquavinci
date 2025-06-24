@@ -76,7 +76,7 @@ export default function DatabankPage() {
                 <button
                   onClick={() => router.push(`/create-shipment/details/review&confirm/${s.id}`)}
                   title="Bearbeiten"
-                  className="flex items-center justify-center w-8 h-8 rounded-full border-2 border-black bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5] hover:border-[#E5E5E5]"
+                  className="flex items-center justify-center w-8 h-8 rounded-full bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]"
                 >
                   <FaEdit />
                 </button>
