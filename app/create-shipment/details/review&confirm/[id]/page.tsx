@@ -571,7 +571,7 @@ export default function ReviewAndConfirmIdPage() {
         className="px-6 py-3 bg-black text-white rounded-full transition-all duration-[1250ms] hover:bg-transparent hover:text-black cursor-pointer"
         onClick={handleConfirm}
       >
-        Confirm
+        Save
       </button>
     </div>
   );
