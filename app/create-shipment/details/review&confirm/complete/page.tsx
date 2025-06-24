@@ -29,7 +29,6 @@ export default function CompletePage() {
       })
       .then((data) => {
         console.log("Order saved successfully:", data);
-        router.push("/confirmation"); // Navigate to confirmation page
       })
       .catch((error) => {
         console.error("Error saving order:", error);
