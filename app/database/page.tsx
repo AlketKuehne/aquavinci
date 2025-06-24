@@ -119,7 +119,7 @@ export default function DatabasePage() {
           <h1 className="text-4xl font-extrabold mb-6 self-start">Database</h1>
           <table className="min-w-full border ml-16 rounded-xl overflow-hidden">
             <thead>
-              <tr>
+              <tr className="bg-white">
                 <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
                 <th className="border px-4 py-2">Delete</th>
                 {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
