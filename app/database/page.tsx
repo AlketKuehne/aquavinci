@@ -35,76 +35,82 @@ interface Shipment {
 
 const STATUS_OPTIONS = [
   {
-    value: "Pending",
+    value: "PNEDING",
     color: "#bdbdbd",
-    label: "Pending",
-    desc: "- Noch nicht bearbeitet"
+    label: "PENDING",
+    desc: ""
   },
   {
-    value: "Wird auf dem Schiff geladen",
+    value: "BEING LOADED",
     color: "#ffe066",
-    label: "Wird auf dem Schiff geladen",
-    desc: "- Wird verladen"
+    label: "BEING LOADED",
+    desc: ""
   },
   {
-    value: "Wurde auf dem Schiff geladen",
+    value: "LOADED",
     color: "#cdb4f6",
-    label: "Wurde auf dem Schiff geladen",
-    desc: "- Verladung abgeschlossen"
+    label: "LOADED",
+    desc: ""
   },
   {
-    value: "Auf dem Weg zum Zielhafen",
+    value: "ON ROUTE",
     color: "#90caf9",
-    label: "Auf dem Weg zum Zielhafen",
-    desc: "- Schiff unterwegs"
+    label: "ON ROUTE",
+    desc: ""
   },
   {
-    value: "Wird entladen",
+    value: "ARRIVED",
     color: "#b9fbc0",
-    label: "Wird entladen",
-    desc: "- Entladung läuft"
+    label: "ARRIVED",
+    desc: ""
   },
   {
-    value: "Abholbereit",
+    value: "BEING UNLOADED",
     color: "#64ffda",
-    label: "Abholbereit",
-    desc: "- Bereit zur Abholung"
+    label: "BEIND UNLOADED",
+    desc: ""
   },
   {
-    value: "Auf dem Weg zu dir",
+    value: "UNLOADED",
+    color: "#64ffda",
+    label: "UNLOADED",
+    desc: ""
+  },
+  {
+    value: "READY FOR PICKUP",
     color: "#1976d2",
-    label: "Auf dem Weg zu dir",
-    desc: "- Lieferung unterwegs"
+    label: "READY FOR PICKUP",
+    desc: ""
   },
   {
-    value: "Abgeholt/Geliefert",
+    value: "DELIVERY ON ROUTE",
     color: "#43a047",
-    label: "Abgeholt/Geliefert",
-    desc: "- Lieferung abgeschlossen"
+    label: "DELIVERY ON ROUTE",
+    desc: ""
   },
   {
-    value: "Verzögerungen",
+    value: "COLLECTED/DELIVERED",
+    color: "#1fcc26",
+    label: "COLLECTED/DELIVERED",
+    desc: ""
+  },
+  {
+    value: "DELAYS",
+    color: "#ffe066",
+    label: "DELYAS",
+    desc: ""
+  },
+  {
+    value: "IN CLARIFICATION",
     color: "#ff9800",
-    label: "Verzögerungen",
-    desc: "- Es gibt Verzögerungen"
+    label: "IN CLARIFICATION",
+    desc: ""
   },
   {
-    value: "In Klärung",
-    color: "#f48fb1",
-    label: "In Klärung",
-    desc: "- Problem wird geklärt"
-  },
-  {
-    value: "Your shipment has fallen into the sea",
-    color: "#000000",
-    label: "Ins Meer gefallen",
-    desc: "- Sendung verloren (Meer)"
-  },
-  {
-    value: "Your parcel has been lost",
-    color: "#e53935",
-    label: "Verloren",
-    desc: "- Sendung verloren"
+    value: "LOST",
+    color: "#002966",
+    label: "LOST",
+    desc: "Maybe fallen into the sea, maybe not. Who knows? But it's lost."
   },
 ];
 
