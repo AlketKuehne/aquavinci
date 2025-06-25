@@ -207,45 +207,46 @@ export default function DatabasePage() {
         </div>
       ) : (
         <div className="p-8 mt-12">
-          <div className="flex items-center mb-6">
+          <div className="flex items-center mb-6 relative">
             <h1 className="text-4xl font-extrabold self-start">Database</h1>
             <motion.button
-              className="ml-3 p-2 rounded-full"
+              className="ml-3 p-2 rounded-full flex items-center justify-center"
               title="Spalten bearbeiten"
               onClick={() => setShowColumnEdit((v) => !v)}
-              whileHover={{ backgroundColor: '#000', color: '#E5E5E5', scale: 1.1 }}
+              whileHover={{ backgroundColor: '#000', color: '#E5E5E5', scale: 1.25 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 60, damping: 22 }}
+              transition={{ type: "spring", stiffness: 1250, damping: 40, duration: 1.25 }}
               style={{ color: '#000', backgroundColor: '#E5E5E5' }}
             >
               <FaRegEdit size={22} />
             </motion.button>
+            {showColumnEdit && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10, x: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0, x: 30 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10, x: 30 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="absolute left-full top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[260px] flex flex-col gap-2 ml-2"
+                style={{ minWidth: 220 }}
+              >
+                <div className="font-bold mb-2">Spalten auswählen</div>
+                {defaultColumns.map((key) => (
+                  <label key={key} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={visibleColumns.includes(key)}
+                      onChange={() => handleColumnToggle(key)}
+                    />
+                    {key}
+                  </label>
+                ))}
+                <button
+                  className="mt-2 bg-black text-white rounded-lg px-4 py-1 hover:bg-gray-800 transition-all"
+                  onClick={() => setShowColumnEdit(false)}
+                >Fertig</button>
+              </motion.div>
+            )}
           </div>
-          {showColumnEdit && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: -20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: -20 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-              className="absolute z-50 bg-white border rounded-xl shadow-lg p-4 left-1/2 -translate-x-1/2 min-w-[260px] flex flex-col gap-2"
-            >
-              <div className="font-bold mb-2">Spalten auswählen</div>
-              {defaultColumns.map((key) => (
-                <label key={key} className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    checked={visibleColumns.includes(key)}
-                    onChange={() => handleColumnToggle(key)}
-                  />
-                  {key}
-                </label>
-              ))}
-              <button
-                className="mt-2 bg-black text-white rounded-lg px-4 py-1 hover:bg-gray-800 transition-all"
-                onClick={() => setShowColumnEdit(false)}
-              >Fertig</button>
-            </motion.div>
-          )}
           <table className="min-w-full border ml-16 rounded-xl overflow-hidden mt-2">
             <thead>
               <tr className="bg-[#F5F5F5]">
