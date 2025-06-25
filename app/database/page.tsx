@@ -96,7 +96,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: "Your shipment has fallen into the sea",
-    color: "#e53935",
+    color: "#000000",
     label: "Ins Meer gefallen",
     desc: "- Sendung verloren (Meer)"
   },
@@ -547,7 +547,11 @@ export default function DatabasePage() {
                           cursor: 'pointer',
                           position: 'relative',
                           border: '1.5px solid #bbb',
+                          boxShadow: '0 0 8px 2px rgba(0,0,0,0.10)',
+                          animation: 'status-blink 1.2s infinite alternate',
+                          overflow: 'hidden',
                         }}
+                        className="status-circle"
                         title={
                           `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label || (localStatuses[s.id] ?? s.status) || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.desc || ''}`
                         }
@@ -601,6 +605,33 @@ export default function DatabasePage() {
           scrollbar-width: thin;
           scrollbar-color: #e5e5e5 transparent;
           border-radius: 0 0 12px 12px;
+        }
+        .status-circle {
+          position: relative;
+          z-index: 1;
+        }
+        .status-circle::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          pointer-events: none;
+          background: linear-gradient(120deg, rgba(255,255,255,0.55) 10%, rgba(255,255,255,0.12) 60%, transparent 100%);
+          box-shadow: 0 0 8px 2px rgba(255,255,255,0.18) inset;
+          mix-blend-mode: lighten;
+          animation: status-shine 2.2s infinite linear;
+        }
+        @keyframes status-blink {
+          0% { box-shadow: 0 0 8px 2px rgba(0,0,0,0.10); filter: brightness(1); }
+          100% { box-shadow: 0 0 16px 6px rgba(0,0,0,0.18); filter: brightness(1.18); }
+        }
+        @keyframes status-shine {
+          0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+          50% { opacity: 1; transform: scale(1.08) rotate(10deg); }
+          100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
         }
       `}</style>
     </div>
