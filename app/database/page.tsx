@@ -209,25 +209,21 @@ export default function DatabasePage() {
         <div className="p-8 mt-12">
           <div className="flex items-center mb-6 relative">
             <h1 className="text-4xl font-extrabold self-start">Database</h1>
-            <motion.button
-              className="ml-3 p-2 rounded-full flex items-center justify-center"
+            <button
+              className="ml-3 p-2 rounded-full flex items-center justify-center transition-all duration-[1250ms] bg-[#E5E5E5] text-black hover:bg-black hover:text-[#F5F5F5] focus:bg-black focus:text-[#F5F5F5]"
               title="Spalten bearbeiten"
               onClick={() => setShowColumnEdit((v) => !v)}
-              whileHover={{ backgroundColor: '#000', color: '#E5E5E5', scale: 1.25 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 1250, damping: 40, duration: 1.25 }}
-              style={{ color: '#000', backgroundColor: '#E5E5E5' }}
+              style={{ outline: 'none' }}
             >
               <FaRegEdit size={22} />
-            </motion.button>
+            </button>
             {showColumnEdit && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95, y: 10, x: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0, x: 30 }}
                 exit={{ opacity: 0, scale: 0.95, y: 10, x: 30 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute left-full top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[260px] flex flex-col gap-2 ml-2"
-                style={{ minWidth: 220 }}
+                className="absolute left-full top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[220px] max-h-60 overflow-y-auto flex flex-col gap-2 ml-2"
               >
                 <div className="font-bold mb-2">Spalten auswählen</div>
                 {defaultColumns.map((key) => (
