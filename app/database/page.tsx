@@ -295,7 +295,8 @@ export default function DatabasePage() {
                     `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} ${isSorting ? 'opacity-60' : 'opacity-100'}`
                   }
                 >
-                  <td className="border px-4 py-2 text-center">
+                  {/* Edit Button: nur hier links abrunden, wenn letzte Zeile */}
+                  <td className={`border px-4 py-2 text-center${idx === sortedShipments.length - 1 ? ' rounded-bl-xl' : ''}`}>
                     <button
                       onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
                       title="Bearbeiten"
@@ -321,14 +322,10 @@ export default function DatabasePage() {
                     ) : null
                   )}
                   {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => {
-                    const isFirstVisible = i === 0;
+                    // Nur die allerletzte Zelle der letzten Zeile bekommt rechts eine Abrundung
                     const isLastVisible = i === arr.length - 1;
                     let rounded = '';
-                    if (idx === sortedShipments.length - 1 && isFirstVisible && arr.length === 1) {
-                      rounded = ' rounded-bl-xl rounded-br-xl';
-                    } else if (idx === sortedShipments.length - 1 && isFirstVisible) {
-                      rounded = ' rounded-bl-xl';
-                    } else if (idx === sortedShipments.length - 1 && isLastVisible) {
+                    if (idx === sortedShipments.length - 1 && isLastVisible) {
                       rounded = ' rounded-br-xl';
                     }
                     return (
