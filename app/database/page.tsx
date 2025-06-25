@@ -324,6 +324,7 @@ export default function DatabasePage() {
               <tr className="bg-[#F5F5F5]">
                 <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
                 <th className="border px-4 py-2">Delete</th>
+                <th className="border px-4 py-2">Status</th>
                 {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
                   key === "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
                 ))}
@@ -382,6 +383,7 @@ export default function DatabasePage() {
                       <FaTrash />
                     </button>
                   </td>
+                  <td className="border px-4 py-2 text-center">{s.status ? s.status : "Unbekannt"}</td>
                   {Object.entries(s).map(([key, value]) =>
                     key === "id" ? (
                       <td key={key} className="border px-4 py-2">{value?.toString()}</td>
