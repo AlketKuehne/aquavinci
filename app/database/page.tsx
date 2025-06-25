@@ -324,12 +324,19 @@ export default function DatabasePage() {
                       ) : null
                     )}
                     {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => {
-                      // Prüfe, ob diese Zelle die erste oder letzte sichtbare ist
-                      const isFirst = i === 0;
-                      const isLast = i === arr.length - 1;
+                      // Prüfe, ob diese Zelle die äußerste linke oder rechte sichtbare ist
+                      const isFirstVisible = i === 0;
+                      const isLastVisible = i === arr.length - 1;
                       let rounded = '';
-                      if (idx === sortedShipments.length - 1 && isFirst) rounded += ' rounded-bl-xl';
-                      if (idx === sortedShipments.length - 1 && isLast) rounded += ' rounded-br-xl';
+                      // Abrundung NUR, wenn es die letzte Tabellenzeile ist UND die Zelle ganz links oder ganz rechts ist
+                      if (idx === sortedShipments.length - 1 && isFirstVisible && arr.length === 1) {
+                        // Nur eine sichtbare Spalte: beide Seiten abrunden
+                        rounded = ' rounded-bl-xl rounded-br-xl';
+                      } else if (idx === sortedShipments.length - 1 && isFirstVisible) {
+                        rounded = ' rounded-bl-xl';
+                      } else if (idx === sortedShipments.length - 1 && isLastVisible) {
+                        rounded = ' rounded-br-xl';
+                      }
                       return (
                         <td key={key} className={`border px-4 py-2${rounded}`}>
                           {key === "created_at"
