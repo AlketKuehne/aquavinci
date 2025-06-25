@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
 import { FaEdit, FaTrash, FaRegEdit } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import NavigationBar from "../create-shipment/details/NavigationBar";
 
 const USERS = [
@@ -250,52 +251,56 @@ export default function DatabasePage() {
               </tr>
             </thead>
             <tbody>
-              {sortedShipments.map((s, idx) => (
-                <tr
-                  key={s.id || idx}
-                  className={
-                    `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} transition-all duration-500 ease-in-out ${isSorting ? 'opacity-60 translate-y-2' : 'opacity-100 translate-y-0'}`
-                  }
-                  style={{ transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)' }}
-                >
-                  <td className="border px-4 py-2 text-center">
-                    <button
-                      onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
-                      title="Bearbeiten"
-                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
-                      disabled={!(loggedIn && username === "alket.rrushi")}
-                    >
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td className="border px-4 py-2 text-center">
-                    <button
-                      onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
-                      title="Löschen"
-                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
-                      disabled={!(loggedIn && username === "alket.rrushi")}
-                    >
-                      <FaTrash />
-                    </button>
-                  </td>
-                  {Object.entries(s).map(([key, value], i, arr) => (
-                    key === "id" ? (
-                      <td key={key} className="border px-4 py-2">{value?.toString()}</td>
-                    ) : null
-                  ))}
-                  {visibleColumns.map((key, i, arr) => (
-                    <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 && i === arr.length - 1 ? ' rounded-br-xl' : ''}${idx === sortedShipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
-                      {key === "created_at"
-                        ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
-                        : Array.isArray(s[key])
-                        ? (s[key] as any[]).join(", ")
-                        : typeof s[key] === "boolean"
-                          ? s[key] ? "Yes" : "No"
-                          : s[key]?.toString()}
+              <AnimatePresence initial={false}>
+                {sortedShipments.map((s, idx) => (
+                  <motion.tr
+                    key={s.id || idx}
+                    layout
+                    transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                    className={
+                      `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} transition-all duration-500 ease-in-out ${isSorting ? 'opacity-60' : 'opacity-100'}`
+                    }
+                    style={{ transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)' }}
+                  >
+                    <td className="border px-4 py-2 text-center">
+                      <button
+                        onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
+                        title="Bearbeiten"
+                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                        disabled={!(loggedIn && username === "alket.rrushi")}
+                      >
+                        <FaEdit />
+                      </button>
                     </td>
-                  ))}
-                </tr>
-              ))}
+                    <td className="border px-4 py-2 text-center">
+                      <button
+                        onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
+                        title="Löschen"
+                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                        disabled={!(loggedIn && username === "alket.rrushi")}
+                      >
+                        <FaTrash />
+                      </button>
+                    </td>
+                    {Object.entries(s).map(([key, value]) =>
+                      key === "id" ? (
+                        <td key={key} className="border px-4 py-2">{value?.toString()}</td>
+                      ) : null
+                    )}
+                    {visibleColumns.map((key, i) => (
+                      <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 && i === visibleColumns.length - 1 ? ' rounded-br-xl' : ''}${idx === sortedShipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
+                        {key === "created_at"
+                          ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
+                          : Array.isArray(s[key])
+                          ? (s[key] as any[]).join(", ")
+                          : typeof s[key] === "boolean"
+                            ? s[key] ? "Yes" : "No"
+                            : s[key]?.toString()}
+                      </td>
+                    ))}
+                  </motion.tr>
+                ))}
+              </AnimatePresence>
             </tbody>
           </table>
         </div>
