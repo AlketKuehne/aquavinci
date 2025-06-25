@@ -157,14 +157,25 @@ export default function DatabasePage() {
     };
     fetchShipments();
 
-    // Realtime-Subscription
+    // Realtime-Subscription für INSERT, UPDATE und DELETE
     const channel = supabase
       .channel("shipments-realtime")
       .on(
         "postgres_changes",
-        { event: "INSERT", schema: "public", table: "shipments" },
+        { event: "*", schema: "public", table: "shipments" },
         (payload) => {
-          setShipments((prev) => [payload.new as Shipment, ...prev]);
+          setShipments((prev) => {
+            if (payload.eventType === "INSERT") {
+              return [payload.new as Shipment, ...prev];
+            }
+            if (payload.eventType === "UPDATE") {
+              return prev.map(s => s.id === payload.new.id ? { ...s, ...payload.new } : s);
+            }
+            if (payload.eventType === "DELETE") {
+              return prev.filter(s => s.id !== payload.old.id);
+            }
+            return prev;
+          });
         }
       )
       .subscribe();
