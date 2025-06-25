@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaRegEdit } from "react-icons/fa";
 import NavigationBar from "../create-shipment/details/NavigationBar";
 
 const USERS = [
@@ -41,6 +41,8 @@ export default function DatabasePage() {
   const [sortKey, setSortKey] = useState<string>(""); // Anfangs kein Sortierschlüssel
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>("asc");
   const [isSorting, setIsSorting] = useState(false);
+  const [showColumnEdit, setShowColumnEdit] = useState(false);
+  const [visibleColumns, setVisibleColumns] = useState<string[]>([]);
   const router = useRouter();
 
   // Session-Check beim Mounten (nur für diese Tab-Session)
@@ -134,6 +136,14 @@ export default function DatabasePage() {
     setTimeout(() => setIsSorting(false), 350);
   };
 
+  const handleColumnToggle = (key: string) => {
+    setVisibleColumns((prev) =>
+      prev.includes(key)
+        ? prev.filter((col) => col !== key)
+        : [...prev, key]
+    );
+  };
+
   const sortedShipments = sortKey
     ? [...shipments].sort((a, b) => {
         const aValue = a[sortKey];
@@ -159,6 +169,12 @@ export default function DatabasePage() {
         return 0;
       })
     : shipments;
+
+  useEffect(() => {
+    if (shipments[0]) {
+      setVisibleColumns(Object.keys(shipments[0]).filter(key => key !== "id"));
+    }
+  }, [shipments.length]);
 
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
@@ -192,8 +208,36 @@ export default function DatabasePage() {
         </div>
       ) : (
         <div className="p-8 mt-12">
-          <h1 className="text-4xl font-extrabold mb-6 self-start">Database</h1>
-          <table className="min-w-full border ml-16 rounded-xl overflow-hidden">
+          <div className="flex items-center mb-6">
+            <h1 className="text-4xl font-extrabold self-start">Database</h1>
+            <button
+              className="ml-3 p-2 rounded-full hover:bg-gray-200 transition"
+              title="Spalten bearbeiten"
+              onClick={() => setShowColumnEdit((v) => !v)}
+            >
+              <FaRegEdit size={22} />
+            </button>
+          </div>
+          {showColumnEdit && (
+            <div className="absolute z-50 bg-white border rounded-xl shadow-lg p-4 left-1/2 -translate-x-1/2 min-w-[260px] flex flex-col gap-2">
+              <div className="font-bold mb-2">Spalten auswählen</div>
+              {sortableKeys.map((key) => (
+                <label key={key} className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={visibleColumns.includes(key)}
+                    onChange={() => handleColumnToggle(key)}
+                  />
+                  {key}
+                </label>
+              ))}
+              <button
+                className="mt-2 bg-black text-white rounded-lg px-4 py-1 hover:bg-gray-800 transition-all"
+                onClick={() => setShowColumnEdit(false)}
+              >Fertig</button>
+            </div>
+          )}
+          <table className="min-w-full border ml-16 rounded-xl overflow-hidden mt-2">
             <thead>
               <tr className="bg-[#F5F5F5]">
                 <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
@@ -201,7 +245,7 @@ export default function DatabasePage() {
                 {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
                   key === "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
                 ))}
-                {sortableKeys.map((key, idx, arr) => (
+                {visibleColumns.map((key, idx, arr) => (
                   <th
                     key={key}
                     className={`border px-4 py-2 cursor-pointer select-none${idx === arr.length - 1 ? ' rounded-tr-xl' : ''}`}
@@ -251,7 +295,7 @@ export default function DatabasePage() {
                       <td key={key} className="border px-4 py-2">{value?.toString()}</td>
                     ) : null
                   ))}
-                  {sortableKeys.map((key, i, arr) => (
+                  {visibleColumns.map((key, i, arr) => (
                     <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 && i === arr.length - 1 ? ' rounded-br-xl' : ''}${idx === sortedShipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
                       {key === "created_at"
                         ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
