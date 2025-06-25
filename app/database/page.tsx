@@ -38,8 +38,8 @@ export default function DatabasePage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [sortKey, setSortKey] = useState<string>("created_at");
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>("desc");
+  const [sortKey, setSortKey] = useState<string>(""); // Anfangs kein Sortierschlüssel
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>("asc");
   const [isSorting, setIsSorting] = useState(false);
   const router = useRouter();
 
@@ -134,29 +134,31 @@ export default function DatabasePage() {
     setTimeout(() => setIsSorting(false), 350);
   };
 
-  const sortedShipments = [...shipments].sort((a, b) => {
-    const aValue = a[sortKey as keyof Shipment];
-    const bValue = b[sortKey as keyof Shipment];
-    if (sortKey === "created_at") {
-      const aDate = new Date(aValue as string).getTime();
-      const bDate = new Date(bValue as string).getTime();
-      return sortOrder === "asc" ? aDate - bDate : bDate - aDate;
-    }
-    if (typeof aValue === "string" && typeof bValue === "string") {
-      return sortOrder === "asc"
-        ? aValue.localeCompare(bValue)
-        : bValue.localeCompare(aValue);
-    }
-    if (typeof aValue === "number" && typeof bValue === "number") {
-      return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
-    }
-    if (typeof aValue === "boolean" && typeof bValue === "boolean") {
-      return sortOrder === "asc"
-        ? Number(aValue) - Number(bValue)
-        : Number(bValue) - Number(aValue);
-    }
-    return 0;
-  });
+  const sortedShipments = sortKey
+    ? [...shipments].sort((a, b) => {
+        const aValue = a[sortKey];
+        const bValue = b[sortKey];
+        if (sortKey === "created_at") {
+          const aDate = new Date(aValue as string).getTime();
+          const bDate = new Date(bValue as string).getTime();
+          return sortOrder === "asc" ? aDate - bDate : bDate - aDate;
+        }
+        if (typeof aValue === "string" && typeof bValue === "string") {
+          return sortOrder === "asc"
+            ? aValue.localeCompare(bValue)
+            : bValue.localeCompare(aValue);
+        }
+        if (typeof aValue === "number" && typeof bValue === "number") {
+          return sortOrder === "asc" ? aValue - bValue : bValue - aValue;
+        }
+        if (typeof aValue === "boolean" && typeof bValue === "boolean") {
+          return sortOrder === "asc"
+            ? Number(aValue) - Number(bValue)
+            : Number(bValue) - Number(aValue);
+        }
+        return 0;
+      })
+    : shipments;
 
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
