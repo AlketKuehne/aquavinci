@@ -210,8 +210,8 @@ export default function DatabasePage() {
           <div className="flex items-center mb-6 relative">
             <h1 className="text-4xl font-extrabold self-start">Database</h1>
             <button
-              className="ml-3 p-2 rounded-full flex items-center justify-center transition-all duration-[1250ms] bg-[#E5E5E5] text-black hover:bg-black hover:text-[#F5F5F5] focus:bg-black focus:text-[#F5F5F5]"
-              title="Spalten bearbeiten"
+              className="ml-3 p-2 rounded-full flex items-center justify-center transition-all duration-[1250ms] bg-[#E5E5E5] text-black hover:bg-black hover:text-[#F5F5F5] focus:bg-black focus:text-[#F5F5F5] cursor-pointer"
+              title="Edit columns"
               onClick={() => setShowColumnEdit((v) => !v)}
               style={{ outline: 'none' }}
             >
@@ -219,13 +219,14 @@ export default function DatabasePage() {
             </button>
             {showColumnEdit && (
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 10, x: 30 }}
-                animate={{ opacity: 1, scale: 1, y: 0, x: 30 }}
-                exit={{ opacity: 0, scale: 0.95, y: 10, x: 30 }}
+                initial={{ opacity: 0, scale: 0.95, y: 0, x: 0 }}
+                animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 0, x: 0 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute left-full top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[220px] max-h-60 overflow-y-auto flex flex-col gap-2 ml-2"
+                className="absolute left-[calc(100%+8px)] top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[220px] max-h-60 overflow-y-auto flex flex-col gap-2 custom-scrollbar"
+                style={{ minWidth: 220 }}
               >
-                <div className="font-bold mb-2">Spalten auswählen</div>
+                <div className="font-bold mb-2">Select columns</div>
                 {defaultColumns.map((key) => (
                   <label key={key} className="flex items-center gap-2">
                     <input
@@ -239,7 +240,7 @@ export default function DatabasePage() {
                 <button
                   className="mt-2 bg-black text-white rounded-lg px-4 py-1 hover:bg-gray-800 transition-all"
                   onClick={() => setShowColumnEdit(false)}
-                >Fertig</button>
+                >Done</button>
               </motion.div>
             )}
           </div>
@@ -282,7 +283,7 @@ export default function DatabasePage() {
                       <button
                         onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
                         title="Bearbeiten"
-                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
                         disabled={!(loggedIn && username === "alket.rrushi")}
                       >
                         <FaEdit />
@@ -292,7 +293,7 @@ export default function DatabasePage() {
                       <button
                         onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
                         title="Löschen"
-                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5E5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
                         disabled={!(loggedIn && username === "alket.rrushi")}
                       >
                         <FaTrash />
@@ -329,6 +330,21 @@ export default function DatabasePage() {
           </table>
         </div>
       )}
+      <style jsx global>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 8px;
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #e5e5e5;
+          border-radius: 8px;
+        }
+        .custom-scrollbar {
+          scrollbar-width: thin;
+          scrollbar-color: #e5e5e5 transparent;
+          border-radius: 0 0 12px 12px;
+        }
+      `}</style>
     </div>
   );
 }
