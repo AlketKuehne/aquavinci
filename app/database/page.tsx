@@ -464,22 +464,17 @@ export default function DatabasePage() {
                       <div
                         style={{
                           background: STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.color || '#eee',
-                          color: '#222',
                           borderRadius: 8,
-                          padding: '2px 10px',
-                          fontWeight: 500,
-                          fontSize: 13,
-                          cursor: 'pointer',
-                          minWidth: 80,
+                          width: 28,
+                          height: 20,
                           display: 'inline-block',
+                          cursor: 'pointer',
                           position: 'relative',
                         }}
                         title={
                           `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label || (localStatuses[s.id] ?? s.status) || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.desc || ''}`
                         }
-                      >
-                        {(STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label) || (localStatuses[s.id] ?? s.status) || 'Unbekannt'}
-                      </div>
+                      />
                       <select
                         value={localStatuses[s.id] ?? s.status ?? 'Pending'}
                         onChange={e => setLocalStatuses(prev => ({ ...prev, [s.id]: e.target.value }))}
