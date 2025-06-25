@@ -39,6 +39,18 @@ export default function DatabasePage() {
   const [error, setError] = useState("");
   const router = useRouter();
 
+  // Session-Check beim Mounten (nur für diese Tab-Session)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const dbLoggedIn = sessionStorage.getItem("dbLoggedIn");
+      const dbUser = sessionStorage.getItem("dbUser");
+      if (dbLoggedIn === "true" && dbUser) {
+        setLoggedIn(true);
+        setUsername(dbUser);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     if (!loggedIn) return;
     // Initial load
@@ -79,10 +91,26 @@ export default function DatabasePage() {
     if (found) {
       setLoggedIn(true);
       setError("");
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("dbLoggedIn", "true");
+        sessionStorage.setItem("dbUser", username);
+      }
     } else {
       setError("Falscher Nutzername oder Passwort!");
     }
   };
+
+  // Beim echten Reload oder Navigation auf Database: Session löschen
+  useEffect(() => {
+    const handleUnload = () => {
+      sessionStorage.removeItem("dbLoggedIn");
+      sessionStorage.removeItem("dbUser");
+    };
+    window.addEventListener("beforeunload", handleUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleUnload);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
