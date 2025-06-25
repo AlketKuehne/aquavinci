@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
 import { FaEdit, FaTrash, FaRegEdit } from "react-icons/fa";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import NavigationBar from "../create-shipment/details/NavigationBar";
 
 const USERS = [
@@ -288,70 +288,63 @@ export default function DatabasePage() {
               </tr>
             </thead>
             <tbody>
-              <AnimatePresence initial={false}>
-                {sortedShipments.map((s, idx) => (
-                  <motion.tr
-                    key={s.id || idx}
-                    layout
-                    transition={{ type: "spring", stiffness: 60, damping: 22 }}
-                    className={
-                      `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} ${isSorting ? 'opacity-60' : 'opacity-100'}`
+              {sortedShipments.map((s, idx) => (
+                <tr
+                  key={s.id || idx}
+                  className={
+                    `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} ${isSorting ? 'opacity-60' : 'opacity-100'}`
+                  }
+                >
+                  <td className="border px-4 py-2 text-center">
+                    <button
+                      onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
+                      title="Bearbeiten"
+                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                      disabled={!(loggedIn && username === "alket.rrushi")}
+                    >
+                      <FaEdit />
+                    </button>
+                  </td>
+                  <td className="border px-4 py-2 text-center">
+                    <button
+                      onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
+                      title="Löschen"
+                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                      disabled={!(loggedIn && username === "alket.rrushi")}
+                    >
+                      <FaTrash />
+                    </button>
+                  </td>
+                  {Object.entries(s).map(([key, value]) =>
+                    key === "id" ? (
+                      <td key={key} className="border px-4 py-2">{value?.toString()}</td>
+                    ) : null
+                  )}
+                  {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => {
+                    const isFirstVisible = i === 0;
+                    const isLastVisible = i === arr.length - 1;
+                    let rounded = '';
+                    if (idx === sortedShipments.length - 1 && isFirstVisible && arr.length === 1) {
+                      rounded = ' rounded-bl-xl rounded-br-xl';
+                    } else if (idx === sortedShipments.length - 1 && isFirstVisible) {
+                      rounded = ' rounded-bl-xl';
+                    } else if (idx === sortedShipments.length - 1 && isLastVisible) {
+                      rounded = ' rounded-br-xl';
                     }
-                  >
-                    <td className="border px-4 py-2 text-center">
-                      <button
-                        onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
-                        title="Bearbeiten"
-                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
-                        disabled={!(loggedIn && username === "alket.rrushi")}
-                      >
-                        <FaEdit />
-                      </button>
-                    </td>
-                    <td className="border px-4 py-2 text-center">
-                      <button
-                        onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
-                        title="Löschen"
-                        className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
-                        disabled={!(loggedIn && username === "alket.rrushi")}
-                      >
-                        <FaTrash />
-                      </button>
-                    </td>
-                    {Object.entries(s).map(([key, value]) =>
-                      key === "id" ? (
-                        <td key={key} className="border px-4 py-2">{value?.toString()}</td>
-                      ) : null
-                    )}
-                    {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => {
-                      // Prüfe, ob diese Zelle die äußerste linke oder rechte sichtbare ist
-                      const isFirstVisible = i === 0;
-                      const isLastVisible = i === arr.length - 1;
-                      let rounded = '';
-                      // Abrundung NUR, wenn es die letzte Tabellenzeile ist UND die Zelle ganz links oder ganz rechts ist
-                      if (idx === sortedShipments.length - 1 && isFirstVisible && arr.length === 1) {
-                        // Nur eine sichtbare Spalte: beide Seiten abrunden
-                        rounded = ' rounded-bl-xl rounded-br-xl';
-                      } else if (idx === sortedShipments.length - 1 && isFirstVisible) {
-                        rounded = ' rounded-bl-xl';
-                      } else if (idx === sortedShipments.length - 1 && isLastVisible) {
-                        rounded = ' rounded-br-xl';
-                      }
-                      return (
-                        <td key={key} className={`border px-4 py-2${rounded}`}>
-                          {key === "created_at"
-                            ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
-                            : Array.isArray(s[key])
-                            ? (s[key] as any[]).join(", ")
-                            : typeof s[key] === "boolean"
-                              ? s[key] ? "Yes" : "No"
-                              : s[key]?.toString()}
-                        </td>
-                      );
-                    })}
-                  </motion.tr>
-                ))}
-              </AnimatePresence>
+                    return (
+                      <td key={key} className={`border px-4 py-2${rounded}`}>
+                        {key === "created_at"
+                          ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
+                          : Array.isArray(s[key])
+                          ? (s[key] as any[]).join(", ")
+                          : typeof s[key] === "boolean"
+                            ? s[key] ? "Yes" : "No"
+                            : s[key]?.toString()}
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
