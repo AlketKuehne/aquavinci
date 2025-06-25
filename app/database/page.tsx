@@ -332,11 +332,12 @@ export default function DatabasePage() {
                     key={key}
                     data-col={idx}
                     className={`border px-4 py-2 cursor-pointer select-none relative group transition-all duration-300${idx === arr.length - 1 ? ' rounded-tr-xl' : ''} ${draggedCol === key ? 'opacity-50' : ''}`}
-                    style={{ width: columnWidths[key] || 150, minWidth: 60, position: 'relative', left: draggedCol === key ? 0 : undefined, zIndex: draggedCol === key ? 20 : undefined, transition: 'all 0.25s cubic-bezier(.4,2,.6,1)' }}
+                    style={{ minWidth: 60, position: 'relative', left: draggedCol === key ? 0 : undefined, zIndex: draggedCol === key ? 20 : undefined, transition: 'all 0.25s cubic-bezier(.4,2,.6,1)' }}
+                    onMouseDown={e => handleHeaderMouseDown(key, idx, e)}
                   >
                     <span
                       className="flex items-center gap-1 w-full"
-                      onClick={() => handleSort(key)}
+                      onClick={e => { e.stopPropagation(); handleSort(key); }}
                       style={{ cursor: 'pointer', userSelect: 'none' }}
                     >
                       {key}
@@ -344,32 +345,6 @@ export default function DatabasePage() {
                         <span>{sortOrder === 'asc' ? '▲' : '▼'}</span>
                       )}
                     </span>
-                    {/* Drag-Handle */}
-                    <span
-                      onMouseDown={e => handleHeaderMouseDown(key, idx, e)}
-                      className="absolute left-0 top-0 h-full w-2 cursor-grab z-20 group-hover:bg-gray-200"
-                      style={{ userSelect: 'none' }}
-                      title="Spalte verschieben"
-                    />
-                    {/* Resizer */}
-                    <span
-                      onMouseDown={e => {
-                        e.stopPropagation();
-                        const startX = e.clientX;
-                        const startWidth = columnWidths[key] || 150;
-                        function onMouseMove(ev: MouseEvent) {
-                          handleResize(key, ev.clientX - startX);
-                        }
-                        function onMouseUp() {
-                          window.removeEventListener('mousemove', onMouseMove);
-                          window.removeEventListener('mouseup', onMouseUp);
-                        }
-                        window.addEventListener('mousemove', onMouseMove);
-                        window.addEventListener('mouseup', onMouseUp);
-                      }}
-                      className="absolute right-0 top-0 h-full w-2 cursor-col-resize z-10 group-hover:bg-gray-300"
-                      style={{ userSelect: 'none' }}
-                    />
                     {/* Drag-Over-Highlight/Platzhalter */}
                     {draggedCol && dragOverIndex === idx && (
                       <span className="absolute left-0 top-0 w-full h-full bg-blue-200 opacity-30 pointer-events-none transition-all duration-200" />
@@ -420,7 +395,7 @@ export default function DatabasePage() {
                       rounded = ' rounded-br-xl';
                     }
                     return (
-                      <td key={key} className={`border px-4 py-2${rounded}`} style={{ width: columnWidths[key] || 150, minWidth: 60 }}>
+                      <td key={key} className={`border px-4 py-2${rounded}`} style={{ minWidth: 60 }}>
                         {key === "created_at"
                           ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
                           : Array.isArray(s[key])
