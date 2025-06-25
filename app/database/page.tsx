@@ -568,7 +568,10 @@ export default function DatabasePage() {
                       />
                       <StatusDropdown
                         value={localStatuses[s.id] ?? s.status ?? 'Pending'}
-                        onChange={v => setLocalStatuses(prev => ({ ...prev, [s.id]: v }))}
+                        onChange={async v => {
+                          setLocalStatuses(prev => ({ ...prev, [s.id]: v }));
+                          await supabase.from('shipments').update({ status: v }).eq('id', s.id);
+                        }}
                       />
                     </div>
                   </td>
