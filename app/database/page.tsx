@@ -44,6 +44,7 @@ export default function DatabasePage() {
   const [isSorting, setIsSorting] = useState(false);
   const [showColumnEdit, setShowColumnEdit] = useState(false);
   const [visibleColumns, setVisibleColumns] = useState<string[]>([]);
+  const [defaultColumns, setDefaultColumns] = useState<string[]>([]);
   const router = useRouter();
 
   // Session-Check beim Mounten (nur für diese Tab-Session)
@@ -126,11 +127,18 @@ export default function DatabasePage() {
   };
 
   const handleColumnToggle = (key: string) => {
-    setVisibleColumns((prev) =>
-      prev.includes(key)
-        ? prev.filter((col) => col !== key)
-        : [...prev, key]
-    );
+    setVisibleColumns((prev) => {
+      if (prev.includes(key)) {
+        return prev.filter((col) => col !== key);
+      } else {
+        // Füge die Spalte an der Stelle ein, wie sie in defaultColumns steht
+        const insertIdx = defaultColumns.indexOf(key);
+        const newCols = [...prev];
+        newCols.splice(insertIdx, 0, key);
+        // Sortiere nach defaultColumns, falls mehrere gleichzeitig wieder ausgewählt werden
+        return newCols.sort((a, b) => defaultColumns.indexOf(a) - defaultColumns.indexOf(b));
+      }
+    });
   };
 
   const sortedShipments = sortKey
@@ -161,7 +169,9 @@ export default function DatabasePage() {
 
   useEffect(() => {
     if (shipments[0]) {
-      setVisibleColumns(Object.keys(shipments[0]).filter(key => key !== "id"));
+      const cols = Object.keys(shipments[0]).filter(key => key !== "id");
+      setVisibleColumns(cols);
+      setDefaultColumns(cols);
     }
   }, [shipments.length]);
 
@@ -208,9 +218,15 @@ export default function DatabasePage() {
             </button>
           </div>
           {showColumnEdit && (
-            <div className="absolute z-50 bg-white border rounded-xl shadow-lg p-4 left-1/2 -translate-x-1/2 min-w-[260px] flex flex-col gap-2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="absolute z-50 bg-white border rounded-xl shadow-lg p-4 left-1/2 -translate-x-1/2 min-w-[260px] flex flex-col gap-2"
+            >
               <div className="font-bold mb-2">Spalten auswählen</div>
-              {sortableKeys.map((key) => (
+              {defaultColumns.map((key) => (
                 <label key={key} className="flex items-center gap-2">
                   <input
                     type="checkbox"
@@ -224,7 +240,7 @@ export default function DatabasePage() {
                 className="mt-2 bg-black text-white rounded-lg px-4 py-1 hover:bg-gray-800 transition-all"
                 onClick={() => setShowColumnEdit(false)}
               >Fertig</button>
-            </div>
+            </motion.div>
           )}
           <table className="min-w-full border ml-16 rounded-xl overflow-hidden mt-2">
             <thead>
@@ -234,7 +250,7 @@ export default function DatabasePage() {
                 {shipments[0] && Object.keys(shipments[0]).map((key, idx) => (
                   key === "id" ? <th key={key} className="border px-4 py-2">{key}</th> : null
                 ))}
-                {visibleColumns.map((key, idx, arr) => (
+                {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, idx, arr) => (
                   <th
                     key={key}
                     className={`border px-4 py-2 cursor-pointer select-none${idx === arr.length - 1 ? ' rounded-tr-xl' : ''}`}
@@ -256,7 +272,7 @@ export default function DatabasePage() {
                   <motion.tr
                     key={s.id || idx}
                     layout
-                    transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                    transition={{ type: "spring", stiffness: 60, damping: 22 }}
                     className={
                       `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} transition-all duration-500 ease-in-out ${isSorting ? 'opacity-60' : 'opacity-100'}`
                     }
@@ -287,8 +303,8 @@ export default function DatabasePage() {
                         <td key={key} className="border px-4 py-2">{value?.toString()}</td>
                       ) : null
                     )}
-                    {visibleColumns.map((key, i) => (
-                      <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 && i === visibleColumns.length - 1 ? ' rounded-br-xl' : ''}${idx === sortedShipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
+                    {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => (
+                      <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 && i === arr.length - 1 ? ' rounded-br-xl' : ''}${idx === sortedShipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
                         {key === "created_at"
                           ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
                           : Array.isArray(s[key])
