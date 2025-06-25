@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
 import { FaEdit, FaTrash, FaRegEdit } from "react-icons/fa";
@@ -48,6 +48,9 @@ export default function DatabasePage() {
   const [columnWidths, setColumnWidths] = useState<{ [key: string]: number }>({});
   const [draggedCol, setDraggedCol] = useState<string | null>(null);
   const [dragOverCol, setDragOverCol] = useState<string | null>(null);
+  const [dragColIndex, setDragColIndex] = useState<number | null>(null);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const dragGhostRef = useRef<HTMLDivElement>(null);
   const columnEditRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -204,25 +207,46 @@ export default function DatabasePage() {
     }));
   };
 
-  // Handler für Drag & Drop
-  const handleDragStart = (key: string) => setDraggedCol(key);
-  const handleDragOver = (key: string) => {
-    if (draggedCol && draggedCol !== key) setDragOverCol(key);
-  };
-  const handleDrop = () => {
-    if (draggedCol && dragOverCol && draggedCol !== dragOverCol) {
-      setVisibleColumns((prev) => {
-        const from = prev.indexOf(draggedCol);
-        const to = prev.indexOf(dragOverCol);
-        if (from === -1 || to === -1) return prev;
-        const updated = [...prev];
-        updated.splice(from, 1);
-        updated.splice(to, 0, draggedCol);
-        return updated;
+  // Drag & Drop für Spalten (ohne externe Bibliothek, mit Animation)
+  const handleHeaderMouseDown = (key: string, idx: number, e: React.MouseEvent) => {
+    setDraggedCol(key);
+    setDragColIndex(idx);
+    document.body.style.userSelect = 'none';
+    const onMouseMove = (ev: MouseEvent) => {
+      const ths = document.querySelectorAll('th[data-col]');
+      let found = null;
+      ths.forEach((th, i) => {
+        const rect = th.getBoundingClientRect();
+        if (ev.clientX > rect.left && ev.clientX < rect.right) {
+          found = i;
+        }
       });
-    }
-    setDraggedCol(null);
-    setDragOverCol(null);
+      setDragOverIndex(found);
+      setDragOverCol(found !== null ? visibleColumns[found] : null);
+    };
+    const onMouseUp = () => {
+      if (
+        dragColIndex !== null &&
+        dragOverIndex !== null &&
+        dragColIndex !== dragOverIndex
+      ) {
+        setVisibleColumns((prev) => {
+          const updated = [...prev];
+          const [removed] = updated.splice(dragColIndex, 1);
+          updated.splice(dragOverIndex, 0, removed);
+          return updated;
+        });
+      }
+      setDraggedCol(null);
+      setDragColIndex(null);
+      setDragOverCol(null);
+      setDragOverIndex(null);
+      document.body.style.userSelect = '';
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
   };
 
   return (
@@ -306,12 +330,10 @@ export default function DatabasePage() {
                 {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, idx, arr) => (
                   <th
                     key={key}
-                    className={`border px-4 py-2 cursor-pointer select-none relative group${idx === arr.length - 1 ? ' rounded-tr-xl' : ''}`}
-                    style={{ width: columnWidths[key] || 150, minWidth: 60 }}
-                    draggable
-                    onDragStart={() => handleDragStart(key)}
-                    onDragOver={e => { e.preventDefault(); handleDragOver(key); }}
-                    onDrop={handleDrop}
+                    data-col={idx}
+                    className={`border px-4 py-2 cursor-pointer select-none relative group transition-all duration-300${idx === arr.length - 1 ? ' rounded-tr-xl' : ''} ${draggedCol === key ? 'opacity-50' : ''}`}
+                    style={{ width: columnWidths[key] || 150, minWidth: 60, position: 'relative', left: draggedCol === key ? 0 : undefined, zIndex: draggedCol === key ? 20 : undefined, transition: 'all 0.25s cubic-bezier(.4,2,.6,1)' }}
+                    onMouseDown={e => handleHeaderMouseDown(key, idx, e)}
                   >
                     <span className="flex items-center gap-1">
                       {key}
@@ -322,6 +344,7 @@ export default function DatabasePage() {
                     {/* Resizer */}
                     <span
                       onMouseDown={e => {
+                        e.stopPropagation();
                         const startX = e.clientX;
                         const startWidth = columnWidths[key] || 150;
                         function onMouseMove(ev: MouseEvent) {
@@ -337,9 +360,9 @@ export default function DatabasePage() {
                       className="absolute right-0 top-0 h-full w-2 cursor-col-resize z-10 group-hover:bg-gray-300"
                       style={{ userSelect: 'none' }}
                     />
-                    {/* Drag-Over-Highlight */}
-                    {dragOverCol === key && (
-                      <span className="absolute left-0 top-0 w-full h-full bg-blue-200 opacity-30 pointer-events-none" />
+                    {/* Drag-Over-Highlight/Platzhalter */}
+                    {draggedCol && dragOverIndex === idx && (
+                      <span className="absolute left-0 top-0 w-full h-full bg-blue-200 opacity-30 pointer-events-none transition-all duration-200" />
                     )}
                   </th>
                 ))}
