@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
 import { FaEdit, FaTrash, FaRegEdit } from "react-icons/fa";
@@ -45,6 +45,9 @@ export default function DatabasePage() {
   const [showColumnEdit, setShowColumnEdit] = useState(false);
   const [visibleColumns, setVisibleColumns] = useState<string[]>([]);
   const [defaultColumns, setDefaultColumns] = useState<string[]>([]);
+  const [columnWidths, setColumnWidths] = useState<{ [key: string]: number }>({});
+  const [draggedCol, setDraggedCol] = useState<string | null>(null);
+  const [dragOverCol, setDragOverCol] = useState<string | null>(null);
   const columnEditRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -193,6 +196,35 @@ export default function DatabasePage() {
     };
   }, [showColumnEdit]);
 
+  // Handler für Spaltenbreite
+  const handleResize = (key: string, deltaX: number) => {
+    setColumnWidths((prev) => ({
+      ...prev,
+      [key]: Math.max((prev[key] || 150) + deltaX, 60),
+    }));
+  };
+
+  // Handler für Drag & Drop
+  const handleDragStart = (key: string) => setDraggedCol(key);
+  const handleDragOver = (key: string) => {
+    if (draggedCol && draggedCol !== key) setDragOverCol(key);
+  };
+  const handleDrop = () => {
+    if (draggedCol && dragOverCol && draggedCol !== dragOverCol) {
+      setVisibleColumns((prev) => {
+        const from = prev.indexOf(draggedCol);
+        const to = prev.indexOf(dragOverCol);
+        if (from === -1 || to === -1) return prev;
+        const updated = [...prev];
+        updated.splice(from, 1);
+        updated.splice(to, 0, draggedCol);
+        return updated;
+      });
+    }
+    setDraggedCol(null);
+    setDragOverCol(null);
+  };
+
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -274,8 +306,12 @@ export default function DatabasePage() {
                 {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, idx, arr) => (
                   <th
                     key={key}
-                    className={`border px-4 py-2 cursor-pointer select-none${idx === arr.length - 1 ? ' rounded-tr-xl' : ''}`}
-                    onClick={() => handleSort(key)}
+                    className={`border px-4 py-2 cursor-pointer select-none relative group${idx === arr.length - 1 ? ' rounded-tr-xl' : ''}`}
+                    style={{ width: columnWidths[key] || 150, minWidth: 60 }}
+                    draggable
+                    onDragStart={() => handleDragStart(key)}
+                    onDragOver={e => { e.preventDefault(); handleDragOver(key); }}
+                    onDrop={handleDrop}
                   >
                     <span className="flex items-center gap-1">
                       {key}
@@ -283,6 +319,28 @@ export default function DatabasePage() {
                         <span>{sortOrder === 'asc' ? '▲' : '▼'}</span>
                       )}
                     </span>
+                    {/* Resizer */}
+                    <span
+                      onMouseDown={e => {
+                        const startX = e.clientX;
+                        const startWidth = columnWidths[key] || 150;
+                        function onMouseMove(ev: MouseEvent) {
+                          handleResize(key, ev.clientX - startX);
+                        }
+                        function onMouseUp() {
+                          window.removeEventListener('mousemove', onMouseMove);
+                          window.removeEventListener('mouseup', onMouseUp);
+                        }
+                        window.addEventListener('mousemove', onMouseMove);
+                        window.addEventListener('mouseup', onMouseUp);
+                      }}
+                      className="absolute right-0 top-0 h-full w-2 cursor-col-resize z-10 group-hover:bg-gray-300"
+                      style={{ userSelect: 'none' }}
+                    />
+                    {/* Drag-Over-Highlight */}
+                    {dragOverCol === key && (
+                      <span className="absolute left-0 top-0 w-full h-full bg-blue-200 opacity-30 pointer-events-none" />
+                    )}
                   </th>
                 ))}
               </tr>
@@ -329,7 +387,7 @@ export default function DatabasePage() {
                       rounded = ' rounded-br-xl';
                     }
                     return (
-                      <td key={key} className={`border px-4 py-2${rounded}`}>
+                      <td key={key} className={`border px-4 py-2${rounded}`} style={{ width: columnWidths[key] || 150, minWidth: 60 }}>
                         {key === "created_at"
                           ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
                           : Array.isArray(s[key])
