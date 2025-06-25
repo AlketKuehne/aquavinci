@@ -464,12 +464,13 @@ export default function DatabasePage() {
                       <div
                         style={{
                           background: STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.color || '#eee',
-                          borderRadius: 8,
-                          width: 28,
+                          borderRadius: '50%',
+                          width: 20,
                           height: 20,
                           display: 'inline-block',
                           cursor: 'pointer',
                           position: 'relative',
+                          border: '1.5px solid #bbb',
                         }}
                         title={
                           `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label || (localStatuses[s.id] ?? s.status) || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.desc || ''}`
@@ -478,10 +479,25 @@ export default function DatabasePage() {
                       <select
                         value={localStatuses[s.id] ?? s.status ?? 'Pending'}
                         onChange={e => setLocalStatuses(prev => ({ ...prev, [s.id]: e.target.value }))}
-                        style={{ borderRadius: 6, padding: '2px 6px', fontSize: 13 }}
+                        style={{ borderRadius: 6, padding: '2px 6px', fontSize: 13, minWidth: 32 }}
                       >
                         {STATUS_OPTIONS.map(opt => (
-                          <option key={opt.value} value={opt.value}>{opt.label}</option>
+                          <option
+                            key={opt.value}
+                            value={opt.value}
+                            style={{
+                              background: opt.color,
+                              color: 'transparent',
+                              borderRadius: '50%',
+                              width: 20,
+                              height: 20,
+                              display: 'inline-block',
+                              border: '1.5px solid #bbb',
+                            }}
+                            title={`${opt.label} - ${opt.desc}`}
+                          >
+                            {opt.label}
+                          </option>
                         ))}
                       </select>
                     </div>
