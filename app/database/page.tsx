@@ -325,6 +325,82 @@ export default function DatabasePage() {
     window.addEventListener('mouseup', onMouseUp);
   };
 
+  // Custom-Dropdown für Status
+  function StatusDropdown({ value, onChange }: { value: string, onChange: (v: string) => void }) {
+    const [open, setOpen] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (!open) return;
+      function handleClick(e: MouseEvent) {
+        if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      }
+      document.addEventListener('mousedown', handleClick);
+      return () => document.removeEventListener('mousedown', handleClick);
+    }, [open]);
+
+    return (
+      <div ref={ref} style={{ position: 'relative', minWidth: 32 }}>
+        <button
+          type="button"
+          aria-label="Status ändern"
+          onClick={() => setOpen(v => !v)}
+          style={{
+            border: '1.5px solid #bbb',
+            borderRadius: 6,
+            width: 32,
+            height: 28,
+            background: '#fff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 20 20"><path d="M5 8l5 5 5-5" stroke="#222" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
+        </button>
+        {open && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 34,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              background: '#fff',
+              border: '1.5px solid #bbb',
+              borderRadius: 10,
+              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+              padding: 10,
+              zIndex: 100,
+              minWidth: 120,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 32px)',
+              gap: 10,
+            }}
+          >
+            {STATUS_OPTIONS.map(opt => (
+              <div
+                key={opt.value}
+                title={`${opt.label} - ${opt.desc}`}
+                onClick={() => { onChange(opt.value); setOpen(false); }}
+                style={{
+                  background: opt.color,
+                  borderRadius: '50%',
+                  width: 24,
+                  height: 24,
+                  border: value === opt.value ? '2.5px solid #222' : '1.5px solid #bbb',
+                  cursor: 'pointer',
+                  boxShadow: value === opt.value ? '0 0 0 2px #e0e0e0' : undefined,
+                  transition: 'border 0.15s',
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -476,30 +552,10 @@ export default function DatabasePage() {
                           `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label || (localStatuses[s.id] ?? s.status) || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.desc || ''}`
                         }
                       />
-                      <select
+                      <StatusDropdown
                         value={localStatuses[s.id] ?? s.status ?? 'Pending'}
-                        onChange={e => setLocalStatuses(prev => ({ ...prev, [s.id]: e.target.value }))}
-                        style={{ borderRadius: 6, padding: '2px 6px', fontSize: 13, minWidth: 32 }}
-                      >
-                        {STATUS_OPTIONS.map(opt => (
-                          <option
-                            key={opt.value}
-                            value={opt.value}
-                            style={{
-                              background: opt.color,
-                              color: 'transparent',
-                              borderRadius: '50%',
-                              width: 20,
-                              height: 20,
-                              display: 'inline-block',
-                              border: '1.5px solid #bbb',
-                            }}
-                            title={`${opt.label} - ${opt.desc}`}
-                          >
-                            {opt.label}
-                          </option>
-                        ))}
-                      </select>
+                        onChange={v => setLocalStatuses(prev => ({ ...prev, [s.id]: v }))}
+                      />
                     </div>
                   </td>
                   {Object.entries(s).map(([key, value]) =>
