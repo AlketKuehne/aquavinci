@@ -551,9 +551,9 @@ export default function DatabasePage() {
                           cursor: 'pointer',
                           position: 'relative',
                           border: '1.5px solid #bbb',
-                          boxShadow: '0 0 8px 2px rgba(0,0,0,0.10)',
                           animation: 'status-blink 1.2s infinite alternate',
                           overflow: 'hidden',
+                          boxShadow: 'none', // Schatten entfernt
                         }}
                         className="status-circle"
                         title={
@@ -613,6 +613,7 @@ export default function DatabasePage() {
         .status-circle {
           position: relative;
           z-index: 1;
+          box-shadow: none !important;
         }
         .status-circle::after {
           content: '';
@@ -624,13 +625,14 @@ export default function DatabasePage() {
           border-radius: 50%;
           pointer-events: none;
           background: linear-gradient(120deg, rgba(255,255,255,0.55) 10%, rgba(255,255,255,0.12) 60%, transparent 100%);
-          box-shadow: 0 0 8px 2px rgba(255,255,255,0.18) inset;
+          /* box-shadow entfernt */
+          box-shadow: none !important;
           mix-blend-mode: lighten;
           animation: status-shine 2.2s infinite linear;
         }
         @keyframes status-blink {
-          0% { box-shadow: 0 0 8px 2px rgba(0,0,0,0.10); filter: brightness(1); }
-          100% { box-shadow: 0 0 16px 6px rgba(0,0,0,0.18); filter: brightness(1.18); }
+          0% { filter: brightness(1); }
+          100% { filter: brightness(1.18); }
         }
         @keyframes status-shine {
           0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
