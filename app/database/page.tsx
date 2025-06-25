@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../utils/supabaseClient";
 import { FaEdit, FaTrash, FaRegEdit } from "react-icons/fa";
@@ -45,6 +45,7 @@ export default function DatabasePage() {
   const [showColumnEdit, setShowColumnEdit] = useState(false);
   const [visibleColumns, setVisibleColumns] = useState<string[]>([]);
   const [defaultColumns, setDefaultColumns] = useState<string[]>([]);
+  const columnEditRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
 
   // Session-Check beim Mounten (nur für diese Tab-Session)
@@ -175,6 +176,23 @@ export default function DatabasePage() {
     }
   }, [shipments.length]);
 
+  // Dropdown automatisch schließen, wenn außerhalb geklickt wird
+  useEffect(() => {
+    if (!showColumnEdit) return;
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        columnEditRef.current &&
+        !columnEditRef.current.contains(event.target as Node)
+      ) {
+        setShowColumnEdit(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showColumnEdit]);
+
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -219,6 +237,7 @@ export default function DatabasePage() {
             </button>
             {showColumnEdit && (
               <motion.div
+                ref={columnEditRef}
                 initial={{ opacity: 0, scale: 0.95, y: 0, x: 0 }}
                 animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 0, x: 0 }}
