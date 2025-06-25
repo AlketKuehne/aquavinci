@@ -333,14 +333,24 @@ export default function DatabasePage() {
                     data-col={idx}
                     className={`border px-4 py-2 cursor-pointer select-none relative group transition-all duration-300${idx === arr.length - 1 ? ' rounded-tr-xl' : ''} ${draggedCol === key ? 'opacity-50' : ''}`}
                     style={{ width: columnWidths[key] || 150, minWidth: 60, position: 'relative', left: draggedCol === key ? 0 : undefined, zIndex: draggedCol === key ? 20 : undefined, transition: 'all 0.25s cubic-bezier(.4,2,.6,1)' }}
-                    onMouseDown={e => handleHeaderMouseDown(key, idx, e)}
                   >
-                    <span className="flex items-center gap-1">
+                    <span
+                      className="flex items-center gap-1 w-full"
+                      onClick={() => handleSort(key)}
+                      style={{ cursor: 'pointer', userSelect: 'none' }}
+                    >
                       {key}
                       {sortKey === key && (
                         <span>{sortOrder === 'asc' ? '▲' : '▼'}</span>
                       )}
                     </span>
+                    {/* Drag-Handle */}
+                    <span
+                      onMouseDown={e => handleHeaderMouseDown(key, idx, e)}
+                      className="absolute left-0 top-0 h-full w-2 cursor-grab z-20 group-hover:bg-gray-200"
+                      style={{ userSelect: 'none' }}
+                      title="Spalte verschieben"
+                    />
                     {/* Resizer */}
                     <span
                       onMouseDown={e => {
