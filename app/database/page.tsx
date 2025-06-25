@@ -42,7 +42,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: "BEING LOADED",
-    color: "#ffe066",
+    color: "#997bcc",
     label: "BEING LOADED",
     desc: ""
   },
@@ -60,7 +60,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: "ARRIVED",
-    color: "#b9fbc0",
+    color: "#00d0ff",
     label: "ARRIVED",
     desc: ""
   },
@@ -72,7 +72,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: "UNLOADED",
-    color: "#64ffda",
+    color: "#00ffa6",
     label: "UNLOADED",
     desc: ""
   },
@@ -84,7 +84,7 @@ const STATUS_OPTIONS = [
   },
   {
     value: "DELIVERY ON ROUTE",
-    color: "#43a047",
+    color: "#95ff00",
     label: "DELIVERY ON ROUTE",
     desc: ""
   },
