@@ -33,6 +33,81 @@ interface Shipment {
   [key: string]: any;
 }
 
+const STATUS_OPTIONS = [
+  {
+    value: "Pending",
+    color: "#bdbdbd",
+    label: "Pending",
+    desc: "- Noch nicht bearbeitet"
+  },
+  {
+    value: "Wird auf dem Schiff geladen",
+    color: "#ffe066",
+    label: "Wird auf dem Schiff geladen",
+    desc: "- Wird verladen"
+  },
+  {
+    value: "Wurde auf dem Schiff geladen",
+    color: "#cdb4f6",
+    label: "Wurde auf dem Schiff geladen",
+    desc: "- Verladung abgeschlossen"
+  },
+  {
+    value: "Auf dem Weg zum Zielhafen",
+    color: "#90caf9",
+    label: "Auf dem Weg zum Zielhafen",
+    desc: "- Schiff unterwegs"
+  },
+  {
+    value: "Wird entladen",
+    color: "#b9fbc0",
+    label: "Wird entladen",
+    desc: "- Entladung läuft"
+  },
+  {
+    value: "Abholbereit",
+    color: "#64ffda",
+    label: "Abholbereit",
+    desc: "- Bereit zur Abholung"
+  },
+  {
+    value: "Auf dem Weg zu dir",
+    color: "#1976d2",
+    label: "Auf dem Weg zu dir",
+    desc: "- Lieferung unterwegs"
+  },
+  {
+    value: "Abgeholt/Geliefert",
+    color: "#43a047",
+    label: "Abgeholt/Geliefert",
+    desc: "- Lieferung abgeschlossen"
+  },
+  {
+    value: "Verzögerungen",
+    color: "#ff9800",
+    label: "Verzögerungen",
+    desc: "- Es gibt Verzögerungen"
+  },
+  {
+    value: "In Klärung",
+    color: "#f48fb1",
+    label: "In Klärung",
+    desc: "- Problem wird geklärt"
+  },
+  {
+    value: "Your shipment has fallen into the sea",
+    color: "#e53935",
+    label: "Ins Meer gefallen",
+    desc: "- Sendung verloren (Meer)"
+  },
+  {
+    value: "Your parcel has been lost",
+    color: "#e53935",
+    label: "Verloren",
+    desc: "- Sendung verloren"
+  },
+];
+
 export default function DatabasePage() {
   const [shipments, setShipments] = useState<Shipment[]>([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -50,6 +125,7 @@ export default function DatabasePage() {
   const [dragOverCol, setDragOverCol] = useState<string | null>(null);
   const [dragColIndex, setDragColIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
+  const [localStatuses, setLocalStatuses] = useState<{[id:string]: string}>({});
   const dragGhostRef = useRef<HTMLDivElement>(null);
   const columnEditRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -383,7 +459,38 @@ export default function DatabasePage() {
                       <FaTrash />
                     </button>
                   </td>
-                  <td className="border px-4 py-2 text-center">{s.status ? s.status : "Unbekannt"}</td>
+                  <td className="border px-4 py-2 text-center">
+                    <div className="flex items-center gap-2 justify-center">
+                      <div
+                        style={{
+                          background: STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.color || '#eee',
+                          color: '#222',
+                          borderRadius: 8,
+                          padding: '2px 10px',
+                          fontWeight: 500,
+                          fontSize: 13,
+                          cursor: 'pointer',
+                          minWidth: 80,
+                          display: 'inline-block',
+                          position: 'relative',
+                        }}
+                        title={
+                          `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label || (localStatuses[s.id] ?? s.status) || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.desc || ''}`
+                        }
+                      >
+                        {(STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status) === opt.value)?.label) || (localStatuses[s.id] ?? s.status) || 'Unbekannt'}
+                      </div>
+                      <select
+                        value={localStatuses[s.id] ?? s.status ?? 'Pending'}
+                        onChange={e => setLocalStatuses(prev => ({ ...prev, [s.id]: e.target.value }))}
+                        style={{ borderRadius: 6, padding: '2px 6px', fontSize: 13 }}
+                      >
+                        {STATUS_OPTIONS.map(opt => (
+                          <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </td>
                   {Object.entries(s).map(([key, value]) =>
                     key === "id" ? (
                       <td key={key} className="border px-4 py-2">{value?.toString()}</td>
