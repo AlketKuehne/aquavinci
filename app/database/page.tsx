@@ -223,7 +223,7 @@ export default function DatabasePage() {
                 animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 0, x: 0 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute left-full top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[220px] max-h-60 overflow-y-auto flex flex-col gap-2 custom-scrollbar"
+                className="absolute left-0 translate-x-full top-1 z-50 bg-white border rounded-xl shadow-lg p-4 min-w-[220px] max-h-60 overflow-y-auto flex flex-col gap-2 custom-scrollbar"
                 style={{ minWidth: 220 }}
               >
                 <div className="font-bold mb-2">Select columns</div>
