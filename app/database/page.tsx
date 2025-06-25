@@ -549,7 +549,7 @@ export default function DatabasePage() {
                     <div className="flex items-center gap-2 justify-center">
                       <div
                         style={{
-                          background: STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status ?? 'Pending') === opt.value)?.color || '#eee',
+                          background: STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status ?? 'PNEDING') === opt.value)?.color || '#eee',
                           borderRadius: '50%',
                           width: 20,
                           height: 20,
@@ -563,7 +563,7 @@ export default function DatabasePage() {
                         }}
                         className="status-circle"
                         title={
-                          `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status ?? 'Pending') === opt.value)?.label || (localStatuses[s.id] ?? s.status ?? 'Pending') || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status ?? 'Pending') === opt.value)?.desc || ''}`
+                          `${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status ?? 'PNEDING') === opt.value)?.label || (localStatuses[s.id] ?? s.status ?? 'PNEDING') || 'Unbekannt'} - ${STATUS_OPTIONS.find(opt => (localStatuses[s.id] ?? s.status ?? 'PNEDING') === opt.value)?.desc || ''}`
                         }
                       />
                       <StatusDropdown
