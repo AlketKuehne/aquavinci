@@ -346,16 +346,20 @@ export default function DatabasePage() {
           aria-label="Status ändern"
           onClick={() => setOpen(v => !v)}
           style={{
-            border: '1.5px solid #bbb',
+            border: 'none',
             borderRadius: 6,
             width: 32,
             height: 28,
-            background: '#fff',
+            background: 'transparent',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
+            outline: 'none',
+            boxShadow: 'none',
+            padding: 0,
           }}
+          className="status-dropdown-btn"
         >
           <svg width="16" height="16" viewBox="0 0 20 20"><path d="M5 8l5 5 5-5" stroke="#222" strokeWidth="2" fill="none" strokeLinecap="round"/></svg>
         </button>
@@ -632,6 +636,10 @@ export default function DatabasePage() {
           0% { opacity: 0.7; transform: scale(1) rotate(0deg); }
           50% { opacity: 1; transform: scale(1.08) rotate(10deg); }
           100% { opacity: 0.7; transform: scale(1) rotate(0deg); }
+        }
+        .status-dropdown-btn:focus {
+          outline: none !important;
+          box-shadow: none !important;
         }
       `}</style>
     </div>
