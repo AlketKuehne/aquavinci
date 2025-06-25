@@ -209,13 +209,17 @@ export default function DatabasePage() {
         <div className="p-8 mt-12">
           <div className="flex items-center mb-6">
             <h1 className="text-4xl font-extrabold self-start">Database</h1>
-            <button
-              className="ml-3 p-2 rounded-full hover:bg-gray-200 transition"
+            <motion.button
+              className="ml-3 p-2 rounded-full"
               title="Spalten bearbeiten"
               onClick={() => setShowColumnEdit((v) => !v)}
+              whileHover={{ backgroundColor: '#000', color: '#E5E5E5', scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 60, damping: 22 }}
+              style={{ color: '#000', backgroundColor: '#E5E5E5' }}
             >
               <FaRegEdit size={22} />
-            </button>
+            </motion.button>
           </div>
           {showColumnEdit && (
             <motion.div
