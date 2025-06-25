@@ -278,9 +278,8 @@ export default function DatabasePage() {
                     layout
                     transition={{ type: "spring", stiffness: 60, damping: 22 }}
                     className={
-                      `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} transition-all duration-500 ease-in-out ${isSorting ? 'opacity-60' : 'opacity-100'}`
+                      `${idx % 2 === 0 ? "bg-white" : "bg-[#F5F5F5]"} ${isSorting ? 'opacity-60' : 'opacity-100'}`
                     }
-                    style={{ transition: 'all 0.5s cubic-bezier(0.4,0,0.2,1)' }}
                   >
                     <td className="border px-4 py-2 text-center">
                       <button
@@ -307,17 +306,25 @@ export default function DatabasePage() {
                         <td key={key} className="border px-4 py-2">{value?.toString()}</td>
                       ) : null
                     )}
-                    {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => (
-                      <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 && i === arr.length - 1 ? ' rounded-br-xl' : ''}${idx === sortedShipments.length - 1 && i === 0 ? ' rounded-bl-xl' : ''}`}>
-                        {key === "created_at"
-                          ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
-                          : Array.isArray(s[key])
-                          ? (s[key] as any[]).join(", ")
-                          : typeof s[key] === "boolean"
-                            ? s[key] ? "Yes" : "No"
-                            : s[key]?.toString()}
-                      </td>
-                    ))}
+                    {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => {
+                      // Prüfe, ob diese Zelle die erste oder letzte sichtbare ist
+                      const isFirst = i === 0;
+                      const isLast = i === arr.length - 1;
+                      let rounded = '';
+                      if (idx === sortedShipments.length - 1 && isFirst) rounded += ' rounded-bl-xl';
+                      if (idx === sortedShipments.length - 1 && isLast) rounded += ' rounded-br-xl';
+                      return (
+                        <td key={key} className={`border px-4 py-2${rounded}`}>
+                          {key === "created_at"
+                            ? new Date(s[key] as string).toLocaleString("de-DE", { dateStyle: "short", timeStyle: "short" })
+                            : Array.isArray(s[key])
+                            ? (s[key] as any[]).join(", ")
+                            : typeof s[key] === "boolean"
+                              ? s[key] ? "Yes" : "No"
+                              : s[key]?.toString()}
+                        </td>
+                      );
+                    })}
                   </motion.tr>
                 ))}
               </AnimatePresence>
