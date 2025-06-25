@@ -106,18 +106,6 @@ export default function DatabasePage() {
     }
   };
 
-  // Beim echten Reload oder Navigation auf Database: Session löschen
-  useEffect(() => {
-    const handleUnload = () => {
-      sessionStorage.removeItem("dbLoggedIn");
-      sessionStorage.removeItem("dbUser");
-    };
-    window.addEventListener("beforeunload", handleUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleUnload);
-    };
-  }, []);
-
   // Sortierfunktion
   const sortableKeys = shipments[0]
     ? Object.keys(shipments[0]).filter(
