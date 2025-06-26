@@ -492,7 +492,7 @@ export default function DatabasePage() {
               </motion.div>
             )}
           </div>
-          <table className="min-w-full border ml-16 mt-2" style={{ borderCollapse: 'separate', borderSpacing: 0 }}>
+          <table className="min-w-full" style={{ borderCollapse: 'separate', borderSpacing: 0 }}>
             <thead>
               <tr className="bg-[#F5F5F5]">
                 <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
