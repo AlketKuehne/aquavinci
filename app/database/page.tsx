@@ -492,7 +492,7 @@ export default function DatabasePage() {
               </motion.div>
             )}
           </div>
-          <table className="min-w-full border ml-16 rounded-xl mt-2">
+          <table className="min-w-full border ml-16 mt-2" style={{ borderCollapse: 'separate', borderSpacing: 0 }}>
             <thead>
               <tr className="bg-[#F5F5F5]">
                 <th className="border px-4 py-2 rounded-tl-xl">Edit</th>
@@ -536,7 +536,7 @@ export default function DatabasePage() {
                   }
                 >
                   {/* Edit Button: nur hier links abrunden, wenn letzte Zeile */}
-                  <td className={`border px-4 py-2 text-center${idx === sortedShipments.length - 1 ? ' rounded-bl-xl' : ''}`}>
+                  <td className={`border px-4 py-2 text-center${idx === sortedShipments.length - 1 ? ' rounded-bl-xl' : ''}`}> 
                     <button
                       onClick={loggedIn && username === "alket.rrushi" ? () => router.push(`/create-shipment/details/review&confirm/${s.id}`) : undefined}
                       title="Bearbeiten"
@@ -546,7 +546,7 @@ export default function DatabasePage() {
                       <FaEdit />
                     </button>
                   </td>
-                  <td className="border px-4 py-2 text-center">
+                  <td className={`border px-4 py-2 text-center${idx === sortedShipments.length - 1 ? '' : ''}`}> 
                     <button
                       onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
                       title="Löschen"
@@ -556,7 +556,7 @@ export default function DatabasePage() {
                       <FaTrash />
                     </button>
                   </td>
-                  <td className="border px-4 py-2 text-center">
+                  <td className={`border px-4 py-2 text-center${idx === sortedShipments.length - 1 ? '' : ''}`}> 
                     <div className="flex items-center gap-2 justify-center">
                       <div
                         style={{
@@ -588,7 +588,7 @@ export default function DatabasePage() {
                   </td>
                   {Object.entries(s).map(([key, value]) =>
                     key === "id" ? (
-                      <td key={key} className="border px-4 py-2">{value?.toString()}</td>
+                      <td key={key} className={`border px-4 py-2${idx === sortedShipments.length - 1 ? '' : ''}`}>{value?.toString()}</td>
                     ) : null
                   )}
                   {defaultColumns.filter(key => visibleColumns.includes(key)).map((key, i, arr) => {
