@@ -6,7 +6,7 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: 'aquavinci.shipments@gmail.com',
-    pass: 'pvdyuwwhdyoacynr', // App-Passwort von Google
+    pass: 'pvdyuwwhdyoacynr', // App-Passwort from Google
   },
 });
 
