@@ -866,6 +866,12 @@ export default function DatabasePage() {
         onSend={async (customText) => {
           const shipment = shipments.find(s => s.id === emailPopup.shipmentId);
           const consigneeEmail = shipment?.consigneeEmail || shipment?.consignee_email || shipment?.email || '';
+          console.log('DEBUG: shipment object:', shipment);
+          console.log('DEBUG: extracted consigneeEmail:', consigneeEmail);
+          if (!consigneeEmail) {
+            alert('No consignee email found for this shipment! Please check the shipment data.');
+            return;
+          }
           const template = EMAIL_TEMPLATES[emailPopup.status] || { subject: '', html: () => '' };
           await fetch('/api/send-email', {
             method: 'POST',
