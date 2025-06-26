@@ -114,6 +114,192 @@ const STATUS_OPTIONS = [
   },
 ];
 
+// Email templates for all statuses (ENGLISH, with logo and professional layout)
+const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText: string, shipmentId?: string) => string } } = {
+  'PNEDING': {
+    subject: 'STATUS: PENDING for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your order is pending</h2>
+        <p style="margin:0 0 12px 0;">We have received your order and it is currently being processed. You will receive further updates as soon as your shipment status changes.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'BEING LOADED': {
+    subject: 'STATUS: BEING LOADED for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is being loaded</h2>
+        <p style="margin:0 0 12px 0;">Your shipment is currently being loaded and prepared for transport. We will notify you once it is on its way.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'LOADED': {
+    subject: 'STATUS: LOADED for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is loaded</h2>
+        <p style="margin:0 0 12px 0;">Your shipment has been successfully loaded and is ready for transport.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'ON ROUTE': {
+    subject: 'STATUS: ON ROUTE for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is on route</h2>
+        <p style="margin:0 0 12px 0;">Your shipment is currently on its way to the destination. We will keep you updated on its progress.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'ARRIVED': {
+    subject: 'STATUS: ARRIVED for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment has arrived</h2>
+        <p style="margin:0 0 12px 0;">Your shipment has arrived at its destination. Thank you for choosing Aquavinci.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'BEING UNLOADED': {
+    subject: 'STATUS: BEING UNLOADED for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is being unloaded</h2>
+        <p style="margin:0 0 12px 0;">Your shipment is currently being unloaded at the destination.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'UNLOADED': {
+    subject: 'STATUS: UNLOADED for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment has been unloaded</h2>
+        <p style="margin:0 0 12px 0;">Your shipment has been successfully unloaded and is ready for the next step.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'READY FOR PICKUP': {
+    subject: 'STATUS: READY FOR PICKUP for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is ready for pickup</h2>
+        <p style="margin:0 0 12px 0;">Your shipment is now ready for pickup at the designated location.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'DELIVERY ON ROUTE': {
+    subject: 'STATUS: DELIVERY ON ROUTE for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is out for delivery</h2>
+        <p style="margin:0 0 12px 0;">Your shipment is currently out for delivery and will reach you soon.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'COLLECTED/DELIVERED': {
+    subject: 'STATUS: DELIVERED for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment has been delivered</h2>
+        <p style="margin:0 0 12px 0;">Your shipment has been successfully delivered. Thank you for your trust in Aquavinci.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'DELAYS': {
+    subject: 'STATUS: DELAY for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#d97706;margin-bottom:12px;">Delay in your shipment</h2>
+        <p style="margin:0 0 12px 0;">Unfortunately, there is a delay with your shipment. We apologize for the inconvenience and are working to resolve the issue as quickly as possible.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'IN CLARIFICATION': {
+    subject: 'STATUS: IN CLARIFICATION for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#d97706;margin-bottom:12px;">Clarification required for your shipment</h2>
+        <p style="margin:0 0 12px 0;">There is a clarification required for your shipment. Our team will contact you as soon as possible.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+  'LOST': {
+    subject: 'STATUS: LOST for your delivery',
+    html: (customText, shipmentId) => `
+      <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
+        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <h2 style="color:#b91c1c;margin-bottom:12px;">Your shipment is lost</h2>
+        <p style="margin:0 0 12px 0;">Unfortunately, your shipment is lost. We sincerely apologize and will support you in clarifying the situation.</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
+        <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
+        <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+      </div>
+    `
+  },
+};
+
 export default function DatabasePage() {
   const [shipments, setShipments] = useState<Shipment[]>([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -132,6 +318,7 @@ export default function DatabasePage() {
   const [dragColIndex, setDragColIndex] = useState<number | null>(null);
   const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
   const [localStatuses, setLocalStatuses] = useState<{[id:string]: string}>({});
+  const [emailPopup, setEmailPopup] = useState<{ open: boolean; status: string; shipmentId: string | null }>({ open: false, status: '', shipmentId: null });
   const dragGhostRef = useRef<HTMLDivElement>(null);
   const columnEditRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
@@ -422,6 +609,60 @@ export default function DatabasePage() {
     );
   }
 
+  // Popup-Komponente für E-Mail-Versand
+  function EmailPopup({
+    open,
+    status,
+    onClose,
+    onSend,
+    defaultReason = ''
+  }: {
+    open: boolean;
+    status: string;
+    onClose: () => void;
+    onSend: (customText: string) => void;
+    defaultReason?: string;
+  }) {
+    const [customText, setCustomText] = useState(defaultReason);
+    const template = EMAIL_TEMPLATES[status] || { subject: '', body: '' };
+
+    useEffect(() => {
+      setCustomText(defaultReason);
+    }, [open, defaultReason]);
+
+    if (!open) return null;
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
+        <div className="bg-white rounded-xl shadow-xl p-6 min-w-[340px] max-w-[95vw]">
+          <h2 className="text-xl font-bold mb-2">E-Mail-Versand</h2>
+          <div className="mb-2">
+            <div className="font-semibold">Betreff:</div>
+            <div className="mb-2 border rounded px-2 py-1 bg-gray-50">{template.subject}</div>
+          </div>
+          <div className="mb-2">
+            <div className="font-semibold">Vorlage:</div>
+            <div className="mb-2 border rounded px-2 py-1 bg-gray-50 whitespace-pre-line" style={{overflowX:'auto',maxHeight:180}}>
+              <div dangerouslySetInnerHTML={{__html: template.html(customText, emailPopup.shipmentId || undefined)}} />
+            </div>
+          </div>
+          <div className="mb-2">
+            <div className="font-semibold">Individueller Zusatz (optional):</div>
+            <textarea
+              className="border rounded px-2 py-1 w-full min-h-[60px]"
+              value={customText}
+              onChange={e => setCustomText(e.target.value)}
+              placeholder="Hier können Sie einen individuellen Grund oder Zusatztext eingeben..."
+            />
+          </div>
+          <div className="flex gap-2 justify-end mt-4">
+            <button className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300" onClick={onClose}>Abbrechen</button>
+            <button className="px-4 py-2 rounded bg-black text-white hover:bg-gray-800" onClick={() => onSend(customText)}>E-Mail senden</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#E5E5E5]">
       <NavigationBar onNavigate={(url) => router.push(url)} />
@@ -582,6 +823,7 @@ export default function DatabasePage() {
                         onChange={async v => {
                           setLocalStatuses(prev => ({ ...prev, [s.id]: v }));
                           await supabase.from('shipments').update({ status: v }).eq('id', s.id);
+                          setEmailPopup({ open: true, status: v, shipmentId: s.id });
                         }}
                       />
                     </div>
@@ -616,6 +858,25 @@ export default function DatabasePage() {
           </table>
         </div>
       )}
+      {/* EmailPopup anzeigen */}
+      <EmailPopup
+        open={emailPopup.open}
+        status={emailPopup.status}
+        onClose={() => setEmailPopup({ open: false, status: '', shipmentId: null })}
+        onSend={async (customText) => {
+          // Hier API-Call an /api/send-email
+          await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              status: emailPopup.status,
+              shipmentId: emailPopup.shipmentId,
+              customText,
+            })
+          });
+          setEmailPopup({ open: false, status: '', shipmentId: null });
+        }}
+      />
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 8px;
