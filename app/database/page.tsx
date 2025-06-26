@@ -120,13 +120,14 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: PENDING for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your order is pending</h2>
         <p style="margin:0 0 12px 0;">We have received your order and it is currently being processed. You will receive further updates as soon as your shipment status changes.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+        <img src="/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -134,13 +135,14 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: BEING LOADED for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is being loaded</h2>
         <p style="margin:0 0 12px 0;">Your shipment is currently being loaded and prepared for transport. We will notify you once it is on its way.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+        <img src="/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -148,13 +150,14 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: LOADED for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is loaded</h2>
         <p style="margin:0 0 12px 0;">Your shipment has been successfully loaded and is ready for transport.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+        <img src="/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -162,13 +165,14 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: ON ROUTE for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is on route</h2>
         <p style="margin:0 0 12px 0;">Your shipment is currently on its way to the destination. We will keep you updated on its progress.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+        <img src="/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -176,13 +180,14 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: ARRIVED for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment has arrived</h2>
         <p style="margin:0 0 12px 0;">Your shipment has arrived at its destination. Thank you for choosing Aquavinci.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+        <img src="/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -190,13 +195,14 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: BEING UNLOADED for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is being unloaded</h2>
         <p style="margin:0 0 12px 0;">Your shipment is currently being unloaded at the destination.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
+        <img src="/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -204,10 +210,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: UNLOADED for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment has been unloaded</h2>
         <p style="margin:0 0 12px 0;">Your shipment has been successfully unloaded and is ready for the next step.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -218,10 +224,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: READY FOR PICKUP for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is ready for pickup</h2>
         <p style="margin:0 0 12px 0;">Your shipment is now ready for pickup at the designated location.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -232,10 +238,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: DELIVERY ON ROUTE for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment is out for delivery</h2>
         <p style="margin:0 0 12px 0;">Your shipment is currently out for delivery and will reach you soon.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -246,10 +252,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: DELIVERED for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#1976d2;margin-bottom:12px;">Your shipment has been delivered</h2>
         <p style="margin:0 0 12px 0;">Your shipment has been successfully delivered. Thank you for your trust in Aquavinci.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -260,10 +266,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: DELAY for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#d97706;margin-bottom:12px;">Delay in your shipment</h2>
         <p style="margin:0 0 12px 0;">Unfortunately, there is a delay with your shipment. We apologize for the inconvenience and are working to resolve the issue as quickly as possible.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -274,10 +280,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: IN CLARIFICATION for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#d97706;margin-bottom:12px;">Clarification required for your shipment</h2>
         <p style="margin:0 0 12px 0;">There is a clarification required for your shipment. Our team will contact you as soon as possible.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -288,10 +294,10 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
     subject: 'STATUS: LOST for your delivery',
     html: (customText, shipmentId) => `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:auto;background:#f9f9f9;padding:32px 24px 24px 24px;border-radius:16px;border:1px solid #e0e0e0;">
-        <img src="https://aquavinci.vercel.app/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="/logoname.png" alt="Aquavinci Logo" style="height:48px;margin-bottom:24px;display:block;margin-left:auto;margin-right:auto;"/>
         <h2 style="color:#b91c1c;margin-bottom:12px;">Your shipment is lost</h2>
         <p style="margin:0 0 12px 0;">Unfortunately, your shipment is lost. We sincerely apologize and will support you in clarifying the situation.</p>
-        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'}</p>
+        <p style="margin:0 0 12px 0;"><b>Shipment ID:</b> ${shipmentId || '-'} </p>
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
@@ -791,7 +797,7 @@ export default function DatabasePage() {
                     <button
                       onClick={loggedIn && username === "alket.rrushi" ? () => handleDelete(s.id) : undefined}
                       title="Löschen"
-                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5E5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
+                      className={`flex items-center justify-center w-8 h-8 rounded-full ${loggedIn && username === "alket.rrushi" ? 'bg-[#E5E5E5] text-black cursor-pointer transition-all duration-[1250ms] hover:bg-black hover:text-[#E5F5F5]' : 'bg-[#E5E5E5] text-gray-400 opacity-50 cursor-not-allowed'}`}
                       disabled={!(loggedIn && username === "alket.rrushi")}
                     >
                       <FaTrash />
