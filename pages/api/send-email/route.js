@@ -31,6 +31,6 @@ export default async function handler(req, res) {
     });
     res.status(200).json({ message: 'E-Mail sent' });
   } catch (error) {
-    res.status(500).json({ message: 'Error: E-Mail did not send', error });
+    res.status(500).json({ message: 'Error: E-Mail not sent', error });
   }
 }
