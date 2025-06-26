@@ -127,7 +127,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -142,7 +142,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -157,7 +157,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -172,7 +172,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -187,7 +187,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -202,7 +202,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -217,7 +217,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -232,7 +232,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -247,7 +247,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -262,7 +262,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -277,7 +277,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -292,7 +292,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
@@ -307,7 +307,7 @@ const EMAIL_TEMPLATES: { [status: string]: { subject: string; html: (customText:
         <p style="margin:0 0 12px 0;">${customText ? `<b>Note:</b> ${customText}` : ''}</p>
         <p style="margin:32px 0 0 0;font-size:15px;color:#222;">Best regards,<br/>Aquavinci Team</p>
         <div style="margin-top:24px;text-align:center;color:#aaa;font-size:12px;">This is an automated message from Aquavinci</div>
-        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:40px;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
+        <img src="https://aquavinci.vercel.app/Screenshot.jpg" alt="Shipment Screenshot" style="height:180px;width:auto;max-width:100%;margin-top:32px;display:block;margin-left:auto;margin-right:auto;"/>
       </div>
     `
   },
