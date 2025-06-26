@@ -317,6 +317,13 @@ export default function CreateShipmentPage() {
       consignorFullName &&
       consignorFullAddress &&
       consignorCity &&
+      consignorCountry &&
+      consignorEmail &&
+      consigneeFullName &&
+      consigneeFullAddress &&
+      consigneeCity &&
+      consigneeCountry &&
+      consigneeEmail &&
       country &&
       originCity &&
       street &&
@@ -326,9 +333,6 @@ export default function CreateShipmentPage() {
       shipmentType &&
       description &&
       ((shipmentType === "FCL" && fclSelection) || (shipmentType === "LCL" && lclSelection)) &&
-      consigneeFullName &&
-      consigneeFullAddress &&
-      consigneeCity &&
       shippingDate &&
       deliveryDate &&
       new Date(shippingDate) < new Date(deliveryDate)
@@ -338,6 +342,13 @@ export default function CreateShipmentPage() {
     consignorFullName,
     consignorFullAddress,
     consignorCity,
+    consignorCountry,
+    consignorEmail,
+    consigneeFullName,
+    consigneeFullAddress,
+    consigneeCity,
+    consigneeCountry,
+    consigneeEmail,
     country,
     originCity,
     street,
@@ -348,9 +359,6 @@ export default function CreateShipmentPage() {
     description,
     fclSelection,
     lclSelection,
-    consigneeFullName,
-    consigneeFullAddress,
-    consigneeCity,
     shippingDate,
     deliveryDate,
   ]);
@@ -395,7 +403,30 @@ export default function CreateShipmentPage() {
   const handleContinueClick = () => {
     if (!isButtonEnabled) {
       setShowError(true);
-      if (!consignorFullName || !consignorFullAddress || !consignorCity || !country || !originCity || !street || !destinationCountry || !destinationCity || !destinationStreet || !shipmentType || !description || (shipmentType === "FCL" && !fclSelection) || (shipmentType === "LCL" && !lclSelection) || !consigneeFullName || !consigneeFullAddress || !consigneeCity || !shippingDate || !deliveryDate) {
+      if (
+        !consignorFullName ||
+        !consignorFullAddress ||
+        !consignorCity ||
+        !consignorCountry ||
+        !consignorEmail ||
+        !consigneeFullName ||
+        !consigneeFullAddress ||
+        !consigneeCity ||
+        !consigneeCountry ||
+        !consigneeEmail ||
+        !country ||
+        !originCity ||
+        !street ||
+        !destinationCountry ||
+        !destinationCity ||
+        !destinationStreet ||
+        !shipmentType ||
+        !description ||
+        (shipmentType === "FCL" && !fclSelection) ||
+        (shipmentType === "LCL" && !lclSelection) ||
+        !shippingDate ||
+        !deliveryDate
+      ) {
         setShowWarning(true);
         setInvalidDateWarning(false);
         setDateWarning(false);
@@ -403,58 +434,58 @@ export default function CreateShipmentPage() {
         setInvalidDateWarning(true);
         setShowWarning(false);
         setDateWarning(false);
-      } else if (shippingDate && deliveryDate && new Date(shippingDate) >= new Date(deliveryDate)) {
+      } else if (new Date(shippingDate) >= new Date(deliveryDate)) {
         setDateWarning(true);
         setShowWarning(false);
         setInvalidDateWarning(false);
       }
-    } else {
-      setShowWarning(false);
-      setDateWarning(false);
-      setInvalidDateWarning(false);
-      const minDays = getMinimumDeliveryDays(country, destinationCountry);
-      const shippingDateObj = new Date(shippingDate);
-      const minDeliveryDateObj = new Date(shippingDateObj);
-      minDeliveryDateObj.setDate(shippingDateObj.getDate() + minDays);
-      sessionStorage.setItem("authorizedForDetails", "true");
-      // Alle Werte in sessionStorage speichern
-      const allShipmentData = {
-        shipmentType,
-        fclSelection,
-        containerType: shipmentType === "FCL" ? fclSelection : "",
-        lclSelection,
-        packageType: shipmentType === "LCL" ? lclSelection : "",
-        description,
-        consignorFullName,
-        consignorFullAddress,
-        consignorCity,
-        consignorCountry,
-        consignorEmail,
-        consignorPhone,
-        consigneeFullName,
-        consigneeFullAddress,
-        consigneeCity,
-        consigneeCountry,
-        consigneeEmail,
-        consigneePhone,
-        country,
-        originCity,
-        street,
-        destinationCountry,
-        destinationCity,
-        destinationStreet,
-        numberOfPieces,
-        isDangerousGoods,
-        shippingDate,
-        deliveryDate
-      };
-      sessionStorage.setItem("allShipmentData", JSON.stringify(allShipmentData));
-      router.push(
-        `/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}&shippingDate=${encodeURIComponent(
-          shippingDate
-        )}&minDeliveryDate=${encodeURIComponent(minDeliveryDateObj.toISOString().split("T")[0])}`
-      );
+      return;
     }
+    setShowWarning(false);
+    setDateWarning(false);
+    setInvalidDateWarning(false);
+    const minDays = getMinimumDeliveryDays(country, destinationCountry);
+    const shippingDateObj = new Date(shippingDate);
+    const minDeliveryDateObj = new Date(shippingDateObj);
+    minDeliveryDateObj.setDate(shippingDateObj.getDate() + minDays);
+    sessionStorage.setItem("authorizedForDetails", "true");
+    // Alle Werte in sessionStorage speichern
+    const allShipmentData = {
+      shipmentType,
+      fclSelection,
+      containerType: shipmentType === "FCL" ? fclSelection : "",
+      lclSelection,
+      packageType: shipmentType === "LCL" ? lclSelection : "",
+      description,
+      consignorFullName,
+      consignorFullAddress,
+      consignorCity,
+      consignorCountry,
+      consignorEmail,
+      consignorPhone,
+      consigneeFullName,
+      consigneeFullAddress,
+      consigneeCity,
+      consigneeCountry,
+      consigneeEmail,
+      consigneePhone,
+      country,
+      originCity,
+      street,
+      destinationCountry,
+      destinationCity,
+      destinationStreet,
+      numberOfPieces,
+      isDangerousGoods,
+      shippingDate,
+      deliveryDate
+    };
+    sessionStorage.setItem("allShipmentData", JSON.stringify(allShipmentData));
+    router.push(
+      `/create-shipment/details?shipmentType=${encodeURIComponent(shipmentType)}&shippingDate=${encodeURIComponent(
+        shippingDate
+      )}&minDeliveryDate=${encodeURIComponent(minDeliveryDateObj.toISOString().split("T")[0])}`
+    );
   };
 
   const closeWarning = () => {
@@ -524,11 +555,12 @@ export default function CreateShipmentPage() {
                 id="consignorEmail"
                 name="consignorEmail"
                 type="email"
-                placeholder="Email Address"
-                className="w-full p-2 border rounded mb-3 bg-gray-100"
+                placeholder="Email Address *"
+                className={`w-full p-2 border rounded mb-3 bg-gray-100${showError && !consignorEmail ? ' bg-red-100' : ''}`}
                 value={consignorEmail}
                 onChange={(e) => setConsignorEmail(e.target.value)}
                 aria-label="Consignor Email Address"
+                required
               />
               <input
                 id="consignorPhone"
@@ -599,11 +631,12 @@ export default function CreateShipmentPage() {
                 id="consigneeEmail"
                 name="consigneeEmail"
                 type="email"
-                placeholder="Email Address"
-                className="w-full p-2 border rounded mb-3 bg-gray-100"
+                placeholder="Email Address *"
+                className={`w-full p-2 border rounded mb-3 bg-gray-100${showError && !consigneeEmail ? ' bg-red-100' : ''}`}
                 value={consigneeEmail}
                 onChange={(e) => setConsigneeEmail(e.target.value)}
                 aria-label="Consignee Email Address"
+                required
               />
               <input
                 id="consigneePhone"
