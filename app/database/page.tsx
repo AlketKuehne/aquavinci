@@ -864,7 +864,9 @@ export default function DatabasePage() {
         status={emailPopup.status}
         onClose={() => setEmailPopup({ open: false, status: '', shipmentId: null })}
         onSend={async (customText) => {
-          // Hier API-Call an /api/send-email
+          const shipment = shipments.find(s => s.id === emailPopup.shipmentId);
+          const consigneeEmail = shipment?.consigneeEmail || shipment?.consignee_email || shipment?.email || '';
+          const template = EMAIL_TEMPLATES[emailPopup.status] || { subject: '', html: () => '' };
           await fetch('/api/send-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -872,6 +874,9 @@ export default function DatabasePage() {
               status: emailPopup.status,
               shipmentId: emailPopup.shipmentId,
               customText,
+              to: consigneeEmail,
+              subject: template.subject,
+              html: template.html(customText, emailPopup.shipmentId || undefined),
             })
           });
           setEmailPopup({ open: false, status: '', shipmentId: null });

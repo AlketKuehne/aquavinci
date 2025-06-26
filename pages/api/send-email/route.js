@@ -14,21 +14,24 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
-  const { status } = req.body;
+  const { status, shipmentId, customText, to } = req.body;
+  // subject und html werden von der Frontend-Logik erwartet
+  const subject = req.body.subject || `Status update for your shipment`;
+  const html = req.body.html || '';
 
-  if (status === 'DELAY') {
-    try {
-      await transporter.sendMail({
-        from: '"Bestellwebseite" <dein-email@example.com>',
-        to: 'kunde@example.com', // Ersetze durch die Zieladresse
-        subject: 'Bestellstatus: Verzögerung',
-        text: 'Ihre Bestellung hat sich verzögert. Wir entschuldigen uns für die Unannehmlichkeiten.',
-      });
-      res.status(200).json({ message: 'E-Mail gesendet' });
-    } catch (error) {
-      res.status(500).json({ message: 'Fehler beim Senden der E-Mail', error });
-    }
-  } else {
-    res.status(200).json({ message: 'Kein E-Mail-Versand erforderlich' });
+  if (!to) {
+    return res.status(400).json({ message: 'No recipient email provided.' });
+  }
+
+  try {
+    await transporter.sendMail({
+      from: '"Aquavinci" <your-email@example.com>',
+      to,
+      subject,
+      html,
+    });
+    res.status(200).json({ message: 'E-Mail sent' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error: E-Mail did not send', error });
   }
 }
