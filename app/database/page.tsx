@@ -467,11 +467,31 @@ export default function DatabasePage() {
       })
     : shipments;
 
+  const DEFAULT_VISIBLE_COLUMNS = [
+    'created_at',
+    'consignorName',
+    'consignorEmail',
+    'consignorCountry',
+    'consignorCity',
+    'consigneeName',
+    'consigneeEmail',
+    'ConsigneeCountry',
+    'ConsigneeCity',
+    'originCountry',
+    'originCity',
+    'destinationCountry',
+    'destinationCity',
+    'shippingDate',
+    'deliveryDate',
+    'shipmentType',
+  ];
+
   useEffect(() => {
     if (shipments[0]) {
-      const cols = Object.keys(shipments[0]).filter(key => key !== "id");
-      setVisibleColumns(cols);
+      const cols = Object.keys(shipments[0]).filter(key => key !== "id" && key !== "status");
       setDefaultColumns(cols);
+      // Nur die gewünschten Spalten als sichtbar setzen
+      setVisibleColumns(DEFAULT_VISIBLE_COLUMNS.filter(col => cols.includes(col)));
     }
   }, [shipments.length]);
 
