@@ -688,8 +688,16 @@ export default function DatabasePage() {
             />
           </div>
           <div className="flex gap-2 justify-end mt-4">
-            <button className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300" onClick={onClose}>Abbrechen</button>
-            <button className="px-4 py-2 rounded bg-black text-white hover:bg-gray-800" onClick={() => onSend(customText)}>E-Mail senden</button>
+            <button
+              className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 cursor-pointer"
+              style={{ cursor: 'pointer' }}
+              onClick={onClose}
+            >Cancel</button>
+            <button
+              className="px-4 py-2 rounded bg-black text-white hover:bg-gray-800 cursor-pointer"
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSend(customText)}
+            >Send E-Mail</button>
           </div>
         </div>
       </div>
@@ -733,8 +741,12 @@ export default function DatabasePage() {
             <button
               className="ml-3 p-2 rounded-full flex items-center justify-center transition-all duration-[1250ms] bg-[#E5E5E5] text-black hover:bg-black hover:text-[#F5F5F5] focus:bg-black focus:text-[#F5F5F5] cursor-pointer"
               title="Edit columns"
-              onClick={() => setShowColumnEdit((v) => !v)}
+              onClick={e => {
+                e.stopPropagation();
+                setShowColumnEdit((v) => !v);
+              }}
               style={{ outline: 'none' }}
+              type="button"
             >
               <FaRegEdit size={22} />
             </button>
@@ -982,6 +994,9 @@ export default function DatabasePage() {
         .status-dropdown-btn:focus {
           outline: none !important;
           box-shadow: none !important;
+        }
+        .email-popup-btn {
+          cursor: pointer !important;
         }
       `}</style>
     </div>
