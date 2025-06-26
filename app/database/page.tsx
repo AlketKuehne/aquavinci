@@ -647,9 +647,9 @@ export default function DatabasePage() {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
         <div className="bg-white rounded-xl shadow-xl p-6 min-w-[340px] max-w-[95vw]">
-          <h2 className="text-xl font-bold mb-2">E-Mail-Versand</h2>
+          <h2 className="text-xl font-bold mb-2">E-Mail</h2>
           <div className="mb-2">
-            <div className="font-semibold">Betreff:</div>
+            <div className="font-semibold">Subject:</div>
             <div className="mb-2 border rounded px-2 py-1 bg-gray-50">{template.subject}</div>
           </div>
           <div className="mb-2">
@@ -659,12 +659,12 @@ export default function DatabasePage() {
             </div>
           </div>
           <div className="mb-2">
-            <div className="font-semibold">Individueller Zusatz (optional):</div>
+            <div className="font-semibold">Note (optional):</div>
             <textarea
               className="border rounded px-2 py-1 w-full min-h-[60px]"
               value={customText}
               onChange={e => setCustomText(e.target.value)}
-              placeholder="Hier können Sie einen individuellen Grund oder Zusatztext eingeben..."
+              placeholder="Here you can type in a custom message that will be included in the email."
             />
           </div>
           <div className="flex gap-2 justify-end mt-4">
