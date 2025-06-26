@@ -702,7 +702,7 @@ export default function DatabasePage() {
       {!loggedIn ? (
         <div className="flex flex-col items-center justify-center min-h-[80vh]">
           <form onSubmit={handleLogin} className="bg-white p-8 rounded-xl shadow-md flex flex-col gap-4 min-w-[320px]">
-            <label className="font-bold text-lg" htmlFor="username">Nutzer</label>
+            <label className="font-bold text-lg" htmlFor="username">User</label>
             <input
               id="username"
               type="text"
@@ -712,7 +712,7 @@ export default function DatabasePage() {
               autoComplete="username"
               required
             />
-            <label className="font-bold text-lg" htmlFor="password">Passwort</label>
+            <label className="font-bold text-lg" htmlFor="password">Password</label>
             <input
               id="password"
               type="password"
