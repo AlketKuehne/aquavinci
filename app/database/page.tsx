@@ -404,7 +404,7 @@ export default function DatabasePage() {
         sessionStorage.setItem("dbUser", username);
       }
     } else {
-      setError("Falscher Nutzername oder Passwort!");
+      setError("Wrong username or password!");
     }
   };
 
